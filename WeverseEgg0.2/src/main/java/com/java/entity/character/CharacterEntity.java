@@ -42,7 +42,7 @@ public class CharacterEntity {
 
     /** 인벤토리 (1:1) */
     @OneToOne
-    @JoinColumn(name = "inven_id", referencedColumnName = "id")
+    @JoinColumn(name = "inven_id", referencedColumnName = "inven_id")
     private InvenEntity inven;
 
     /** 캐릭터 닉네임 */

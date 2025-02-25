@@ -22,12 +22,13 @@ public class ArtistEntity {
 
     /** 소속 그룹 정보 (N:1) */
     @ManyToOne
-    @JoinColumn(name = "group_id", referencedColumnName = "group_id", nullable = true)
+    @JoinColumn(name = "group_id", referencedColumnName = "group_id", nullable = false, 
+            foreignKey = @ForeignKey(name = "group_id"))
     private GroupEntity group;
 
     /** 아티스트 레벨 (연습생 → 데뷔 → 성장 과정에서 변화) */
     @Column(nullable = false)
-    private int level;
+    private int clevel;
 
     /** 파란딱지 (인증된 아티스트 여부) */
     @Column(nullable = false)
