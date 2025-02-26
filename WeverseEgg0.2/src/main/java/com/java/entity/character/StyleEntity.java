@@ -20,6 +20,11 @@ public class StyleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "style_id")
     private int styleId;
+    
+    /** CharacterEntity와의 관계 (Many-to-One) */
+    @ManyToOne
+    @JoinColumn(name = "character_id")  // 외래 키 설정
+    private CharacterEntity character;
 
     /** 착용 중인 아이템 리스트 (1:N 관계) */
     @OneToMany

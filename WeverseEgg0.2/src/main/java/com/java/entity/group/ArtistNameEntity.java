@@ -16,6 +16,11 @@ public class ArtistNameEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "artist_n_id")
     private int artistNId;
+    
+    /** GroupEntity와의 관계 (Many-to-One) */
+    @ManyToOne
+    @JoinColumn(name = "group_id")  // 외래 키 설정
+    private GroupEntity group;  // group 필드 추가
 
     /** 아티스트의 활동명 (예명) */
     @Column(name = "artist_name", nullable = false, length = 100)
