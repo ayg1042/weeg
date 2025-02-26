@@ -22,5 +22,6 @@
         <button id="startTimer" class="ml-2 bg-blue-500 text-white px-4 py-2 rounded-md">시작</button>
         <div id="timer" class="text-4xl font-mono bg-white p-4 mt-4 rounded-lg shadow-md">00:00</div>
     </div>
+    TEST
 </body>
 </html>
