@@ -27,4 +27,7 @@ public class MemberEntity {
     /** 비밀번호 */
     @Column(nullable = false, length = 100)
     private String pw;
+    
+    @Column(nullable = false, length = 100)
+    private int jam;
 }

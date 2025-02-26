@@ -9,6 +9,7 @@
     <title>전자시계</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="/js/Clock.js" defer></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
     <div class="text-center">
