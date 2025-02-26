@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="weverse_login.css">
+	<link rel="stylesheet" href="../css/login/weverse_login.css">
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<title>Weverse</title>
 	<script>
@@ -54,10 +54,10 @@
 				var type = pwInput.attr('type');
 				if (type === 'password') {
 						pwInput.attr('type', 'text');
-						$(this).css('background-image', 'url(images/login/eye_open.svg)'); // 눈 열린 아이콘
+						$(this).css('background-image', 'url(../images/login/eye_open.svg)'); // 눈 열린 아이콘
 				} else {
 						pwInput.attr('type', 'password');
-						$(this).css('background-image', 'url(images/login/eye_close.svg)'); // 눈 닫힌 아이콘
+						$(this).css('background-image', 'url(../images/login/eye_close.svg)'); // 눈 닫힌 아이콘
 				}
 			});
 			$('.eyeBtn2').click(function(){
@@ -65,10 +65,10 @@
 				var type = pwInput.attr('type');
 				if (type === 'password') {
 						pwInput.attr('type', 'text');
-						$(this).css('background-image', 'url(images/login/eye_open.svg)'); // 눈 열린 아이콘
+						$(this).css('background-image', 'url(../images/login/eye_open.svg)'); // 눈 열린 아이콘
 				} else {
 						pwInput.attr('type', 'password');
-						$(this).css('background-image', 'url(images/login/eye_close.svg)'); // 눈 닫힌 아이콘
+						$(this).css('background-image', 'url(../images/login/eye_close.svg)'); // 눈 닫힌 아이콘
 				}
 			});
 
@@ -112,7 +112,7 @@
 <body>
 	<div class="login_back">
 		<div class="logo_section">
-			<img src="images/login/weverseAccount_logo.png" id="weAccountImg">
+			<img src="../images/login/weverseAccount_logo.png" id="weAccountImg">
 		</div>
 		<div class="login_section">
 			<h1 class="login_txt">
@@ -157,7 +157,7 @@
 	<!-- footer -->
 	<footer>
 		<div class="login_footer">
-			<img src="images/login/login_footer.png" alt="">			
+			<img src="../images/login/login_footer.png" alt="">			
 		</div>
 	</footer>
 
