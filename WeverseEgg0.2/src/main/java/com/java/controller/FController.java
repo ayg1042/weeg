@@ -10,7 +10,7 @@ public class FController {
 	
 	@GetMapping("/")
 	public String index() {
-		return "index";
+		return "main";
 	}
 	
 	@GetMapping("/modal")
