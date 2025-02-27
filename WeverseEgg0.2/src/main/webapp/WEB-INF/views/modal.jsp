@@ -244,9 +244,6 @@
 		    </div>
 		</div>
 		
-		<h2>
-			머지 확인용
-		</h2>
 		
 		<script src="/js/modal.js" defer></script>
 		
