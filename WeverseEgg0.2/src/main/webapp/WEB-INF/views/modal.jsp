@@ -12,8 +12,6 @@
 		<!-- 모달 열기 버튼 -->
 		<button class="open-modal" data-modal="modal1">트레이닝 선택</button>
 		<button class="open-modal" data-modal="modal2">활동 선택</button>
-		<button class="open-modal" data-modal="modal3">애니메이션 모달</button>
-		<button class="open-modal" data-modal="modal4">알림 모달</button>
 		
 		<!-- 모달 창 1 -->
 		<div id="modal1" class="modal">
@@ -189,23 +187,9 @@
 		    </div>
 		</div>
 		
-		<!-- 모달 창 3 -->
-		<div id="modal3" class="modal">
-		    <div class="modal-frame dark">
-		        <span class="close">&times;</span>
-		        <h2>어두운 모달</h2>
-		        <p>어두운 테마의 모달 창입니다.</p>
-		    </div>
-		</div>
-		
-		<!-- 모달 창 4 -->
-		<div id="modal4" class="modal">
-		    <div class="modal-frame dark">
-		        <span class="close">&times;</span>
-		        <h2>어두운 모달</h2>
-		        <p>어두운 테마의 모달 창입니다.</p>
-		    </div>
-		</div>
+		<h2>
+			머지 확인용
+		</h2>
 		
 		<script src="/js/modal.js" defer></script>
 		
