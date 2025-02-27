@@ -1,4 +1,107 @@
 @charset "UTF-8";
+
+@font-face {
+		    font-family: 'NeoDunggeunmo';
+		    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff') format('woff');
+		    font-weight: normal;
+		    font-style: normal;
+		}
+*{margin:0; padding: 0;font-family: "NeoDunggeunmo", Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;}
+button {
+    all: unset;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+
+#header{
+	height: 80px;
+	background : #eee;
+	text-align: center;
+	font-size: 40px;
+}
+.main_bg {
+	width:100%;
+	height: calc(100vh - 80px);
+	padding-top:20px;
+	box-sizing: border-box;
+	background-image: url("/images/game_back.jpg");
+}
+.game_main{
+	width:1260px;
+	height: 760px;
+	margin: 0 auto;
+	border: 20px solid #D0D3FE;
+	background-image: url("/images/mainRoom.png");
+	border-radius: 40px;
+}
+
+.info_area{
+	height: 70px;
+	margin-top :30px;
+	background: #777;
+}
+/* --- 방꾸미기 --- */
+#interior_items{
+	width: 1135px;
+	height: 527px;
+	/* height: 1px; */
+	background: #666;
+}
+
+
+/* --- 캐릭터 --- */
+.character_container{
+	width: 170px;
+	height: 340px;
+	background-image: url('/images/character_test.png');
+	margin : 222px 106px 10px 984px;
+  z-index: 1;
+}
+
+.clothing {
+  position: absolute;
+  width: 124px;
+  height: 136px;
+  background-size: cover;
+}
+
+.dress {
+  background-image: url('/images/dress_test.png');
+  background-size: cover;
+  top: 629px;
+  left: 1332px;
+  z-index: 2;
+}
+
+.hat {
+  background-image: url('/images/hat_test.png');
+  background-size: cover;
+  top: 406px;
+  left: 1292px;
+  width: 229px;
+  height: 258px;
+  z-index: 3;
+}
+
+
+
+.menu{
+	width:1008px;
+	margin:0 auto;
+}
+.menu td{
+	width:158px;
+	height:68px;
+	margin-right:12px;
+	padding : 3px;
+	box-sizing: border-box;
+}
+.menu td img{
+	width: 152px;
+	height: 62px;
+}
 /* 기본 모달 스타일 */
 .modal {
   display: none;
@@ -11,12 +114,20 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/* .open-modal{
+	width: 158px;
+	height: 68px;
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.6));
+	border-radius: 10px;	
+
+} */
 .modal-content {
-  padding: 20px;
+  /* padding: 20px; */
   border-radius: 10px;
-  width: 80%;
+  border: 20px solid #D0D3FE;
+  width: 1260px;
   /* 1260, 760 */
-  height: 80%;
+  height: 760px;
   margin: 3% auto;
   text-align: center;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
