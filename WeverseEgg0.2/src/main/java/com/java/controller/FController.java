@@ -13,6 +13,11 @@ public class FController {
 		return "main";
 	}
 	
+	@GetMapping("/main2")
+	public String index2() {
+		return "main2";
+	}
+	
 	@GetMapping("/modal")
 	public String modal() {
 		return "modal";
