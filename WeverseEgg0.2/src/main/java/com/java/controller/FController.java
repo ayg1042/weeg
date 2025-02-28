@@ -18,5 +18,20 @@ public class FController {
 		return "modal";
 	}
 	
+	@GetMapping("/choiceCharacter")
+	public String choiceCharacter() {
+		return "choiceCharacter";
+	}
+	
+	@GetMapping("/mainRoom")
+	public String mainRoom() {
+		return "mainRoom";
+	}
+	
+	@GetMapping("/startStory")
+	public String startStory() {
+		return "startStory";
+	}
+	
 	
 }
