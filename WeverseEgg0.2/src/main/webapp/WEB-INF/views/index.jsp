@@ -9,6 +9,7 @@
     <title>전자시계</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="/js/Clock.js" defer></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
     <div class="text-center">
@@ -22,6 +23,6 @@
         <button id="startTimer" class="ml-2 bg-blue-500 text-white px-4 py-2 rounded-md">시작</button>
         <div id="timer" class="text-4xl font-mono bg-white p-4 mt-4 rounded-lg shadow-md">00:00</div>
     </div>
-    TEST
+    test
 </body>
 </html>
