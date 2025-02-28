@@ -17,6 +17,11 @@ public class FController {
 		return "egg_main";
 	}
 	
+	@GetMapping("/wemypage") // 위버스 마이페이지 (대표캐릭터 선택)
+	public String weMypage() {
+		return "weMyPage";
+	}
+	
 	@GetMapping("/modal")
 	public String modal() {
 		return "modal";
