@@ -12,10 +12,234 @@
 		    font-style: normal;
 }
 *{font-family: "NeoDunggeunmo", Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;}
-body{
-	font-family: 'Pretendard-Regular';
-	background-color: blue;
+
+*{margin:0; padding: 0;font-family: "NeoDunggeunmo", Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;}
+button {
+    all: unset;
+    display: inline-block;
+    cursor: pointer;
 }
+
+#header{
+	height: 80px;
+	background : #eee;
+	text-align: center;
+	font-size: 40px;
+}
+.info_area{
+	height: 70px;
+	margin :30px 0 0 411px;
+	position:relative;
+	z-index: 8;
+	display: flex;
+}
+#bars{
+	height: 28px;
+	display: flex;
+	align-items: center;
+}
+
+.gap{
+	margin-right: 38px !important;
+}
+#character_info{
+	width:150px;
+	height: 70px;
+	background-image: url("/images/egg_info/character_info_bg.png");
+	cursor: pointer;
+}
+#character_nickname{
+	width: 100%;
+	text-align: center;
+	font-size: 15px;
+	color: white;
+	padding: 16px 16px 0 16px;
+	box-sizing: border-box;
+	margin-bottom: 14px;
+}
+#character_type{
+	text-align: center;
+	font-size: 13px;
+	color: #fff;
+}
+#character_info:hover #stat_hidden {
+    opacity: 1;
+    visibility: visible;
+  }
+
+#stat_hidden{
+	opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+	width: 150px;
+	height: 200px;
+	font-size: 15px;
+	font-weight: 400;
+	letter-spacing: -3%;
+	border-radius: 10px;
+	background: rgba(0, 0, 0, 0.66);
+  margin-top: 16px;
+  padding:12px;
+  box-sizing: border-box;
+  color: white;
+}
+#stat_hidden_level{
+	display: flex;
+	margin-bottom: 8px;
+}
+.fc{
+	color: #18D0D9 !important;
+}
+.mg_left{
+	margin-left: 4px;
+}
+
+#stat_hidden_statArea{
+	display: flex;
+	justify-content: space-between;
+}
+.stat_hidden_stTitle{
+	margin-top: 10px;
+}
+.stat_hidden_stats{
+	text-align: right;
+	display: flex;
+}
+.main_bg {
+	width:100%;
+	height: calc(100vh - 80px);
+	padding-top:20px;
+	box-sizing: border-box;
+	background-image: url("/images/egg_main_room/game_back.jpg");
+}
+.game_main{
+	position:relative;
+	width:1260px;
+	height: 760px;
+	margin: 0 auto;
+	border: 20px solid #D0D3FE;
+	background-image: url("/images/egg_main_room/mainRoom.png");
+	border-radius: 40px;
+	z-index: 1;
+}
+
+/* --- 방꾸미기 --- */
+#interior_items{
+	position: absolute;
+	left: 125px;
+  z-index: 2;
+	width: 1135px;
+	height: 527px;
+	margin-top: 27px;
+}
+
+.wall_area{
+	width: 100%;
+	height: 138px;
+	margin-bottom: 27px;
+}
+#photo_frame{
+	width: 200px;
+	height: 138px;
+	margin-left: 906px;	
+	background-image: url('/images/egg_test/photo_frame_test.png');
+}
+.furniture_area{
+	width: 100%;
+	height: 196px;
+	display: flex;
+}
+#plant{
+	width: 400px;
+	height: 196px;
+	margin-right: 10px;
+	background-image: url('/images/egg_test/plant_test.png');
+}
+#sofa{
+	width: 374px;
+	height: 196px;
+	margin-right: 70px;
+	background-image: url('/images/egg_test/sofa_test.png');
+}
+#shelf{
+	width: 281px;
+	height: 170px;
+	margin-top: 26px;
+	background-image: url('/images/egg_test/shelf_test.png');
+}
+.floor_area{
+	width: 100%;
+	height: 154px;
+	display: flex;
+	margin-top: 15px;
+}
+#carpet{
+	width: 234px;
+	height: 154px;
+	margin-left: 480px;
+	background-image: url('/images/egg_test/carpet_test.png');
+}
+#pet{
+	width: 140px;
+	height: 140px;
+	margin-left: 20px;
+	background-image: url('/images/egg_test/pet_test.png');
+}
+
+/* --- 캐릭터 --- */
+.character_container{
+	position: relative;
+	width: 170px;
+	height: 340px;
+	background-image: url('/images/egg_test/character_test.png');
+	margin : 222px 106px 10px 984px;
+  z-index: 3;
+}
+
+.clothing {
+  position: absolute;
+  width: 124px;
+  height: 136px;
+  background-size: cover;
+}
+
+.dress {
+  background-image: url('/images/egg_test/dress_test.png');
+  background-size: cover;
+  top: 192px;
+  left: 18px;
+  z-index: 4;
+}
+
+.hat {
+  background-image: url('/images/egg_test/hat_test.png');
+  background-size: cover;
+  top: -36px;
+  left: -24px;
+  width: 229px;
+  height: 258px;
+  z-index: 5;
+}
+
+
+
+.menu{
+	width:1008px;
+	margin:0 auto;
+  z-index: 7;
+}
+.menu td{
+	width:158px;
+	height:68px;
+	margin-right:12px;
+	padding : 3px;
+	box-sizing: border-box;
+}
+.menu td img{
+	width: 152px;
+	height: 62px;
+}
+
 /* 기본 모달 스타일 */
 .modal {
   display: none;
