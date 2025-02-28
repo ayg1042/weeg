@@ -105,15 +105,15 @@ header{
 }
 
 .header_content .egg{
-  background: no-repeat url(../images/main/egg_icon.png) 0 0 / contain; 
+  background: no-repeat url('/images/chocieCharacter/egg_icon.png') 0 0 / contain; 
 }
 
 .header_content .jelly{
-  background: no-repeat url(../images/main/jelly_icon.png) 0 0 / contain; 
+  background: no-repeat url('/images/chocieCharacter/jelly_icon.png') 0 0 / contain; 
 }
 
 .header_content .shop{
-  background: no-repeat url(../images/main/shop_icon.png) 0 0 / contain; 
+  background: no-repeat url('/images/chocieCharacter/shop_icon.png') 0 0 / contain; 
 }
 
 /* 로그인 후 추가되는 헤더 요소 */

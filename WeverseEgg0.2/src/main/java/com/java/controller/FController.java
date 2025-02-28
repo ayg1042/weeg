@@ -23,14 +23,14 @@ public class FController {
 		return "choiceCharacter";
 	}
 	
-	@GetMapping("/mainRoom")
-	public String mainRoom() {
-		return "mainRoom";
-	}
-	
 	@GetMapping("/startStory")
 	public String startStory() {
 		return "startStory";
+	}
+	
+	@GetMapping("/rank")
+	public String rank() {
+		return "rank";
 	}
 	
 	

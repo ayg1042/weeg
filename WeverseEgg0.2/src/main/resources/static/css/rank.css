@@ -1,0 +1,95 @@
+*{
+  padding: 0; 
+  margin: 0;
+  font-family: "Pretendard Variable", 
+								Pretendard, 
+								-apple-system, 
+								BlinkMacSystemFont, 
+								system-ui, 
+								Roboto, 
+								"Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 
+								sans-serif;
+}
+
+#topArea{
+	width: 100%;
+	height: 300px;
+	background: no-repeat url('/images/rank/topImg.jpg') 0 0 / contain;
+	background-size: cover;
+}
+
+.rankArea{
+	width: 1280px;
+  margin: 0 auto;
+  margin-bottom: 200px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  box-sizing: border-box;
+  margin-top: 50px;
+}
+
+#teamName{
+	 font-size: 1.5rem;
+   font-weight: 600;
+   line-height: 2.25rem;
+   color: rgb(16 24 40 / var(--tw-text-opacity, 1));
+}
+
+#idolArea{
+	margin:0 auto;
+	width: 1200px;
+	height: 249px;
+	margin-top:30px;
+	border:1px solid black;
+	display: flex;
+}
+
+.real_idol{
+	width: 208px;
+	height: 249px;
+	border: 1px solid black;
+	display: flex;
+}
+
+#rankText{
+	font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.25rem;
+  color: rgb(16 24 40 / var(--tw-text-opacity, 1));
+  margin-top:70px;
+}
+
+#userRank{
+	height: 1441px;
+	border: 1px solid black;
+	margin-top: 30px;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+
+.rank_table tr th {
+    font-weight: bold;
+    font-size: 15px;
+    color: #333;
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
+    background-color: #e6eaf3;
+
+
+
+
+
+
+
+
+
+
+
+
+

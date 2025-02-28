@@ -3,130 +3,74 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
 <!DOCTYPE html>
-<html lang="kor">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My room</title>
-  <style>
-   @font-face {
-		    font-family: 'NeoDunggeunmo';
-		    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff') format('woff');
-		    font-weight: normal;
-		    font-style: normal;
-		}
-	*{margin: 0; padding: 0; font-family: "NeoDunggeunmo", Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;}
-    a{cursor: pointer;}
-    /* 헤더 */
-    header{
-      position: sticky;
-      top: 0px;
-      z-index: 3000;
-      width: 100%;
-      height: 80px;
-      display: flex;
-      background: white;
-    }
-    #header_wrap{
-      border-bottom: 1px solid #EBEDF2;
-      width: 100%;
-      height: 80px;
-      display: flex;
-    }
-    .main_logo{
-      padding-left: 50px;
-      width: 186px;
-      height: 80px;
-      align-items: center;
-      display: flex;
-    }
-    .main_logo a{
-      cursor: pointer;
-    }
-    .main_logo img{
-      width: 136px;
-      height: 20px;
-    }
-    .header_action{
-      padding: 0 60px 0 12px;
-      display: flex;
-      align-items: center;
-      flex: 1 0 auto;
-      column-gap: 28px;
-      justify-content: flex-end;
-    }
-    .header_action .header_singin{
-      background: linear-gradient(134deg, #07D8E2 54.07%, #35E99D 99.24%);
-      border-radius: 100px;
-      color: #fff;
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 18px;
-      margin-right: 4px;
-      padding: 8px 20px 10px 22px;
-      border: none;
-      text-align: center;
-      cursor: pointer;
-    }
-    .header_content{
-      border-left: 1px solid #E0E0E0;
-      align-items: center;
-      column-gap: 28px;
-      padding-left: 28px;
-      display: flex;
-      position: relative;
-    }
-    .header_content button{
-      width: 38px;
-      height: 38px;
-      border: none;
-      cursor: pointer;
-    }
-    .header_content .egg{
-      background: no-repeat url('/images/chocieCharacter/egg_icon.png') 0 0 / contain;
-    }
-    .header_content .jelly{
-      background: no-repeat url('/images/chocieCharacter/jelly_icon.png') 0 0 / contain;
-    }
-    .header_content .shop{
-      background: no-repeat url('/images/chocieCharacter/shop_icon.png') 0 0 / contain;
-    }
-    /* 로그인 후 추가되는 헤더 요소 */
-    .header_search, .header_alram, .header_mypage, .header_setting {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-    .header_action svg {
-      display: block;
-    }
-
-    /* 메인 */
-    #mainBack{
-      width: 100%; 
-      height: calc(100vh - 80px);
-      background-image: url('/images/mainRoom/game_back.jpg');
-    }
-    #mainRoom{
-      width: 1260px;
-      height: 760px;
-      border: 20px solid #D0D3FE;
-      border-radius: 40px;
-      background-image: url('/images/mainRoom/mainRoom.png');
-      margin: 0 auto;
-      position: relative;
-      top: 40px; /* margin-top 대신 사용 */
-    }
-
-  </style>
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/mainpage.css"/>
+  <link rel="stylesheet" type="text/css" href="../css/header.css"/>
+  <link rel="stylesheet" type="text/css" href="../css/rank.css"/>
+  <title>랭킹</title>
 </head>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const boxes = document.querySelectorAll('.box1, .box2, .box3, .box4');
+    const banners = document.querySelectorAll('#main_banner img');
+    const mainBanner = document.querySelector('#main_banner img');
+    const images = [
+      'images/main_banner1.png',
+      'images/main_banner2.png',
+      'images/main_banner3.png',
+      'images/main_banner4.png'
+    ];
+
+    // 초기 상태 설정
+    banners[0].classList.add('active');
+
+    boxes.forEach((box, index) => {
+      box.addEventListener('click', () => {
+        // 모든 박스에서 fade-in 클래스 제거
+        boxes.forEach(b => {
+          b.querySelector('.event-title').classList.remove('fade-in');
+          b.querySelector('.event-date').classList.remove('fade-in');
+          if (b.classList.contains('box1')) {
+            b.querySelector('.event-title').style.color = '#959595';
+            b.querySelector('.event-date').style.color = '#959595';
+          }
+        });
+        // 클릭된 박스에 fade-in 클래스 추가
+        box.querySelector('.event-title').classList.add('fade-in');
+        box.querySelector('.event-date').classList.add('fade-in');
+
+        // 모든 배너 숨기기
+        banners.forEach(banner => {
+          banner.classList.remove('active');
+        });
+
+        // 클릭된 박스에 해당하는 배너 표시
+        if (index < banners.length) {
+          banners[index].classList.add('active');
+        }
+
+        // 박스 1 클릭 시 텍스트 색상 흰색으로 변경
+        if (box.classList.contains('box1')) {
+          box.querySelector('.event-title').style.color = '#FFFFFF';
+          box.querySelector('.event-date').style.color = '#FFFFFF';
+        }
+      });
+    });
+  });
+</script>
+
 <body>
   <!-- 헤더 -->
   <header>
     <div id="header_wrap">
       <div class="main_logo">
         <a href="/">
-          <img src="/images/chocieCharacter/weverse_logo.png" alt="">
+          <img src="/images/rank/weverse_logo.png" alt="">
         </a>
       </div>
       <div class="header_action">
@@ -164,9 +108,87 @@
     </div>
   </header>
 
-  <div id="mainBack">
-    <div id="mainRoom"></div>
+  <!-- 메인 -->
+  <div id="egg_rankpage"> 
+
+    <!-- 탑 gnb -->
+    <div class="hover_blocker1"></div> <!-- 투명한 네모 박스 (호버방지용)-->
+    <div class="hover_blocker2"></div> <!-- 투명한 네모 박스 (호버방지용)-->
+    <div id="main_top_gnb">
+      <a href="/" class="logo-link"><img src="/images/rank/main_egg.png" alt="에그로고"></a>
+      <nav>
+        <ul>
+          <li id="option_title">뉴스</li>
+          <li><a href="#">공지사항</a></li>
+          <li><a href="#">업데이트</a></li>
+          <li><a href="#">이벤트</a></li>
+          <li><a href="#">업데이트</a></li>
+        </ul>
+        <ul>
+          <li id="option_title">가이드</li>
+          <li><a href="#">게임정보</a></li>
+          <li><a href="#">직업소개</a></li>
+          <li><a href="#">확률형아이템</a></li>
+        </ul>
+        <ul>
+          <li id="option_title">커뮤니티</li>
+          <li><a href="#">자유게시판</a></li>
+          <li><a href="#">EGG 코디</a></li>
+        </ul>
+        <ul>
+          <li id="option_title">랭킹</li>
+          <li><a href="#">전체랭킹</a></li>
+          <li><a href="#">그룹랭킹 </a></li>
+        </ul>
+        <ul>
+          <li id="option_title">고객지원</li>
+          <li><a href="#">도움말/1:1문의</a></li>
+          <li><a href="#">버그악용/신고</a></li>
+        </ul>
+      </nav>
+
+    </div>
+    
+    
+    <!-- 랭킹 메인 -->
+   	<div id="topArea"></div>
+   	<div class="rankArea">   	
+   		<h2 id="teamName">에스파</h2>
+   		<div id="idolArea">
+   			<div class="real_idol"></div>
+   			<div class="real_idol"></div>
+   			<div class="real_idol"></div>
+   			<div class="real_idol"></div>
+   		</div>
+   		<h2 id="rankText">랭킹</h2>
+   		<div id="userRank">
+   			<table class="rank_table">
+   				<colgroup>
+   					<col width="170px">
+   					<col width="352px">
+   					<col width="226px">
+   					<col width="226px">
+   					<col width="226px">
+   				</colgroup>
+   				<thead>
+   					<tr>
+   						<th>순위</th>
+   						<th>캐릭터 정보</th>
+   						<th>레벨</th>
+   						<th>매력도</th>
+   						<th>인기도</th>
+   					</tr>
+   				</thead>
+   			</table>
+   		</div>
+   	</div> <!-- rankArea -->
+    	
+    	
+
+
+
   </div>
+  <!-- 메인 끝 -->
   
 </body>
 </html>
