@@ -1,0 +1,333 @@
+*{
+  padding: 0; 
+  margin: 0;
+  font-family: "Pretendard Variable", 
+								Pretendard, 
+								-apple-system, 
+								BlinkMacSystemFont, 
+								system-ui, 
+								Roboto, 
+								"Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 
+								sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+ul, li{
+  list-style: none;
+}
+
+@font-face {
+font-family: 'Pretendard-Regular';
+src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+font-weight: 400;
+font-style: normal;
+} 
+
+
+/* 컨테이너 */
+#jelly_container{
+  display: flex;
+}
+
+/* side */
+.jelly_side{
+  width: 356px;
+  padding: 65px 30px 50px;
+  align-items: center;
+  box-sizing: border-box;
+  position: fixed;
+  height: 100vh; /* 화면 높이에 맞춤 */
+  background-color: #fff; /* 배경색 지정 (선택 사항) */
+  left: 0;
+  top: 0;
+}
+
+.jelly_side_top{
+  height: 685px;
+  padding: 0 30px;
+}
+
+
+.jelly_logo{
+  justify-items: center;
+}
+
+.jelly_logo img{
+  display: block;
+  height: 30px;
+  width: 136px;
+}
+
+.my_jelly{
+  margin-top: 65px;
+  align-items: center;
+}
+
+.my_jelly strong{
+  column-gap: 8px;
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: -.1px;
+  line-height: 24px;
+}
+
+.my_jelly img{
+  width: 35px;
+  height: 35px;
+}
+
+.jelly_total{
+  display: block;
+  font-size: 50px;
+  font-weight: 900;
+  line-height: 60px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.jelly_count{
+  display: block;
+  font-size: 50px;
+  font-weight: 900;
+  line-height: 60px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.jelly_count{
+  margin-top: 65px;
+}
+
+.jelly_count li{
+  align-items: center;
+  column-gap: 30px;
+  display: flex;
+  font-size: 16px;
+  justify-content: space-between;
+  line-height: 19px;
+  padding: 24px 0;
+  position: relative;
+  width: 236px;
+  font-weight: 400;
+}
+
+.jelly_count strong{
+  font-size: 22px;
+  line-height: 26px;
+}
+
+.plus_jelly{
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.jelly_count em{
+  bottom: 0;
+  color: #444;
+  position: absolute;
+  right: 0;
+  font-style: normal;
+}
+
+.jelly_side_footer{
+  margin-top: 35px;
+  text-align: center;
+}
+
+/* content */
+.jelly_content{
+  background-color: #f7f7fa;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  min-width: 794px;
+  flex-grow: 1;
+  margin-left: 356px; /* 사이드바 크기만큼 왼쪽 여백 */
+}
+
+/* 헤더 고정 및 배경 흐림 */
+.jelly_header {
+  align-items: start;
+  column-gap: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 42px 0 max((100% - 710px) / 2, 42px);
+  z-index: 1;
+  position: sticky;
+  top: 0;
+  
+}
+
+/* 스크롤 시 적용되는 sticky 헤더 */
+.jelly_header.sticky {
+  height: 80px;
+  z-index: 2;
+  padding: 0 60px 0 300px; 
+  column-gap: 100px;
+  align-items: center;
+  background-color: #e4e4e873; /* 투명 배경 */
+  backdrop-filter: blur(10px); /* 흐림 효과 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+/* header_myinfo와 jelly_nav을 스크롤 시에만 중앙에 정렬하도록 변경 */
+.jelly_header.sticky .header_myinfo,
+.jelly_header.sticky .jelly_nav {
+  display: flex;
+  column-gap: 26px;        /* 유저정보와 네비게이션 간의 간격 */
+  margin: 0;
+}
+
+/* header_myinfo 스타일 */
+.header_myinfo {
+  flex-shrink: 0;
+  order: 1;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.header_myinfo span {
+  font-size: 13.5px;
+  line-height: 17px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.header_myinfo img {
+  height: 16px;
+  margin-left: 4px;
+  margin-right: 10px;
+  width: 16px;
+}
+
+.header_myinfo strong {
+  display: block;
+  font-size: 14px;
+  line-height: 17px;
+  max-width: 145px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* My info popup */
+.myinfoo {
+  display: flex;
+  position: relative;
+}
+
+.hidden_info {
+  display: none;
+  position: absolute;
+  width: 160px;
+  height: 156px;
+  background-color: #fff;
+  padding: 24px 20px 0;
+  border-radius: 16px;  
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  top: 100%;
+  right: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.hidden_info strong{
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 23px;
+}
+
+.hidden_info span{
+  color: #666;
+  font-size: 13px;
+  line-height: 17px;
+  margin-top: 12px;
+  display: block;
+}
+
+.hidden_info button{
+  box-sizing: initial;
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 18px;
+  margin: 20px -20px 0;
+  padding: 21px 20px;
+  position: relative;
+  text-align: left;
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  background: #0000;
+}
+
+.hidden_info button:hover{
+  background-color: #f2f3f7;
+}
+
+/* jelly_nav 스타일 */
+.jelly_nav {
+  column-gap: 26px;
+  display: flex;
+  margin-top: 60px;
+}
+
+.jelly_nav div {
+  color: #9d9d9f;
+  flex-shrink: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+.jelly_nav .black {
+  color: black;
+  border-bottom: 2px solid black;
+}
+
+.jelly_content {
+  background-color: #f7f7fa;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  min-width: 794px;
+  margin-left: 356px; /* 사이드바 크기만큼 왼쪽 여백 */
+}
+
+.jelly_contentt{
+  width: 710px;
+  margin: 0 auto;
+  padding: 0 42px;
+}
+
+.jelly_title{
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 47px;
+  margin-bottom: 23px;
+  font-size: 32px;
+  line-height: 38px;
+}
+
+.jelly_sale{
+  cursor: pointer;
+}
+
+/* footer */ 
+footer{
+  margin: 30px 0;
+}
+
+
