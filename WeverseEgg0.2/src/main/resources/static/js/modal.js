@@ -96,3 +96,51 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   });
 });
+
+// 퀘스트
+document.addEventListener("DOMContentLoaded", () => {
+	const openButton = document.querySelector('[data-modal="modalq"]');
+	const modal = document.getElementById("modalq");
+	const closeButton = modal.querySelector(".close");
+
+	// 모달 열기
+	openButton.addEventListener("click", () => {
+			modal.style.display = "block";
+	});
+
+	// 모달 닫기
+	closeButton.addEventListener("click", () => {
+			modal.style.display = "none";
+	});
+
+	// 외부 클릭시 모달 닫기
+	window.addEventListener("click", (e) => {
+			if (e.target === modal) {
+					modal.style.display = "none";
+			}
+	});
+});
+
+// 이벤트
+document.addEventListener("DOMContentLoaded", () => {
+	const openButton = document.querySelector('[data-modal="modale"]');
+	const modal = document.getElementById("modale");
+	const closeButton = modal.querySelector(".close");
+
+	// 모달 열기
+	openButton.addEventListener("click", () => {
+			modal.style.display = "block";
+	});
+
+	// 모달 닫기
+	closeButton.addEventListener("click", () => {
+			modal.style.display = "none";
+	});
+
+	// 외부 클릭시 모달 닫기
+	window.addEventListener("click", (e) => {
+			if (e.target === modal) {
+					modal.style.display = "none";
+			}
+	});
+});
