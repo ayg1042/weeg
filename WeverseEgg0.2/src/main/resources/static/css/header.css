@@ -64,13 +64,13 @@ header{
   cursor: pointer;
 }
 .header_content .egg{
-  background: no-repeat url('/images/chocieCharacter/egg_icon.png') 0 0 / contain;
+  background: no-repeat url(../images/egg_icon.png) 0 0 / contain;
 }
 .header_content .jelly{
-  background: no-repeat url('/images/chocieCharacter/jelly_icon.png') 0 0 / contain;
+  background: no-repeat url(../images/jelly_icon.png) 0 0 / contain;
 }
 .header_content .shop{
-  background: no-repeat url('/images/chocieCharacter/shop_icon.png') 0 0 / contain;
+  background: no-repeat url(../images/shop_icon.png) 0 0 / contain;
 }
 /* 로그인 후 추가되는 헤더 요소 */
 .header_search, .header_alram, .header_mypage, .header_setting {
@@ -80,4 +80,8 @@ header{
 }
 .header_action svg {
   display: block;
+}
+
+a{
+	color: black;
 }
