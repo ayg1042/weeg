@@ -22,6 +22,11 @@ public class FController {
 		return "weMyPage";
 	}
 	
+	@GetMapping("/wenotice")
+	public String weNotice() {
+		return "weNotice";
+	}
+	
 	@GetMapping("/modal")
 	public String modal() {
 		return "modal";
