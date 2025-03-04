@@ -1,0 +1,338 @@
+*{
+  padding: 0; 
+  margin: 0;
+  font-family: "Pretendard Variable", 
+								Pretendard, 
+								-apple-system, 
+								BlinkMacSystemFont, 
+								system-ui, 
+								Roboto, 
+								"Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 
+								sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+table, tr, td{
+  border-collapse: collapse;
+}
+
+@font-face {
+font-family: 'Pretendard-Regular';
+src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+font-weight: 400;
+font-style: normal;
+} 
+
+/* 헤더 */
+header{
+  position: sticky;
+  top: 0px;
+  z-index: 3000;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  background: white;
+}
+
+#header_wrap{
+  border-bottom: 1px solid #ebedf2;
+  width: 100%;
+  height: 80px;
+  display: flex;
+}
+
+.main_logo{
+  padding-left: 50px;
+  width: 186px;
+  height: 80px;
+  align-items: center;
+  display: flex;
+}
+
+.main_logo a{
+  cursor: pointer;
+}
+
+.main_logo img{
+  width: 136px;
+  height: 20px;
+}
+
+.header_action{
+  padding: 0 60px 0 12px;
+  display: flex;
+  align-items: center;
+  flex: 1 0 auto;
+  column-gap: 28px;
+  justify-content: flex-end;
+}
+
+
+.header_action .header_singin{
+  background: linear-gradient(134deg, #07d8e2 54.07%, #35e99d 99.24%);
+  border-radius: 100px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 18px;
+  margin-right: 4px;
+  padding: 8px 20px 10px 22px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.header_singin:hover {
+  background: linear-gradient(0deg,#ffffff4d,#ffffff4d),linear-gradient(135deg,#0ed5bc,#14e0a9)
+}
+
+.header_content{
+  border-left: 1px solid #e0e0e0;
+  align-items: center;
+  column-gap: 28px;
+  padding-left: 28px;
+  display: flex;
+  position: relative;
+}
+
+.header_content button{
+  width: 38px;
+  height: 38px;
+  border: none;
+  cursor: pointer;
+}
+
+.header_content .egg{
+  background: no-repeat url(../images/egg_icon.png) 0 0 / contain; 
+}
+
+.header_content .jelly{
+  background: no-repeat url(../images/jelly_icon.png) 0 0 / contain; 
+}
+
+.header_content .shop{
+  background: no-repeat url(../images/shop_icon.png) 0 0 / contain; 
+}
+
+/* 로그인 후 추가되는 헤더 요소 */
+.header_search, .header_alram, .header_mypage, .header_setting {
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%; /* 아이콘을 감싸는 영역을 동그랗게 */
+}
+
+.header_search:hover,
+.header_alram:hover,
+.header_mypage:hover,
+.header_setting:hover {
+  outline: 5px solid #F7F7FA;
+  border-radius: 20px;
+  background: #F7F7FA;
+}
+
+.header_action svg {
+  display: block;
+}
+
+/* weverse_aespa에 추가되는 요소 */
+.main_logo h1{
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29px;
+  margin-left: 15px;
+  padding-bottom: 5px;
+}
+
+
+/* 컨테이너 */ 
+
+.aespa_nav{
+  width: 100%;
+  height: 50px;
+  background-color: #B38BD6;
+  padding: 10px 0;
+  position: sticky;
+  top: 80px;
+  z-index: 2999;
+  box-sizing: border-box;
+}
+
+.aespa_nav img{
+  display: block;
+  margin: 0 auto;
+}
+
+#aespa_container{
+  background: linear-gradient(to bottom, #F2F3F7 6%, #FDFDFD 9.7%);
+  margin-bottom: 50px;
+}
+
+.aespa_mention{
+  width: 100%;
+  height: 200px;
+  padding: 20px 0;
+}
+
+.aespa_mention img{
+  display: block;
+  margin: 0 auto;
+}
+
+.aespa_feed{
+  display: flex;
+  width: 1100px;
+  margin: 0px auto;
+  justify-content: space-between;
+}
+
+.aespa_write_feed{
+  width: 707px;
+}
+
+.aespa_write_feed img{
+  display: block;
+  object-fit: cover;
+}
+
+.aespa_side {
+  padding-top: 12px;
+  width: 353px;
+}
+
+.aespa_members img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aespa_membership img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aespa_footer{
+  margin-top: 20px;
+}
+
+/* 팬랭킹 */ 
+
+.ranking {
+  width: 355px;
+  height: 510px;
+  margin: 10px 0;
+  padding: 16px;
+  border-radius: 20px;
+  background-color: #F7F7FA;
+  box-sizing: border-box;
+}
+
+.ranking_top {
+  display: flex;
+  height: 20px;
+  margin-bottom: 10px;
+}
+
+.ranking span{
+  display: block;
+  text-align: center;
+  padding-top: 2px;
+  width: 150px;
+  font-weight: 500;
+}
+
+.ranking a{
+  width: 14px;
+  height: 14px;
+  background-image: url(../images/aespa/rank/barogo.png);
+  margin-left: 130px;
+  margin-top: 5px;
+}
+
+.ranking tbody{
+  display: flex; /* 가로로 정렬 */
+  flex-direction: column; /* 세로 정렬 */
+  align-items: center; /* 가운데 정렬 */
+}
+
+.ranking tr{
+  background-color: #fff;
+  display: flex; /* 가로 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  border-radius: 6px;
+  margin-bottom: 4px;
+  width: 320px;
+  height: 41px;
+  font-size: 14px;
+  padding: 12px 16px;
+  column-gap: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.rank {
+  width: 50px;
+  padding-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.rank img {
+  margin-right: 5px;
+}
+
+.rank_nick {
+  padding: 0 5px;
+  width: 100px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  max-width: 120px; /* 닉네임이 표시될 최대 너비 */
+}
+
+.rank_nick .scroll {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scrollText 17s linear infinite;
+}
+
+@keyframes scrollText {
+  from {
+      transform: translateX(-10%);
+  }
+  to {
+      transform: translateX(-100%);
+  }
+}
+
+.rank_score {
+  width: 110px;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.rank_score img {
+  display: block;
+  margin-right: 5px;
+}
+
+/* 앞에 메달 없는 등수*/
+.Rank{
+  width: 50px;
+  margin-left: 9px;
+  padding-left: 15px;
+  padding-right: 5px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+} 

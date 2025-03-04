@@ -13,12 +13,12 @@
   <header>
       <div id="header_wrap">
         <div class="main_logo">
-          <a href="/">
+          <a href="/loggedIn"> <!-- 로그인 된 페이지 이동 (임시) -->
             <img src="../images/main/weverse_logo.png" alt="">
           </a>
         </div>
         <div class="header_action">
-          <button type="button" class="header_singin">Sing in</button>
+          <a href="/login/login"><button type="button" class="header_singin">Sign in</button></a>
           <div class="header_content">
             <button type="button" class="egg"></button>
             <button type="button" class="jelly"></button>

@@ -7,12 +7,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FController {
 	
-	@GetMapping("/index")
+	@GetMapping("/index") //테스트 페이지
 	public String index() {
 		return "main";
 	}
 	
-	@GetMapping("/") // 메인 게임 시작 페이지
+	@GetMapping("/") // 위버스 로그인 안 된 페이지
+	public String index1() {
+		return "main";
+	}
+	
+	@GetMapping("/loggedIn") // 위버스 로그인 된 메인 페이지
+	public String index2() {
+		return "main2";
+	}
+	
+	@GetMapping("/weverseaespa") // 위버스 에스파 페이지 캐릭터 랭킹 
+	public String weverseAespa() {
+		return "weverse_aespa";
+	}
+	
+	@GetMapping("/jellyshop") //젤리 구매 페이지
+	public String jellyShop() {
+		return "jelly_shop";
+	}
+	
+	@GetMapping("/eggmain") // 에그 메인 게임 시작 페이지
 	public String eggMain() {
 		return "egg_main";
 	}
@@ -22,7 +42,7 @@ public class FController {
 		return "weMyPage";
 	}
 	
-	@GetMapping("/wenotice")
+	@GetMapping("/wenotice") // 위버스 공지사항
 	public String weNotice() {
 		return "weNotice";
 	}
@@ -31,6 +51,5 @@ public class FController {
 	public String modal() {
 		return "modal";
 	}
-	
 	
 }
