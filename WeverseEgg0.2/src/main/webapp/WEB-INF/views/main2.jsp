@@ -19,7 +19,7 @@
   <header>
       <div id="header_wrap">
         <div class="main_logo">
-          <a href="/">
+          <a href="/"> <!-- 로그인 안된 페이지로 이동 (임시) -->
             <img src="../images/main/weverse_logo.png" alt="">
           </a>
         </div>
@@ -37,10 +37,12 @@
             </svg>
           </button>
           <button type="button" class="header_mypage">
+          <a href="/wemypage">
             <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M19.0176 18.5246C22.2001 18.5246 24.78 15.9447 24.78 12.7623C24.78 9.57987 22.2001 7 19.0176 7C15.8352 7 13.2553 9.57987 13.2553 12.7623C13.2553 15.9447 15.8352 18.5246 19.0176 18.5246Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"></path>
               <path d="M19.0175 31.8641C22.104 31.8641 24.9255 31.6919 27.0715 31.0958C28.2637 30.7646 29.4691 30.248 30.1182 29.2545C30.6481 28.4332 30.6349 27.2675 30.0255 26.2343C28.6214 23.8234 24.3559 21.6509 19.0837 21.6509H18.9115C13.6394 21.6509 9.37393 23.8234 7.96978 26.2343C7.37368 27.2675 7.34719 28.4332 7.87706 29.2545C8.52615 30.248 9.73159 30.7779 10.9238 31.0958C13.083 31.6786 15.8913 31.8641 18.9778 31.8641H19.0175Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"></path>
             </svg>
+          </a>
           </button>
           <button type="button" class="header_setting">
             <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,8 +52,8 @@
             </svg>
           </button>
           <div class="header_content">
-            <button type="button" class="egg"></button>
-            <button type="button" class="jelly"></button>
+            <a href="/eggmain"><button type="button" class="egg"></button></a>
+            <a href="/jellyshop"><button type="button" class="jelly"></button></a>
             <button type="button" class="shop"></button>
           </div>
         </div>
@@ -68,7 +70,7 @@
       <div class="main_my">
         <div class="main_community">
           <img src="../images/main/main_community1.png" alt="">
-          <a href=""><img src="../images/main/main_aespa.png" class="aespa" alt=""></a>
+          <a href="/weverseaespa"><img src="../images/main/main_aespa.png" class="aespa" alt=""></a>
         </div>
         <div class="main_myidol">
           <h1>나의 아이돌</h1>

@@ -14,7 +14,7 @@
     <header>
       <div id="header_wrap">
         <div class="main_logo">
-          <a href="/">
+          <a href="/loggedIn">
             <img src="../images/weverse_logo.png" alt="">
           </a>
           <h1>aespa</h1>
@@ -46,8 +46,8 @@
             </svg>
           </button>
           <div class="header_content">
-            <button type="button" class="egg"></button>
-            <button type="button" class="jelly"></button>
+            <a href="/eggmain"><button type="button" class="egg"></button></a>
+            <a href="/jellyshop"><button type="button" class="jelly"></button></a>
             <button type="button" class="shop"></button>
           </div>
         </div>

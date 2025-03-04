@@ -1,32 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/main.css">
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <title>weverse</title>
 </head>
 <body>
-  <script>
 
-  </script>
-	
   <!-- 헤더 -->
   <header>
       <div id="header_wrap">
         <div class="main_logo">
-          <a href="/">
+          <a href="/loggedIn"> <!-- 로그인 된 페이지 이동 (임시) -->
             <img src="../images/main/weverse_logo.png" alt="">
           </a>
         </div>
         <div class="header_action">
-          <button type="button" class="header_singin" onclick="location.href='/singin'">Sing in</button>
+          <a href="/login/login"><button type="button" class="header_singin">Sign in</button></a>
           <div class="header_content">
-            <button type="button" class="egg"  onclick="location.href='/'"></button>
-            <button type="button" class="jelly"  onclick="location.href='/jelly_shop'"></button>
+            <button type="button" class="egg"></button>
+            <button type="button" class="jelly"></button>
             <button type="button" class="shop"></button>
           </div>
         </div>
