@@ -155,8 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
    	<div class="rankArea">   	
    		<h2 id="teamName">에스파</h2>
    		<div id="idolArea">
-   			<div class="real_idol"></div>
-   			<div class="real_idol"></div>
+   			<div class="real_idol"><img src="/images/rank/exWinter.png"></div>
+   			<div class="real_idol"><img src="/images/rank/exGiselle.png"></div>
    			<div class="real_idol"></div>
    			<div class="real_idol"></div>
    		</div>
@@ -166,9 +166,9 @@ document.addEventListener('DOMContentLoaded', () => {
    				<colgroup>
    					<col width="170px">
    					<col width="352px">
-   					<col width="226px">
-   					<col width="226px">
-   					<col width="226px">
+   					<col width="231px">
+   					<col width="231px">
+   					<col width="231px">
    				</colgroup>
    				<thead>
    					<tr>
@@ -179,6 +179,37 @@ document.addEventListener('DOMContentLoaded', () => {
    						<th>인기도</th>
    					</tr>
    				</thead>
+   				<tbody>
+   					<tr class="cha_info">
+   						<td>
+   							<p class="ranking_num">1</p>
+   							<div class="like">
+   								<div class="like_area">
+   									<img id="heart" alt="하트" src="/images/rank/RedHeart.png">
+	   								<p class="like_num">999</p>
+   								</div>
+   							</div>
+   						</td>
+   						<td class="rankUser">
+   							<div class="char_img">
+   								<img id="charImg" alt="랭킹유저" src="/images/rank/exCharacter.png">
+   							</div>
+   							<div class="nickName">
+   								<p>My윈터</p>
+   								<p id="groupName">윈터 / 에스파</p>
+   							</div>
+   						</td>
+   						<td>
+   							<p class="level">LV. 999</p>
+   						</td>
+   						<td>
+	   						<p class="attract">999,999,999</p>
+   						</td>
+   						<td>
+   							<p class="popularity">999,999,999</p>
+   						</td>
+   					</tr>
+   				</tbody>
    			</table>
    		</div>
    	</div> <!-- rankArea -->
