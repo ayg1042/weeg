@@ -9,6 +9,132 @@
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	</head>
 	<body>
+	<!-- ===== MainRoom ===== -->
+		<div id="header">헤더 위치</div>
+		<div class="main_bg">
+			<div class="game_main">
+			
+				<div class = 'info_area'>
+					<div id="bars">
+						<img id="hpBar" src="/images/egg_info/hpBar_full.png">
+		    		<img id="fatigueBar" src="/images/egg_info/fatigueBar_full.png">
+		    		<div id="jellyBar">
+		    			<img id="jelly" src="/images/egg_info/jellyIcon.png">
+		    			<p id="My_jelly">99999999</p>
+		    			<img id="plus" src="/images/egg_info/plusIcon.png">
+		    		</div>
+		    		<div id="coinBar" class="gap">
+		    			<img id="coin" src="/images/egg_info/coinIcon.png">
+		    			<p id="My_Coin">99999999</p>
+		    			<img id="plus" src="/images/egg_info/plusIcon.png">
+		    		</div>
+					</div>
+	    		<div id="character_info">
+	    			<div id="character_nickname">캐릭터닉네임</div>
+	    			<div id="character_type">카리나</div>
+	    			<div id="stat_hidden">
+	    				<div id="stat_hidden_level">
+	    					<p>LV.</p>
+	    					<p class="fc">999</p><!-- 캐릭터레벨 -->
+	    					<p class="mg_left">(</p>
+	    					<p class="fc">99</p><!-- 경험치 -->
+	    					<p>/100)</p>
+	    				</div>
+	    				<hr/>
+	    				<div id="stat_hidden_statArea">
+		    				<div>
+		    					<div class="stat_hidden_stTitle">보컬</div>
+		    					<div class="stat_hidden_stTitle">댄스</div>
+		    					<div class="stat_hidden_stTitle">랩</div>
+		    					<div class="stat_hidden_stTitle">예능</div>
+		    					<div class="stat_hidden_stTitle">매력도</div>
+		    					<div class="stat_hidden_stTitle">인기도</div>
+		    				</div>
+		    				<div>
+		    					<div class="stat_hidden_stats">
+			    					<div class="stat_hidden_stTitle">9</div>
+			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+		    					</div>
+		    					<div class="stat_hidden_stats">
+			    					<div class="stat_hidden_stTitle">999</div>
+			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+		    					</div>
+		    					<div class="stat_hidden_stats">
+			    					<div class="stat_hidden_stTitle">999</div>
+			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+		    					</div>
+		    					<div class="stat_hidden_stats">
+			    					<div class="stat_hidden_stTitle">999</div>
+			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+		    					</div>
+		    					<div class="stat_hidden_stats">
+			    					<div class="stat_hidden_stTitle">999</div>
+			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+		    					</div>
+		    					<div class="stat_hidden_stTitle">999,999</div>
+		    				</div>
+	    				</div>
+	    			</div>
+	    		</div>
+				</div>
+				
+				<!-- 방꾸미기 -->
+				<div id="interior_items">
+					<div class="wall_area">
+						<div id='photo_frame'></div> <!-- 액자 -->
+					</div>
+					<div class="furniture_area">
+						<div id='plant'></div> <!-- 식물 -->
+						<div id='sofa'></div> <!-- 소파 -->
+						<div id='shelf'></div> <!-- 선반 -->
+					</div>
+					<div class="floor_area">
+					<div id='carpet'></div> <!-- 카페트 -->
+					<div id='pet'></div> <!-- 펫 -->
+					</div>
+				</div>
+				
+				
+				<!-- 캐릭터 -->
+				<div class="character_container">
+			    <div class="clothing hat"></div>
+			    <div class="clothing dress"></div>
+				</div>
+			
+				<!-- 모달 열기 버튼 -->
+				<table class="menu">
+					<tr>
+						<td class="open-modal" data-modal="modal1"><img src="/images/egg_menu_btn/practiceBtn.png"></td>
+						<td class="open-modal" data-modal="modal2"><img src="/images/egg_menu_btn/activityBtn.png"></td>
+						<td class="open-modal" data-modal="modal1"><img src="/images/egg_menu_btn/myBagBtn.png"></td>
+						<td class="open-modal" data-modal="modal1"><img src="/images/egg_menu_btn/eventBtn.png"></td>
+						<td class="open-modal" data-modal="modal1"><img src="/images/egg_menu_btn/questBtn.png"></td>
+						<td class="open-modal" data-modal="modal1"><img src="/images/egg_menu_btn/shopBtn.png"></td>
+					</tr>
+				</table>
+				
+						<!-- 모달 창 1 -->
+				<div id="modal1" class="modal">
+				    <div class="modal-content basic">
+				        <span class="close">&times;</span>
+				        <h2>기본 모달</h2>
+				        <p>이것은 기본 스타일의 모달 창입니다.</p>
+				    </div>
+				</div>
+				<!-- 모달 창 1 -->
+				<div id="modal2" class="modal">
+				    <div class="modal-content basic">
+				        <span class="close">&times;</span>
+				        <h2>기본 모달</h2>
+				        <p>이것은 기본 스타일의 모달 창입니다.</p>
+				    </div>
+				</div>
+				
+				
+			</div>
+		</div>
+		<!-- 끝 ===== MainRoom ===== -->
+		
 		<!-- 모달 열기 버튼 -->
 		<button class="open-modal" data-modal="modal1">트레이닝 선택</button>
 		<button class="open-modal" data-modal="modal2">활동 선택</button>
