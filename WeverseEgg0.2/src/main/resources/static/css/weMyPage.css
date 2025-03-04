@@ -1,0 +1,350 @@
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Pretendard';
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 상단 프로필 */
+#userInfoBar {
+  position: relative;
+  width: 100%;
+  height: 137px;
+  background-color: #444;
+  overflow: hidden;
+}
+
+#userInfoBar img {
+  position: absolute;
+  top: 15px;
+  right: 410px;
+}
+
+.profile_wrap {
+  overflow: hidden;
+  display: block;
+  width: 210px;
+  height: 88px;
+  margin-top: 22px;
+  margin-left: 410px;
+}
+
+.profile_name {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 36px;
+  color: #fff;
+}
+
+.profile_address {
+  font-size: 16px;
+  line-height: 19px;
+  color: #a1a5ad;
+  margin-top: 2px;
+  font-style: normal;
+}
+
+.profile_signout {
+  color: #d5d5d5;
+  font-size: 14px;
+  line-height: 17px;
+  margin-top: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  display: inline;
+}
+
+#myPage_navi {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: #f5f7fa;
+}
+
+/* 왼쪽 내비게이션 */
+#left_navi {
+  flex: 0 0 335px;
+  width: 335px;
+  height: 600px;
+  padding: 50px 0 100px 0;
+  margin-left: 410px;
+}
+
+.MyJellyContent {
+  width: 100%;
+  height: 66px;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px #00000005;
+  box-sizing: border-box;
+  column-gap: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.MyJellyPoint {
+  align-items: center;
+  column-gap: 7px;
+  display: flex;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+  overflow-wrap: break-word;
+  padding-left: 4px;
+  word-break: break-word;
+}
+
+.MyJellyPoint::before {
+  background: url('../images/WeMyPage/jelly.png') no-repeat 0 0 / contain;
+  content: "";
+  flex-shrink: 0;
+  height: 18px;
+  width: 19px;
+}
+
+.MyJellyPoint::after {
+  background: url('../images/WeMyPage/rightarrow.png') no-repeat 0 0 / contain;
+  content: "";
+  flex-shrink: 0;
+  height: 14px;
+  width: 12px;
+}
+
+.MyJellyCharge {
+  background: linear-gradient(135deg, #0ed5bc, #14e0a9);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 15px;
+  padding: 10px 14px;
+}
+
+.MyShopView {
+  align-items: center;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px #00000005;
+  column-gap: 16px;
+  display: flex;
+  font-size: 18px;
+  font-weight: 700;
+  height: 66px;
+  justify-content: space-between;
+  line-height: 22px;
+  margin-top: 14px;
+  padding: 0 16px 0 22px;
+}
+
+.MyShopView::after {
+  background: url(../images/WeMyPage/rightarrow.png) no-repeat 0 0 / contain;
+  content: "";
+  height: 14px;
+  width: 12px;
+}
+
+.LinkCotainer {
+  border-top: 1px solid #e9ebee;
+  margin-top: 30px;
+  padding-top: 30px;
+}
+
+.LinkContent {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px #00000005;
+  padding: 11px 17px 15px 20px;
+}
+
+.LinkItem {
+  height: 56px;
+  align-items: center;
+  display: flex;
+  padding: 9px 0;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.Link_W {
+  flex-shrink: 0;
+  height: 38px;
+  margin-right: 16px;
+  width: 38px;
+}
+
+.WeMagazine {
+  margin-right: 16px;
+  height: 38px;
+  object-fit: cover;
+  width: 38px;
+}
+
+.LinkItem::after {
+  background: url(../images/WeMyPage/rightarrowlgt.png) no-repeat 0 0 / contain;
+  content: "";
+  flex-shrink: 0;
+  height: 20px;
+  width: 13px;
+  margin-left: auto;
+}
+
+/* 가운데 메인 내비 */
+#center_navi {
+  /* border: 1px solid black; */
+  flex: 1;
+  margin-top: 49px;
+  margin-left: 35px;
+  height: 100%;
+  box-shadow: 0 5px 20px #00000005;
+}
+
+.avatar_list {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.myAvatarContainer {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 5px;
+  flex-direction: column;
+}
+
+.myAvatarTitle {
+  padding-left: 5px;
+  font-size: 24px;
+  line-height: 29px;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+
+.myAvatar {
+  position: relative;
+  width: 209px;
+  height: 177px;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  background-color: #DBEBF1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.al_img1,
+.al_img2,
+.al_img3 {
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: 71%;
+  /* 부모 요소의 중간에 위치 */
+  left: 50%;
+  /* 부모 요소의 중간에 위치 */
+  transform: translate(-50%, -50%);
+  /* 정확히 중간에 위치하도록 조정 */
+}
+
+.avatar_name {
+  width: 208px;
+  height: 72px;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+  background-color: white;
+  box-shadow: 0 5px 20px #00000005;
+}
+
+.avatar_name {
+  font-size: 19px;
+  font-weight: bolder;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.myidol {
+  width: 100px;
+  height: auto;
+  position: absolute;
+}
+
+/* 대표 아바타 선택 클릭 */
+.myAvatarContainer {
+  position: relative;
+  cursor: pointer;
+  border-radius: 14px;
+  transition: background-color 0.3s ease;
+}
+
+/* 메인 표시 상자 */
+#main_avatar{
+  width: 36px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  background-color: #D0D3FE; /* 네모 박스의 배경색 */
+  border-radius: 3px; /* 네모 박스의 모서리를 둥글게 */
+  position: absolute;
+  top: 10px; /* 왼쪽 상단에서의 위치 */
+  left: 10px; /* 왼쪽 상단에서의 위치 */
+  z-index: 1;
+}
+
+.myAvatarContainer:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 14px;
+  z-index: 1;
+}
+
+.myAvatarContainer:hover .selectButton {
+  display: block;
+  /* 호버 시 버튼을 표시 */
+}
+
+.selectButton {
+  font-size: 14px;
+  color: black;
+  font-weight: 500;
+  width: 140px;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background-color: #DBEBF1;
+  background: linear-gradient(135deg, #8affed, #a1e3fb);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
