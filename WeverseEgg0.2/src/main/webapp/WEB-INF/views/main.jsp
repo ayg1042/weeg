@@ -6,10 +6,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/main.css">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <title>weverse</title>
 </head>
 <body>
+  <script>
 
+  </script>
+	
   <!-- 헤더 -->
   <header>
       <div id="header_wrap">
@@ -19,10 +23,10 @@
           </a>
         </div>
         <div class="header_action">
-          <button type="button" class="header_singin">Sing in</button>
+          <button type="button" class="header_singin" onclick="location.href='/singin'">Sing in</button>
           <div class="header_content">
-            <button type="button" class="egg"></button>
-            <button type="button" class="jelly"></button>
+            <button type="button" class="egg"  onclick="location.href='/'"></button>
+            <button type="button" class="jelly"  onclick="location.href='/jelly_shop'"></button>
             <button type="button" class="shop"></button>
           </div>
         </div>
