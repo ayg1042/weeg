@@ -1,6 +1,8 @@
 package com.java.entity.character;
 
 import com.java.entity.item.ItemEntity;
+import com.java.entity.item.ItemInfoEntity;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +29,7 @@ public class StyleEntity {
     private CharacterEntity character;
 
     /** 착용 중인 아이템 리스트 (1:N 관계) */
-    @OneToMany
-    @JoinColumn(name = "style_id")  // ItemEntity에 style_id 컬럼 생성
-    private List<ItemEntity> items;
+    @ManyToOne
+    @JoinColumn(name = "item_id", referencedColumnName = "item_id")
+    private ItemEntity item;
 }

@@ -180,8 +180,10 @@
 		<!-- 모달 열기 버튼 -->
 		<button class="open-modal" data-modal="modal1">트레이닝 선택</button>
 		<button class="open-modal" data-modal="modal2">활동 선택</button>
+		<button class="open-modal" data-modal="modal3">상점</button>
+		<button class="open-modal" data-modal="modal4">내 가방</button>
 		
-		<!-- 모달 창 1 -->
+		<!-- 트레이닝 모달 -->
 		<div id="modal1" class="modal">
 		    <div class="modal-frame dark">
 		    	<div class="modal-top">
@@ -267,7 +269,7 @@
 		    </div>
 		</div>
 		
-		<!-- 모달 창 2 -->
+		<!-- 활동 모달 -->
 		<div id="modal2" class="modal">
 		    <div class="modal-frame dark">
 		    	<div class="modal-top">
@@ -355,6 +357,720 @@
 		    </div>
 		</div>
 		
+<<<<<<< HEAD
+		<!-- 상점 모달 -->
+		<div id="modal3" class="modal">
+		    <div class="modal-frame dark">
+		    	<div class="modal-top">
+		    		<img id="hpBar" src="/images/hpBar_full.png">
+		    		<img id="fatigueBar" src="/images/fatigueBar_full.png">
+		    		<div id="jellyBar">
+		    			<img id="jelly" src="/images/jellyIcon.png">
+		    			<p id="My_jelly">99999999</p>
+		    			<img id="plus" src="/images/plusIcon.png">
+		    		</div>
+		    		<div id="coinBar">
+		    			<img id="coin" src="/images/coinIcon.png">
+		    			<p id="My_Coin">99999999</p>
+		    			<img id="plus" src="/images/plusIcon.png">
+		    		</div>
+		        	<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
+		    	</div>
+		    	<div class="modal-title shop-title">
+			        <h2>상점</h2>
+		    	</div>
+		        <div class="modal-content shop">
+		        	<div>
+		        		<ul class="shop-list">
+		        			<li data-tab="shop-outfit" class='active'>의상</li>
+		        			<li data-tab="shop-hare">헤어</li>
+		        			<li data-tab="shop-accessories">악세서리</li>
+		        			<li data-tab="shop-interior">인테리어</li>
+		        			<li data-tab="shop-snacks">간식</li>
+		        		</ul>
+		        	</div>
+		        	<section id="shop-outfit" class="tab-content">
+		        		<div class="shop-items">
+		        			<div id="shop-item-show-outfit_1" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div id="shop-item-show-outfit_2" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div id="shop-item-show-outfit_3" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div id="shop-item-show-outfit_4" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div id="shop-item-show-outfit_5" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div id="shop-item-show-outfit_6" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div id="shop-item-show-outfit_7" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div id="shop-item-show-outfit_8" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div id="shop-item-show-outfit_9" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        		</div>
+		        	</section>
+		        	<section id="shop-hare" class="tab-content">
+		        		<div class="shop-items">
+		        			<div id="shop-item-show-hare_1" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">머리</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div id="shop-item-show-hare_2" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">머리</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">머리</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">머리</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        		</div>
+		        	</section>
+		        	
+		        	<section id="shop-accessories" class="tab-content">
+				        <div class="shop-items">
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory1.png">
+				                    <p class="item-name">진주 목걸이</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>15000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				        </div>
+				    </section>
+				
+				    <section id="shop-interior" class="tab-content">
+				        <div class="shop-items">
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/interior1.png">
+				                    <p class="item-name">럭셔리 소파</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>50000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/interior2.png">
+				                    <p class="item-name">모던 테이블</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>40000</p>
+				                </div>
+				            </div>
+				        </div>
+				    </section>
+				
+				    <section id="shop-snacks" class="tab-content">
+				        <div class="shop-items">
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/snack1.png">
+				                    <p class="item-name">초콜릿 바</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>5000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/snack2.png">
+				                    <p class="item-name">과일 바구니</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>12000</p>
+				                </div>
+				            </div>
+				        </div>
+				    </section>
+		        	
+		        	<div class="show-character-info">
+		        		<div class="show-character">
+			        		<img src="/images/test_character.png">
+		        		</div>
+		        		<div class="show-item-info">
+						    <p id="item_danse"><span class="label">댄스</span> <span class="value">999<span class="positive">(+50)</span></span></p>
+						    <p id="item_enter"><span class="label">예능</span> <span class="value">999<span class="positive">(+50)</span></span></p>
+						    <p id="item_rqp"><span class="label">랩</span> <span class="value">999<span class="positive">(+50)</span></span></p>
+						    <p id="item_vocal"><span class="label">보컬</span> <span class="value">999<span class="positive">(+50)</span></span></p>
+						    <p id="item_char"><span class="label">매력도</span> <span class="value">999<span class="positive">(+50)</span></span></p>
+						</div>
+						<div>
+							<button class="apply-button">구매하기</button>
+						</div>
+		        	</div>
+		        </div>
+		        <div class="item-ne-pr">
+		        	<span class="previous"><strong class="close_icon">&lt;</strong>이전</span>
+		        	<span class="next">다음<strong class="close_icon">&gt;</strong></span>
+		        </div>
+		        
+		    </div>
+		</div>
+		
+		<!-- 내가방 -->
+		<div id="modal4" class="modal">
+		    <div class="modal-frame dark">
+		    	<div class="modal-top">
+		    		<img id="hpBar" src="/images/hpBar_full.png">
+		    		<img id="fatigueBar" src="/images/fatigueBar_full.png">
+		    		<div id="jellyBar">
+		    			<img id="jelly" src="/images/jellyIcon.png">
+		    			<p id="My_jelly">99999999</p>
+		    			<img id="plus" src="/images/plusIcon.png">
+		    		</div>
+		    		<div id="coinBar">
+		    			<img id="coin" src="/images/coinIcon.png">
+		    			<p id="My_Coin">99999999</p>
+		    			<img id="plus" src="/images/plusIcon.png">
+		    		</div>
+		        	<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
+		    	</div>
+		    	<div class="modal-title shop-title">
+			        <h2>내 가방</h2>
+		    	</div>
+		        <div class="modal-content shop">
+		        	<div>
+		        		<ul class="shop-list">
+		        			<li data-tab="bag-outfit">의상</li>
+		        			<li data-tab="bag-hare">헤어</li>
+		        			<li data-tab="bag-accessories">악세서리</li>
+		        			<li data-tab="bag-interior">인테리어</li>
+		        			<li data-tab="bag-snacks">간식</li>
+		        		</ul>
+		        	</div>
+		        	<section id="bag-outfit" class="tab-content">
+		        		<div class="shop-items">
+		        			<div id="bag-outfit-1" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<button class="equipped">장착</button>
+		        				</div>
+		        			</div>
+		        			<div id="bag-outfit-2" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<button class="equipped">장착</button>
+		        				</div>
+		        			</div>
+		        			<div id="bag-outfit-3" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<button class="equipped">장착</button>
+		        				</div>
+		        			</div>
+		        			<div id="bag-outfit-4" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<button class="equipped">장착</button>
+		        				</div>
+		        			</div>
+		        			<div id="bag-outfit-5" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div id="bag-outfit-6" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div id="bag-outfit-7" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div id="bag-outfit-8" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        			<div id="bag-outfit-9" class="shop-item-show">
+		        				<div class="item-info">
+		        					<img src="/images/item_ex.png">
+		        					<p class="item-name">아이템 이름</p>
+		        				</div>
+		        				<div class="item-price">
+		        					<img src="/images/coinIcon.png">
+		        					<p>50000</p>
+		        				</div>
+		        			</div>
+		        		</div>
+		        	</section>
+		        	<section id="bag-hare" class="tab-content">
+				        <div class="shop-items">
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/snack1.png">
+				                    <p class="item-name">초콜릿 바</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>5000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/snack2.png">
+				                    <p class="item-name">과일 바구니</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>12000</p>
+				                </div>
+				            </div>
+				        </div>
+				    </section>
+		        	<section id="bag-accessories" class="tab-content">
+				        <div class="shop-items">
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory1.png">
+				                    <p class="item-name">진주 목걸이</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>15000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/accessory2.png">
+				                    <p class="item-name">금반지</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>18000</p>
+				                </div>
+				            </div>
+				        </div>
+				    </section>
+				
+				    <section id="bag-interior" class="tab-content">
+				        <div class="shop-items">
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/interior1.png">
+				                    <p class="item-name">럭셔리 소파</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>50000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/interior2.png">
+				                    <p class="item-name">모던 테이블</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>40000</p>
+				                </div>
+				            </div>
+				        </div>
+				    </section>
+				
+				    <section id="bag-snacks" class="tab-content">
+				        <div class="shop-items">
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/snack1.png">
+				                    <p class="item-name">초콜릿 바</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>5000</p>
+				                </div>
+				            </div>
+				            <div class="shop-item-show">
+				                <div class="item-info">
+				                    <img src="/images/snack2.png">
+				                    <p class="item-name">과일 바구니</p>
+				                </div>
+				                <div class="item-price">
+				                    <img src="/images/coinIcon.png">
+				                    <p>12000</p>
+				                </div>
+				            </div>
+				        </div>
+				    </section>
+		        	<div class="show-character-info">
+		        		<div class="show-character">
+			        		<img src="/images/test_character.png">
+		        		</div>
+		        		<div class="show-item-info">
+						    <p id="item_danse"><span class="label">댄스</span> <span class="value">+50</span></p>
+						    <p id="item_enter"><span class="label">예능</span> <span class="value">+50</span></p>
+						    <p id="item_rqp"><span class="label">랩</span> <span class="value">+50</span></p>
+						    <p id="item_vocal"><span class="label">보컬</span> <span class="value">+50</span></p>
+						    <p id="item_char"><span class="label">매력도</span> <span class="value">+50</span></p>
+						</div>
+						<div>
+							<button class="save-button">적용하기</button>
+							<p class="all-cancel">모두 해제</p>
+						</div>
+		        	</div>
+		        </div>
+		        <div class="my-bag-ne-pr">
+		        	<span class="previous my-previous"><strong class="close_icon">&lt;</strong>이전</span>
+		        	<span class="next my-next">다음<strong class="close_icon">&gt;</strong></span>
+		        </div>
+		        
+		    </div>
+		</div>
+=======
 		
 		
 		
@@ -542,12 +1258,15 @@
 			document.querySelector('.event-title li').classList.add('active');
 			document.querySelector('.quest-title li').classList.add('active');
 		</script>
+>>>>>>> refs/heads/master
 		
 		<h2>
 			머지 확인용
 		</h2>
 		
 		<script src="/js/modal.js" defer></script>
+		<script src="/js/shop.js" defer></script>
+		<script src="/js/mybag.js" defer></script>
 		
 	</body>
 </html>

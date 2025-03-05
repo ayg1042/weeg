@@ -22,6 +22,7 @@ public class InvenEntity {
     private CharacterEntity character;
 
     /** 아이템 리스트 (1:N) */
-    @OneToMany(mappedBy = "inven", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ItemEntity> items;
+    @ManyToOne
+    @JoinColumn(name = "item_id", referencedColumnName = "item_id")
+    private ItemEntity item;
 }
