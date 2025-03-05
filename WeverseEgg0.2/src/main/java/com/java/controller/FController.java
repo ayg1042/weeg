@@ -18,5 +18,11 @@ public class FController {
 		return "modal";
 	}
 	
+	@GetMapping("/login")
+	public String login() {
+		return "/login";
+	}
+	
+	
 	
 }
