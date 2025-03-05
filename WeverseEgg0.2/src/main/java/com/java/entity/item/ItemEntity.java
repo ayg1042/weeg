@@ -24,11 +24,6 @@ public class ItemEntity {
     @ManyToOne
     @JoinColumn(name = "item_info_id", referencedColumnName = "item_info_id")
     private ItemInfoEntity itemInfo;
-    
-    /** InvenEntity와의 관계 (Many-to-One) */
-    @ManyToOne
-    @JoinColumn(name = "inven_id")  // 외래 키 설정
-    private InvenEntity inven;  // inven 필드를 추가합니다.
 
     /** 아이템의 이름 */
     @Column(nullable = false, length = 100)
