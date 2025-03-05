@@ -56,10 +56,10 @@
 				var type = pwInput.attr('type');
 				if (type === 'password') {
 						pwInput.attr('type', 'text');
-						$(this).css('background-image', 'url(images/login/eye_open.svg)'); // 눈 열린 아이콘
+						$(this).css('background-image', 'url(../images/login/eye_open.svg)'); // 눈 열린 아이콘
 				} else {
 						pwInput.attr('type', 'password');
-						$(this).css('background-image', 'url(images/login/eye_close.svg)'); // 눈 닫힌 아이콘
+						$(this).css('background-image', 'url(../images/login/eye_close.svg)'); // 눈 닫힌 아이콘
 				}
 			});
 
@@ -81,7 +81,7 @@
 <body>
 	<div class="login_back">
 		<div class="logo_section">
-			<img src="images/login/weverseAccount_logo.png" id="weAccountImg">
+			<img src="../images/login/weverseAccount_logo.png" id="weAccountImg">
 		</div>
 		<div class="login_section">
 			<h1 class="login_txt">
@@ -117,7 +117,7 @@
 						<span class="orText">혹은</span>
 						<hr>
 					</div>
-					<a href="#"><img src="images/login/kakao_login.png" alt="카카오로그인"></a>
+					<a href="#"><img src="../images/login/kakao_login.png" alt="카카오로그인"></a>
 				</div>
 				<div class="button_area_join">
 					아직 계정이 없다면?
@@ -132,7 +132,7 @@
 	<!-- footer -->
 	<footer>
 		<div class="login_footer">
-			<img src="images/login/login_footer.png" alt="">			
+			<img src="../images/login/login_footer.png" alt="">			
 		</div>
 	</footer>
 

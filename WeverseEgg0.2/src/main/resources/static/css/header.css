@@ -1,0 +1,87 @@
+/* 헤더 */
+header{
+  position: sticky;
+  top: 0px;
+  z-index: 3000;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  background: white;
+}
+#header_wrap{
+  border-bottom: 1px solid #EBEDF2;
+  width: 100%;
+  height: 80px;
+  display: flex;
+}
+.main_logo{
+  padding-left: 50px;
+  width: 186px;
+  height: 80px;
+  align-items: center;
+  display: flex;
+}
+.main_logo a{
+  cursor: pointer;
+}
+.main_logo img{
+  width: 136px;
+  height: 20px;
+}
+.header_action{
+  padding: 0 60px 0 12px;
+  display: flex;
+  align-items: center;
+  flex: 1 0 auto;
+  column-gap: 28px;
+  justify-content: flex-end;
+}
+.header_action .header_singin{
+  background: linear-gradient(134deg, #07D8E2 54.07%, #35E99D 99.24%);
+  border-radius: 100px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 18px;
+  margin-right: 4px;
+  padding: 8px 20px 10px 22px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+}
+.header_content{
+  border-left: 1px solid #E0E0E0;
+  align-items: center;
+  column-gap: 28px;
+  padding-left: 28px;
+  display: flex;
+  position: relative;
+}
+.header_content button{
+  width: 38px;
+  height: 38px;
+  border: none;
+  cursor: pointer;
+}
+.header_content .egg{
+  background: no-repeat url(../images/egg_icon.png) 0 0 / contain;
+}
+.header_content .jelly{
+  background: no-repeat url(../images/jelly_icon.png) 0 0 / contain;
+}
+.header_content .shop{
+  background: no-repeat url(../images/shop_icon.png) 0 0 / contain;
+}
+/* 로그인 후 추가되는 헤더 요소 */
+.header_search, .header_alram, .header_mypage, .header_setting {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.header_action svg {
+  display: block;
+}
+
+a{
+	color: black;
+}

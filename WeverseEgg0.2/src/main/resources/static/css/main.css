@@ -105,15 +105,15 @@ header{
 }
 
 .header_content .egg{
-  background: no-repeat url(../images/main/egg_icon.png) 0 0 / contain; 
+  background: no-repeat url('/images/chocieCharacter/egg_icon.png') 0 0 / contain; 
 }
 
 .header_content .jelly{
-  background: no-repeat url(../images/main/jelly_icon.png) 0 0 / contain; 
+  background: no-repeat url('/images/chocieCharacter/jelly_icon.png') 0 0 / contain; 
 }
 
 .header_content .shop{
-  background: no-repeat url(../images/main/shop_icon.png) 0 0 / contain; 
+  background: no-repeat url('/images/chocieCharacter/shop_icon.png') 0 0 / contain; 
 }
 
 /* 로그인 후 추가되는 헤더 요소 */
@@ -212,6 +212,7 @@ header{
 }
 
 .main_myidol{
+  padding-top: 3px;
   height: 300px;
   right: 0;
 }
@@ -220,13 +221,20 @@ header{
   font-size: 24px;
   font-weight: 700;
   line-height: 28px;
-  margin-bottom: 25px;
+  margin-bottom: 28px;
 }
 
 .my_idol{
   width: 208px;
   height: 250px;
   cursor: pointer;
+  position: relative;
+}
+
+.main_al{
+  position: absolute;
+  left: 80px;
+  top: 150px;
 }
 
 .aespa:hover{
