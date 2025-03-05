@@ -7,153 +7,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/header.css"/>
+  <link rel="stylesheet" type="text/css" href="../css/choiceCharacter.css"/>
   <title>캐릭터 선택</title>
-  <style>
-  	@font-face {
-		    font-family: 'NeoDunggeunmo';
-		    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff') format('woff');
-		    font-weight: normal;
-		    font-style: normal;
-		}
-	*{margin: 0; padding: 0; font-family: "NeoDunggeunmo", Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;}
-    a{cursor: pointer;}
-    /* 헤더 */
-    header{
-      position: sticky;
-      top: 0px;
-      z-index: 3000;
-      width: 100%;
-      height: 80px;
-      display: flex;
-      background: white;
-    }
-    #header_wrap{
-      border-bottom: 1px solid #EBEDF2;
-      width: 100%;
-      height: 80px;
-      display: flex;
-    }
-    .main_logo{
-      padding-left: 50px;
-      width: 186px;
-      height: 80px;
-      align-items: center;
-      display: flex;
-    }
-    .main_logo a{
-      cursor: pointer;
-    }
-    .main_logo img{
-      width: 136px;
-      height: 20px;
-    }
-    .header_action{
-      padding: 0 60px 0 12px;
-      display: flex;
-      align-items: center;
-      flex: 1 0 auto;
-      column-gap: 28px;
-      justify-content: flex-end;
-    }
-    .header_action .header_singin{
-      background: linear-gradient(134deg, #07D8E2 54.07%, #35E99D 99.24%);
-      border-radius: 100px;
-      color: #fff;
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 18px;
-      margin-right: 4px;
-      padding: 8px 20px 10px 22px;
-      border: none;
-      text-align: center;
-      cursor: pointer;
-    }
-    .header_content{
-      border-left: 1px solid #E0E0E0;
-      align-items: center;
-      column-gap: 28px;
-      padding-left: 28px;
-      display: flex;
-      position: relative;
-    }
-    .header_content button{
-      width: 38px;
-      height: 38px;
-      border: none;
-      cursor: pointer;
-    }
-    .header_content .egg{
-      background: no-repeat url('/images/chocieCharacter/egg_icon.png') 0 0 / contain;
-    }
-    .header_content .jelly{
-      background: no-repeat url('/images/chocieCharacter/jelly_icon.png') 0 0 / contain;
-    }
-    .header_content .shop{
-      background: no-repeat url('/images/chocieCharacter/shop_icon.png') 0 0 / contain;
-    }
-    /* 로그인 후 추가되는 헤더 요소 */
-    .header_search, .header_alram, .header_mypage, .header_setting {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-    .header_action svg {
-      display: block;
-    }
-    
-   /* 캐릭터 선택 */
-    #mainBack{
-    width: 100%; 
-    height: calc(100vh - 80px);
-    background-image: url("/images/chocieCharacter/game_back.jpg");
-    }
-    #ChoiceIdol{
-    font-size: 40px; 
-    font-family: "NeoDunggeunmo"; 
-    font-weight: 400; 
-    text-align: center;  
-    padding-top: 70px; 
-    margin-bottom: 70px;
-    }
-    #FirstIdol{
-    width: 336px; 
-    height: 586px; 
-    border: 7px solid #D2BDFF; 
-    margin-left: 415px; 
-    background-color: white; 
-    display: none;
-    background-image: url('/images/chocieCharacter/egg.png'); 
-    background-repeat: no-repeat; 
-    display: inline-block; 
-    background-position: center;
-    }
-    #FirstIdol:hover{
-    background-image: url('/images/chocieCharacter/egg_make.png'); 
-    cursor: pointer;
-    }
-    #SecondIdol{
-    width: 336px; 
-    height: 586px; 
-    background-image: url('/images/chocieCharacter/LockIdol.png');  
-    border: 7px solid #D2BDFF; 
-    display: inline-block;  
-    margin-left: 14px; 
-    background-position: center;
-    }
-    #ThirdIdol{
-    width: 336px; 
-    height: 586px; 
-    background-image: url('/images/chocieCharacter/LockIdol.png');  
-    border: 7px solid #D2BDFF; 
-    display: inline-block; 
-    margin-left: 15px; 
-    background-position: center;
-    }
-  </style>
   
   <script>
-    function choiceBtn(){
-      alert("test");
+    function choiceBtn(isListNull){
+    	if(isListNull){
+          // list가 null일 경우
+          if(confirm("해당 캐릭터로 게임을 시작하시겠습니까?")) {
+              // '예'를 눌렀을 때의 행동 추가
+          }
+      } else {
+          // list가 null이 아닌 경우
+          if(confirm("캐릭터를 생성하시겠습니까?")) {
+              location.href="/startStory";
+          }
+      }
     }
     </script>
   </head>
@@ -204,9 +75,18 @@
 
   <div id="mainBack">
     <h2 id="ChoiceIdol">아이돌 선택</h2>
-    <div id="FirstIdol" onclick="choiceBtn()"></div>
-    <div id="SecondIdol"></div>
-    <div id="ThirdIdol"></div>
+    <c:if test="${list != null}">
+	    <c:forEach items="${list}" var="cdto">
+		    <div id="FirstIdol" onclick="choiceBtn()"></div>
+	  	  <div id="SecondIdol"></div>
+	    	<div id="ThirdIdol"></div>
+	    </c:forEach>
+    </c:if>
+    <c:if test="${list == null}">
+		    <div id="FirstIdol" onclick="choiceBtn()"></div>
+	  	  <div id="SecondIdol"></div>
+	    	<div id="ThirdIdol"></div>
+    </c:if>
   </div>  <!-- mainBack -->
   
 </body>
