@@ -46,7 +46,7 @@
         <h1 class="jelly_logo"><img src="../images/jellyshop/jellyshop_logo.png" alt=""></h1>
         <div class="my_jelly">
           <strong>
-            <img src="../images/jelly_icon.png" alt="">
+            <img src="../images/main/jelly_icon.png" alt="">
             My Jelly
           </strong>
           <p class="jelly_total">0</p>
