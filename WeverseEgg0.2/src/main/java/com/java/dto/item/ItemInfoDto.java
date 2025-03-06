@@ -2,6 +2,8 @@ package com.java.dto.item;
 
 import java.sql.Timestamp;
 
+import com.java.entity.item.ItemInfoEntity;
+
 public class ItemInfoDto {
 	/** itemInfo PK */
 	private int itemInfoId;
@@ -23,4 +25,5 @@ public class ItemInfoDto {
 	private Timestamp startDate;
 	/** 판매 종료일 */
 	private Timestamp endDate;
+	
 }

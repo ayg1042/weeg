@@ -2,6 +2,8 @@ package com.java.entity.item;
 
 import java.sql.Timestamp;
 
+import com.java.dto.item.ItemInfoDto;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -56,4 +58,5 @@ public class ItemInfoEntity {
     /** 판매 종료일 (nullable 허용) */
     @Column(name = "end_date", nullable = true)
     private Timestamp endDate;
+    
 }

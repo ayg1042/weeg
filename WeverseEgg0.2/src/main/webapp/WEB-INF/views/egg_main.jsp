@@ -60,6 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+  
+  function stBtn() {
+    location.href = "/choiceCharacter";
+  }
 </script>
 
 <body>
@@ -134,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <!-- 게임 스타트 버튼 -->
     <div id="game_start_btn">
-      <button type="button" class="game_start">
+      <button type="button" onclick="stBtn()" class="game_start">
         <img src="images/mainpage/start1.png" alt="게임 시작 버튼 호버 전" class="default">
         <img src="images/mainpage/start2.png" alt="게임 시작 버튼 호버 후" class="hover">
       </button>

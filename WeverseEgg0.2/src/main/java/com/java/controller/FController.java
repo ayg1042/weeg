@@ -52,5 +52,10 @@ public class FController {
 		return "modal";
 	}
 	
+	@GetMapping("/rank") // 랭킹 페이지
+	public String rank() {
+		return "rank";
+	}
+	
 	
 }

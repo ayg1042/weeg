@@ -45,4 +45,13 @@ public class MemberEntity {
         entity.nickname = dto.getNickname();
         return entity;
     }
+    
+    public static MemberEntity From(MemberDto dto) {
+    	MemberEntity entity = new MemberEntity();
+    	entity.userId = dto.getUser_id();
+    	entity.email = dto.getEmail();
+		entity.nickname = dto.getNickname();
+    	return entity;
+    }
+    
 }

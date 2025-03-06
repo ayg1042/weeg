@@ -2,7 +2,6 @@ package com.java.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +19,8 @@ public class CharacterServiceImpl implements CharacterService {
 	// 캐릭터 선택 페이지 열기
 	@Override
 	public List<CharacterDto> getCharactersByUserId(int user_id) {
-		String id = Integer.toString(user_id);
-		List<CharacterEntity> list = characterRepository.findByMemberId(id);
+		String User_id = Integer.toString(user_id);
+		List<CharacterEntity> list = characterRepository.findByMemberUserId(user_id);
 		if(list.isEmpty()) {
 			return null;
 		}
@@ -32,6 +31,14 @@ public class CharacterServiceImpl implements CharacterService {
 		}
 		return dtoList;	
 	}
+
+	// 캐릭터 생성, 닉네임 저장
+	@Override
+	public void save(CharacterEntity character) {
+		characterRepository.save(character);
+		
+	}
+
 	
 	
 	

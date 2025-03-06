@@ -8,6 +8,6 @@ import com.java.entity.character.CharacterEntity;
 
 public interface CharacterRepository extends JpaRepository<CharacterEntity, Integer> {
 
-	List<CharacterEntity> findByMemberId(String user_id);
+	List<CharacterEntity> findByMemberUserId(int user_id);
 
 }

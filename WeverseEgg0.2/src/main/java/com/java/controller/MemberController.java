@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.dto.member.MemberDto;
 import com.java.entity.member.MemberEntity;
-import com.java.service.member.MemberService;
+import com.java.service.MemberService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -95,8 +95,9 @@ public class MemberController {
 		if (memberDto != null) { // 회원 정보가 존재할 경우
 			session.setAttribute("session_id", email);
 			session.setAttribute("session_nick", memberDto.getNickname());
+			session.setAttribute("session_userId", memberDto.getUser_id()); // 1
 			System.out.println(memberDto.getNickname());
-	        return "redirect:/"; // 비밀번호 입력 페이지
+	        return "redirect:/"; // 로그인 성공
 	    } else { // 회원 정보가 없을 경우
 	    	model.addAttribute("email", email);
 	    	model.addAttribute("message", "비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
