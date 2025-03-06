@@ -22,8 +22,10 @@ public class CharacterDto {
     private ArtistDto artist;
     /** 사용자 user_id FK */
     private MemberDto member;
+    
     /** 인벤토리 invenId Fk */
-    private InvenDto inven;
+    private List<InvenDto> inven;
+    
     /** 캐릭터 닉네임 */
     private String nickName;
     /** 캐릭터 성별 */

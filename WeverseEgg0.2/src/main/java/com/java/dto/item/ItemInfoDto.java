@@ -2,6 +2,15 @@ package com.java.dto.item;
 
 import java.sql.Timestamp;
 
+import com.java.entity.item.ItemInfoEntity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ItemInfoDto {
 	/** itemInfo PK */
 	private int itemInfoId;
@@ -23,4 +32,20 @@ public class ItemInfoDto {
 	private Timestamp startDate;
 	/** 판매 종료일 */
 	private Timestamp endDate;
+	
+	public static ItemInfoDto From(ItemInfoEntity entity) {
+		ItemInfoDto dto = new ItemInfoDto();
+		dto.setItemInfoId(entity.getItemInfoId());
+		dto.setItemType(ItemTypeDto.From(entity.getItemType()));
+		dto.setFatigueRecovery(entity.getFatigueRecovery() != null ? entity.getFatigueRecovery() : 0);
+		dto.setCharm(entity.getCharm() != null ? entity.getCharm() : 0);
+		dto.setDance(entity.getDance() != null ? entity.getDance() : 0);
+		dto.setVocal(entity.getVocal() != null ? entity.getVocal() : 0);
+		dto.setRap(entity.getRap() != null ? entity.getRap() : 0);
+		dto.setEntertainment(entity.getEntertainment() != null ? entity.getEntertainment() : 0);
+		dto.setStartDate(entity.getStartDate() != null ? entity.getStartDate() : null);
+		dto.setEndDate(entity.getEndDate() != null ? entity.getEndDate() : null);
+		
+		return dto;
+	}
 }

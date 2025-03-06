@@ -3,15 +3,14 @@ package com.java.entity.character;
 import com.java.entity.member.MemberEntity;
 import com.java.entity.character.InvenEntity;
 import com.java.entity.character.StyleEntity;
-
-import java.util.List;
-
 import com.java.entity.character.ArtistEntity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Egg_Character")
@@ -26,7 +25,7 @@ public class CharacterEntity {
     @Column(name = "character_id")
     private int characterId;
 
-    /** 스타일 정보 (헤어스타일, 의상, 악세서리 등) (1:1) */
+    /** 스타일 정보 (헤어스타일, 의상, 악세서리 등) */
     @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StyleEntity> styles;
 
@@ -40,10 +39,10 @@ public class CharacterEntity {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private MemberEntity member;
 
-    /** 인벤토리 (1:1) */
-    @OneToOne
-    @JoinColumn(name = "inven_id", referencedColumnName = "inven_id")
-    private InvenEntity inven;
+    // 수정됨
+    /** 인벤토리 (1:N) */
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<InvenEntity> inven;
 
     /** 캐릭터 닉네임 */
     @Column(name = "nick_name", length = 30, nullable = false, unique = true)
