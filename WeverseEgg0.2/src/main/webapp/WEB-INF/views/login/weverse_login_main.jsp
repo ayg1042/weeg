@@ -45,7 +45,7 @@
 					alert("올바른 이메일 형식이 아닙니다.");
 					return false;
 				}else{
-					location.href="#"
+					loginFrm.submit();
 				}
 			});
 		});// jquery
@@ -69,7 +69,7 @@
 			</h1>
 			<h2>이 이메일은 새로 가입할 수 있는 이메일입니다. 계속하시겠습니까?</h2> 
 			-->
-			<form action="#" method="post" name="loginFrm" class="loginFrm">
+			<form action="/login/login" method="post" name="loginFrm" class="loginFrm">
 				<div class="inputType">
 					<label class="input_label">이메일</label>
 					<div class="emailType">
@@ -82,7 +82,7 @@
 				</div>
 			</form>
 			<div class="button_area">
-				<button type="button" class="loginBtn">이메일로 계속하기</button>
+				<button type="button" class="loginBtn" >이메일로 계속하기</button>
 				<!-- <button type="button" class="loginBtn">가입하기</button>/ -->
 				<a href="#" class="forgot_email">비밀번호를 잊어버리셨나요?</a>
 				<!-- <a href="#" class="prev">이전</a> -->
