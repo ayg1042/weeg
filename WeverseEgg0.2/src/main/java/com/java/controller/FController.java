@@ -1,11 +1,20 @@
 package com.java.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.java.dto.item.ItemDto;
+import com.java.service.ModalService;
 
 
 @Controller
 public class FController {
+	
+	@Autowired ModalService modalServiceImpl;
 	
 	@GetMapping("/index") //테스트 페이지
 	public String index() {
@@ -48,7 +57,12 @@ public class FController {
 	}
 	
 	@GetMapping("/modal")
-	public String modal() {
+	public String modal(Model model) {
+		
+		List<ItemDto> items = modalServiceImpl.getAllItems();
+		System.out.println(items);
+		model.addAttribute("shopList",items);
+		
 		return "modal";
 	}
 	
