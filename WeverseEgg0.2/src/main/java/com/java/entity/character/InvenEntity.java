@@ -16,8 +16,8 @@ public class InvenEntity {
     @Column(name = "inven_id")
     private int invenId;
 
-    /** 캐릭터 FK (1:1) */
-    @OneToOne
+    /** 캐릭터 FK (1:N) */
+    @ManyToOne
     @JoinColumn(name = "character_id", referencedColumnName = "character_id")
     private CharacterEntity character;
 
