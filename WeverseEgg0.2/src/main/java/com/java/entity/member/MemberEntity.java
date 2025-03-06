@@ -35,7 +35,7 @@ public class MemberEntity {
     private String nickname;
     
     @Column(nullable = false, length = 100)
-    private int jam;
+    private int jelly;
     
  // 정적 팩토리 메서드 추가
     public static MemberEntity join(MemberDto dto) {

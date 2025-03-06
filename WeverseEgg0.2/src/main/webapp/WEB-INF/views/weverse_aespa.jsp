@@ -81,7 +81,7 @@
         <div class="ranking">
           <div class="ranking_top">
             <img src="../images/aespa/rank/trophy.png" alt=""><span>팬 게임 랭킹 TOP 10</span>
-            <a href="#"></a>
+            <a href="/aespa/rank"></a>
           </div>
           <table>
             <tbody>

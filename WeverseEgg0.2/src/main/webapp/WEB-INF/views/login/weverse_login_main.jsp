@@ -84,7 +84,7 @@
 			<div class="button_area">
 				<button type="button" class="loginBtn" >이메일로 계속하기</button>
 				<!-- <button type="button" class="loginBtn">가입하기</button>/ -->
-				<a href="#" class="forgot_email">비밀번호를 잊어버리셨나요?</a>
+				<a href="#" class="forgot_email"></a>
 				<!-- <a href="#" class="prev">이전</a> -->
 				<div class="kakao_area">
 					<div class="line">
@@ -92,7 +92,7 @@
 						<span class="orText">혹은</span>
 						<hr>
 					</div>
-					<a href="#"><img src="../images/login/kakao_login.png" alt="카카오로그인"></a>
+					<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=5c065bc8f939d1303dc54e5a7ed2878a&redirect_uri=http://localhost:8181/login/kakao/oauth&prompt=login"><img src="../images/login/kakao_login.png" alt="카카오로그인"></a>
 				</div>
 			</div>
 

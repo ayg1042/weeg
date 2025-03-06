@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </ul>
         <ul>
           <li id="option_title">랭킹</li>
-          <li><a href="#">전체랭킹</a></li>
+          <li><a href="/rank">전체랭킹</a></li>
           <li><a href="#">그룹랭킹 </a></li>
         </ul>
         <ul>
