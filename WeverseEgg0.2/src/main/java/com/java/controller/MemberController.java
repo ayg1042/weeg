@@ -1,6 +1,5 @@
 package com.java.controller;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.dto.member.MemberDto;
-import com.java.entity.member.MemberEntity;
-import com.java.service.member.MemberService;
+import com.java.service.MemberService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -48,7 +46,7 @@ public class MemberController {
 	// 입력한 이메일 >> 회원정보가 없는 이메일 (회원가입 가능 알림 창)
 	@GetMapping("/login-1")
 	public String login1(){
-		return "login/weverse_login";
+		return "login/weverse_login-1";
 	}
 	
 	// 회원가입 페이지1 >> 비밀번호 생성 페이지

@@ -1,11 +1,26 @@
 package com.java.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.java.dto.quest.QuestDto;
+import com.java.entity.quest.QuestProgressEntity;
+import com.java.repository.QuestProgressRepository;
+import com.java.service.QuestService;
 
 
 @Controller
 public class FController {
+	
+	@Autowired QuestService questService;
+	@Autowired QuestProgressRepository questProgressRepository;
 	
 	@GetMapping("/weverserank") // 위버스 에스파 그룹랭킹
 	public String rank() {
@@ -54,7 +69,26 @@ public class FController {
 	}
 	
 	@GetMapping("/modal")
-	public String modal() {
+	public String modal(Model model) {
+		// 퀘스트 전체 리스트 가져오기
+		List<QuestDto> list = questService.findAll();
+		model.addAttribute("list", list);
+		
+		// 현재 사용자(user_id = 1)의 진행 정보를 조회 (예시)
+        // 실제 구현 시 로그인한 사용자의 정보를 사용하도록 수정. (임시) 나중에 세션 사용해야함.
+        List<QuestProgressEntity> progressList = questProgressRepository.findAll()
+                .stream()
+                .filter(qp -> qp.getMember().getUserId() == 1)
+                .collect(Collectors.toList());
+        
+        // 퀘스트 아이디를 key로 진행 정보를 매핑하여 Map 생성 (한 퀘스트에 한 진행 정보가 있다고 가정)
+        Map<Integer, QuestProgressEntity> progressMap = new HashMap<>();
+        for (QuestProgressEntity qp : progressList) {
+            // 퀘스트 아이디를 key로 사용 (중복 없다고 가정)
+            progressMap.put(qp.getQuest().getQuestId(), qp);
+        }
+        model.addAttribute("progressMap", progressMap);
+		
 		return "modal";
 	}
 	

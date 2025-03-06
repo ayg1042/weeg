@@ -85,7 +85,7 @@
         <c:forEach items="${list}" var="qdto">
 	        <tr>
 	          <td>
-	            <span class="info_title">${qdto.title }</span>
+	            <span class="info_title">${qdto.coin }</span>
 	          </td>
 	          <td class="info_date">${qdto.content }</td>
 	          <td>코인 ${qdto.coin}</td>
