@@ -82,33 +82,52 @@
         <col class="w-[160px]">
       </colgroup>
       <tbody>
-        <tr>
-          <td class="td_title">
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
-          </td>
-          <td class="info_date">2025-01-01</td>
-        </tr>
-        <tr>
-          <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
-          </td>
-          <td class="info_date">2025-01-01</td>
-        </tr>
-        <tr>
-          <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
-          </td>
-          <td class="info_date">2025-01-01</td>
-        </tr>
-        <tr>
-          <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
-          </td>
-          <td class="info_date">2025-01-01</td>
-        </tr>
+        <c:forEach items="${list}" var="qdto">
+	        <tr>
+	          <td>
+	            <span class="info_title">${qdto.title }</span>
+	          </td>
+	          <td class="info_date">${qdto.content }</td>
+	          <td>코인 ${qdto.coin}</td>
+	          <td>0/10</td>
+	          <td><button class="questProgressButton" data-quest-id="${qdto.questId}">클릭</button></td>
+	        </tr>
+        </c:forEach>
       </tbody>
     </table>
 
+
+	<script>
+	    $(document).ready(function() {
+	        // 버튼 클릭 시 퀘스트 진행 상태 업데이트
+	        $(".questProgressButton").click(function() {
+	            var questId = $(this).data("quest-id");
+	
+	            $.ajax({
+	                url: "/quest/test/progress",
+	                type: "POST",
+	                data: {
+	                    questId: questId,
+	                    action: "click"
+	                },
+	                success: function(response) {
+	                    // 서버에서 돌아온 결과로 진행률 업데이트
+	                    if(response.progress) {
+	                        var progressText = response.progress + "%";
+	                        $('#progress-' + questId).text(progressText);
+	                    }
+	
+	                    if(response.isCompleted) {
+	                        alert("퀘스트 완료! 보상: " + response.rewardCoin + "코인");
+	                    }
+	                },
+	                error: function(xhr, status, error) {
+	                    alert("퀘스트 진행 중 오류가 발생했습니다.");
+	                }
+	            });
+	        });
+	    });
+	</script>
 
     <!-- 페이지 넘버링 -->
     <div class="pagination">

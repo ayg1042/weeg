@@ -40,7 +40,7 @@ public class QuestProgressEntity {
     @Column(length = 10, nullable = false)
     private String progress;
 
-    /** 퀘스트 남은 시간 */
+    /** 퀘스트 시작 시간 : 퀘스트의 끝나는 시간에서 시작시간 빼서 남은 시간 파악 */
     @Column(nullable = true)
-    private Timestamp remainingTime;
+    private Timestamp startTime;
 }

@@ -2,8 +2,9 @@ package com.java.dto.quest;
 
 import java.sql.Timestamp;
 
+import com.java.entity.quest.QuestEntity;
+
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,4 +24,18 @@ public class QuestDto {
     /** 퀘스트 리셋 시간 */
     private Timestamp resetTime;
     
+ // 정적 팩토리 메서드 추가
+    public static QuestDto qlist(QuestEntity entity) {
+        QuestDto dto = new QuestDto();
+        dto.questId = entity.getQuestId();
+        dto.title = entity.getTitle();
+        dto.content = entity.getContent();
+        dto.coin = entity.getCoin();
+        dto.resetTime = entity.getResetTime();
+        
+        return dto;
+    }
+    
 }
+
+

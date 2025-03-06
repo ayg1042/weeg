@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FController {
 	
+	@GetMapping("/weverserank") // 위버스 에스파 그룹랭킹
+	public String rank() {
+		return "rank";
+	}
+	
+	
 	@GetMapping("/index") //테스트 페이지
 	public String index() {
 		return "main";
