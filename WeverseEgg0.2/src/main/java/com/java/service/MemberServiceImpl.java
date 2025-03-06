@@ -76,7 +76,7 @@ public class MemberServiceImpl implements MemberService {
             member.setEmail(email);
             member.setPw("1111"); // 비밀번호는 사용하지 않음 (소셜 로그인 전용)
             member.setNickname(nickname);
-            member.setJam(0);
+            member.setJelly(0);
 
             memberRepository.save(member);
         }

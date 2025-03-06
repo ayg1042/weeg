@@ -31,7 +31,7 @@ public class FController {
 		return "main2";
 	}
 	
-	@GetMapping("/weverseaespa") // 위버스 에스파 페이지 캐릭터 랭킹 
+	@GetMapping("/aespa") // 위버스 에스파 페이지 캐릭터 랭킹 
 	public String weverseAespa() {
 		return "weverse_aespa";
 	}
@@ -65,6 +65,8 @@ public class FController {
 		
 		return "modal";
 	}
+	
+
 	
 	
 }

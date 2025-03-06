@@ -72,8 +72,8 @@
             <strong>나만의</strong>
             <img id="toggle-info" src="../images/jellyshop/jellyshop_d.png" alt="">
             <div class="hidden_info">
-              <strong>나만의</strong>
-              <span>메일주소</span>
+              <strong>${sessionScope.session_id.getNickname()}</strong>
+              <span>${sessionScope.session_id.getEmail()}</span>
               <button onclick="location.href='/login/logout'">로그아웃</button>
             </div>
           </div>
