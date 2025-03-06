@@ -37,14 +37,19 @@
 				if (pwVal.length > 0) {
 					$('.xBtn2').show();
 				};
-				if (pwVal == $("#newpw").val()){
+				if (pwVal == $("#newpw").val() && $("#newpw").val() != ""){
 					$(".pwchkmsg").text("비밀번호가 일치합니다.")
 					$(".pwchkmsg").css('color', 'rgb(0, 203, 213)')
 					$(".chk2").css('border-bottom-color', 'rgb(0, 203, 213)')
-				}else{
+					$(".setpwBtn").attr("onclick", "setpwFrm.submit()");
+				}else if (pwVal != $("#newpw").val() && pwVal != ""){
 					$(".pwchkmsg").text("비밀번호가 일치하지 않습니다. 다시 확인해주세요.")
 					$(".pwchkmsg").css('color', 'rgb(254, 91, 88)');
 					$(".chk2").css('border-bottom-color', 'rgb(254, 91, 88)');
+				}else{
+					$(".pwchkmsg").text("")
+					$(".pwchkmsg").css('color', 'rgb(254, 91, 88)');
+					$(".chk2").css('border-bottom-color', 'rgb(238, 238, 238)');
 				}
 			});
 
@@ -118,7 +123,7 @@
 			<h1 class="login_txt">
 				새 비밀번호를 설정해 주세요.
 			</h1>
-			<form action="#" method="post" name="setpwFrm" class="setpwFrm">
+			<form action="/login/join" method="post" name="setpwFrm" class="setpwFrm">
 				<div class="inputType_email">
 					<label class="input_label">새로운 비밀번호</label>
 					<div class="newpw chk">
@@ -147,7 +152,7 @@
 			</form>
 			<div class="button_area_pw">
 				<button type="button" class="setpwBtn">다음</button>
-				<a href="#" class="prev">이전</a>
+				<a href="#" onclick="window.history.back(); return false;" class="prev">이전</a>
 			</div>
 
 		</div>

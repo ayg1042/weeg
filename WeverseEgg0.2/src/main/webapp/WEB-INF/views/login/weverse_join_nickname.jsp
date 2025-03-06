@@ -35,6 +35,7 @@
 				if (lengthCheck) {
 						$(".chk").css('border-bottom-color', 'rgb(0, 203, 213)');
 						$(".EM").text("")
+						$(".setpwBtn").attr("onclick", "nicknameFrm.submit()");
 				} else {
 						$(".chk").css('border-bottom-color', 'rgb(254, 91, 88)');
 						$(".EM").text("유효한 닉네임을 입력해주세요.")
@@ -77,7 +78,7 @@
 			</h1>
 			<h2>이 이메일은 새로 가입할 수 있는 이메일입니다. 계속하시겠습니까?</h2> 
 			-->
-			<form action="#" method="post" name="nicknameFrm" class="nicknameFrm">
+			<form action="/login/nickname" method="post" name="nicknameFrm" class="nicknameFrm">
 				<div class="inputType">
 					<label class="input_label">닉네임</label>
 					<div class="emailType chk">
@@ -91,7 +92,7 @@
 			</form>
 			<div class="button_area_nick">
 				<button type="button" class="setpwBtn">다음</button>
-				<a href="#" class="prev">이전</a>
+				<a href="#" onclick="window.history.back(); return false;" class="prev">이전</a>
 			</div>
 
 		</div>
