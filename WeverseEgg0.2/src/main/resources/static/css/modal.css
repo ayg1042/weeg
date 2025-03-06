@@ -248,28 +248,28 @@ button {
   position: fixed;
   z-index: 1000;
   left: 0;
-  top: 0;
+  top: 69px;
   width: 100%;
   height: 100%;
-  background-color: rgb(255, 255, 255, 0.5);
+/*   background-color: rgb(255, 255, 255, 0.5); */
 }
 
 /* 어두운 스타일 모달 */
 .dark {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.66);
   color: white;
-  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+/*   box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2); */
   
 }
 
 .modal-frame {
   /* padding: 20px; */
-  border-radius: 10px;
+  border-radius: 20px;
   width: 1260px;
   height: 760px;
   margin: 50px auto;
   /* text-align: center; */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+/*   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); */
   position: relative;
 }
 
@@ -390,7 +390,7 @@ button {
 }
 
 .training_img_text {
-	opacity: 1;
+	opacity: 0;
     position: absolute;
     top: 0;
     left: 0;
@@ -636,7 +636,209 @@ a {
   object-fit: contain;
 }
 
-/* css 머지 확인용 */
-#abc{
-	margin: 0;
+/* 여기부터 상점 */
+/* 상점 리스트 */
+.shop-list {
+	list-style: none;
+    padding: 0;
+    margin: 0;
 }
+.shop-list li {
+	width: 168px;
+	height: 60px;
+	padding: 14px 16px;
+	box-sizing:border-box;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 14px;
+    display: flex; /* Flexbox 적용 */
+    /* justify-content: center; 가로(X) 중앙 정렬 */
+    align-items: center; /* 세로(Y) 중앙 정렬 */
+    text-align: center;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+    cursor: pointer;
+}
+.shop{
+	margin-left: 60px;
+}
+.shop-list li:hover {
+    background: #999999; /* 연한 배경색 */
+    transform: scale(1.03); /* 약간 확대 */
+}
+.shop-list li.active{
+	background: #999999; /* 연한 배경색 */
+    transform: scale(1.03); /* 약간 확대 */
+}
+.shop-items{
+	width: 654px;
+	height: 418px;
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap;
+}
+.shop-item-show{
+	display: none;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	padding-left:4px;
+	width: 153px;
+	height: 204px;
+	border: 1px solid white;
+	box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+	border-top-right-radius: 15px;
+}
+.shop-item-show.active {
+    border: 3px solid #ffa500; /* 주황색 테두리 */
+    transform: scale(1.05); /* 살짝 확대 */
+}
+.item-info{
+	border-top-right-radius: 15px;
+	text-align:center;
+	background-color: #E4E4E4 ;
+	color: black;
+	/* box-shadow: 6px 6px 15px rgba(255, 255, 255, 0.3); */
+	width: 149px;
+	height: 170px;
+	display: block;
+	display: flex;
+    flex-direction: column; /* 세로로 정렬 */
+    align-items: center;     /* 중앙 정렬 */
+}
+.item-info img{
+	margin: 18px 0 20px;
+}
+.item-info p{
+	margin: 4px 0;
+}
+.item-price p{
+	margin: 4px 0 4px 5px;
+}
+.item-name{
+	font-size: 14px;
+}
+.item-price{
+	width: 149px;
+	height:30px;
+	color: black;
+	font-size:16px;
+	background-color:#FFFFFF; 
+	display: flex;
+    justify-content: center;
+    align-items: center;     /* 중앙 정렬 */
+}
+
+.show-character{
+	position: relative;
+    top: -25px;
+}
+.show-character-info{
+	margin-left: 86px;
+}
+.previous{
+	margin-right: 120px;
+}
+.show-item-info {
+    display: flex;
+    flex-direction: column; /* 세로 배치 */
+    gap: 5px; /* 항목 간격 */
+    position: relative;
+    top: -25px;
+}
+
+.show-item-info p {
+	margin:0;
+    display: flex;
+    justify-content: space-between; /* 양쪽 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    width: 100%; /* 부모 요소 전체 너비 */
+    padding: 5px 10px; /* 좌우 여백 */
+}
+
+.label {
+    flex: 1; /* 왼쪽 항목이 유동적으로 조절됨 */
+    text-align: left; /* 왼쪽 정렬 */
+}
+
+.value {
+    flex: 1; /* 오른쪽 항목이 유동적으로 조절됨 */
+    text-align: right; /* 오른쪽 정렬 */
+}
+.apply-button, .save-button {
+	margin-top:45px;
+	margin-bottom: 15px;
+	width: 180px;
+	height: 44px;
+    background: linear-gradient(45deg, #FDC0FF, #DA57F0);
+    border: 1px solid white; /* 테두리 제거 */
+    font-size: 20px; /* 폰트 크기 */
+    padding: 10px 20px; /* 내부 여백 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    cursor: pointer; /* 마우스 오버 시 손가락 모양 */
+    transition: opacity 0.3s ease; /* 부드러운 효과 */
+    position: relative;
+    top: -38px;
+    left: 10px;
+}
+
+.apply-button:hover, .save-button:hover {
+    opacity: 0.8; /* 마우스 오버 시 투명도 효과 */
+}
+.all-cancel {
+    text-decoration: underline; /* 밑줄 추가 */
+    cursor: pointer; /* 마우스 오버 시 클릭 가능한 느낌 */
+    position: relative;
+    top: -48px;
+    left: 64px;
+}
+
+.shop-title{
+	margin: 24px 0 60px 60px;
+}
+.my-bag-ne-pr {
+	margin-left: 402px;
+    width: 300px;            /* 원하는 너비 설정 */
+    height: 50px;            /* 높이를 자동으로 설정 */
+    position: relative;
+    top: -130px;
+    left: 64px;
+}
+
+.item-ne-pr {
+	margin-left: 402px;
+    width: 300px;            /* 원하는 너비 설정 */
+    height: 50px;            /* 높이를 자동으로 설정 */
+    position: relative;
+    top: -90px;
+    left: 64px;
+}
+.item-ne-pr span, .my-bag-ne-pr span{
+	cursor: pointer;
+}
+.equipped{
+	background-color: #ccc;  /* 기본적으로 회색 */
+    cursor: not-allowed;  /* 클릭 불가능한 커서 */
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+.shop-item-show.active .equipped {
+  font-size: 12px;
+	color: white;
+	background-color: #D467FF;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	cursor: pointer;
+}
+.equipped:hover {
+	color: white;
+	background-color: #A4A4A4;
+}
+/* 테스트 div */
+#test{
+	border: 1px solid black;
+	box-sizing:border-box;
+	width: 300px;
+}
+
+

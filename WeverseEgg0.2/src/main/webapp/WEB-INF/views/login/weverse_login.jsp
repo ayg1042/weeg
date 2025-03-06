@@ -9,6 +9,12 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<title>Weverse</title>
 	<script>
+		window.onload = function() {
+	      var message = "${message}"; // Flash Attribute 직접 접근
+	        if (message && message !== "") {
+	            alert(message);
+	        }
+	    }
 		$(function(){
 			$('.xBtn').hide();
 			$('.xBtn_pw').hide();
@@ -71,7 +77,9 @@
 					alert("올바른 이메일 형식이 아닙니다.");
 					return false;
 				}else{
-					location.href="#"
+					if($(".input_pw").val() != ""){
+						loginFrm.submit();
+					}
 				}
 			});
 		});// jquery
@@ -88,11 +96,11 @@
 				위버스 계정으로<br>
 				로그인이나 회원가입해 주세요
 			</h1>
-			<form action="#" method="post" name="loginFrm" class="loginFrm">
+			<form action="/login/login-2" method="post" name="loginFrm" class="loginFrm">
 				<div class="inputType_email">
 					<label class="input_label">이메일</label>
 					<div class="emailType_ok">
-						<input class="input_email" type="text" name="email" placeholder="your@email.com">
+						<input class="input_email" type="text" name="email" value="${email}" placeholder="your@email.com">
 						<button type="button" class="xBtn"></button>
 					</div>
 					<div class="errorMessage">
