@@ -6,14 +6,21 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.dto.quest.QuestDto;
 import com.java.entity.quest.QuestProgressEntity;
 import com.java.repository.QuestProgressRepository;
+import com.java.service.CharacterService;
 import com.java.service.QuestService;
+
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
@@ -21,6 +28,7 @@ public class FController {
 	
 	@Autowired QuestService questService;
 	@Autowired QuestProgressRepository questProgressRepository;
+	@Autowired CharacterService characterService;
 	
 	@GetMapping("/weverserank") // 위버스 에스파 그룹랭킹
 	public String rank() {
@@ -69,7 +77,11 @@ public class FController {
 	}
 	
 	@GetMapping("/modal")
-	public String modal(Model model) {
+	public String modal(Model model, HttpSession session) {
+		
+		Integer userId = (Integer) session.getAttribute("userId");
+	
+		
 		// 퀘스트 전체 리스트 가져오기
 		List<QuestDto> list = questService.findAll();
 		model.addAttribute("list", list);
@@ -91,6 +103,52 @@ public class FController {
 		
 		return "modal";
 	}
+	
+	@PostMapping("/modal/reward")
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> claimReward(@RequestParam int questId, HttpSession session) {
+	    Map<String, Object> response = new HashMap<>();
+
+	    Integer userId = (Integer) session.getAttribute("user_id");
+	    if (userId == null) {
+	        response.put("success", false);
+	        response.put("message", "로그인이 필요합니다.");
+	        return ResponseEntity.ok(response);
+	    }
+
+	    try {
+	        // 퀘스트 ID에 해당하는 보상 코인 가져오기
+	        Integer rewardCoin = questService.getRewardCoin(questId);
+	        if (rewardCoin == null) {
+	            response.put("success", false);
+	            response.put("message", "해당 퀘스트가 존재하지 않습니다.");
+	            return ResponseEntity.ok(response);
+	        }
+
+	        // 현재 사용자 코인 가져오기
+	        Integer userCoin = characterService.getCoin(userId);
+	        if (userCoin == null) userCoin = 0; // 기본값 0
+
+	        // 새로운 코인 값 계산
+	        int newCoin = userCoin + rewardCoin;
+
+	        // 사용자 코인 업데이트
+	        characterService.updateCoin(userId, newCoin);
+
+	        // 응답 데이터 구성
+	        response.put("success", true);
+	        response.put("newCoin", newCoin);
+	        response.put("message", "보상을 받았습니다!");
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        response.put("success", false);
+	        response.put("message", "보상 받기 실패");
+	    }
+
+	    return ResponseEntity.ok(response);
+	}
+
 	
 	
 }

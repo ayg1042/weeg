@@ -93,6 +93,7 @@ public class MemberController {
 		if (memberDto != null) { // 회원 정보가 존재할 경우
 			session.setAttribute("session_id", email);
 			session.setAttribute("session_nick", memberDto.getNickname());
+			session.setAttribute("user_id", memberDto.getUser_id());
 			System.out.println(memberDto.getNickname());
 	        return "redirect:/"; // 비밀번호 입력 페이지
 	    } else { // 회원 정보가 없을 경우

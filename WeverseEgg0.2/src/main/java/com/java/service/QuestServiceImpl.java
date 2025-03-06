@@ -33,5 +33,10 @@ public class QuestServiceImpl implements QuestService {
 		
 		return dtoList;
 	}
+
+	@Override
+	public Integer getRewardCoin(int questId) {
+		return questRepository.findCoinByQuestId(questId);
+	}
 	
 }

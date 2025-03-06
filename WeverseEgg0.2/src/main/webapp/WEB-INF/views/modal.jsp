@@ -1235,7 +1235,7 @@
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="images/modal/coinIcon.png">
-					<p id="My_Coin">99999999</p>
+					<p id="My_Coin">1</p>
 					<img id="plus" src="images/modal/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
@@ -1283,8 +1283,8 @@
 								class="${progressInfo != null && progressInfo.isCompleted == 1 ? 'completed' : ''}">
 								<div class="quest_content">
 									<div class="quest_content_coin">
-										<img src="images/modal/coinIcon_big.png" alt=""> 
-										<span><fmt:formatNumber value="${qdto.coin}" pattern="#,###" /></span>
+										<img src="images/modal/coinIcon_big.png" alt=""> <span><fmt:formatNumber
+												value="${qdto.coin}" pattern="#,###" /></span>
 									</div>
 									<div class="quest_content_title">
 										<div class="quest_content_titsub">${qdto.title}</div>
@@ -1321,29 +1321,49 @@
 							 -->
 
 						<script>
-							  document.querySelectorAll(".quest_content_rate").forEach(function (element) {
-								let statusText = element.querySelector("span").innerText.trim();
+							document.querySelectorAll(".quest_content_rate").forEach(function (element) {
+							    let statusText = element.querySelector("span").innerText.trim();
+							    console.log("현재 상태 텍스트: ", statusText); // 상태 텍스트 확인용
+	
+							    // ✅ "0 / 10" 같은 진행 상태를 "보상받기"로 변경
+							    if (statusText.includes("/")) {
+							        let [current, total] = statusText.split(" / ").map(Number);
+							        console.log("현재: ", current, "전체: ", total); // 값 확인용
+	
+							        if (current >= total) {
+							            element.querySelector("span").innerText = "보상받기";
+							            element.classList.add("clear"); // "보상받기" 상태 CSS 적용
+							        }
+							    }
+	
+							    // ✅ "보상받기" 클릭 시 "받기완료"로 변경
+							    element.addEventListener("click", function () {
+							        let questId = this.closest("li").dataset.questId;
+							        console.log("퀘스트 아이디 : " + questId); // 퀘스트 아이디 확인용
+	
+							        if (this.querySelector("span").innerText === "보상받기") {
+							            fetch("/modal/reward?questId=" + questId, {
+							                method: "POST"
+							            })
+							            .then(response => response.json())
+							            .then(data => {
+							                console.log("응답 데이터: ", data); // 응답 데이터 확인용
+							                if (data.success) {
+							                    this.querySelector("span").innerText = "받기완료";
+							                    this.classList.remove("clear"); // "보상받기" 클래스 제거
+							                    this.classList.add("reward"); // "받기완료" 상태 CSS 적용
+							                    
+							                    alert(data.message + " 현재 코인: " + data.newCoin);
+							                } else {
+							                    alert("보상 받기 실패: " + data.message);
+							                }
+							            })
+							            .catch(error => console.error("보상 지급 요청 실패:", error));
+							        }
+							    });
+							});
 
-								// ✅ "0 / 10" 같은 진행 상태를 "보상받기"로 변경
-								if (statusText.includes("/")) {
-										let [current, total] = statusText.split(" / ").map(Number);
-										if (current >= total) {
-												element.querySelector("span").innerText = "보상받기";
-												element.classList.add("clear"); // "보상받기" 상태 CSS 적용
-										}
-								}
-
-								// ✅ "보상받기" 클릭 시 "받기완료"로 변경
-								element.addEventListener("click", function () {
-										
-										if (this.querySelector("span").innerText === "보상받기") {
-												this.querySelector("span").innerText = "받기완료";
-												this.classList.remove("clear"); // "보상받기" 클래스 제거
-												this.classList.add("reward"); // "받기완료" 상태 CSS 적용
-										}
-									});
-								});
-							</script>
+						</script>
 
 					</ul>
 				</div>
