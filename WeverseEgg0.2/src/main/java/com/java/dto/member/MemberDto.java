@@ -30,4 +30,11 @@ public class MemberDto {
     	dto.nickname = entity.getNickname();
     	return dto;
     }
+
+	public static MemberDto kakaojoin(MemberEntity entity) {
+		MemberDto dto = new MemberDto();
+    	dto.email = entity.getEmail();
+    	dto.nickname = entity.getNickname();
+    	return dto;
+	}
 }

@@ -4,9 +4,12 @@ package com.java.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.java.dto.member.MemberDto;
 import com.java.entity.member.MemberEntity;
 import com.java.repository.MemberRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -54,6 +57,33 @@ public class MemberServiceImpl implements MemberService {
 	    return MemberDto.login(memberEntity);
 		
 	}
+	
+	@Transactional
+    public MemberDto kakaoLogin(JsonNode kakaoData) {
+        // 카카오 ID와 닉네임 가져오기
+        Long kakaoId = kakaoData.get("id").asLong();
+        String nickname = kakaoData.get("kakao_account").get("profile").get("nickname").asText();
+
+        // 가짜 이메일 생성 (실제 이메일이 제공되지 않는 경우)
+        String email = kakaoId + "@kakao.com";
+
+        // 기존 회원인지 확인
+        MemberEntity member = memberRepository.findByEmail(email).orElse(null);
+
+        if (member == null) {
+            // 새로운 회원 생성
+            member = new MemberEntity();
+            member.setEmail(email);
+            member.setPw("1111"); // 비밀번호는 사용하지 않음 (소셜 로그인 전용)
+            member.setNickname(nickname);
+            member.setJam(0);
+
+            memberRepository.save(member);
+        }
+
+        // DTO 변환 후 반환(이메일, 닉네임만)
+        return MemberDto.kakaojoin(member);
+    }
 
 
 

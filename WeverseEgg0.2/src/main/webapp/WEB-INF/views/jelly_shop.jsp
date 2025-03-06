@@ -74,7 +74,7 @@
             <div class="hidden_info">
               <strong>나만의</strong>
               <span>메일주소</span>
-              <button>로그아웃</button>
+              <button onclick="location.href='/login/logout'">로그아웃</button>
             </div>
           </div>
         </div>
@@ -90,7 +90,7 @@
         <h2 class="jelly_title">일반 충전</h2>
         <ul>
           <li>
-            <a href="#" class="jelly_sale">
+            <a href="https://open-api.kakaopay.com/online/v1/payment/ready/Authorization?response_type=code&client_id=5c065bc8f939d1303dc54e5a7ed2878a&redirect_uri=http://localhost:8181/login/kakao/oauth&prompt=login" class="jelly_sale">
               <img src="../images/jellyshop/jelly4.png" alt="">
             </a>
           </li>
