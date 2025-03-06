@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.dto.member.MemberDto;
 import com.java.entity.member.MemberEntity;
-import com.java.service.member.MemberService;
+import com.java.service.MemberService;
 
 import jakarta.servlet.http.HttpSession;
 
