@@ -6,4 +6,6 @@ import com.java.entity.quest.QuestProgressEntity;
 
 public interface QuestProgressRepository extends JpaRepository<QuestProgressEntity, Integer>{
 
+//	QuestProgressEntity findByQuestIdAndUserId(int questId, Integer userId);
+
 }

@@ -1,6 +1,5 @@
 package com.java.dto.quest;
 
-import java.sql.Timestamp;
 
 import com.java.entity.quest.QuestEntity;
 
@@ -22,7 +21,7 @@ public class QuestDto {
     /** 퀘스트 완료 시 지급되는 코인 */
     private int coin;
     /** 퀘스트 리셋 시간 */
-    private Timestamp resetTime;
+//    private Timestamp resetTime;
     
  // 정적 팩토리 메서드 추가
     public static QuestDto qlist(QuestEntity entity) {
@@ -31,7 +30,6 @@ public class QuestDto {
         dto.title = entity.getTitle();
         dto.content = entity.getContent();
         dto.coin = entity.getCoin();
-        dto.resetTime = entity.getResetTime();
         
         return dto;
     }

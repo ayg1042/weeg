@@ -39,3 +39,4 @@ public class QuestHistoryEntity {
     @Column(nullable = false)
     private Timestamp completionDate;
 }
+

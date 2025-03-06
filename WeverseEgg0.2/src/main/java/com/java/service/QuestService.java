@@ -11,4 +11,6 @@ public interface QuestService {
 
 	Integer getRewardCoin(int questId);
 
+	void updateQuestRewards();
+
 }

@@ -1,5 +1,6 @@
 package com.java.controller;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.dto.quest.QuestDto;
+import com.java.entity.member.MemberEntity;
+import com.java.entity.quest.QuestEntity;
+import com.java.entity.quest.QuestHistoryEntity;
 import com.java.entity.quest.QuestProgressEntity;
+import com.java.repository.MemberRepository;
+import com.java.repository.QuestHistoryRepository;
 import com.java.repository.QuestProgressRepository;
+import com.java.repository.QuestRepository;
 import com.java.service.CharacterService;
 import com.java.service.QuestService;
 
@@ -29,6 +36,9 @@ public class FController {
 	@Autowired QuestService questService;
 	@Autowired QuestProgressRepository questProgressRepository;
 	@Autowired CharacterService characterService;
+	@Autowired QuestHistoryRepository questHistoryRepository;
+	@Autowired MemberRepository memberRepository;
+	@Autowired QuestRepository questRepository;
 	
 	@GetMapping("/weverserank") // 위버스 에스파 그룹랭킹
 	public String rank() {
@@ -79,7 +89,7 @@ public class FController {
 	@GetMapping("/modal")
 	public String modal(Model model, HttpSession session) {
 		
-		Integer userId = (Integer) session.getAttribute("userId");
+//		Integer userId = (Integer) session.getAttribute("userId");
 	
 		
 		// 퀘스트 전체 리스트 가져오기
@@ -118,6 +128,8 @@ public class FController {
 
 	    try {
 	        // 퀘스트 ID에 해당하는 보상 코인 가져오기
+	        System.out.println("userId : " + userId);
+	        System.out.println("questId : " + questId);
 	        Integer rewardCoin = questService.getRewardCoin(questId);
 	        if (rewardCoin == null) {
 	            response.put("success", false);
@@ -134,17 +146,47 @@ public class FController {
 
 	        // 사용자 코인 업데이트
 	        characterService.updateCoin(userId, newCoin);
+	        
+	     // QuestHistoryEntity에서 보상받았는지 확인
+
+	        QuestHistoryEntity existingHistory = questHistoryRepository.findByQuest_QuestIdAndMember_UserId(questId, userId);
+	        if (existingHistory != null && existingHistory.getIsRewarded() == 1) {
+	            response.put("success", false);
+	            response.put("message", "이미 보상을 받았습니다.");
+	            return ResponseEntity.ok(response);
+	        }
+	        
+	     // QuestHistoryEntity에서 MemberEntity와 QuestEntity를 데이터베이스에서 조회
+	        MemberEntity member = memberRepository.findById(userId).orElseThrow(() -> new Exception("사용자 정보를 찾을 수 없습니다."));
+	        QuestEntity quest = questRepository.findById(questId).orElseThrow(() -> new Exception("퀘스트 정보를 찾을 수 없습니다."));
+
+	        // 보상 지급 상태를 QuestHistoryEntity에 기록
+	        QuestHistoryEntity history = new QuestHistoryEntity();
+	        history.setMember(member);  // 기존에 존재하는 MemberEntity 설정
+	        history.setQuest(quest);    // 기존에 존재하는 QuestEntity 설정
+	        history.setIsRewarded(1);   // 보상받음 상태
+	        history.setCompletionDate(new Timestamp(System.currentTimeMillis())); // 보상 받은 시간 설정
+	        questHistoryRepository.save(history); // 저장
+	        
+	     // 진행 상태 업데이트
+//	        QuestProgressEntity progress = questProgressRepository.findByQuestIdAndUserId(questId, userId);
+//	        if (progress != null) {
+//	            progress.setIsCompleted(1);  // 퀘스트 완료 상태로 변경
+//	            questProgressRepository.save(progress); // 진행 상태 업데이트
+//	        }
 
 	        // 응답 데이터 구성
 	        response.put("success", true);
 	        response.put("newCoin", newCoin);
 	        response.put("message", "보상을 받았습니다!");
+	        response.put("isRewarded", 1);  // 보상 상태 추가
 
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        response.put("success", false);
 	        response.put("message", "보상 받기 실패");
 	    }
+	    
 
 	    return ResponseEntity.ok(response);
 	}

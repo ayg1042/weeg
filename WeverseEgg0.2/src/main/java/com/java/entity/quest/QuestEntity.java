@@ -3,8 +3,6 @@ package com.java.entity.quest;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Timestamp;
-
 @Entity
 @Table(name = "Egg_Quest")
 @Getter
@@ -32,6 +30,6 @@ public class QuestEntity {
     private int coin;
 
     /** 퀘스트 리셋 시간 (리셋 주기) */
-    @Column(nullable = false)
-    private Timestamp resetTime;
+//    @Column(nullable = false)
+//    private Timestamp resetTime;
 }
