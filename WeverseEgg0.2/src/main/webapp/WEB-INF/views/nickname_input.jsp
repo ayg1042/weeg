@@ -68,6 +68,12 @@
           <p>프로듀서님께서 성장시킬<br/>아이돌의 이름을 지어주세요.</p>
           <form action="/nickname_input" name="nickFrm" method="post">
           	<input type="text" id="nicinput" name="nicinput" placeholder="이름을 적어주세요." spellcheck="false" maxlength="8" oninput="numberMaxLength(this);"/>
+		        <div id="gender_part">
+							<input type="radio" name="gender" id="man" value="남자">
+							<label for="man" id="label_man">남자</label>
+							<input type="radio" name="gender" id="woman" value="여자" checked="checked">
+							<label for="woman">여자</label>
+		        </div>
           	<button type="button" onclick="cBtn()" id="createBtn">아이돌 생성</button>
           </form>
         </div>
