@@ -3,10 +3,7 @@ package com.java.entity.character;
 import java.sql.Timestamp;
 
 import com.java.entity.group.ArtistNameEntity;
-<<<<<<< HEAD
 import com.java.entity.group.GroupEntity;
-=======
->>>>>>> refs/remotes/origin/master
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
