@@ -4,6 +4,9 @@ import java.sql.Timestamp;
 
 import com.java.dto.group.ArtistNameDto;
 import com.java.dto.group.GroupDto;
+import com.java.dto.member.MemberDto;
+import com.java.entity.character.ArtistEntity;
+import com.java.entity.character.CharacterEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,4 +34,14 @@ public class ArtistDto {
     
     /** 데뷔일 */
     private Timestamp debutDate;
+    
+ // 정적 팩토리 메서드 추가
+    public static ArtistDto rank(ArtistEntity entity) {
+    	ArtistDto dto = new ArtistDto();
+    	dto.setArtistName(ArtistNameDto.rank(entity.getArtistName()));
+        dto.setBlueMark(entity.getBlueMark());
+        dto.setLevel(entity.getClevel());
+        return dto;
+    }
+    
 }
