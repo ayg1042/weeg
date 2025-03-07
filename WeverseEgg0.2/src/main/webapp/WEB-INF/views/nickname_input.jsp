@@ -74,6 +74,7 @@
       </div>
     </div>
     
+    
     <script>
       const cBtn = () => {
         const inputValue = document.getElementById("nicinput").value.trim();
