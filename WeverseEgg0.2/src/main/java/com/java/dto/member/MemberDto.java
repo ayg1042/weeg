@@ -25,6 +25,7 @@ public class MemberDto {
     
     public static MemberDto login(MemberEntity entity) {
     	MemberDto dto = new MemberDto();
+    	dto.user_id = entity.getUserId();
     	dto.email = entity.getEmail();
     	dto.nickname = entity.getNickname();
     	dto.jelly = entity.getJelly();

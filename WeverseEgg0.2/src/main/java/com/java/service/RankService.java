@@ -6,6 +6,10 @@ import com.java.dto.character.CharacterDto;
 
 public interface RankService {
 
-	//List<CharacterDto> findAll(String group);
+	// 랭크매기기
+	void getRankedCharacterList(String GroupKor);
+	
+	// 순위대로 정렬된 리스트
+	List<CharacterDto> findAll(String GroupKor);
 
 }
