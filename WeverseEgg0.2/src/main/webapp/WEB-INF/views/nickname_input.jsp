@@ -1,47 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-
 <!DOCTYPE html>
-<html lang="kor">
-<head>
+<html>
+  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="../css/header.css"/>
-  <link rel="stylesheet" type="text/css" href="../css/choiceCharacter.css"/>
-  <title>캐릭터 선택</title>
-  
-  <script>
-    function choiceBtn(isListNull){
-    	if(isListNull){
-          // list가 null이 아닌 경우
-          if(confirm("해당 캐릭터로 게임을 시작하시겠습니까?")) {
-        	  location.href="/modal";
-          }
-      } else {
-          // list가 null일 경우
-          if(confirm("캐릭터를 생성하시겠습니까?")) {
-              location.href="/startStory";
-          }
-      }
-    }
-    
-    function lockBtn(isListNull){
-			if(confirm("캐릭터 슬롯창이 잠겨있습니다. 상점으로 이동하시겠습니까?")){
-				location.href="#";
-			}
-    }
-    </script>
-  </head>
-  
+  <link rel="stylesheet" href="/css/egg_intro/nickname_input.css">
+	<title>닉네임선택</title>
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<style>
+  </style>
+</head>
+
 <body>
-  <!-- 헤더 -->
+	<!-- 헤더 -->
   <header>
     <div id="header_wrap">
       <div class="main_logo">
         <a href="/">
-          <img src="/images/chocieCharacter/weverse_logo.png" alt="">
+          <img src="/images/main/weverse_logo.png" alt="">
         </a>
       </div>
       <div class="header_action">
@@ -78,22 +55,52 @@
       </div>
     </div>
   </header>
-
-  <div id="mainBack">
-    <h2 id="ChoiceIdol">아이돌 선택</h2>
-    <c:if test="${list != null}">
-	    <c:forEach items="${list}" var="cdto">
-		    <div id="FirstIdol_open" onclick="choiceBtn(true)">${cdto.nickName }</div>
-	  	  <div id="SecondIdol" onclick="lockBtn()"></div>
-	    	<div id="ThirdIdol" onclick="lockBtn()"></div>
-	    </c:forEach>
-    </c:if>
-    <c:if test="${list == null}">
-		    <div id="FirstIdol_make" onclick="choiceBtn(false)"></div>
-	  	  <div id="SecondIdol" onclick="lockBtn()"></div>
-	    	<div id="ThirdIdol" onclick="lockBtn()"></div>
-    </c:if>
-  </div>  <!-- mainBack -->
   
+  <div id="mainBack">
+    <div id="line_bg">
+      <div id="left_part">
+        <div id="practice_img">
+          <img src="images/egg_intro/trainee.png" alt="">
+        </div>
+      </div>
+      <div id="right_part">
+        <div id="textpart">
+          <p>프로듀서님께서 성장시킬<br/>아이돌의 이름을 지어주세요.</p>
+          <form action="/nickname_input" name="nickFrm" method="post">
+          	<input type="text" id="nicinput" name="nicinput" placeholder="이름을 적어주세요." spellcheck="false" maxlength="8" oninput="numberMaxLength(this);"/>
+		        <div id="gender_part">
+							<input type="radio" name="gender" id="man" value="남자">
+							<label for="man" id="label_man">남자</label>
+							<input type="radio" name="gender" id="woman" value="여자" checked="checked">
+							<label for="woman">여자</label>
+		        </div>
+          	<button type="button" onclick="cBtn()" id="createBtn">아이돌 생성</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    
+    <script>
+      const cBtn = () => {
+        const inputValue = document.getElementById("nicinput").value.trim();
+        if (inputValue === "") {
+            alert("이름을 입력해주세요!");
+            return false;
+        }
+        if(confirm("'"+inputValue+"'"+" 아이돌 육성을 시작해볼까요?")){
+        	//nickFrm.submit();
+        	document.nickFrm.submit();
+        }
+      }
+      
+      function numberMaxLength(e){
+          if(e.value.length > e.maxLength){
+              e.value = e.value.slice(0, e.maxLength);
+          }
+      }
+    </script>
+  </div> <!-- mainBack -->
+
 </body>
 </html>

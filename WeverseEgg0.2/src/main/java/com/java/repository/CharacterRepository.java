@@ -8,7 +8,10 @@ import org.springframework.data.repository.query.Param;
 
 import com.java.entity.character.CharacterEntity;
 
-public interface CharacterRepository extends JpaRepository<CharacterEntity, Integer>{
+public interface CharacterRepository extends JpaRepository<CharacterEntity, Integer> {
+
+	List<CharacterEntity> findByMemberUserId(int user_id);
+
 
 	@Query("SELECT c FROM CharacterEntity c " +
 		       "JOIN c.artist a " +

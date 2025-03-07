@@ -56,6 +56,11 @@ public class FController {
 		return "weNotice";
 	}
 	
+	@GetMapping("/weNoticeView") // 위버스 공지사항 뷰페이지
+	public String weNoticeView() {
+		return "weNoticeView";
+	}
+	
 	@GetMapping("/modal")
 	public String modal(Model model) {
 		
@@ -66,6 +71,10 @@ public class FController {
 		return "modal";
 	}
 	
+	@GetMapping("/rank") // 랭킹 페이지
+	public String rank() {
+		return "rank";
+	}
 
 	
 	

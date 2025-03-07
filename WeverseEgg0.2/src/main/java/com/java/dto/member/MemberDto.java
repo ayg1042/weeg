@@ -31,6 +31,16 @@ public class MemberDto {
     	dto.jelly = entity.getJelly();
     	return dto;
     }
+    
+    public static MemberDto From(MemberEntity entity) {
+		MemberDto dto = new MemberDto();
+		dto.user_id = entity.getUserId();
+		dto.email = entity.getEmail();
+		dto.pw = entity.getPw();
+		dto.nickname = entity.getNickname();
+		dto.jelly = entity.getJelly();
+		return dto;
+	}
 
 	public static MemberDto kakaojoin(MemberEntity entity) {
 		MemberDto dto = new MemberDto();
