@@ -3,6 +3,7 @@ package com.java.dto.character;
 import java.util.List;
 
 import com.java.dto.member.MemberDto;
+import com.java.entity.character.CharacterEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -52,5 +53,20 @@ public class CharacterDto {
     private int rank;
     /** 표정 */
     private String expression;
+    /** 랭킹 작업을 위한 임시 총점 컬럼  */
+    private int rankedScore;  
+    
+ // 정적 팩토리 메서드 추가
+    public static CharacterDto rank(CharacterEntity entity) {
+        CharacterDto dto = new CharacterDto();
+        dto.setCharacter_id(entity.getCharacterId());
+        dto.setNickName(entity.getNickName());
+        dto.setMember(MemberDto.login(entity.getMember()));
+        dto.setRank(entity.getRank());
+        dto.setArtist(ArtistDto.rank(entity.getArtist()));
+        dto.setCharm(entity.getCharm());
+        dto.setPopularity(entity.getPopularity());
+        return dto;
+    }
     
 }

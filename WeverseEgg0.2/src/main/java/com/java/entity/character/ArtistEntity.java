@@ -1,7 +1,8 @@
 package com.java.entity.character;
 
 import java.sql.Timestamp;
-import com.java.entity.group.GroupEntity;
+
+import com.java.entity.group.ArtistNameEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,11 +21,10 @@ public class ArtistEntity {
     @Column(name = "artist_id")
     private int artistId;
 
-    /** 소속 그룹 정보 (N:1) */
+    /** 예명 정보 (Many-to-One) */
     @ManyToOne
-    @JoinColumn(name = "group_id", referencedColumnName = "group_id", nullable = false, 
-            foreignKey = @ForeignKey(name = "group_id"))
-    private GroupEntity group;
+    @JoinColumn(name = "artistNId", referencedColumnName = "artist_n_id", nullable = false)
+    private ArtistNameEntity artistName;
 
     /** 아티스트 레벨 (연습생 → 데뷔 → 성장 과정에서 변화) */
     @Column(nullable = false)

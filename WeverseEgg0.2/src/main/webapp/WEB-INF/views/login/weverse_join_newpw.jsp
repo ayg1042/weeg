@@ -41,7 +41,6 @@
 					$(".pwchkmsg").text("비밀번호가 일치합니다.")
 					$(".pwchkmsg").css('color', 'rgb(0, 203, 213)')
 					$(".chk2").css('border-bottom-color', 'rgb(0, 203, 213)')
-					$(".setpwBtn").attr("onclick", "setpwFrm.submit()");
 				}else if (pwVal != $("#newpw").val() && pwVal != ""){
 					$(".pwchkmsg").text("비밀번호가 일치하지 않습니다. 다시 확인해주세요.")
 					$(".pwchkmsg").css('color', 'rgb(254, 91, 88)');
@@ -51,6 +50,11 @@
 					$(".pwchkmsg").css('color', 'rgb(254, 91, 88)');
 					$(".chk2").css('border-bottom-color', 'rgb(238, 238, 238)');
 				}
+				
+				// 모든 조건이 충족되었을 때만 submit 버튼 활성화
+		        if (checkAllValid() && pwVal === newPwVal && newPwVal !== "") {
+		            $(".setpwBtn").attr("onclick", "setpwFrm.submit()");
+		        }
 			});
 
 			// 비밀번호 보기 안보기
@@ -79,24 +83,29 @@
 
 			// 비밀번호 유효성 검사 함수
 			function validatePassword(password) {
-        let lengthCheck = password.length >= 8 && password.length <= 32;
-        let letterCheck = /[a-zA-Z]/.test(password);
-        let numberCheck = /[0-9]/.test(password);
-        let specialCharCheck = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-
-        // 비밀번호 조건 메시지 색상 업데이트
-        updateValidationMessage($(".pw-length"), lengthCheck);
-        updateValidationMessage($(".pw-letter"), letterCheck);
-        updateValidationMessage($(".pw-number"), numberCheck);
-        updateValidationMessage($(".pw-special"), specialCharCheck);
-
+		        let lengthCheck = password.length >= 8 && password.length <= 32;
+		        let letterCheck = /[a-zA-Z]/.test(password);
+		        let numberCheck = /[0-9]/.test(password);
+		        let specialCharCheck = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+		
+		        // 비밀번호 조건 메시지 색상 업데이트
+		        updateValidationMessage($(".pw-length"), lengthCheck);
+		        updateValidationMessage($(".pw-letter"), letterCheck);
+		        updateValidationMessage($(".pw-number"), numberCheck);
+		        updateValidationMessage($(".pw-special"), specialCharCheck);
+		
 				// 모든 조건이 충족되었는지 확인 후 input 테두리 변경
-        if (lengthCheck && letterCheck && numberCheck && specialCharCheck) {
-            $(".chk").css('border-bottom-color', 'rgb(0, 203, 213)');
-        } else {
-            $(".chk").css('border-bottom-color', 'rgb(254, 91, 88)');
-        }
+		        if (lengthCheck && letterCheck && numberCheck && specialCharCheck) {
+		            $(".chk").css('border-bottom-color', 'rgb(0, 203, 213)');
+		        } else {
+		            $(".chk").css('border-bottom-color', 'rgb(254, 91, 88)');
+		        }
 			}
+			
+			// 유효성 검사 all true 함수
+			function checkAllValid() {
+		        return lengthCheck && letterCheck && numberCheck && specialCharCheck;
+		    }
 
 			// 메시지 색상 업데이트 함수
 			function updateValidationMessage(element, isValid) {
@@ -106,10 +115,6 @@
 							element.css('color', 'rgb(254, 91, 88)');  // 조건 불충족 시 색상 변경
 					}
 			}
-
-			$(".setpwBtn").click(function(){
-				location.href="#"
-			});
 		});// jquery
 
 	</script>
