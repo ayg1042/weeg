@@ -106,19 +106,12 @@ public class MemberController {
 			HttpSession session, RedirectAttributes redirectAttributes) {
 		MemberDto memberDto = memberService.findByEmailAndPw(email, pw);
 		if (memberDto != null) { // 회원 정보가 존재할 경우
-<<<<<<< HEAD
 			session.setAttribute("session_id", email);
 			session.setAttribute("session_nick", memberDto.getNickname());
 			session.setAttribute("session_userId", memberDto.getUser_id()); // 1
-=======
 			session.setAttribute("session_id", memberDto);
->>>>>>> refs/remotes/origin/master
 			System.out.println(memberDto.getNickname());
-<<<<<<< HEAD
 	        return "redirect:/"; // 로그인 성공
-=======
-	        return "redirect:/"; // 로그인 완료
->>>>>>> refs/remotes/origin/master
 	    } else { // 회원 정보가 없을 경우
 	    	model.addAttribute("email", email);
 	    	model.addAttribute("message", "비밀번호가 일치하지 않습니다. 다시 확인해주세요.");

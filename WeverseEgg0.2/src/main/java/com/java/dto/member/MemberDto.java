@@ -38,7 +38,7 @@ public class MemberDto {
 		dto.email = entity.getEmail();
 		dto.pw = entity.getPw();
 		dto.nickname = entity.getNickname();
-		dto.jelly = entity.getJam();
+		dto.jelly = entity.getJelly();
 		return dto;
 	}
 
