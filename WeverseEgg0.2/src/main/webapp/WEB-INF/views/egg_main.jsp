@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="header.jsp" %>
 
 <!DOCTYPE html>
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const banners = document.querySelectorAll('#main_banner img');
     const mainBanner = document.querySelector('#main_banner img');
     const images = [
-      'images/main_banner1.png',
+      'images/main_banner_Img.png',
       'images/main_banner2.png',
       'images/main_banner3.png',
       'images/main_banner4.png'
@@ -110,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <!-- 메인 이미지 화면 -->
     <div id="main_banner">
-      <img src="images/mainpage/main_banner1.png" alt="메인 배너1">
+      <img src="images/mainpage/main_banner_Img.png" alt="메인 배너1">
       <img src="images/mainpage/main_banner2.png" alt="메인 배너2">
       <img src="images/mainpage/main_banner3.png" alt="메인 배너3">
       <img src="images/mainpage/main_banner4.png" alt="메인 배너4">
