@@ -21,8 +21,8 @@
 
     <!-- 상단 프로필 -->
     <div class="profile_wrap">
-      <h2 class="profile_name">${sessionScope.session_nick}</h2>
-      <address class="profile_address">${sessionScope.session_id}</address>
+      <h2 class="profile_name">${sessionScope.session_id.getNickname()}</h2>
+      <address class="profile_address">${sessionScope.session_id.getEmail()}</address>
       <button type="button" class="profile_signout" onclick="location.href='/login/logout'">로그아웃</button>
     </div>
     <img src="../images/WeMyPage/myPage_topnavi.PNG" alt="상단내비이미지">

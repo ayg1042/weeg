@@ -23,14 +23,15 @@ public class ItemDto {
     /** 아이템의 이미지 경로 또는 URL */
     private String image;
     
-//    public static ItemDto from(ItemEntity entity) {
-//		ItemDto dto = new ItemDto();
-//		dto.setItemId(entity.getItemId());
-//		dto.setItemInfo(ItemInfoDto.from(entity.getItemInfo()));
-//		dto.setName(entity.getName());
-//		dto.setPrice(entity.getPrice());
-//		dto.setImage(entity.getImage());
-//		return dto;
-//	}
+    public static ItemDto From(ItemEntity entity) {
+    	ItemDto dto = new ItemDto();
+    	dto.setItemId(entity.getItemId());
+    	dto.setItemInfo(ItemInfoDto.From(entity.getItemInfo()));
+    	dto.setName(entity.getName());
+    	dto.setPrice(entity.getPrice());
+    	dto.setImage(entity.getImage());
+    	
+    	return dto; 
+    }
     
 }

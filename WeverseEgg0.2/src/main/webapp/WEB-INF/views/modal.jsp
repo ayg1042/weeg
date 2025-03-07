@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -148,31 +149,13 @@
 					<tr>
 						<td class="open-modal" data-modal="modal1"><img src="/images/egg_menu_btn/practiceBtn.png"></td>
 						<td class="open-modal" data-modal="modal2"><img src="/images/egg_menu_btn/activityBtn.png"></td>
-						<td class="open-modal" data-modal="modal1"><img src="/images/egg_menu_btn/myBagBtn.png"></td>
+						<td class="open-modal" data-modal="modal4"><img src="/images/egg_menu_btn/myBagBtn.png"></td>
 						<td class="open-modal" data-modal="modale"><img src="/images/egg_menu_btn/eventBtn.png"></td>
 						<td class="open-modal" data-modal="modalq"><img src="/images/egg_menu_btn/questBtn.png"></td>
-						<td class="open-modal" data-modal="modal1"><img src="/images/egg_menu_btn/shopBtn.png"></td>
+						<td class="open-modal" data-modal="modal3"><img src="/images/egg_menu_btn/shopBtn.png"></td>
 					</tr>
 				</table>
-				
-						<!-- 모달 창 1 -->
-				<div id="modal1" class="modal">
-				    <div class="modal-content basic">
-				        <span class="close">&times;</span>
-				        <h2>기본 모달</h2>
-				        <p>이것은 기본 스타일의 모달 창입니다.</p>
-				    </div>
-				</div>
-				<!-- 모달 창 1 -->
-				<div id="modal2" class="modal">
-				    <div class="modal-content basic">
-				        <span class="close">&times;</span>
-				        <h2>기본 모달</h2>
-				        <p>이것은 기본 스타일의 모달 창입니다.</p>
-				    </div>
-				</div>
-				
-				
+		
 			</div>
 		</div>
 		<!-- 끝 ===== MainRoom ===== -->
@@ -357,7 +340,6 @@
 		    </div>
 		</div>
 		
-<<<<<<< HEAD
 		<!-- 상점 모달 -->
 		<div id="modal3" class="modal">
 		    <div class="modal-frame dark">
@@ -383,343 +365,113 @@
 		        	<div>
 		        		<ul class="shop-list">
 		        			<li data-tab="shop-outfit" class='active'>의상</li>
-		        			<li data-tab="shop-hare">헤어</li>
-		        			<li data-tab="shop-accessories">악세서리</li>
+		        			<li data-tab="shop-hare">모자</li>
+		        			<li data-tab="shop-accessories">펫</li>
 		        			<li data-tab="shop-interior">인테리어</li>
 		        			<li data-tab="shop-snacks">간식</li>
 		        		</ul>
 		        	</div>
 		        	<section id="shop-outfit" class="tab-content">
 		        		<div class="shop-items">
-		        			<div id="shop-item-show-outfit_1" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div id="shop-item-show-outfit_2" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div id="shop-item-show-outfit_3" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div id="shop-item-show-outfit_4" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div id="shop-item-show-outfit_5" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div id="shop-item-show-outfit_6" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div id="shop-item-show-outfit_7" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div id="shop-item-show-outfit_8" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div id="shop-item-show-outfit_9" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
+	        				<c:set var="count" value="1"/>
+		        			<c:forEach items="${shopList}" var="dto" varStatus="outfit">
+		        				<c:if test="${dto.itemInfo.itemType.itemType == 2}">
+				        			<div id="shop-item-show-outfit_${count}" class="shop-item-show">
+				        			<c:set var="count" value="${count+1}"/>
+				        				<div class="item-info">
+				        					<img src="/images/items/outfit/${dto.image}">
+				        					<p class="item-name">${dto.name }</p>
+				        				</div>
+				        				<div class="item-price">
+				        					<img src="/images/coinIcon.png">
+				        					<p>${dto.price}</p>
+				        				</div>
+				        			</div>
+		        				</c:if>
+		        			</c:forEach>
 		        		</div>
 		        	</section>
 		        	<section id="shop-hare" class="tab-content">
 		        		<div class="shop-items">
-		        			<div id="shop-item-show-hare_1" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">머리</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div id="shop-item-show-hare_2" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">머리</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">머리</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">머리</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
+		        			<c:set var="count" value="1"/>
+		        			<c:forEach items="${shopList}" var="dto" varStatus="hat">
+		        				<c:if test="${dto.itemInfo.itemType.itemType == 1}">
+				        			<div id="shop-item-show-hat_${count}" class="shop-item-show">
+				        			<c:set var="count" value="${count+1}"/>
+				        				<div class="item-info">
+				        					<img src="/images/items/hat/${dto.image}">
+				        					<p class="item-name">${dto.name }</p>
+				        				</div>
+				        				<div class="item-price">
+				        					<img src="/images/coinIcon.png">
+				        					<p>${dto.price}</p>
+				        				</div>
+				        			</div>
+		        				</c:if>
+		        			</c:forEach>
 		        		</div>
 		        	</section>
 		        	
 		        	<section id="shop-accessories" class="tab-content">
 				        <div class="shop-items">
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory1.png">
-				                    <p class="item-name">진주 목걸이</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>15000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
+				        	<c:set var="count" value="1"/>
+				            <c:forEach items="${shopList}" var="dto" varStatus="pet">
+		        				<c:if test="${dto.itemInfo.itemType.itemType == 3}">
+				        			<div id="shop-item-show-pet_${count}" class="shop-item-show">
+				        			<c:set var="count" value="${count+1}"/>
+				        				<div class="item-info">
+				        					<img src="/images/items/pet/${dto.image}">
+				        					<p class="item-name">${dto.name }</p>
+				        				</div>
+				        				<div class="item-price">
+				        					<img src="/images/coinIcon.png">
+				        					<p>${dto.price}</p>
+				        				</div>
+				        			</div>
+		        				</c:if>
+		        			</c:forEach>
 				        </div>
 				    </section>
 				
 				    <section id="shop-interior" class="tab-content">
 				        <div class="shop-items">
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/interior1.png">
-				                    <p class="item-name">럭셔리 소파</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>50000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/interior2.png">
-				                    <p class="item-name">모던 테이블</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>40000</p>
-				                </div>
-				            </div>
+				        	<c:set var="count" value="1"/>
+				            <c:forEach items="${shopList}" var="dto" varStatus="interior">
+		        				<c:if test="${dto.itemInfo.itemType.itemType >= 6 and dto.itemInfo.itemType.itemType <= 10}">
+				        			<div id="shop-item-show-interior_${count}" class="shop-item-show">
+				        				<c:set var="count" value="${count+1}"/>
+				        				<div class="item-info">
+				        					<img src="/images/items/interior/${dto.image}">
+				        					<p class="item-name">${dto.name }</p>
+				        				</div>
+				        				<div class="item-price">
+				        					<img src="/images/coinIcon.png">
+				        					<p>${dto.price}</p>
+				        				</div>
+				        			</div>
+		        				</c:if>
+		        			</c:forEach>
 				        </div>
 				    </section>
 				
 				    <section id="shop-snacks" class="tab-content">
 				        <div class="shop-items">
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/snack1.png">
-				                    <p class="item-name">초콜릿 바</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>5000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/snack2.png">
-				                    <p class="item-name">과일 바구니</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>12000</p>
-				                </div>
-				            </div>
+				        	<c:set var="count" value="1"/>
+				            <c:forEach items="${shopList}" var="dto" varStatus="consumalbe">
+		        				<c:if test="${dto.itemInfo.itemType.itemType == 4}">
+				        			<div id="shop-item-show-consumalbe_${count}" class="shop-item-show">
+				        			<c:set var="count" value="${count+1}"/>
+				        				<div class="item-info">
+				        					<img src="/images/items/consumable/${dto.image}">
+				        					<p class="item-name">${dto.name }</p>
+				        				</div>
+				        				<div class="item-price">
+				        					<img src="/images/coinIcon.png">
+				        					<p>${dto.price}</p>
+				        				</div>
+				        			</div>
+		        				</c:if>
+		        			</c:forEach>
 				        </div>
 				    </section>
 		        	
@@ -1070,10 +822,7 @@
 		        
 		    </div>
 		</div>
-=======
-		
-		
-		
+	
 		<!-- 퀘스트 모달 -->
 		<div id="modalq" class="modal">
 		    <div class="modal-frame dark">
@@ -1201,7 +950,6 @@
 		    </div>
 		</div>
 
-
 		<!-- 이벤트 모달 -->
 		<div id="modale" class="modal">
 		    <div class="modal-frame dark">
@@ -1234,8 +982,9 @@
 						<div class="event_content">
 							<img id="eventImage" src="images/modal/event1.png" alt="Event Image">
 						</div>
-		        </div>
-		    </div>
+		        	</div>
+		    	</div>
+			</div>
 		</div>
 		<script>
 			document.querySelectorAll('.event-title li').forEach(function (li) {
@@ -1258,11 +1007,7 @@
 			document.querySelector('.event-title li').classList.add('active');
 			document.querySelector('.quest-title li').classList.add('active');
 		</script>
->>>>>>> refs/heads/master
 		
-		<h2>
-			머지 확인용
-		</h2>
 		
 		<script src="/js/modal.js" defer></script>
 		<script src="/js/shop.js" defer></script>

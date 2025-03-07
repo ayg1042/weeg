@@ -97,7 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <ul>
           <li id="option_title">랭킹</li>
           <li><a href="/rank">전체랭킹</a></li>
+<<<<<<< HEAD
           <li><a href="/rank">그룹랭킹 </a></li>
+=======
+          <li><a href="#">그룹랭킹 </a></li>
+>>>>>>> refs/remotes/origin/master
         </ul>
         <ul>
           <li id="option_title">고객지원</li>
