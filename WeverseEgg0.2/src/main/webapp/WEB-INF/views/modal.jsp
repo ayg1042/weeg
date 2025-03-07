@@ -1235,7 +1235,7 @@
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="images/modal/coinIcon.png">
-					<p id="My_Coin">1</p>
+					<p id="My_Coin_q"><fmt:formatNumber value="${userCoin}" pattern="#,###" /></p>
 					<img id="plus" src="images/modal/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
@@ -1258,6 +1258,9 @@
 						<c:forEach items="${list}" var="qdto">
 							<!-- progressMap에서 현재 퀘스트의 진행 정보를 가져옴 -->
 							<c:set var="progressInfo" value="${progressMap[qdto.questId]}" />
+							<c:set var="isRewarded"
+								value="${rewardedMap[qdto.questId] != null ? rewardedMap[qdto.questId] : 0}" />
+
 
 							<!-- 퀘스트마다 필요한 총 수행 횟수는 퀘스트 아이디별로 다를 수 있으므로, 아이디별 필요 횟수를 설정합니다. -->
 							<c:choose>
@@ -1280,6 +1283,7 @@
 								value="${(progressPercentage / 100) * required}" />
 
 							<li data-quest-id="${qdto.questId}" data-required="${required}"
+								class="${isRewarded == 1 ? 'completed' : ''}"
 								class="${progressInfo != null && progressInfo.isCompleted == 1 ? 'completed' : ''}">
 								<div class="quest_content">
 									<div class="quest_content_coin">
@@ -1295,6 +1299,7 @@
 										<span> <fmt:formatNumber value="${currentValue}"
 												maxFractionDigits="0" /> / ${required}
 										</span>
+
 									</div>
 								</div>
 							</li>
@@ -1321,49 +1326,92 @@
 							 -->
 
 						<script>
-							document.querySelectorAll(".quest_content_rate").forEach(function (element) {
-							    let statusText = element.querySelector("span").innerText.trim();
-							    console.log("현재 상태 텍스트: ", statusText); // 상태 텍스트 확인용
-	
-							    // ✅ "0 / 10" 같은 진행 상태를 "보상받기"로 변경
-							    if (statusText.includes("/")) {
-							        let [current, total] = statusText.split(" / ").map(Number);
-							        console.log("현재: ", current, "전체: ", total); // 값 확인용
-	
-							        if (current >= total) {
-							            element.querySelector("span").innerText = "보상받기";
-							            element.classList.add("clear"); // "보상받기" 상태 CSS 적용
+							var rewardedMap = ${rewardedMapJson};
+						    console.log("rewardedMap", rewardedMap);
+						    // 모든 .quest_content_rate 요소에 대해 반복
+						    document.querySelectorAll(".quest_content_rate").forEach(function (element) {
+						        let statusText = element.querySelector("span").innerText.trim();
+						        console.log("현재 상태 텍스트: ", statusText); // 상태 텍스트 확인용
+						
+						        // questId를 data-quest-id에서 가져오기
+						        let questId = parseInt(element.closest("li").dataset.questId);
+						        console.log("questId: ", questId); // 퀘스트 아이디 확인용
+						
+						        // rewardedMap에서 questId에 해당하는 보상 상태 확인
+						        if (rewardedMap[questId] === 1) {
+							    // 보상 완료 상태
+							    element.querySelector("span").innerText = "받기완료";
+							    element.classList.add("reward"); // "받기완료" 상태 CSS 적용
+							} else {
+							    // 보상받기 상태 (rewardedMap에 questId가 없거나, 값이 1이 아니면 "보상받기")
+							    //element.querySelector("span").innerText = "보상받기";
+							    //element.classList.remove("clear"); // "보상받기" 상태 CSS 제거
+							
+							    // 진행 상태를 확인하여 "보상받기"로 변경
+							    if (!rewardedMap[questId]) {
+							        // rewardedMap에 questId가 없다면 진행 상태를 확인하여 "보상받기"로 변경
+							        if (statusText.includes("/")) {
+							            let [current, total] = statusText.split(" / ").map(Number);
+							            console.log("현재: ", current, "전체: ", total); // 값 확인용
+							
+							            if (current >= total) {
+							                // 진행이 완료되었고 보상이 아직 주어지지 않은 경우
+							                element.querySelector("span").innerText = "보상받기";
+							                element.classList.add("clear"); // "보상받기" 상태 CSS 적용
+							            }
 							        }
 							    }
-	
-							    // ✅ "보상받기" 클릭 시 "받기완료"로 변경
-							    element.addEventListener("click", function () {
-							        let questId = this.closest("li").dataset.questId;
-							        console.log("퀘스트 아이디 : " + questId); // 퀘스트 아이디 확인용
-	
-							        if (this.querySelector("span").innerText === "보상받기") {
-							            fetch("/modal/reward?questId=" + questId, {
-							                method: "POST"
-							            })
-							            .then(response => response.json())
-							            .then(data => {
-							                console.log("응답 데이터: ", data); // 응답 데이터 확인용
-							                if (data.success) {
-							                    this.querySelector("span").innerText = "받기완료";
-							                    this.classList.remove("clear"); // "보상받기" 클래스 제거
-							                    this.classList.add("reward"); // "받기완료" 상태 CSS 적용
-							                    
-							                    alert(data.message + " 현재 코인: " + data.newCoin);
-							                } else {
-							                    alert("보상 받기 실패: " + data.message);
-							                }
-							            })
-							            .catch(error => console.error("보상 지급 요청 실패:", error));
-							        }
-							    });
-							});
+							}
+						
+						        // "보상받기" 클릭 시 "받기완료"로 변경
+						        element.addEventListener("click", function () {
+						            let questId = this.closest("li").dataset.questId;
+						            console.log("퀘스트 아이디 : " + questId); // 퀘스트 아이디 확인용
+						
+						            if (this.querySelector("span").innerText === "보상받기") {
+						                fetch("/modal/reward?questId=" + questId, {
+						                    method: "POST"
+						                })
+						                .then(response => response.json())
+						                .then(data => {
+						                    console.log("응답 데이터: ", data); // 응답 데이터 확인용
+						                    if (data.success) {
+						                        // 보상 지급 성공 시 상태 변경
+						                        this.querySelector("span").innerText = "받기완료";
+						                        this.classList.remove("clear"); // "보상받기" 클래스 제거
+						                        this.classList.add("reward"); // "받기완료" 상태 CSS 적용
+						                        
+						                     // 코인 추가하기
+						                        const char = data.newCoin;
+
+						                        // .quest_content_coin의 span 요소 선택
+						                        const coinSpan = document.querySelector('#My_Coin_q');
+
+						                        // 기존 코인 값 가져오기 (숫자만 추출)
+						                        let currentCoin = parseInt(coinSpan.textContent.replace(/\D/g, ''), 10);
+						                        if (isNaN(currentCoin)) currentCoin = 0;  // 만약 숫자가 아닌 값이 들어갔으면 0으로 초기화
+
+						                        // 새로운 코인 값 계산 후 업데이트
+						                        const newCoin = char;
+						                        coinSpan.textContent = newCoin.toLocaleString();  // 숫자 형식으로 표시
+						                        
+					                            // 알림 메시지 출력
+					                            alert("추가할 코인 개수: " + char);
+					                            alert(data.message + " 현재 코인: " + newCoin);
+						                    } else {
+						                        alert("보상 받기 실패: " + data.message);
+						                    }
+						                })
+						                .catch(error => console.error("보상 지급 요청 실패:", error));
+						            }
+						        });
+						    });
+						    
+						    
 
 						</script>
+
+
 
 					</ul>
 				</div>

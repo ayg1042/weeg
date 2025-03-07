@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.java.dto.quest.QuestDto;
+import com.java.entity.character.CharacterEntity;
 import com.java.entity.member.MemberEntity;
 import com.java.entity.quest.QuestEntity;
 import com.java.entity.quest.QuestHistoryEntity;
 import com.java.entity.quest.QuestProgressEntity;
+import com.java.repository.CharacterRepository;
 import com.java.repository.MemberRepository;
 import com.java.repository.QuestHistoryRepository;
 import com.java.repository.QuestProgressRepository;
@@ -39,6 +43,7 @@ public class FController {
 	@Autowired QuestHistoryRepository questHistoryRepository;
 	@Autowired MemberRepository memberRepository;
 	@Autowired QuestRepository questRepository;
+	@Autowired CharacterRepository characterRepository;
 	
 	@GetMapping("/weverserank") // 위버스 에스파 그룹랭킹
 	public String rank() {
@@ -87,10 +92,10 @@ public class FController {
 	}
 	
 	@GetMapping("/modal")
-	public String modal(Model model, HttpSession session) {
+	public String modal(Model model, HttpSession session) throws JsonProcessingException {
 		
-//		Integer userId = (Integer) session.getAttribute("userId");
-	
+		Integer userId = (Integer) session.getAttribute("user_id");
+		System.out.println("현재 사용자 ID: " + userId);  // userId 확인용
 		
 		// 퀘스트 전체 리스트 가져오기
 		List<QuestDto> list = questService.findAll();
@@ -110,6 +115,36 @@ public class FController {
             progressMap.put(qp.getQuest().getQuestId(), qp);
         }
         model.addAttribute("progressMap", progressMap);
+        
+     // 사용자 퀘스트 히스토리 가져오기 (isRewarded 확인)
+        List<QuestHistoryEntity> historyList = questHistoryRepository.findByMember_UserId(userId);
+        System.out.println("퀘스트 히스토리: " + historyList);  // 히스토리 확인용
+        Map<Integer, Integer> rewardedMap = new HashMap<>();
+        for (QuestHistoryEntity history : historyList) {
+            // 각 퀘스트의 isRewarded 상태를 Map에 저장
+            rewardedMap.put(history.getQuest().getQuestId(), history.getIsRewarded());
+        }
+        
+     // rewardedMap을 JSON 문자열로 변환
+        ObjectMapper objectMapper = new ObjectMapper();
+        String rewardedMapJson = objectMapper.writeValueAsString(rewardedMap);
+        
+        // 모델에 JSON 문자열 전달
+        model.addAttribute("rewardedMapJson", rewardedMapJson);
+        System.out.println("rewardedMap: " + rewardedMap);
+        model.addAttribute("rewardedMap", rewardedMap);
+        
+     // 캐릭터의 코인 정보 가져오기
+        // userId로 해당 사용자의 캐릭터를 찾음
+        CharacterEntity character = characterRepository.findByMember_UserId(userId);
+        
+        // 캐릭터가 존재한다면 코인 정보 전달
+        if (character != null) {
+            model.addAttribute("userCoin", character.getCoin());
+        } else {
+            // 캐릭터가 없다면 기본값 0
+            model.addAttribute("userCoin", 0);
+        }
 		
 		return "modal";
 	}
@@ -156,11 +191,11 @@ public class FController {
 	            return ResponseEntity.ok(response);
 	        }
 	        
-	     // QuestHistoryEntity에서 MemberEntity와 QuestEntity를 데이터베이스에서 조회
+	        // ✅ MemberEntity & QuestEntity 조회
 	        MemberEntity member = memberRepository.findById(userId).orElseThrow(() -> new Exception("사용자 정보를 찾을 수 없습니다."));
 	        QuestEntity quest = questRepository.findById(questId).orElseThrow(() -> new Exception("퀘스트 정보를 찾을 수 없습니다."));
 
-	        // 보상 지급 상태를 QuestHistoryEntity에 기록
+	     // ✅ 보상 기록 저장
 	        QuestHistoryEntity history = new QuestHistoryEntity();
 	        history.setMember(member);  // 기존에 존재하는 MemberEntity 설정
 	        history.setQuest(quest);    // 기존에 존재하는 QuestEntity 설정
@@ -168,12 +203,12 @@ public class FController {
 	        history.setCompletionDate(new Timestamp(System.currentTimeMillis())); // 보상 받은 시간 설정
 	        questHistoryRepository.save(history); // 저장
 	        
-	     // 진행 상태 업데이트
-//	        QuestProgressEntity progress = questProgressRepository.findByQuestIdAndUserId(questId, userId);
-//	        if (progress != null) {
-//	            progress.setIsCompleted(1);  // 퀘스트 완료 상태로 변경
-//	            questProgressRepository.save(progress); // 진행 상태 업데이트
-//	        }
+	     // ✅ 진행 상태 업데이트 (퀘스트 완료 처리)
+	        QuestProgressEntity progress = questProgressRepository.findByQuest_QuestIdAndMember_UserId(questId, userId);
+	        if (progress != null) {
+	            progress.setIsCompleted(1);  // 퀘스트 완료 상태로 변경
+	            questProgressRepository.save(progress); // 진행 상태 업데이트
+	        }
 
 	        // 응답 데이터 구성
 	        response.put("success", true);
@@ -190,6 +225,8 @@ public class FController {
 
 	    return ResponseEntity.ok(response);
 	}
+	
+
 
 	
 	

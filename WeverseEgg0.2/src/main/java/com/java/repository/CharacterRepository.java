@@ -18,4 +18,6 @@ public interface CharacterRepository extends JpaRepository<CharacterEntity, Inte
     @Transactional
     @Query("UPDATE CharacterEntity c SET c.coin = :newCoin WHERE c.member.userId = :userId")
     void updateCoinByUserId(@Param("userId") int userId, @Param("newCoin") int newCoin);
+
+	CharacterEntity findByMember_UserId(Integer userId);
 }
