@@ -33,7 +33,7 @@ a{
 	margin-bottom: 70px;
 }
 
-#FirstIdol{
+#FirstIdol_make{
 	width: 336px; 
 	height: 586px; 
 	border: 7px solid #D2BDFF; 
@@ -44,6 +44,11 @@ a{
 	background-repeat: no-repeat; 
 	display: inline-block; 
 	background-position: center;
+}
+
+#FirstIdol_make:hover{
+	background-image: url('/images/chocieCharacter/egg_make.png'); 
+	cursor: pointer;
 }
 
 #FirstIdol_open{
@@ -62,14 +67,13 @@ a{
   position: relative;  /* 배경 이미지와 텍스트 위치를 조정할 수 있게 */
   text-align: center;  /* 텍스트를 가로로 중앙 정렬 */
   line-height: 920px;  /* 텍스트가 세로로 중앙 정렬 */
-  font-size: 20px;  /* 텍스트 크기 조정 */
-  font-weight: bold;  /* 텍스트 굵기 */
+  font-size: 24px;  /* 텍스트 크기 조정 */
   color: #333;  /* 텍스트 색상 */
   overflow: hidden;  /* 텍스트가 영역을 벗어나면 잘리게 */
 }
 
-#FirstIdol:hover{
-	background-image: url('/images/chocieCharacter/egg_make.png'); 
+#FirstIdol_open:hover{
+	background-image: url('/images/chocieCharacter/egg_break_hover.png'); 
 	cursor: pointer;
 }
 
@@ -81,6 +85,7 @@ a{
 	display: inline-block;  
 	margin-left: 14px; 
 	background-position: center;
+	cursor: pointer;
 }
 
 #ThirdIdol{
@@ -91,4 +96,5 @@ a{
 	display: inline-block; 
 	margin-left: 15px; 
 	background-position: center;
+	cursor: pointer;
 }

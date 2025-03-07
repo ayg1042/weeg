@@ -26,6 +26,12 @@
           }
       }
     }
+    
+    function lockBtn(isListNull){
+			if(confirm("캐릭터 슬롯창이 잠겨있습니다. 상점으로 이동하시겠습니까?")){
+				location.href="#";
+			}
+    }
     </script>
   </head>
   
@@ -78,14 +84,14 @@
     <c:if test="${list != null}">
 	    <c:forEach items="${list}" var="cdto">
 		    <div id="FirstIdol_open" onclick="choiceBtn(true)">${cdto.nickName }</div>
-	  	  <div id="SecondIdol"></div>
-	    	<div id="ThirdIdol"></div>
+	  	  <div id="SecondIdol" onclick="lockBtn()"></div>
+	    	<div id="ThirdIdol" onclick="lockBtn()"></div>
 	    </c:forEach>
     </c:if>
     <c:if test="${list == null}">
-		    <div id="FirstIdol" onclick="choiceBtn(false)"></div>
-	  	  <div id="SecondIdol"></div>
-	    	<div id="ThirdIdol"></div>
+		    <div id="FirstIdol_make" onclick="choiceBtn(false)"></div>
+	  	  <div id="SecondIdol" onclick="lockBtn()"></div>
+	    	<div id="ThirdIdol" onclick="lockBtn()"></div>
     </c:if>
   </div>  <!-- mainBack -->
   

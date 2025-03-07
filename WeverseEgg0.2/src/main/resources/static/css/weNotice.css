@@ -100,6 +100,12 @@ td {
   white-space: nowrap;
 }
 
+.td_title a {
+  text-decoration: none; /* 링크 기본 밑줄 제거 */
+  font-weight: normal; /* 글자 굵기 유지 */
+  color: inherit; /* 색상 변경 방지 */
+}
+
 .info_date {
   color: rgba(152, 162, 179);
   text-align: center;

@@ -47,6 +47,11 @@ public class FController {
 		return "weNotice";
 	}
 	
+	@GetMapping("/weNoticeView") // 위버스 공지사항 뷰페이지
+	public String weNoticeView() {
+		return "weNoticeView";
+	}
+	
 	@GetMapping("/modal")
 	public String modal() {
 		return "modal";
