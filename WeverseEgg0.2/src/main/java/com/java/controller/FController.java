@@ -33,6 +33,9 @@ import com.java.service.QuestService;
 
 import jakarta.servlet.http.HttpSession;
 
+import com.java.dto.item.ItemDto;
+import com.java.service.ModalService;
+
 
 @Controller
 public class FController {
@@ -44,11 +47,12 @@ public class FController {
 	@Autowired MemberRepository memberRepository;
 	@Autowired QuestRepository questRepository;
 	@Autowired CharacterRepository characterRepository;
+	@Autowired ModalService modalServiceImpl;
 	
-	@GetMapping("/weverserank") // 위버스 에스파 그룹랭킹
-	public String rank() {
-		return "rank";
-	}
+//	@GetMapping("/weverserank") // 위버스 에스파 그룹랭킹
+//	public String rank() {
+//		return "rank";
+//	}
 	
 	
 	@GetMapping("/index") //테스트 페이지
@@ -66,7 +70,7 @@ public class FController {
 		return "main2";
 	}
 	
-	@GetMapping("/weverseaespa") // 위버스 에스파 페이지 캐릭터 랭킹 
+	@GetMapping("/aespa") // 위버스 에스파 페이지 캐릭터 랭킹 
 	public String weverseAespa() {
 		return "weverse_aespa";
 	}
@@ -89,6 +93,11 @@ public class FController {
 	@GetMapping("/wenotice") // 위버스 공지사항
 	public String weNotice() {
 		return "weNotice";
+	}
+	
+	@GetMapping("/weNoticeView") // 위버스 공지사항 뷰페이지
+	public String weNoticeView() {
+		return "weNoticeView";
 	}
 	
 	@GetMapping("/modal")
@@ -145,6 +154,10 @@ public class FController {
             // 캐릭터가 없다면 기본값 0
             model.addAttribute("userCoin", 0);
         }
+        
+        List<ItemDto> items = modalServiceImpl.getAllItems();
+		System.out.println(items);
+		model.addAttribute("shopList",items);
 		
 		return "modal";
 	}
@@ -227,6 +240,10 @@ public class FController {
 	}
 	
 
+	@GetMapping("/rank") // 랭킹 페이지
+	public String rank() {
+		return "rank";
+	}
 
 	
 	

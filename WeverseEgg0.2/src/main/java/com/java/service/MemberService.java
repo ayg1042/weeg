@@ -1,6 +1,10 @@
 package com.java.service;
 
+import java.util.Optional;
+
+import com.fasterxml.jackson.databind.JsonNode;
 import com.java.dto.member.MemberDto;
+import com.java.entity.member.MemberEntity;
 
 public interface MemberService {
 
@@ -11,5 +15,5 @@ public interface MemberService {
 
 	MemberDto findByEmailAndPw(String email, String pw);
 
-
+	MemberDto kakaoLogin(JsonNode kakaoData);
 }

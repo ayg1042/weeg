@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-<%@ include file="header.jsp" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -66,6 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <body>
+  <%@ include file="header.jsp" %>
+
   <!-- 메인 -->
   <div id="egg_rankpage"> 
 
@@ -138,9 +139,10 @@ document.addEventListener('DOMContentLoaded', () => {
    					</tr>
    				</thead>
    				<tbody>
+   				<c:forEach items="${ranklist }" var="chardto">
    					<tr class="cha_info">
    						<td>
-   							<p class="ranking_num">1</p>
+   							<p class="ranking_num">${chardto.rank }</p>
    							<div class="like">
    								<div class="like_area">
    									<img id="heart" alt="하트" src="/images/rank/RedHeart.png">
@@ -153,20 +155,21 @@ document.addEventListener('DOMContentLoaded', () => {
    								<img id="charImg" alt="랭킹유저" src="/images/rank/exCharacter.png">
    							</div>
    							<div class="nickName">
-   								<p>My윈터</p>
-   								<p id="groupName">윈터 / 에스파</p>
+   								<p>${chardto.nickName }</p>
+   								<p id="groupName">${chardto.artist.artistName.artistName } / ${chardto.artist.artistName.group.groupName}</p>
    							</div>
    						</td>
    						<td>
-   							<p class="level">LV. 999</p>
+   							<p class="level">LV. ${chardto.artist.level }</p>
    						</td>
    						<td>
-	   						<p class="attract">999,999,999</p>
+	   						<p class="attract">${ chardto.charm}</p>
    						</td>
    						<td>
-   							<p class="popularity">999,999,999</p>
+   							<p class="popularity">${ chardto.popularity}</p>
    						</td>
    					</tr>
+   				</c:forEach>
    				</tbody>
    			</table>
    		</div>

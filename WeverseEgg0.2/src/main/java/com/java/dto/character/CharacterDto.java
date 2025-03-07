@@ -3,6 +3,7 @@ package com.java.dto.character;
 import java.util.List;
 
 import com.java.dto.member.MemberDto;
+import com.java.entity.character.CharacterEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,8 +23,10 @@ public class CharacterDto {
     private ArtistDto artist;
     /** 사용자 user_id FK */
     private MemberDto member;
+    
     /** 인벤토리 invenId Fk */
-    private InvenDto inven;
+    private List<InvenDto> inven;
+    
     /** 캐릭터 닉네임 */
     private String nickName;
     /** 캐릭터 성별 */
@@ -50,5 +53,43 @@ public class CharacterDto {
     private int rank;
     /** 표정 */
     private String expression;
+    /** 랭킹 작업을 위한 임시 총점 컬럼  */
+    private int rankedScore;  
+    
+ // 정적 팩토리 메서드 추가
+    public static CharacterDto rank(CharacterEntity entity) {
+        CharacterDto dto = new CharacterDto();
+        dto.setCharacter_id(entity.getCharacterId());
+        dto.setNickName(entity.getNickName());
+        dto.setMember(MemberDto.login(entity.getMember()));
+        dto.setRank(entity.getRank());
+        dto.setArtist(ArtistDto.rank(entity.getArtist()));
+        dto.setCharm(entity.getCharm());
+        dto.setPopularity(entity.getPopularity());
+        return dto;
+    }
+    
+    // 정적 팩토리 메서드 추가
+    public static CharacterDto from(CharacterEntity entity) {
+        CharacterDto dto = new CharacterDto();
+        dto.setCharacter_id(entity.getCharacterId());
+        dto.setNickName(entity.getNickName());
+        dto.setGender(entity.getGender());
+        dto.setMember(MemberDto.From(entity.getMember()));
+        dto.setCoin(entity.getCoin());
+        dto.setDance(entity.getDance());
+        dto.setHealth(entity.getHealth());
+        dto.setFatigue(entity.getFatigue());
+        dto.setVocal(entity.getVocal());
+        dto.setRap(entity.getRap());
+        dto.setEntertainment(entity.getEntertainment());
+        dto.setCharm(entity.getCharm());
+        dto.setPopularity(entity.getPopularity());
+        dto.setRank(entity.getRank());
+        dto.setExpression(entity.getExpression());
+        return dto;
+    }
+    
+    
     
 }

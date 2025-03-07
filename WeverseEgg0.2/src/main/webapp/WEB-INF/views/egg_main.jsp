@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="header.jsp" %>
 
 <!DOCTYPE html>
@@ -60,6 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+  
+  function stBtn() {
+    location.href = "/choiceCharacter";
+  }
 </script>
 
 <body>
@@ -92,8 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
         </ul>
         <ul>
           <li id="option_title">랭킹</li>
-          <li><a href="/weverserank">전체랭킹</a></li>
-          <li><a href="/weverserank">그룹랭킹 </a></li>
+          <li><a href="/rank">전체랭킹</a></li>
+          <li><a href="/rank">그룹랭킹 </a></li>
         </ul>
         <ul>
           <li id="option_title">고객지원</li>
@@ -134,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <!-- 게임 스타트 버튼 -->
     <div id="game_start_btn">
-      <button type="button" class="game_start">
+      <button type="button" onclick="stBtn()" class="game_start">
         <img src="images/mainpage/start1.png" alt="게임 시작 버튼 호버 전" class="default">
         <img src="images/mainpage/start2.png" alt="게임 시작 버튼 호버 후" class="hover">
       </button>
