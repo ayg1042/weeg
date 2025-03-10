@@ -56,15 +56,14 @@ public class FController {
 		return "weNoticeView";
 	}
 	
-	@GetMapping("/modal")
-	public String modal(Model model) {
-		
-		List<ItemDto> items = modalServiceImpl.getAllItems();
-		System.out.println(items);
-		model.addAttribute("shopList",items);
-		
-		return "modal";
-	}
+	/*
+	 * @GetMapping("/modal") public String modal(Model model) {
+	 * 
+	 * List<ItemDto> items = modalServiceImpl.getAllItems();
+	 * System.out.println(items); model.addAttribute("shopList",items);
+	 * 
+	 * return "modal"; }
+	 */
 	
 	@GetMapping("/rank") // 랭킹 페이지
 	public String rank() {

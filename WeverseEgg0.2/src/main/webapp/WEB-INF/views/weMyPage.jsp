@@ -16,7 +16,6 @@
 
 
 <body>
-<%@ include file="header.jsp" %>
 
   <!-- 마이페이지 메인 -->
   <div id="userInfoBar">
