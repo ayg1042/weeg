@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="header.jsp" %>
 
 <!DOCTYPE html>
@@ -143,6 +144,16 @@
         });
       });
     });
+    
+ 		// 스크롤시 헤더 색상변경
+    window.addEventListener("scroll", function () {
+	    let gnb = document.getElementById("main_top_gnb");
+	    if (window.scrollY > 50) {  // 스크롤 50px 이상일 때 배경 변경
+	        gnb.classList.add("scrolled");
+	    } else {
+	        gnb.classList.remove("scrolled");
+	    }
+	});
 
 
   </script>

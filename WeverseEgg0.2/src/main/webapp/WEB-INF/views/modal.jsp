@@ -59,6 +59,7 @@
 			<div class="game_main">
 			
 				<div class = 'info_area'>
+	    		<c:forEach items="${list }" var="cdto">
 					<div id="bars">
 						<c:if test="${chDto.health == 100}">
 							<img id="hpBar" src="/images/hp/hp_100.png">
@@ -115,15 +116,24 @@
 		    		</div>
 		    		<div id="coinBar" class="gap">
 		    			<img id="coin" src="/images/egg_info/coinIcon.png">
+<<<<<<< HEAD
 		    			<p id="My_Coin">
 		    				<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 		    			</p>
+=======
+		    			<p id="My_Coin">${cdto.coin}</p>
+>>>>>>> refs/remotes/origin/master
 		    			<img id="plus" src="/images/egg_info/plusIcon.png">
 		    		</div>
 					</div>
 	    		<div id="character_info">
+<<<<<<< HEAD
 	    			<div id="character_nickname">${chDto.nickName}</div>
 	    			<div id="character_type">${chDto.artist.artistName.artistName}</div>
+=======
+	    			<div id="character_nickname">캐릭터닉네임</div>
+	    			<div id="character_type">${cdto.nickName}</div>
+>>>>>>> refs/remotes/origin/master
 	    			<div id="stat_hidden">
 	    				<div id="stat_hidden_level">
 	    					<p>LV.</p>
@@ -168,6 +178,7 @@
 	    				</div>
 	    			</div>
 	    		</div>
+	    		</c:forEach>
 				</div>
 				
 				<!-- 방꾸미기 -->

@@ -25,7 +25,6 @@ body {
   width: 100%;
   height: 110px;
   background-color: rgba(255, 255, 255, 0.1);
-  top: 100;
   left: 0;
   z-index: 1;
   display: flex;
@@ -162,7 +161,7 @@ nav:not(:hover) ul li a {
 /* 하단 이벤트 gnb */
 #main_bottom_gnb {
   position: relative;
-  top: -70px;
+  top: -35px;
   left: 260px;
   width: 1120px;
   height: 100px;
@@ -223,7 +222,7 @@ nav:not(:hover) ul li a {
   width: 100%;
   height: auto;
   position: absolute;
-  top: 0;
+  top: 33px;;
   left: 0;
   transition: opacity 0.2s ease-in-out;
 }
