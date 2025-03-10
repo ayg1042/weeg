@@ -36,11 +36,6 @@ public class FController {
 		return "weverse_aespa";
 	}
 	
-	@GetMapping("/jellyshop") //젤리 구매 페이지
-	public String jellyShop() {
-		return "jelly_shop";
-	}
-	
 	@GetMapping("/eggmain") // 에그 메인 게임 시작 페이지
 	public String eggMain() {
 		return "egg_main";

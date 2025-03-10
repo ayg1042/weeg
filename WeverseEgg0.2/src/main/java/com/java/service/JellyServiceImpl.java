@@ -3,6 +3,7 @@ package com.java.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +11,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.java.dto.kakao.ApproveResponseDto;
+import com.java.dto.member.MemberDto;
+import com.java.entity.member.MemberEntity;
+import com.java.repository.MemberRepository;
 
 @Service
 public class JellyServiceImpl implements JellyService {
+	
+	@Autowired MemberRepository memberRepository;
 	
 	// 카카오페이 측에 요청 시 헤더부에 필요한 값
 	private HttpHeaders getHeaders() {
@@ -22,7 +28,7 @@ public class JellyServiceImpl implements JellyService {
 		return headers;
 	}
 
-	@Override
+	@Override // 젤리 구매
 	public ResponseEntity<Map> payReady(String jelly, String price, int userId) {
 		//데이터 묶기
 		Map<String, String> params = new HashMap<>();
@@ -30,7 +36,7 @@ public class JellyServiceImpl implements JellyService {
 		params.put("partner_order_id", "jelly"+jelly);
 		params.put("partner_user_id", ""+userId);
 		params.put("item_name", "jelly"+jelly);
-		params.put("quantity", "1");
+		params.put("quantity", String.valueOf(jelly));
 		params.put("total_amount", String.valueOf(price));
 		params.put("tax_free_amount", "0");
 		params.put("approval_url", "http://localhost:8181/jellyshop/buy/completed");
@@ -48,8 +54,6 @@ public class JellyServiceImpl implements JellyService {
         
         ResponseEntity<Map> response = template.postForEntity(url, requestEntity, Map.class);
         
-        System.out.println("결제준비 응답객체: " + response.getBody());
-
         return  ResponseEntity.ok(response.getBody());
 		
 	}
@@ -72,4 +76,17 @@ public class JellyServiceImpl implements JellyService {
 
         return approveResponseDto;
 	}
+
+	@Override // jelly 정보 저장
+	public MemberDto updateJelly(int id, int quantity) {
+		 MemberEntity member = memberRepository.findById(id)
+	                .orElseThrow(() -> new RuntimeException("회원 정보를 찾을 수 없습니다."));
+		 int jelly = member.getJelly();
+		 member.setJelly(jelly+quantity);
+		 memberRepository.save(member);
+		 
+		 return MemberDto.jelly(member);
+	}
+	
+	
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -15,6 +15,7 @@
 
 
 <body>
+<%@ include file="header.jsp" %>
 
   <!-- 마이페이지 메인 -->
   <div id="userInfoBar">

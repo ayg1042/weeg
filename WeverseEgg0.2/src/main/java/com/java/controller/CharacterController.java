@@ -66,7 +66,7 @@ public class CharacterController {
 		
 		MemberDto member = new MemberDto();
 		member.setUser_id(user_id);
-		member.setEmail((String)session.getAttribute("session_id"));
+		member.setEmail((String)session.getAttribute("session_email"));
 		member.setNickname((String)session.getAttribute("session_nickname"));
 		
 		// 캐릭터 생성

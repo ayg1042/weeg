@@ -48,4 +48,10 @@ public class MemberDto {
     	dto.nickname = entity.getNickname();
     	return dto;
 	}
+	
+	public static MemberDto jelly(MemberEntity entity) {
+		MemberDto dto = new MemberDto();
+		dto.jelly = entity.getJelly();
+		return dto;
+	}
 }
