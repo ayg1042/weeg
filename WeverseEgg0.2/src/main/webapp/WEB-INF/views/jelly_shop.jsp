@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -46,23 +47,41 @@
     <div class="jelly_side">
       <div class="jelly_side_top">
         <h1 class="jelly_logo"><img src="../images/jellyshop/jellyshop_logo.png" alt=""></h1>
-        <div class="my_jelly">
-          <strong>
-            <img src="../images/main/jelly_icon.png" alt="">
-            My Jelly
-          </strong>
-          <p class="jelly_total">0</p>
-        </div>
-        <div class="jelly_count">
-          <ul>
-            <li>충전젤리<strong>0</strong></li>
-            <li class="plus_jelly">적립젤리<strong>0</strong></li>
-            <li>충전한도<strong>1,500</strong><em>최대 1,500</em></li>
-          </ul>
-        </div>
+        <c:choose>
+    		<c:when test="${not empty sessionScope.session_id}">
+	        <div class="my_jelly">
+	          <strong>
+	            <img src="../images/main/jelly_icon.png" alt="">
+	            My Jelly
+	          </strong>
+	          <p class="jelly_total">${jelly}</p>
+	        </div>
+	        <div class="jelly_count">
+	          <ul>
+	            <li>충전젤리<strong>${jelly}</strong></li>
+	            <li>충전한도<strong><fmt:formatNumber value ="${1500-jelly}"  pattern="#,###"/></strong><em>최대 1,500</em></li>
+	          </ul>
+	        </div>
+	      	</c:when>
+   		  	<c:otherwise>
+   		 	<div class="my_jelly">
+	          <strong>
+	            <img src="../images/main/jelly_icon.png" alt="">
+	            My Jelly
+	          </strong>
+	          <p class="jelly_total">0</p>
+	        </div>
+	        <div class="jelly_count">
+	          <ul>
+	            <li>충전젤리<strong>0</strong></li>
+	            <li>충전한도<strong><fmt:formatNumber value ="1500"  pattern="#,###"/></strong><em>최대 1,500</em></li>
+	          </ul>
+	        </div>
+   		  </c:otherwise>
+		</c:choose>
       </div>
       <div class="jelly_side_footer">
-        <img src="../images/jellyshop/jellyshop_side_footer.png" alt="">
+        <a href="/"><img src="../images/jellyshop/jellyshop_side_footer.png" alt=""></a>
       </div>
     </div>
     <div class="jelly_content">

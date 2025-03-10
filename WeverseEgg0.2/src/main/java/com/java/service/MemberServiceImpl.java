@@ -28,7 +28,7 @@ public class MemberServiceImpl implements MemberService {
 
 	    return MemberDto.Email(memberEntity); // 존재하는 경우 DTO로 변환하여 반환
 	}
-
+	
 
 	@Override // 회원가입
 	public boolean createAccount(String email, String pw, String nickname) {
@@ -84,6 +84,19 @@ public class MemberServiceImpl implements MemberService {
         // DTO 변환 후 반환(이메일, 닉네임만)
         return MemberDto.kakaojoin(member);
     }
+
+
+	@Override // 젤리샵에서 정보 가져오기
+	public int getByJelly(int id) {
+		MemberEntity member = memberRepository.findById(id)
+				.orElse(null);
+		MemberDto.jelly(member);
+		int jelly = member.getJelly();
+		return jelly;
+	}
+
+
+	
 
 
 
