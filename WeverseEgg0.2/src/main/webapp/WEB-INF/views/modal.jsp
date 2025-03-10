@@ -58,7 +58,6 @@
 			<div class="game_main">
 			
 				<div class = 'info_area'>
-	    		<c:forEach items="${list }" var="cdto">
 					<div id="bars">
 						<img id="hpBar" src="/images/egg_info/hpBar_full.png">
 		    		<img id="fatigueBar" src="/images/egg_info/fatigueBar_full.png">
@@ -69,13 +68,13 @@
 		    		</div>
 		    		<div id="coinBar" class="gap">
 		    			<img id="coin" src="/images/egg_info/coinIcon.png">
-		    			<p id="My_Coin">${cdto.coin}</p>
+		    			<p id="My_Coin">10000000</p>
 		    			<img id="plus" src="/images/egg_info/plusIcon.png">
 		    		</div>
 					</div>
 	    		<div id="character_info">
 	    			<div id="character_nickname">캐릭터닉네임</div>
-	    			<div id="character_type">${cdto.nickName}</div>
+	    			<div id="character_type">카리나</div>
 	    			<div id="stat_hidden">
 	    				<div id="stat_hidden_level">
 	    					<p>LV.</p>
@@ -120,7 +119,6 @@
 	    				</div>
 	    			</div>
 	    		</div>
-	    		</c:forEach>
 				</div>
 				
 				<!-- 방꾸미기 -->
