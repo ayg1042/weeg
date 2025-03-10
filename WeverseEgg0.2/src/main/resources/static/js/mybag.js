@@ -44,9 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const allCancel = document.querySelector('.all-cancel');
   if (allCancel) {
     allCancel.addEventListener('click', function () {
-      document.querySelectorAll('.shop-item-show').forEach(item => {
-        item.style.display = 'block';
-      });
+		if(confirm('모두 해제 하시겠씁니까?')){			
+			for (let item of selectedHats) {
+			    item.itemId = '';
+			}
+		}
     });
   }
 });
@@ -239,6 +241,33 @@ selectedHats.push({ typeName: 'frame', itemId: `${frame_id}` });
 	}
  })
  
+ $(document).on('click', '.ues-item', function(){
+	if(confirm('아이템을 사용합니다.')){
+		
+		const useId = $(this).closest('.shop-item-show');
+		var test = useId.attr('id');
+		var testList = test.split('_');
+		var invenItem = testList[1];
+		var itemId = testList[2];
+		console.log('인벤 아이디 : ' + invenItem);
+		console.log('사용 아이템 아이디 : ' + itemId);
+		
+		$.ajax({
+			url:"/itemUse",
+			type:"post",
+			data:{"invenId": invenItem, "itemId":itemId},
+			//dataType: 'json',
+			//contentType: 'application/json; charset=utf-8',
+			success:function(data){
+				alert("적용 되었습니다.");
+				//location.href="/modal"
+			},
+				error:function(){
+				alert("실패");
+			}
+		})
+	}
+ })
 
  
  

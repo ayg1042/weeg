@@ -2,6 +2,8 @@ package com.java.dto.group;
 
 import java.util.List;
 
+import com.java.entity.group.GroupEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

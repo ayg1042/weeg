@@ -147,6 +147,8 @@ public class FController {
 		
 		// 케릭터 결제로직
 		
+		// 결제
+		
 		InvenDto Inven = new InvenDto();
 		ItemDto item = new ItemDto();
 		item.setItemId(Integer.parseInt(itemId));
@@ -177,6 +179,16 @@ public class FController {
         }
 		return "1";
 	}
+	
+	@Transactional
+	@ResponseBody
+	@PostMapping("/itemUse")
+	public String itemUse(String invenId, String itemId) {
+		System.out.println("인벤 아이디 = " + invenId + ", 아이템 아이디 = " + itemId);
+		// 사용 로직
+		return "1";
+	}
+	
 	
 	@GetMapping("/rank") // 랭킹 페이지
 	public String rank() {
