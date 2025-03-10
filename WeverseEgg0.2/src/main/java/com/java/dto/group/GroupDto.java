@@ -27,7 +27,7 @@ public class GroupDto {
 
     /** 멤버 수 - 그룹에 속한 멤버의 수 */
     private int memberCount;
-    
+
     /** 그룹에 속한 예명들 */
     private List<ArtistNameDto> artistNames;  // 리스트로 예명 정보 추가
     

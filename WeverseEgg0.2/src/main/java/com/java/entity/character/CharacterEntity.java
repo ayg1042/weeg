@@ -3,6 +3,7 @@ package com.java.entity.character;
 import com.java.entity.member.MemberEntity;
 import com.java.entity.character.InvenEntity;
 import com.java.entity.character.StyleEntity;
+import com.java.dto.character.CharacterDto;
 import com.java.entity.character.ArtistEntity;
 
 import jakarta.persistence.*;
@@ -95,4 +96,11 @@ public class CharacterEntity {
     /** 표정 */
     @Column(length = 50)
     private String expression;
+    
+    public static CharacterEntity From(CharacterDto dto) {
+    	CharacterEntity entity = new CharacterEntity();
+    	entity.setCharacterId(dto.getCharacter_id());
+    	return entity;
+    }
+    
 }

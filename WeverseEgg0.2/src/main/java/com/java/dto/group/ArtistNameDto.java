@@ -23,7 +23,7 @@ public class ArtistNameDto {
     /** 아티스트가 속한 그룹 정보 (GroupDto) */
     private GroupDto group; // GroupDto 추가
     
-	/** 아티스트의 활동명 (예명) */
+    /** 아티스트의 활동명 (예명) */
     private String artistName;
     
     // 정적 팩토리 메서드 추가

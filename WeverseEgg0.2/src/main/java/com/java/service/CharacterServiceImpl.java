@@ -52,6 +52,13 @@ public class CharacterServiceImpl implements CharacterService {
 		characterRepository.save(character);
 		
 	}
+	
+	@Override
+	public CharacterDto getCharacterByCharacterId(int characterId) {
+		CharacterEntity entity = characterRepository.getById(characterId);
+		CharacterDto dto = CharacterDto.from(entity);
+		return dto;
+	}
 
 	// 임시_ 로그인한 유저의 캐릭터 테이블 가져오기
 	@Override

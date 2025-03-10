@@ -113,4 +113,11 @@ public class CharacterDto {
     }
     
     
+    public static CharacterDto From(CharacterEntity entity) {
+    	CharacterDto dto = new CharacterDto();
+    	dto.setCharacter_id(entity.getCharacterId());
+    	dto.setCoin(entity.getCoin());
+    	return dto;
+    }
+    
 }

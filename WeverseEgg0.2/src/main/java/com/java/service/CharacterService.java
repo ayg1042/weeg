@@ -15,6 +15,8 @@ public interface CharacterService {
 
 	// 캐릭터 생성, 닉네임 저장
 	void save(CharacterEntity character);
+	
+	CharacterDto getCharacterByCharacterId(int characterId);
 
 	// 임시_ 로그인한 유저의 캐릭터 테이블 가져오기
 	CharacterDto unit(int i);

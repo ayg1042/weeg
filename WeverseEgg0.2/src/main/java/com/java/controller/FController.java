@@ -1,20 +1,35 @@
 package com.java.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.java.dto.character.CharacterDto;
+import com.java.dto.character.InvenDto;
+import com.java.dto.character.SaveStyleDto;
+import com.java.dto.character.StyleDto;
 import com.java.dto.item.ItemDto;
+import com.java.entity.character.StyleEntity;
 import com.java.service.ModalService;
+
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
 public class FController {
 	
 	@Autowired ModalService modalServiceImpl;
+	@Autowired HttpSession session;
 	
 	@GetMapping("/index") //테스트 페이지
 	public String index() {
@@ -56,14 +71,6 @@ public class FController {
 		return "weNoticeView";
 	}
 	
-	/*
-	 * @GetMapping("/modal") public String modal(Model model) {
-	 * 
-	 * List<ItemDto> items = modalServiceImpl.getAllItems();
-	 * System.out.println(items); model.addAttribute("shopList",items);
-	 * 
-	 * return "modal"; }
-	 */
 	
 	@GetMapping("/rank") // 랭킹 페이지
 	public String rank() {

@@ -23,8 +23,21 @@
 	      	  
 	      	  // 넘어오는지 확인
 	      	  console.log("character_id : ", sessionStorage.getItem("character_id"));
-						
-	      	  location.href = "/modal";
+	      	  
+		      	$.ajax({
+		      	    url: "/selectCharacter",
+		      	    type: "POST",
+		      	    data: { "character_id": sessionStorage.getItem("character_id") },  // 데이터 전송
+		      	    success: function(response) {
+		      	    	alert("test");
+		      	      	location.href="/modal";
+		      	    },
+		      	    error: function() {
+		      	        console.log("에러 발생");
+		      	    }
+		      	});
+	
+	      	  
 	        }
 	    } else {
 	        // list가 null일 경우 
