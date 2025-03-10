@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 
@@ -94,7 +94,7 @@
 					</div>
 					<div id="coinBar" class="gap">
 						<img id="coin" src="/images/egg_info/coinIcon.png">
-						<p id="My_Coin">99999999</p>
+						<p id="My_Coin"><fmt:formatNumber value="${userCoin}" pattern="#,###" /></p>
 						<img id="plus" src="/images/egg_info/plusIcon.png">
 					</div>
 				</div>
@@ -1006,11 +1006,13 @@
 				<div id="quest_layout">
 					<ul class="quest-title">
 						<li class="today_quest"><a>일일 퀘스트</a></li>
-						<li><a>주간 퀘스트</a></li>
+						<li><a>이벤트 퀘스트</a></li>
 					</ul>
 					<ul class="quest-list">
 						<!-- 반복 -->
 						<c:forEach items="${list}" var="qdto">
+						<!-- questId가 5부터 8 사이인 경우만 표시 -->
+						<c:if test="${qdto.questId >= 1 && qdto.questId <= 4}">
 							<!-- progressMap에서 현재 퀘스트의 진행 정보를 가져옴 -->
 							<c:set var="progressInfo" value="${progressMap[qdto.questId]}" />
 							<c:set var="isRewarded"
@@ -1059,11 +1061,68 @@
 									</div>
 								</div>
 							</li>
+						</c:if>
 						</c:forEach>
-
 						<!-- 반복 끝 -->
-						<!-- 보상받기 -->
-						<!-- 
+					</ul>
+
+					<!-- 이벤트 퀘스트 -->
+					<ul class="quest-list" id="event">
+						<!-- 반복 -->
+						<c:forEach items="${list}" var="qdto">
+							<!-- questId가 5부터 8 사이인 경우만 표시 -->
+							<c:if test="${qdto.questId >= 5 && qdto.questId <= 8}">
+								<!-- progressMap에서 현재 퀘스트의 진행 정보를 가져옴 -->
+								<c:set var="progressInfo" value="${progressMap[qdto.questId]}" />
+								<c:set var="isRewarded"
+									value="${rewardedMap[qdto.questId] != null ? rewardedMap[qdto.questId] : 0}" />
+
+								<!-- 퀘스트마다 필요한 총 수행 횟수 설정 -->
+								<c:choose>
+									<c:when test="${qdto.questId == 5 || qdto.questId == 6}">
+										<c:set var="required" value="1" />
+									</c:when>
+									<c:when test="${qdto.questId == 7 || qdto.questId == 8}">
+										<c:set var="required" value="20" />
+									</c:when>
+									<c:otherwise>
+										<c:set var="required" value="10" />
+									</c:otherwise>
+								</c:choose>
+
+								<!-- progressInfo가 존재하면 progress 문자열에서 '%' 제거 후 숫자로 변환 -->
+								<c:set var="progressPercentage"
+									value="${progressInfo != null ? fn:replace(progressInfo.progress, '%', '') : 0}" />
+								<!-- current 수행 횟수 계산: (progressPercentage/100) * required -->
+								<c:set var="currentValue"
+									value="${(progressPercentage / 100) * required}" />
+
+								<li data-quest-id="${qdto.questId}" data-required="${required}"
+									class="${isRewarded == 1 ? 'completed' : ''}"
+									class="${progressInfo != null && progressInfo.isCompleted == 1 ? 'completed' : ''}">
+									<div class="quest_content">
+										<div class="quest_content_ticket">
+											<img src="images/modal/eventicket.png" alt=""><span>X 1</span>
+										</div>
+										<div class="quest_content_title">
+											<div class="quest_content_titsub">${qdto.title}</div>
+											<div class="quest_content_tit">${qdto.content}</div>
+										</div>
+										<div class="quest_content_rate">
+											<!-- 산술 계산 결과를 정수로 출력 -->
+											<span> <fmt:formatNumber value="${currentValue}"
+													maxFractionDigits="0" /> / ${required}
+											</span>
+										</div>
+									</div>
+								</li>
+							</c:if>
+						</c:forEach>
+					</ul>
+
+
+					<!-- 보상받기 -->
+					<!-- 
 							<li>
 								<div class="quest_content">
 									<div class="quest_content_coin">
@@ -1079,97 +1138,112 @@
 									</div>
 								</div>
 							</li>
-							-->
+						 -->
 
-						<script>
-									var rewardedMap = ${ rewardedMapJson };
-									console.log("rewardedMap", rewardedMap);
-									// 모든 .quest_content_rate 요소에 대해 반복
-									document.querySelectorAll(".quest_content_rate").forEach(function (element) {
-										let statusText = element.querySelector("span").innerText.trim();
-										console.log("현재 상태 텍스트: ", statusText); // 상태 텍스트 확인용
+					<script>
+						
+							$(document).ready(function () {
+								$("#event li").hide();
+							    $(".quest-title li").click(function () {
+							        // 모든 탭에서 활성 클래스 제거
+							        $(".quest-title li").removeClass("active");
+							        // 현재 클릭된 탭에 활성 클래스 추가
+							        $(this).addClass("active");
+	
+							        // 클릭된 탭이 "일일 퀘스트"인지 "주간 퀘스트"인지 확인
+							        if ($(this).hasClass("today_quest")) {
+							            $(".quest-list li").show(); // 기존 퀘스트 목록 표시
+							            $("#event li").hide();
+							        } else {
+							            $(".quest-list li").hide(); // 기존 퀘스트 목록 숨김
+							            $("#event li").show();
+							        }
+							    });
+							});
+						
+							var rewardedMap = ${ rewardedMapJson };
+							console.log("rewardedMap", rewardedMap);
+							// 모든 .quest_content_rate 요소에 대해 반복
+							document.querySelectorAll(".quest_content_rate").forEach(function (element) {
+								let statusText = element.querySelector("span").innerText.trim();
+								console.log("현재 상태 텍스트: ", statusText); // 상태 텍스트 확인용
 
-										// questId를 data-quest-id에서 가져오기
-										let questId = parseInt(element.closest("li").dataset.questId);
-										console.log("questId: ", questId); // 퀘스트 아이디 확인용
+								// questId를 data-quest-id에서 가져오기
+								let questId = parseInt(element.closest("li").dataset.questId);
+								console.log("questId: ", questId); // 퀘스트 아이디 확인용
 
-										// rewardedMap에서 questId에 해당하는 보상 상태 확인
-										if (rewardedMap[questId] === 1) {
-											// 보상 완료 상태
-											element.querySelector("span").innerText = "받기완료";
-											element.classList.add("reward"); // "받기완료" 상태 CSS 적용
-										} else {
-											// 보상받기 상태 (rewardedMap에 questId가 없거나, 값이 1이 아니면 "보상받기")
-											//element.querySelector("span").innerText = "보상받기";
-											//element.classList.remove("clear"); // "보상받기" 상태 CSS 제거
+								// rewardedMap에서 questId에 해당하는 보상 상태 확인
+								if (rewardedMap[questId] === 1) {
+									// 보상 완료 상태
+									element.querySelector("span").innerText = "받기완료";
+									element.classList.add("reward"); // "받기완료" 상태 CSS 적용
+								} else {
+									// 보상받기 상태 (rewardedMap에 questId가 없거나, 값이 1이 아니면 "보상받기")
+									//element.querySelector("span").innerText = "보상받기";
+									//element.classList.remove("clear"); // "보상받기" 상태 CSS 제거
 
-											// 진행 상태를 확인하여 "보상받기"로 변경
-											if (!rewardedMap[questId]) {
-												// rewardedMap에 questId가 없다면 진행 상태를 확인하여 "보상받기"로 변경
-												if (statusText.includes("/")) {
-													let [current, total] = statusText.split(" / ").map(Number);
-													console.log("현재: ", current, "전체: ", total); // 값 확인용
+									// 진행 상태를 확인하여 "보상받기"로 변경
+									if (!rewardedMap[questId]) {
+										// rewardedMap에 questId가 없다면 진행 상태를 확인하여 "보상받기"로 변경
+										if (statusText.includes("/")) {
+											let [current, total] = statusText.split(" / ").map(Number);
+											console.log("현재: ", current, "전체: ", total); // 값 확인용
 
-													if (current >= total) {
-														// 진행이 완료되었고 보상이 아직 주어지지 않은 경우
-														element.querySelector("span").innerText = "보상받기";
-														element.classList.add("clear"); // "보상받기" 상태 CSS 적용
-													}
-												}
+											if (current >= total) {
+												// 진행이 완료되었고 보상이 아직 주어지지 않은 경우
+												element.querySelector("span").innerText = "보상받기";
+												element.classList.add("clear"); // "보상받기" 상태 CSS 적용
 											}
 										}
+									}
+								}
 
-										// "보상받기" 클릭 시 "받기완료"로 변경
-										element.addEventListener("click", function () {
-											let questId = this.closest("li").dataset.questId;
-											console.log("퀘스트 아이디 : " + questId); // 퀘스트 아이디 확인용
+								// "보상받기" 클릭 시 "받기완료"로 변경
+								element.addEventListener("click", function () {
+									let questId = this.closest("li").dataset.questId;
+									console.log("퀘스트 아이디 : " + questId); // 퀘스트 아이디 확인용
 
-											if (this.querySelector("span").innerText === "보상받기") {
-												fetch("/modal/reward?questId=" + questId, {
-													method: "POST"
-												})
-													.then(response => response.json())
-													.then(data => {
-														console.log("응답 데이터: ", data); // 응답 데이터 확인용
-														if (data.success) {
-															// 보상 지급 성공 시 상태 변경
-															this.querySelector("span").innerText = "받기완료";
-															this.classList.remove("clear"); // "보상받기" 클래스 제거
-															this.classList.add("reward"); // "받기완료" 상태 CSS 적용
+									if (this.querySelector("span").innerText === "보상받기") {
+										fetch("/modal/reward?questId=" + questId, {
+											method: "POST"
+										})
+											.then(response => response.json())
+											.then(data => {
+												console.log("응답 데이터: ", data); // 응답 데이터 확인용
+												if (data.success) {
+													// 보상 지급 성공 시 상태 변경
+													this.querySelector("span").innerText = "받기완료";
+													this.classList.remove("clear"); // "보상받기" 클래스 제거
+													this.classList.add("reward"); // "받기완료" 상태 CSS 적용
 
-															// 코인 추가하기
-															const char = data.newCoin;
+													// 코인 추가하기
+													const char = data.newCoin;
 
-															// .quest_content_coin의 span 요소 선택
-															const coinSpan = document.querySelector('#My_Coin_q');
+													// .quest_content_coin의 span 요소 선택
+													const coinSpan = document.querySelector('#My_Coin_q');
 
-															// 기존 코인 값 가져오기 (숫자만 추출)
-															let currentCoin = parseInt(coinSpan.textContent.replace(/\D/g, ''), 10);
-															if (isNaN(currentCoin)) currentCoin = 0;  // 만약 숫자가 아닌 값이 들어갔으면 0으로 초기화
+													// 기존 코인 값 가져오기 (숫자만 추출)
+													let currentCoin = parseInt(coinSpan.textContent.replace(/\D/g, ''), 10);
+													if (isNaN(currentCoin)) currentCoin = 0;  // 만약 숫자가 아닌 값이 들어갔으면 0으로 초기화
 
-															// 새로운 코인 값 계산 후 업데이트
-															const newCoin = char;
-															coinSpan.textContent = newCoin.toLocaleString();  // 숫자 형식으로 표시
+													// 새로운 코인 값 계산 후 업데이트
+													const newCoin = char;
+													coinSpan.textContent = newCoin.toLocaleString();  // 숫자 형식으로 표시
 
-															// 알림 메시지 출력
-															alert("추가할 코인 개수: " + char);
-															alert(data.message + " 현재 코인: " + newCoin);
-														} else {
-															alert("보상 받기 실패: " + data.message);
-														}
-													})
-													.catch(error => console.error("보상 지급 요청 실패:", error));
-											}
-										});
+													// 알림 메시지 출력
+													alert("추가할 코인 개수: " + char);
+													alert(data.message + " 현재 코인: " + newCoin);
+												} else {
+													alert("보상 받기 실패: " + data.message);
+												}
+											})
+											.catch(error => console.error("보상 지급 요청 실패:", error));
+										}
 									});
+								});
 
+						</script>
 
-
-								</script>
-
-
-
-					</ul>
 				</div>
 
 			</div>
@@ -1189,7 +1263,9 @@
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="images/modal/coinIcon.png">
-					<p id="My_Coin">99999999</p>
+					<p id="My_Coin_q">
+						<fmt:formatNumber value="${userCoin}" pattern="#,###" />
+					</p>
 					<img id="plus" src="images/modal/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>

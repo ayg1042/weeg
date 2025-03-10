@@ -20,7 +20,7 @@ public interface QuestHistoryRepository extends JpaRepository<QuestHistoryEntity
  // 보상을 받은(isRewarded=1) 퀘스트 히스토리 삭제
     @Transactional
     @Modifying
-    @Query("DELETE FROM QuestHistoryEntity qh WHERE qh.isRewarded = 1")
+    @Query("DELETE FROM QuestHistoryEntity qh WHERE qh.isRewarded = 1 AND qh.quest.questId BETWEEN 1 AND 4")
 	int deleteAllByIsRewarded(int i);
 
 

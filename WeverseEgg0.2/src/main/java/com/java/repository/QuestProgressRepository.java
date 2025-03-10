@@ -16,7 +16,7 @@ public interface QuestProgressRepository extends JpaRepository<QuestProgressEnti
 	// 퀘스트 진행 상태 초기화 (isCompleted=0, progress='0%')
     @Transactional
     @Modifying
-    @Query("UPDATE QuestProgressEntity qp SET qp.isCompleted = 0, qp.progress = '0%'")
+    @Query("UPDATE QuestProgressEntity qp SET qp.isCompleted = 0, qp.progress = '0%' WHERE qp.quest.questId BETWEEN 1 AND 4")
 	int resetDailyQuestProgress();
 
 

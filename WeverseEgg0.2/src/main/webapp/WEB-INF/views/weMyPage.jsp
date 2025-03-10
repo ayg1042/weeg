@@ -33,8 +33,8 @@
   <div id="myPage_navi">
     <div id="left_navi">
       <div class="MyJellyContent">
-        <a class="MyJellyPoint" href="#">0</a>
-        <a class="MyJellyCharge" href="#">충전</a>
+        <a class="MyJellyPoint" href="/jellyshop">0</a>
+        <a class="MyJellyCharge" href="/jellyshop">충전</a>
       </div>
       <a class="MyShopView" href="#">샵 주문 내역</a>
 
@@ -56,7 +56,7 @@
           <a href="#" class="LinkItem">
             <div class="Img_W"><img src="../images/WeMyPage/WeBTS.png" class="WeMagazine"></div>
             BTS Island: In the SEOM
-            <a href="#" class="LinkItem">
+            <a href="/eggmain" class="LinkItem">
               <div class="Img_W"><img src="../images/WeMyPage/egg_icon.png" class="WeMagazine"></div>
               Weverse Egg
             </a>

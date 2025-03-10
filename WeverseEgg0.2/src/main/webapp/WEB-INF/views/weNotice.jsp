@@ -30,7 +30,6 @@
           <li><a href="/wenotice">공지사항</a></li>
           <li><a href="#">업데이트</a></li>
           <li><a href="#">이벤트</a></li>
-          <li><a href="#">업데이트</a></li>
         </ul>
         <ul>
           <li id="option_title">가이드</li>

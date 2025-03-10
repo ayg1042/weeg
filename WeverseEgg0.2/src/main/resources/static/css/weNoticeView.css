@@ -100,11 +100,8 @@ tr {
   text-align: center;
 }
 
-button {
-  margin: 20px;
-}
-
 .btnArea button {
+  margin: 20px;
   width: 130px;
   height: 40px;
   color: #000;

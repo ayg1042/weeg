@@ -23,7 +23,6 @@ button {
 #header{
 	height: 80px;
 	background : #eee;
-	text-align: center;
 	font-size: 40px;
 }
 .info_area{
@@ -508,10 +507,14 @@ a {
 }
 
 .quest-list{
-	width: 750px;
+	/*width: 750px;*/
 	height: 100%;
 	padding-left: 13px;
 	margin: 0;
+}
+
+#event.quest-list {
+	padding: 0;
 }
 
 .quest-list li {
@@ -545,6 +548,25 @@ a {
 	width: 42px;
 	height: 42px;
 	display: block;
+}
+
+.quest_content_ticket{
+	display: flex;
+	align-items: center;
+}
+
+
+.quest_content_ticket img{
+	margin-left: 15px;
+	width: 90px;
+	height: 90px;
+	display: block;
+}
+
+.quest_content_ticket span{
+	font-size: 20px;
+	color: #7F5AFF;
+	
 }
 
 .quest_content_coin span{
