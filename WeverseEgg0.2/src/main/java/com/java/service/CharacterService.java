@@ -14,6 +14,8 @@ public interface CharacterService {
 	// 캐릭터 생성, 닉네임 저장
 	void save(CharacterEntity character);
 
+	CharacterDto getCharacterByCharacterId(int characterId);
+
 
 
 

@@ -38,6 +38,12 @@ public class ItemEntity {
     @Column(length = 255)
     private String image;
     
+    public static ItemEntity From(ItemDto dto) {
+    	ItemEntity entity = new ItemEntity();
+    	entity.setItemId(dto.getItemId());
+    	return entity;
+    }
+    
     public static ItemEntity join(ItemDto dto) {
     	ItemEntity entity = new ItemEntity();
 		entity.name = dto.getName();
