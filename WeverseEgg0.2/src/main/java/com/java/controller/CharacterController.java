@@ -43,8 +43,7 @@ public class CharacterController {
         if(list != null) {
         	model.addAttribute("list", list);
 			return "choiceCharacter";
-        }
-        model.addAttribute("list", null);
+        }model.addAttribute("list", null);
         
         return "choiceCharacter";
 	}
@@ -53,7 +52,7 @@ public class CharacterController {
 	public String modal(Model model) {
 		
 		int user_id = (Integer)session.getAttribute("session_userId");
-		// 사용자의 캐릭터 목록 불러오기
+		// 사용자의 캐릭터 불러오기
         List<CharacterDto> list = characterService.getCharactersByUserId(user_id);
         if(list != null) {
         	model.addAttribute("list", list);
