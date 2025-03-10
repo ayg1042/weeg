@@ -110,29 +110,22 @@
 						</c:if>
 		    		<div id="jellyBar">
 		    			<img id="jelly" src="/images/egg_info/jellyIcon.png">
-		    			<p id="My_jelly">${character.member.jelly}</p>
+		    			<p id="My_jelly">
+		    			<fmt:formatNumber value="${character.member.jelly}" pattern="###,###,##0" />
+		    			</p>
 		    			<img id="plus" src="/images/egg_info/plusIcon.png">
 		    		</div>
 		    		<div id="coinBar" class="gap">
 		    			<img id="coin" src="/images/egg_info/coinIcon.png">
-<<<<<<< HEAD
 		    			<p id="My_Coin">
 		    				<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 		    			</p>
-=======
-		    			<p id="My_Coin">${character.coin}</p>
->>>>>>> refs/remotes/origin/master
 		    			<img id="plus" src="/images/egg_info/plusIcon.png">
 		    		</div>
 					</div>
 	    		<div id="character_info">
-<<<<<<< HEAD
 	    			<div id="character_nickname">${chDto.nickName}</div>
 	    			<div id="character_type">${chDto.artist.artistName.artistName}</div>
-=======
-	    			<div id="character_nickname">캐릭터닉네임</div>
-	    			<div id="character_type">${character.nickName}</div>
->>>>>>> refs/remotes/origin/master
 	    			<div id="stat_hidden">
 	    				<div id="stat_hidden_level">
 	    					<p>LV.</p>
@@ -153,50 +146,26 @@
 		    				</div>
 		    				<div>
 		    					<div class="stat_hidden_stats">
-<<<<<<< HEAD
 			    					<div class="stat_hidden_stTitle">${chDto.vocal}</div>
-=======
-			    					<div class="stat_hidden_stTitle">${character.vocal}</div>
->>>>>>> refs/remotes/origin/master
 			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
 		    					</div>
 		    					<div class="stat_hidden_stats">
-<<<<<<< HEAD
 			    					<div class="stat_hidden_stTitle">${chDto.dance}</div>
-=======
-			    					<div class="stat_hidden_stTitle">${character.dance }</div>
->>>>>>> refs/remotes/origin/master
 			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
 		    					</div>
 		    					<div class="stat_hidden_stats">
-<<<<<<< HEAD
 			    					<div class="stat_hidden_stTitle">${chDto.rap}</div>
-=======
-			    					<div class="stat_hidden_stTitle">${character.rap }</div>
->>>>>>> refs/remotes/origin/master
 			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
 		    					</div>
 		    					<div class="stat_hidden_stats">
-<<<<<<< HEAD
 			    					<div class="stat_hidden_stTitle">${chDto.entertainment}</div>
-=======
-			    					<div class="stat_hidden_stTitle">${character.entertainment}</div>
->>>>>>> refs/remotes/origin/master
 			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
 		    					</div>
 		    					<div class="stat_hidden_stats">
-<<<<<<< HEAD
 			    					<div class="stat_hidden_stTitle">${chDto.charm}</div>
-=======
-			    					<div class="stat_hidden_stTitle">${character.charm }</div>
->>>>>>> refs/remotes/origin/master
 			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
 		    					</div>
-<<<<<<< HEAD
 		    					<div class="stat_hidden_stTitle">${chDto.popularity}</div>
-=======
-		    					<div class="stat_hidden_stTitle">${character.popularity}</div>
->>>>>>> refs/remotes/origin/master
 		    				</div>
 	    				</div>
 	    			</div>
@@ -295,7 +264,9 @@
 						</c:if>
 		    		<div id="jellyBar">
 		    			<img id="jelly" src="/images/jellyIcon.png">
-		    			<p id="My_jelly">99999999</p>
+		    			<p id="My_jelly">
+							<fmt:formatNumber value="${character.member.jelly}" pattern="###,###,##0" />
+							</p>
 		    			<img id="plus" src="/images/plusIcon.png">
 		    		</div>
 		    		<div id="coinBar">
@@ -478,7 +449,7 @@
 						</c:if>
 		    		<div id="jellyBar">
 		    			<img id="jelly" src="/images/jellyIcon.png">
-		    			<p id="My_jelly">99999999</p>
+		    			<p id="My_jelly"><fmt:formatNumber value="${character.member.jelly}" pattern="###,###,##0" /></p>
 		    			<img id="plus" src="/images/plusIcon.png">
 		    		</div>
 		    		<div id="coinBar">

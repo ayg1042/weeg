@@ -48,19 +48,18 @@ public class EggMRController {
 		
 		// ======== 트레이닝 ========
 		// 임시_ 로그인한 유저의 캐릭터 캐릭터아이디 1인 테이블 가져오기
-		int i = 1;
-		CharacterDto unitDto = characterService.unit(i);
-		System.out.println("unitDto : "+unitDto);
-		session.setAttribute("session_character", unitDto);
-		System.out.println("session_character 세셔ㅑㄴ : "+session.getAttribute("session_character"));
+//		int g = 1;
+//		CharacterDto unitDto = characterService.unit(g);
+//		System.out.println("unitDto : "+unitDto);
+//		session.setAttribute("session_character", unitDto);
+//		System.out.println("session_character 세셔ㅑㄴ : "+session.getAttribute("session_character"));
 		
 		
 		// 유저가 연습생일때의 "PRACTICE_ID = 1" 연습 가져오기(artist가 null이면 vocalId = 1)
 		// === 세션에서 캐릭터 정보 가져오기 ===
-        CharacterDto character = (CharacterDto) session.getAttribute("session_character");
-        //CharacterDto character = (CharacterDto) session.getAttribute("character");
+//        CharacterDto character = (CharacterDto) session.getAttribute("session_character");
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
         model.addAttribute("chDto", character);
-        
         
         //== 레벨 경험치 체크 ==
         int vocal = character.getVocal();
@@ -91,10 +90,6 @@ public class EggMRController {
         
         System.out.println("================= : "+character);
 		System.out.println("캐릭터 보유 코인 : "+character.getCoin());
-		//CharacterDto seccchchchch = (CharacterDto) session.getAttribute("character_id");
-		//System.out.println("><>>>>>>>>>>>>>>>>>>>>>>>>> : "+seccchchchch);
-		
-		
 		
 		
 //		전체 아이템 리스트
@@ -215,16 +210,13 @@ public class EggMRController {
 	}
 		
 		
-		
-		
-		return "modal";
-	}
+
 	
 	// 보컬트레이닝
 	@PostMapping("/trainSave/vocal")
 	@ResponseBody
 	public String vocalTrainSave(int vocalScore, int health, int fatigue, int price) {
-		CharacterDto character = (CharacterDto) session.getAttribute("session_character");
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		//CharacterDto(character_id=1, style=null, artist=ArtistDto(artistId=1, groupId=GroupDto(groupId=1, artistName=ArtistNameDto(artistNId=1, artistName=윈터), groupName=에스파, gender=여성, memberCount=4), level=1, blueMark=1, debutDate=2020-11-17 00:00:00.0), member=MemberDto(user_id=1, email=aaa@naver.com, pw=1111, nickname=길동스, jelly=0), inven=null, nickName=윙터, gender=여자, coin=100000, health=100, fatigue=0, dance=0, vocal=0, rap=0, entertainment=0, charm=0, popularity=0, rank=0, expression=슬픔)
 		int character_id = character.getCharacter_id();
 		// 보컬연습결과 유저 캐릭터에 저장
@@ -237,7 +229,7 @@ public class EggMRController {
 	@PostMapping("/trainSave/dance")
 	@ResponseBody
 	public String danceTrainSave(int danceScore, int health, int fatigue, int price) {
-		CharacterDto character = (CharacterDto) session.getAttribute("session_character");
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		//CharacterDto(character_id=1, style=null, artist=ArtistDto(artistId=1, groupId=GroupDto(groupId=1, artistName=ArtistNameDto(artistNId=1, artistName=윈터), groupName=에스파, gender=여성, memberCount=4), level=1, blueMark=1, debutDate=2020-11-17 00:00:00.0), member=MemberDto(user_id=1, email=aaa@naver.com, pw=1111, nickname=길동스, jelly=0), inven=null, nickName=윙터, gender=여자, coin=100000, health=100, fatigue=0, dance=0, vocal=0, rap=0, entertainment=0, charm=0, popularity=0, rank=0, expression=슬픔)
 		int character_id = character.getCharacter_id();
 		// 보컬연습결과 유저 캐릭터에 저장
@@ -250,7 +242,7 @@ public class EggMRController {
 	@PostMapping("/trainSave/rap")
 	@ResponseBody
 	public String rapTrainSave(int rapScore, int health, int fatigue, int price) {
-		CharacterDto character = (CharacterDto) session.getAttribute("session_character");
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		//CharacterDto(character_id=1, style=null, artist=ArtistDto(artistId=1, groupId=GroupDto(groupId=1, artistName=ArtistNameDto(artistNId=1, artistName=윈터), groupName=에스파, gender=여성, memberCount=4), level=1, blueMark=1, debutDate=2020-11-17 00:00:00.0), member=MemberDto(user_id=1, email=aaa@naver.com, pw=1111, nickname=길동스, jelly=0), inven=null, nickName=윙터, gender=여자, coin=100000, health=100, fatigue=0, dance=0, vocal=0, rap=0, entertainment=0, charm=0, popularity=0, rank=0, expression=슬픔)
 		int character_id = character.getCharacter_id();
 		// 보컬연습결과 유저 캐릭터에 저장
@@ -263,7 +255,7 @@ public class EggMRController {
 	@PostMapping("/trainSave/ent")
 	@ResponseBody
 	public String entTrainSave(int entScore, int health, int fatigue, int price) {
-		CharacterDto character = (CharacterDto) session.getAttribute("session_character");
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		//CharacterDto(character_id=1, style=null, artist=ArtistDto(artistId=1, groupId=GroupDto(groupId=1, artistName=ArtistNameDto(artistNId=1, artistName=윈터), groupName=에스파, gender=여성, memberCount=4), level=1, blueMark=1, debutDate=2020-11-17 00:00:00.0), member=MemberDto(user_id=1, email=aaa@naver.com, pw=1111, nickname=길동스, jelly=0), inven=null, nickName=윙터, gender=여자, coin=100000, health=100, fatigue=0, dance=0, vocal=0, rap=0, entertainment=0, charm=0, popularity=0, rank=0, expression=슬픔)
 		int character_id = character.getCharacter_id();
 		// 보컬연습결과 유저 캐릭터에 저장
@@ -276,7 +268,7 @@ public class EggMRController {
 	@PostMapping("/actSave/music_actvity")
 	@ResponseBody
 	public String music_actvity(int health, int fatigue, int price) {
-		CharacterDto character = (CharacterDto) session.getAttribute("session_character");
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		int character_id = character.getCharacter_id();
 		// 음악방송출연 결과 유저 캐릭터에 저장
 		characterService.music_actvity_save(character_id,health,fatigue,price);
@@ -287,7 +279,7 @@ public class EggMRController {
 	@PostMapping("/actSave/ent_actvity")
 	@ResponseBody
 	public String ent_actvity(int health, int fatigue, int price) {
-		CharacterDto character = (CharacterDto) session.getAttribute("session_character");
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		int character_id = character.getCharacter_id();
 		// 예능출연 결과 유저 캐릭터에 저장
 		characterService.ent_actvity(character_id,health,fatigue,price);
@@ -298,7 +290,7 @@ public class EggMRController {
 	@PostMapping("/actSave/con_actvity")
 	@ResponseBody
 	public String con_actvity(int health, int fatigue, int price) {
-		CharacterDto character = (CharacterDto) session.getAttribute("session_character");
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		int character_id = character.getCharacter_id();
 		// 콘서트개최 결과 유저 캐릭터에 저장
 		characterService.con_actvity(character_id,health,fatigue,price);
@@ -309,7 +301,7 @@ public class EggMRController {
 	@PostMapping("/actSave/sign_actvity")
 	@ResponseBody
 	public String sign_actvity(int health, int fatigue, int price) {
-		CharacterDto character = (CharacterDto) session.getAttribute("session_character");
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		int character_id = character.getCharacter_id();
 		// 팬사인회 결과 유저 캐릭터에 저장
 		characterService.sign_actvity(character_id,health,fatigue,price);

@@ -120,7 +120,7 @@ public class CharacterServiceImpl implements CharacterService {
 		character.setCoin(character.getCoin()-price);
 		System.out.println(character.getHealth());
 		CharacterDto characterDto = CharacterDto.unit(character);
-		session.setAttribute("session_character", characterDto);
+		session.setAttribute("character", characterDto);
 	}
 	
 	// 댄스 트레이닝 결과 유저 캐릭터에 저장
@@ -133,7 +133,7 @@ public class CharacterServiceImpl implements CharacterService {
 		character.setFatigue(character.getFatigue()+fatigue);
 		character.setCoin(character.getCoin()-price);
 		CharacterDto characterDto = CharacterDto.unit(character);
-		session.setAttribute("session_character", characterDto);
+		session.setAttribute("character", characterDto);
 	}
 
 	// 랩트레이닝 결과 유저 캐릭터에 저장
@@ -146,7 +146,7 @@ public class CharacterServiceImpl implements CharacterService {
 		character.setFatigue(character.getFatigue()+fatigue);
 		character.setCoin(character.getCoin()-price);
 		CharacterDto characterDto = CharacterDto.unit(character);
-		session.setAttribute("session_character", characterDto);		
+		session.setAttribute("character", characterDto);		
 	}
 
 	// 예능트레이닝 결과 유저 캐릭터에 저장
@@ -159,7 +159,7 @@ public class CharacterServiceImpl implements CharacterService {
 		character.setFatigue(character.getFatigue()+fatigue);
 		character.setCoin(character.getCoin()-price);
 		CharacterDto characterDto = CharacterDto.unit(character);
-		session.setAttribute("session_character", characterDto);
+		session.setAttribute("character", characterDto);
 	}
 
 	// 음악방송출연 결과 유저 캐릭터에 저장
@@ -186,7 +186,7 @@ public class CharacterServiceImpl implements CharacterService {
 		character.setCoin(character.getCoin()-price);
 		character.setPopularity(userPop);
 		CharacterDto characterDto = CharacterDto.unit(character);
-		session.setAttribute("session_character", characterDto);
+		session.setAttribute("character", characterDto);
 	}
 
 	// 예능출연 결과 유저 캐릭터에 저장
@@ -213,7 +213,7 @@ public class CharacterServiceImpl implements CharacterService {
 		character.setCoin(character.getCoin()-price);
 		character.setPopularity(userPop);
 		CharacterDto characterDto = CharacterDto.unit(character);
-		session.setAttribute("session_character", characterDto);
+		session.setAttribute("character", characterDto);
 	}
 
 	// 콘서트개최 결과 유저 캐릭터에 저장
@@ -240,7 +240,7 @@ public class CharacterServiceImpl implements CharacterService {
 		character.setCoin(character.getCoin()-price);
 		character.setPopularity(userPop);
 		CharacterDto characterDto = CharacterDto.unit(character);
-		session.setAttribute("session_character", characterDto);
+		session.setAttribute("character", characterDto);
 		
 	}
 
@@ -268,7 +268,7 @@ public class CharacterServiceImpl implements CharacterService {
 		character.setCoin(character.getCoin()-price);
 		character.setPopularity(userPop);
 		CharacterDto characterDto = CharacterDto.unit(character);
-		session.setAttribute("session_character", characterDto);
+		session.setAttribute("character", characterDto);
 	}
 
 
