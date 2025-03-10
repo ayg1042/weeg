@@ -19,7 +19,8 @@
     		let characterId = element.getAttribute("data-character-id");
 	        // list가 null이 아닌 경우
 	        if(confirm("해당 캐릭터로 게임을 시작하시겠습니까?")) {
-	      	  sessionStorage.setItem("character_id", characterId);
+	        	characterId=sessionStorage.setItem("character_id", characterId);
+	      	  
 	      	  // 넘어오는지 확인
 	      	  console.log("character_id : ", sessionStorage.getItem("character_id"));
 	      	  
