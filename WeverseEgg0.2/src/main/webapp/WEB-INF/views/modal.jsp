@@ -58,24 +58,23 @@
 			<div class="game_main">
 			
 				<div class = 'info_area'>
-	    		<c:forEach items="${list }" var="cdto">
 					<div id="bars">
 						<img id="hpBar" src="/images/egg_info/hpBar_full.png">
 		    		<img id="fatigueBar" src="/images/egg_info/fatigueBar_full.png">
 		    		<div id="jellyBar">
 		    			<img id="jelly" src="/images/egg_info/jellyIcon.png">
-		    			<p id="My_jelly">99999999</p>
+		    			<p id="My_jelly">${character.member.jelly}</p>
 		    			<img id="plus" src="/images/egg_info/plusIcon.png">
 		    		</div>
 		    		<div id="coinBar" class="gap">
 		    			<img id="coin" src="/images/egg_info/coinIcon.png">
-		    			<p id="My_Coin">${cdto.coin}</p>
+		    			<p id="My_Coin">${character.coin}</p>
 		    			<img id="plus" src="/images/egg_info/plusIcon.png">
 		    		</div>
 					</div>
 	    		<div id="character_info">
 	    			<div id="character_nickname">캐릭터닉네임</div>
-	    			<div id="character_type">${cdto.nickName}</div>
+	    			<div id="character_type">${character.nickName}</div>
 	    			<div id="stat_hidden">
 	    				<div id="stat_hidden_level">
 	    					<p>LV.</p>
@@ -96,31 +95,30 @@
 		    				</div>
 		    				<div>
 		    					<div class="stat_hidden_stats">
-			    					<div class="stat_hidden_stTitle">9</div>
+			    					<div class="stat_hidden_stTitle">${character.vocal}</div>
 			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
 		    					</div>
 		    					<div class="stat_hidden_stats">
-			    					<div class="stat_hidden_stTitle">999</div>
+			    					<div class="stat_hidden_stTitle">${character.dance }</div>
 			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
 		    					</div>
 		    					<div class="stat_hidden_stats">
-			    					<div class="stat_hidden_stTitle">999</div>
+			    					<div class="stat_hidden_stTitle">${character.rap }</div>
 			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
 		    					</div>
 		    					<div class="stat_hidden_stats">
-			    					<div class="stat_hidden_stTitle">999</div>
+			    					<div class="stat_hidden_stTitle">${character.entertainment}</div>
 			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
 		    					</div>
 		    					<div class="stat_hidden_stats">
-			    					<div class="stat_hidden_stTitle">999</div>
+			    					<div class="stat_hidden_stTitle">${character.charm }</div>
 			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
 		    					</div>
-		    					<div class="stat_hidden_stTitle">999,999</div>
+		    					<div class="stat_hidden_stTitle">${character.popularity}</div>
 		    				</div>
 	    				</div>
 	    			</div>
 	    		</div>
-	    		</c:forEach>
 				</div>
 				
 				<!-- 방꾸미기 -->

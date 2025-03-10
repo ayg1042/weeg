@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.dto.character.CharacterDto;
@@ -28,6 +29,7 @@ import jakarta.servlet.http.HttpSession;
 public class FController {
 	
 	@Autowired ModalService modalServiceImpl;
+	@Autowired HttpSession session;
 	
 	@GetMapping("/index") //테스트 페이지
 	public String index() {
@@ -71,8 +73,7 @@ public class FController {
 	
 	@GetMapping("/modal")
 	public String modal(Model model) {
-		CharacterDto test = new CharacterDto();
-		test.setCharacter_id(1);
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		
 //		전체 아이템 리스트
 		List<ItemDto> items = modalServiceImpl.getAllItems();
@@ -80,7 +81,7 @@ public class FController {
 		
 		// 캐릭터 스타일
 		
-		List<StyleDto> style = modalServiceImpl.getAllStyle(test.getCharacter_id());
+		List<StyleDto> style = modalServiceImpl.getAllStyle(character.getCharacter_id());
 		if(style == null) {
 			model.addAttribute("styleList", 0);
 		}else {			
@@ -132,8 +133,9 @@ public class FController {
 		
 		
 		// 케릭터 인벤토리
-		List<InvenDto> Inven = modalServiceImpl.getCharacterInven(test.getCharacter_id());
+		List<InvenDto> Inven = modalServiceImpl.getCharacterInven(character.getCharacter_id());
 		model.addAttribute("invenList", Inven);
+		model.addAttribute("character", character);
 		
 		return "modal";
 	}
@@ -142,8 +144,7 @@ public class FController {
 	@PostMapping("/buyItem") //회원정보수정 저장
 	public String memDelete(String itemId) {
 		// 세션에서 가져올꺼임
-		CharacterDto test = new CharacterDto();
-		test.setCharacter_id(1);
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		
 		// 케릭터 결제로직
 		
@@ -152,7 +153,7 @@ public class FController {
 		InvenDto Inven = new InvenDto();
 		ItemDto item = new ItemDto();
 		item.setItemId(Integer.parseInt(itemId));
-		Inven.setCharacterId(test);
+		Inven.setCharacterId(character);
 		Inven.setItemId(item);
 		modalServiceImpl.buyItem(Inven);
 		
@@ -163,15 +164,15 @@ public class FController {
 	@ResponseBody
 	@PostMapping("/styleSave")
 	public String styleSave(@RequestBody ArrayList<SaveStyleDto> styleList) {
-		CharacterDto test = new CharacterDto();
-		test.setCharacter_id(1);
-		modalServiceImpl.deleteStyleByUserId(test.getCharacter_id());
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
+		
+		modalServiceImpl.deleteStyleByUserId(character.getCharacter_id());
 		for (SaveStyleDto item : styleList) {
 			if(item.getItemId() != "") {
 				StyleDto dto = new StyleDto();
 				ItemDto iDto = new ItemDto();
 				iDto.setItemId(Integer.parseInt(item.getItemId()));
-				dto.setCharacter(test);
+				dto.setCharacter(character);
 				dto.setItem(iDto);
 				modalServiceImpl.styleSave(dto);
 			}
@@ -184,6 +185,8 @@ public class FController {
 	@ResponseBody
 	@PostMapping("/itemUse")
 	public String itemUse(String invenId, String itemId) {
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
+		
 		System.out.println("인벤 아이디 = " + invenId + ", 아이템 아이디 = " + itemId);
 		// 사용 로직
 		return "1";
