@@ -19,7 +19,7 @@ public interface CharacterService {
 	CharacterDto unit(int i);
 
 	// 유저가 연습생일때의 트래이닝 가져오기(artist가 윈터이면 PracticeId = 1)
-	Map<String, Object> getPracticeIfArtistIsWinter(CharacterDto character);
+	Map<String, Object> getPracticeIfArtistIsBasic(CharacterDto character);
 
 	// 보컬트레이닝 결과 유저 캐릭터에 저장
 	void vocalTrainSave(int vocalScore, int health, int fatigue, int price, int character_id);

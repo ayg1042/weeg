@@ -63,14 +63,14 @@ public class CharacterServiceImpl implements CharacterService {
 
 	// 유저가 연습생일때의 트래이닝 가져오기(artist가 윈터이면 PracticeId = 1)
 	@Override
-	public Map<String, Object> getPracticeIfArtistIsWinter(CharacterDto character) {
+	public Map<String, Object> getPracticeIfArtistIsBasic(CharacterDto character) {
 		
 		// 세션에 저장된 캐릭터 정보가 없으면 빈 맵 반환
-		if (character == null || character.getArtist().getGroupId().getArtistName().getArtistName() == null) {
+		if (character == null || character.getArtist().getArtistName().getArtistName() == null) {
 			return new HashMap<>(); 
 		}
         // ArtistName이 "윈터(연습생)"인지 확인
-        if ("윈터".equals(character.getArtist().getGroupId().getArtistName().getArtistName())) {
+        if ("연습생".equals(character.getArtist().getArtistName().getArtistName())) {
             Map<String, Object> basicPracticeMap = new HashMap<>();
             
             // PRACTICE_ID = 1인 보컬, 댄스, 랩, 예능 연습 데이터 가져오기

@@ -65,10 +65,9 @@ public class EggMRController {
         int ent = character.getEntertainment();
         int[] lvResult = LvCalc.lvCalc(vocal, dance, ent, rap);
         model.addAttribute("lvChk", lvResult);
-
         // === artist가 "윈터"인지 확인 후 연습 데이터 가져오기 ===
-        if (character.getArtist().getGroupId().getArtistName().getArtistName() != null && "윈터".equals(character.getArtist().getGroupId().getArtistName().getArtistName())) {
-            Map<String, Object> practiceData = characterService.getPracticeIfArtistIsWinter(character);
+        if (character.getArtist().getArtistName().getArtistName() != null && "연습생".equals(character.getArtist().getArtistName().getArtistName())) {
+            Map<String, Object> practiceData = characterService.getPracticeIfArtistIsBasic(character);
             // 보컬
             VocalPracticeDto vocalBasic = (VocalPracticeDto) practiceData.get("vocalDto");
             DancePracticeDto danceBasic = (DancePracticeDto) practiceData.get("danceDto");

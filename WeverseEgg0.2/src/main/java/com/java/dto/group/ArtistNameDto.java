@@ -36,12 +36,11 @@ public class ArtistNameDto {
     }
     
     
-    public static ArtistNameDto info(List<ArtistNameEntity> list) {
+    public static ArtistNameDto info(ArtistNameEntity artistNameEntity) {
     	ArtistNameDto artistNameDto = new ArtistNameDto();
-    	for (int i = 0; i < list.size(); i++) {
-    		artistNameDto.setArtistNId(list.get(i).getArtistNId());
-			artistNameDto.setArtistName(list.get(i).getArtistName());
-		}
+    	artistNameDto.setArtistNId(artistNameEntity.getArtistNId());
+    	artistNameDto.setArtistName(artistNameEntity.getArtistName());
+    	artistNameDto.setGroup(GroupDto.info(artistNameEntity.getGroup()));
     	
     	return artistNameDto;
     }

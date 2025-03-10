@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-=======
->>>>>>> refs/remotes/origin/master
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -125,8 +122,8 @@
 		    		</div>
 					</div>
 	    		<div id="character_info">
-	    			<div id="character_nickname">캐릭터닉네임</div>
-	    			<div id="character_type">카리나</div>
+	    			<div id="character_nickname">${chDto.nickName}</div>
+	    			<div id="character_type">${chDto.artist.artistName.artistName}</div>
 	    			<div id="stat_hidden">
 	    				<div id="stat_hidden_level">
 	    					<p>LV.</p>
@@ -207,10 +204,6 @@
 						<td class="open-modal" data-modal="modal3"><img src="/images/egg_menu_btn/shopBtn.png"></td>
 					</tr>
 				</table>
-<<<<<<< HEAD
-=======
-		
->>>>>>> refs/remotes/origin/master
 			</div>
 		</div>
 		<!-- 끝 ===== MainRoom ===== -->
@@ -559,11 +552,7 @@
 		    </div>
 		</div>
 		
-<<<<<<< HEAD
-	<!-- 상점 모달 -->
-=======
 		<!-- 상점 모달 -->
->>>>>>> refs/remotes/origin/master
 		<div id="modal3" class="modal">
 		    <div class="modal-frame dark">
 		    	<div class="modal-top">
@@ -1045,12 +1034,6 @@
 		        
 		    </div>
 		</div>
-<<<<<<< HEAD
-
-		
-=======
-	
->>>>>>> refs/remotes/origin/master
 		<!-- 퀘스트 모달 -->
 		<div id="modalq" class="modal">
 		    <div class="modal-frame dark">
@@ -1235,10 +1218,6 @@
 			document.querySelector('.event-title li').classList.add('active');
 			document.querySelector('.quest-title li').classList.add('active');
 		</script>
-<<<<<<< HEAD
-=======
-		
->>>>>>> refs/remotes/origin/master
 		
 		<script src="/js/modal.js" defer></script>
 		<script src="/js/shop.js" defer></script>

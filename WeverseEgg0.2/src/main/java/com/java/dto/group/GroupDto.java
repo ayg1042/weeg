@@ -40,11 +40,7 @@ public class GroupDto {
     
     public static GroupDto info(GroupEntity groupEntity) {
     	GroupDto groupDto = new GroupDto();
-    	groupDto.setGroupId(groupEntity.getGroupId());
-    	groupDto.setArtistName(ArtistNameDto.info(groupEntity.getArtistNames()));
     	groupDto.setGroupName(groupEntity.getGroupName());
-    	groupDto.setGender(groupEntity.getGender());
-    	groupDto.setMemberCount(groupEntity.getMemberCount());
     	return groupDto;
     }
 	
