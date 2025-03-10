@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="header.jsp" %>
 
 <!DOCTYPE html>
@@ -44,8 +45,8 @@
         </ul>
         <ul>
           <li id="option_title">랭킹</li>
-          <li><a href="#">전체랭킹</a></li>
-          <li><a href="#">그룹랭킹 </a></li>
+          <li><a href="/rank">전체랭킹</a></li>
+          <li><a href="/rank">그룹랭킹 </a></li>
         </ul>
         <ul>
           <li id="option_title">고객지원</li>
@@ -101,12 +102,13 @@
 				감사합니다.
     	</p>
     <div class="btnArea">
-    	<button onclick="listBtn()" id="listBtn">목록</button>
+    	<button onclick="listBtn()" >목록</button>
    	</div>
     </div> <!-- info_area -->
   </div> <!-- notice_container -->
 
   <script>
+		//스크롤시 헤더 색상변경
 	  window.addEventListener("scroll", function () {
 		    let gnb = document.getElementById("main_top_gnb");
 		    if (window.scrollY > 50) {  // 스크롤 50px 이상일 때 배경 변경

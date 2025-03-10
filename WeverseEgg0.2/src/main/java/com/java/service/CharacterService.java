@@ -1,5 +1,6 @@
 package com.java.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.java.dto.character.CharacterDto;
@@ -12,5 +13,9 @@ public interface CharacterService {
 
 	// 캐릭터 생성, 닉네임 저장
 	void save(CharacterEntity character);
+
+
+
+
 
 }
