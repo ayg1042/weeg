@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java.dto.character.CharacterDto;
+import com.java.dto.item.ItemDto;
 import com.java.dto.member.MemberDto;
 import com.java.entity.character.CharacterEntity;
 import com.java.entity.member.MemberEntity;
 import com.java.service.CharacterService;
 import com.java.service.MemberService;
+import com.java.service.ModalService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -28,6 +30,7 @@ public class CharacterController {
 	CharacterService characterService;
 	@Autowired
 	HttpSession session;
+	@Autowired ModalService modalServiceImpl;
 	
 	// 캐릭터 선택 페이지 열기
 	@GetMapping("/choiceCharacter") 
@@ -44,6 +47,25 @@ public class CharacterController {
         model.addAttribute("list", null);
         
         return "choiceCharacter";
+	}
+	
+	@GetMapping("/modal")
+	public String modal(Model model) {
+		
+		int user_id = (Integer)session.getAttribute("session_userId");
+		// 사용자의 캐릭터 목록 불러오기
+        List<CharacterDto> list = characterService.getCharactersByUserId(user_id);
+        if(list != null) {
+        	model.addAttribute("list", list);
+			return "modal";
+        }
+        model.addAttribute("list", null);
+        
+        List<ItemDto> items = modalServiceImpl.getAllItems();
+		System.out.println(items);
+		model.addAttribute("shopList",items);
+		
+		return "modal";
 	}
 	
 	// 캐릭터 생성시 스토리 페이지

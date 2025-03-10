@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.java.dto.character.CharacterDto;
 import com.java.entity.character.CharacterEntity;
 
 public interface CharacterRepository extends JpaRepository<CharacterEntity, Integer> {
@@ -19,5 +20,11 @@ public interface CharacterRepository extends JpaRepository<CharacterEntity, Inte
 		       "JOIN an.group g "+
 		       "WHERE g.groupName = :groupName")
 		List<CharacterEntity> findAllByGroupName(@Param("groupName") String GroupKor);
+
+
+
+
+
+
 
 }
