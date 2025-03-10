@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -15,14 +15,15 @@
 
 
 <body>
+<%@ include file="header.jsp" %>
 
   <!-- 마이페이지 메인 -->
   <div id="userInfoBar">
 
     <!-- 상단 프로필 -->
     <div class="profile_wrap">
-      <h2 class="profile_name">${sessionScope.session_nick}</h2>
-      <address class="profile_address">${sessionScope.session_id}</address>
+      <h2 class="profile_name">${sessionScope.session_id.getNickname()}</h2>
+      <address class="profile_address">${sessionScope.session_id.getEmail()}</address>
       <button type="button" class="profile_signout" onclick="location.href='/login/logout'">로그아웃</button>
     </div>
     <img src="../images/WeMyPage/myPage_topnavi.PNG" alt="상단내비이미지">

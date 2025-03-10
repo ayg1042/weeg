@@ -267,7 +267,7 @@ button {
   border-radius: 20px;
   width: 1260px;
   height: 760px;
-  margin: 50px auto;
+  margin: 50px auto 0;
   /* text-align: center; */
 /*   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); */
   position: relative;
@@ -733,6 +733,8 @@ a {
 }
 .item-info img{
 	margin: 18px 0 20px;
+	width: 81px;
+    height: 102px;
 }
 .item-info p{
 	margin: 4px 0;

@@ -65,7 +65,7 @@
 		      <div class="main_my">
 		        <div class="main_community">
 		          <img src="../images/main/main_community1.png" alt="">
-		          <a href="/weverseaespa"><img src="../images/main/main_aespa.png" class="aespa" alt=""></a>
+		          <a href="/aespa"><img src="../images/main/main_aespa.png" class="aespa" alt=""></a>
 		        </div>
 		        <div class="main_myidol">
 		          <h1>나의 아이돌</h1>

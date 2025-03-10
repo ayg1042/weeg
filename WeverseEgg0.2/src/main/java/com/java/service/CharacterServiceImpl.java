@@ -2,6 +2,8 @@ package com.java.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,28 @@ public class CharacterServiceImpl implements CharacterService {
 	@Autowired CharacterRepository characterRepository;
 	@Autowired PracticeService practiceService;
 	
+	// 캐릭터 선택 페이지 열기
+	@Override
+	public List<CharacterDto> getCharactersByUserId(int user_id) {
+		String User_id = Integer.toString(user_id);
+		List<CharacterEntity> list = characterRepository.findByMemberUserId(user_id);
+		if(list.isEmpty()) {
+			return null;
+		}
+		List<CharacterDto> dtoList = new ArrayList<>();
+		for(CharacterEntity entity : list) {
+			CharacterDto dto = CharacterDto.from(entity);
+			dtoList.add(dto);
+		}
+		return dtoList;	
+	}
+
+	// 캐릭터 생성, 닉네임 저장
+	@Override
+	public void save(CharacterEntity character) {
+		characterRepository.save(character);
+		
+	}
 
 	// 임시_ 로그인한 유저의 캐릭터 테이블 가져오기
 	@Override

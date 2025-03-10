@@ -24,8 +24,10 @@ public class CharacterDto {
     private ArtistDto artist;
     /** 사용자 user_id FK */
     private MemberDto member;
+    
     /** 인벤토리 invenId Fk */
-    private InvenDto inven;
+    private List<InvenDto> inven;
+    
     /** 캐릭터 닉네임 */
     private String nickName;
     /** 캐릭터 성별 */
@@ -52,8 +54,23 @@ public class CharacterDto {
     private int rank;
     /** 표정 */
     private String expression;
+    /** 랭킹 작업을 위한 임시 총점 컬럼  */
+    private int rankedScore;  
     
+    // 정적 팩토리 메서드 추가
+    public static CharacterDto rank(CharacterEntity entity) {
+        CharacterDto dto = new CharacterDto();
+        dto.setCharacter_id(entity.getCharacterId());
+        dto.setNickName(entity.getNickName());
+        dto.setMember(MemberDto.login(entity.getMember()));
+        dto.setRank(entity.getRank());
+        dto.setArtist(ArtistDto.rank(entity.getArtist()));
+        dto.setCharm(entity.getCharm());
+        dto.setPopularity(entity.getPopularity());
+        return dto;
+    }
     
+    // 정적 팩토리 메서드 추가
     public static CharacterDto from(CharacterEntity entity) {
         CharacterDto dto = new CharacterDto();
         dto.setCharacter_id(entity.getCharacterId());

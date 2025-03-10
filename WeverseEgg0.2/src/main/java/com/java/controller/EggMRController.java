@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.dto.character.CharacterDto;
+import com.java.dto.item.ItemDto;
 import com.java.dto.member.MemberDto;
 import com.java.dto.practice.DancePracticeDto;
 import com.java.dto.practice.EntertainmentPracticeDto;
 import com.java.dto.practice.RapPracticeDto;
 import com.java.dto.practice.VocalPracticeDto;
 import com.java.service.CharacterService;
+import com.java.service.ModalService;
 import com.java.util.LvCalc;
 
 import jakarta.servlet.http.HttpSession;
@@ -26,9 +28,13 @@ public class EggMRController {
 	
 	@Autowired HttpSession session;
 	@Autowired CharacterService characterService;
-
+	@Autowired ModalService modalServiceImpl;
+	
 	@GetMapping("/modal")
 	public String modal(Model model) {
+		List<ItemDto> items = modalServiceImpl.getAllItems();
+		System.out.println(items);
+		model.addAttribute("shopList",items);
 		
 		// 테스트용 세션 저장
 		session.setAttribute("session_id", new MemberDto()); 

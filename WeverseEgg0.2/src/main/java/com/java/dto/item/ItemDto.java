@@ -1,5 +1,7 @@
 package com.java.dto.item;
 
+import com.java.entity.item.ItemEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,5 +22,16 @@ public class ItemDto {
     private int price;
     /** 아이템의 이미지 경로 또는 URL */
     private String image;
+    
+    public static ItemDto From(ItemEntity entity) {
+    	ItemDto dto = new ItemDto();
+    	dto.setItemId(entity.getItemId());
+    	dto.setItemInfo(ItemInfoDto.From(entity.getItemInfo()));
+    	dto.setName(entity.getName());
+    	dto.setPrice(entity.getPrice());
+    	dto.setImage(entity.getImage());
+    	
+    	return dto; 
+    }
     
 }
