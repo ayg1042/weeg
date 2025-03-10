@@ -3,6 +3,7 @@ package com.java.dto.character;
 import java.util.List;
 
 import com.java.dto.member.MemberDto;
+import com.java.entity.character.CharacterEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -52,5 +53,12 @@ public class CharacterDto {
     private int rank;
     /** 표정 */
     private String expression;
+    
+    public static CharacterDto From(CharacterEntity entity) {
+    	CharacterDto dto = new CharacterDto();
+    	dto.setCharacter_id(entity.getCharacterId());
+    	dto.setCoin(entity.getCoin());
+    	return dto;
+    }
     
 }

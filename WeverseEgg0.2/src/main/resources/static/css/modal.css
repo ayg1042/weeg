@@ -267,7 +267,7 @@ button {
   border-radius: 20px;
   width: 1260px;
   height: 760px;
-  margin: 120px auto 0;
+  margin: 50px auto 0;
   /* text-align: center; */
 /*   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); */
   position: relative;
@@ -658,7 +658,8 @@ a {
     transition: background 0.3s ease-in-out, transform 0.2s;
     cursor: pointer;
 }
-.shop{
+/*  */
+.game-shop{
 	margin-left: 60px;
 }
 .shop-list li:hover {
@@ -736,7 +737,7 @@ a {
     top: -25px;
 }
 .show-character-info{
-	margin-left: 86px;
+	margin-left: 40px;
 }
 .previous{
 	margin-right: 120px;
@@ -772,6 +773,7 @@ a {
 	margin-bottom: 15px;
 	width: 180px;
 	height: 44px;
+	text-align:center;
     background: linear-gradient(45deg, #FDC0FF, #DA57F0);
     border: 1px solid white; /* 테두리 제거 */
     font-size: 20px; /* 폰트 크기 */
@@ -792,7 +794,7 @@ a {
     cursor: pointer; /* 마우스 오버 시 클릭 가능한 느낌 */
     position: relative;
     top: -48px;
-    left: 64px;
+    left: 95px;
 }
 
 .shop-title{
@@ -818,13 +820,13 @@ a {
 .item-ne-pr span, .my-bag-ne-pr span{
 	cursor: pointer;
 }
-.equipped{
+.equipped .item-clear{
 	background-color: #ccc;  /* 기본적으로 회색 */
     cursor: not-allowed;  /* 클릭 불가능한 커서 */
     opacity: 0.5;
     transition: all 0.3s ease;
 }
-.shop-item-show.active .equipped {
+.shop-item-show.active .equipped, .shop-item-show.active .item-clear{
   font-size: 12px;
 	color: white;
 	background-color: #D467FF;
@@ -843,4 +845,29 @@ a {
 	width: 300px;
 }
 
+/* 내 가방 옷, 모자 */
+.my_bag_hat{
+	position: absolute;
+    top: -23px;  /* 위쪽으로 10px */
+    left: -20px; /* 왼쪽으로 50px */
+}
+.my_bag_outfit{
+	position: absolute;
+    top: 160px;  /* 위쪽으로 10px */
+    left: 19px; /* 왼쪽으로 50px */
+}
+/* 상점 옷, 모자 */
+.shop_hat{
+	position: absolute;
+    top: -25px;  
+    left: -20px; 
+}
+.shop_outfit{
+	position: absolute;
+    top: 160px;
+    left: 18px;
+}
+.item-options{
+	display: none;
+}
 

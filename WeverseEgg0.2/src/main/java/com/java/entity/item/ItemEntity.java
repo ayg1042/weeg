@@ -2,6 +2,7 @@ package com.java.entity.item;
 
 import lombok.*;
 
+import com.java.dto.item.ItemDto;
 import com.java.entity.character.InvenEntity;
 
 import jakarta.persistence.*;
@@ -36,4 +37,11 @@ public class ItemEntity {
     /** 아이템의 이미지 경로 또는 URL */
     @Column(length = 255)
     private String image;
+    
+    public static ItemEntity From(ItemDto dto) {
+    	ItemEntity entity = new ItemEntity();
+    	entity.setItemId(dto.getItemId());
+    	return entity;
+    }
+    
 }

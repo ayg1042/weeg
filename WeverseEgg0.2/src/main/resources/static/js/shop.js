@@ -56,25 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-$(document).on('click', '.apply-button', function(){
-	const test = document.querySelector('.shop-item-show.active').id;
-	const test2 = $('.tab-content.active').children().children().length;
-	alert(test + '구매' + test2)
-})
-
-// 아이템 선택 버튼 (장착 버튼) 클릭 시 처리
-document.querySelectorAll('.equipped').forEach(button => {
-    button.addEventListener('click', function () {
-      // 모든 아이템 숨기기
-	  const test = document.querySelector('.shop-item-show.active').id;
-      alert(test+"장착");
-    });
-  });
  
-$(document).on('click', '.save-button', function(){
-  	alert("적용버튼");
-  })
 // test
   let shop_currentPage = 1;
   let shop_itemsPerPage = 8;
@@ -109,3 +91,53 @@ $(document).on('click', '.save-button', function(){
 	     }
 	 });
  }
+
+
+ $(document).on('click', '.apply-button', function(){
+ 	const test = document.querySelector('.shop-item-show.active').id;
+	const list = test.split('_');
+	const itemId = list.pop();
+	const name = $('.shop-item-show.active .item-name').text();
+ 	// alert("아이템 아이디 : "+ itemId + ' 구매');
+	if(confirm(name + "(을/를) 구매하시나요?")){
+		$.ajax({
+				  url:"/buyItem",
+				  type:"post",
+				  data:{"itemId":itemId},
+				  success:function(data){
+					  alert("구매 완료되었습니다.");
+					  location.href="/modal"
+				  },
+				  error:function(){
+					  alert("실패");
+				  }
+				  
+		})
+	}
+ });
+ 
+ 
+ $(document).on('click', '.shop-item-show', function() {
+     // 클릭한 div 안의 첫 번째 img 태그에서 src 값 가져오기
+  var imgSrc = $(this).find('.item-info img').attr('src');
+  var danse = $('.shop-item-show.active .option_danse').text();
+  var enter = $('.shop-item-show.active .option_enter').text();
+  var rap = $('.shop-item-show.active .option_rap').text();
+  var vocal = $('.shop-item-show.active .option_vocal').text();
+  var char = $('.shop-item-show.active .option_char').text();
+      
+  // src에 "outfit"이나 "hat"이 포함되어 있으면 해당 항목에 맞게 처리
+  if (imgSrc.includes('outfit')) {
+      $('.shop_outfit').attr('src', imgSrc);  // Outfit 이미지 업데이트
+  } else if (imgSrc.includes('hat')) {
+      $('.shop_hat').attr('src', imgSrc);  // Hat 이미지 업데이트
+  }
+  
+  $(".show-item-info .item_danse .positive").text(`(+${danse})`);
+  $(".show-item-info .item_enter .positive").text(`(+${enter})`);
+  $(".show-item-info .item_rap .positive").text(`(+${rap})`);
+  $(".show-item-info .item_vocal .positive").text(`(+${vocal})`);
+  $(".show-item-info .item_char .positive").text(`(+${char})`);
+  
+ });
+ 

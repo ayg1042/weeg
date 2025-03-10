@@ -124,26 +124,26 @@
 				<!-- 방꾸미기 -->
 				<div id="interior_items">
 					<div class="wall_area">
-						<div id='photo_frame'></div> <!-- 액자 -->
+						<div id='photo_frame'  class="${frame}"></div> <!-- 액자 -->
 					</div>
 					<div class="furniture_area">
-						<div id='plant'></div> <!-- 식물 -->
-						<div id='sofa'></div> <!-- 소파 -->
-						<div id='shelf'></div> <!-- 선반 -->
+						<div id='plant'  class="${pot}"></div> <!-- 식물 -->
+						<div id='sofa'  class="${sofa}"></div> <!-- 소파 -->
+						<div id='shelf'  class="${drawer}"></div> <!-- 선반 -->
 					</div>
 					<div class="floor_area">
-					<div id='carpet'></div> <!-- 카페트 -->
-					<div id='pet'></div> <!-- 펫 -->
+					<div id='carpet' class="${carpet}"></div> <!-- 카페트 -->
+					<div id='pet' class="${pet}"></div> <!-- 펫 -->
 					</div>
 				</div>
 				
 				
 				<!-- 캐릭터 -->
 				<div class="character_container">
-			    <div class="clothing hat"></div>
-			    <div class="clothing dress"></div>
+				    <div class="clothing hat"  id="${hat}"></div>
+				    <div class="clothing dress" id="${outfit}"></div>
 				</div>
-			
+							
 				<!-- 모달 열기 버튼 -->
 				<table class="menu">
 					<tr>
@@ -159,12 +159,6 @@
 			</div>
 		</div>
 		<!-- 끝 ===== MainRoom ===== -->
-		
-		<!-- 모달 열기 버튼 -->
-		<button class="open-modal" data-modal="modal1">트레이닝 선택</button>
-		<button class="open-modal" data-modal="modal2">활동 선택</button>
-		<button class="open-modal" data-modal="modal3">상점</button>
-		<button class="open-modal" data-modal="modal4">내 가방</button>
 		
 		<!-- 트레이닝 모달 -->
 		<div id="modal1" class="modal">
@@ -361,7 +355,7 @@
 		    	<div class="modal-title shop-title">
 			        <h2>상점</h2>
 		    	</div>
-		        <div class="modal-content shop">
+		        <div class="modal-content game-shop">
 		        	<div>
 		        		<ul class="shop-list">
 		        			<li data-tab="shop-outfit" class='active'>의상</li>
@@ -373,11 +367,9 @@
 		        	</div>
 		        	<section id="shop-outfit" class="tab-content">
 		        		<div class="shop-items">
-	        				<c:set var="count" value="1"/>
 		        			<c:forEach items="${shopList}" var="dto" varStatus="outfit">
 		        				<c:if test="${dto.itemInfo.itemType.itemType == 2}">
-				        			<div id="shop-item-show-outfit_${count}" class="shop-item-show">
-				        			<c:set var="count" value="${count+1}"/>
+				        			<div id="shop-item-show-outfit_${dto.itemId}" class="shop-item-show">
 				        				<div class="item-info">
 				        					<img src="/images/items/outfit/${dto.image}">
 				        					<p class="item-name">${dto.name }</p>
@@ -386,6 +378,13 @@
 				        					<img src="/images/coinIcon.png">
 				        					<p>${dto.price}</p>
 				        				</div>
+				        				<div class="item-options">
+				        					<p class="option_danse">${dto.itemInfo.dance}</p>
+				        					<p class="option_enter">${dto.itemInfo.entertainment}</p>
+				        					<p class="option_rap">${dto.itemInfo.rap}</p>
+				        					<p class="option_vocal">${dto.itemInfo.vocal}</p>
+				        					<p class="option_char">${dto.itemInfo.charm}</p>
+				        				</div>
 				        			</div>
 		        				</c:if>
 		        			</c:forEach>
@@ -393,11 +392,9 @@
 		        	</section>
 		        	<section id="shop-hare" class="tab-content">
 		        		<div class="shop-items">
-		        			<c:set var="count" value="1"/>
 		        			<c:forEach items="${shopList}" var="dto" varStatus="hat">
 		        				<c:if test="${dto.itemInfo.itemType.itemType == 1}">
-				        			<div id="shop-item-show-hat_${count}" class="shop-item-show">
-				        			<c:set var="count" value="${count+1}"/>
+				        			<div id="shop-item-show-hat_${dto.itemId}" class="shop-item-show">
 				        				<div class="item-info">
 				        					<img src="/images/items/hat/${dto.image}">
 				        					<p class="item-name">${dto.name }</p>
@@ -405,6 +402,13 @@
 				        				<div class="item-price">
 				        					<img src="/images/coinIcon.png">
 				        					<p>${dto.price}</p>
+				        				</div>
+				        				<div class="item-options">
+				        					<p class="option_danse">${dto.itemInfo.dance}</p>
+				        					<p class="option_enter">${dto.itemInfo.entertainment}</p>
+				        					<p class="option_rap">${dto.itemInfo.rap}</p>
+				        					<p class="option_vocal">${dto.itemInfo.vocal}</p>
+				        					<p class="option_char">${dto.itemInfo.charm}</p>
 				        				</div>
 				        			</div>
 		        				</c:if>
@@ -414,11 +418,9 @@
 		        	
 		        	<section id="shop-accessories" class="tab-content">
 				        <div class="shop-items">
-				        	<c:set var="count" value="1"/>
 				            <c:forEach items="${shopList}" var="dto" varStatus="pet">
 		        				<c:if test="${dto.itemInfo.itemType.itemType == 3}">
-				        			<div id="shop-item-show-pet_${count}" class="shop-item-show">
-				        			<c:set var="count" value="${count+1}"/>
+				        			<div id="shop-item-show-pet_${dto.itemId}" class="shop-item-show">
 				        				<div class="item-info">
 				        					<img src="/images/items/pet/${dto.image}">
 				        					<p class="item-name">${dto.name }</p>
@@ -435,11 +437,9 @@
 				
 				    <section id="shop-interior" class="tab-content">
 				        <div class="shop-items">
-				        	<c:set var="count" value="1"/>
 				            <c:forEach items="${shopList}" var="dto" varStatus="interior">
 		        				<c:if test="${dto.itemInfo.itemType.itemType >= 6 and dto.itemInfo.itemType.itemType <= 10}">
-				        			<div id="shop-item-show-interior_${count}" class="shop-item-show">
-				        				<c:set var="count" value="${count+1}"/>
+				        			<div id="shop-item-show-interior_${dto.itemId}" class="shop-item-show">
 				        				<div class="item-info">
 				        					<img src="/images/items/interior/${dto.image}">
 				        					<p class="item-name">${dto.name }</p>
@@ -456,11 +456,9 @@
 				
 				    <section id="shop-snacks" class="tab-content">
 				        <div class="shop-items">
-				        	<c:set var="count" value="1"/>
 				            <c:forEach items="${shopList}" var="dto" varStatus="consumalbe">
 		        				<c:if test="${dto.itemInfo.itemType.itemType == 4}">
-				        			<div id="shop-item-show-consumalbe_${count}" class="shop-item-show">
-				        			<c:set var="count" value="${count+1}"/>
+				        			<div id="shop-item-show-consumalbe_${dto.itemId}" class="shop-item-show">
 				        				<div class="item-info">
 				        					<img src="/images/items/consumable/${dto.image}">
 				        					<p class="item-name">${dto.name }</p>
@@ -478,13 +476,25 @@
 		        	<div class="show-character-info">
 		        		<div class="show-character">
 			        		<img src="/images/test_character.png">
+			        		<c:if test="${outfit != null }">
+				        		<img class="shop_outfit" src="/images/items/outfit/${outfit}">
+			        		</c:if>
+			        		<c:if test="${outfit == null }">
+			        			<img class="shop_outfit" src="">
+			        		</c:if>
+			        		<c:if test="${hat != null }">
+				        		<img class="shop_hat" src="/images/items/hat/${hat}">
+			        		</c:if>
+			        		<c:if test="${hat == null }">
+			        			<img class="shop_hat" src="">
+			        		</c:if>
 		        		</div>
 		        		<div class="show-item-info">
-						    <p id="item_danse"><span class="label">댄스</span> <span class="value">999<span class="positive">(+50)</span></span></p>
-						    <p id="item_enter"><span class="label">예능</span> <span class="value">999<span class="positive">(+50)</span></span></p>
-						    <p id="item_rqp"><span class="label">랩</span> <span class="value">999<span class="positive">(+50)</span></span></p>
-						    <p id="item_vocal"><span class="label">보컬</span> <span class="value">999<span class="positive">(+50)</span></span></p>
-						    <p id="item_char"><span class="label">매력도</span> <span class="value">999<span class="positive">(+50)</span></span></p>
+						    <p class="item_danse"><span class="label">댄스</span> <span class="value">999<span class="positive">(+50)</span></span></p>
+						    <p class="item_enter"><span class="label">예능</span> <span class="value">999<span class="positive">(+50)</span></span></p>
+						    <p class="item_rap"><span class="label">랩</span> <span class="value">999<span class="positive">(+50)</span></span></p>
+						    <p class="item_vocal"><span class="label">보컬</span> <span class="value">999<span class="positive">(+50)</span></span></p>
+						    <p class="item_char"><span class="label">매력도</span> <span class="value">999<span class="positive">(+50)</span></span></p>
 						</div>
 						<div>
 							<button class="apply-button">구매하기</button>
@@ -495,10 +505,19 @@
 		        	<span class="previous"><strong class="close_icon">&lt;</strong>이전</span>
 		        	<span class="next">다음<strong class="close_icon">&gt;</strong></span>
 		        </div>
-		        
 		    </div>
 		</div>
-		
+		<script>
+			let selectedHats = [];
+			selectedHats.push({ typeName: 'hat', itemId: `${hat_id}` });
+			selectedHats.push({ typeName: 'outfit', itemId: `${outfit_id}` });
+			selectedHats.push({ typeName: 'pet', itemId: `${pet_id}` });
+			selectedHats.push({ typeName: 'pot', itemId: `${pot_id}` });
+			selectedHats.push({ typeName: 'sofa', itemId: `${sofa_id}` });
+			selectedHats.push({ typeName: 'carpet', itemId: `${carpet_id}` });
+			selectedHats.push({ typeName: 'drawer', itemId: `${drawer_id}` });
+			selectedHats.push({ typeName: 'frame', itemId: `${frame_id}` });
+		</script>
 		<!-- 내가방 -->
 		<div id="modal4" class="modal">
 		    <div class="modal-frame dark">
@@ -524,290 +543,189 @@
 		        	<div>
 		        		<ul class="shop-list">
 		        			<li data-tab="bag-outfit">의상</li>
-		        			<li data-tab="bag-hare">헤어</li>
-		        			<li data-tab="bag-accessories">악세서리</li>
+		        			<li data-tab="bag-hare">모자</li>
+		        			<li data-tab="bag-accessories">펫</li>
 		        			<li data-tab="bag-interior">인테리어</li>
 		        			<li data-tab="bag-snacks">간식</li>
 		        		</ul>
 		        	</div>
 		        	<section id="bag-outfit" class="tab-content">
 		        		<div class="shop-items">
-		        			<div id="bag-outfit-1" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<button class="equipped">장착</button>
-		        				</div>
-		        			</div>
-		        			<div id="bag-outfit-2" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<button class="equipped">장착</button>
-		        				</div>
-		        			</div>
-		        			<div id="bag-outfit-3" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<button class="equipped">장착</button>
-		        				</div>
-		        			</div>
-		        			<div id="bag-outfit-4" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<button class="equipped">장착</button>
-		        				</div>
-		        			</div>
-		        			<div id="bag-outfit-5" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div id="bag-outfit-6" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div id="bag-outfit-7" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div id="bag-outfit-8" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
-		        			<div id="bag-outfit-9" class="shop-item-show">
-		        				<div class="item-info">
-		        					<img src="/images/item_ex.png">
-		        					<p class="item-name">아이템 이름</p>
-		        				</div>
-		        				<div class="item-price">
-		        					<img src="/images/coinIcon.png">
-		        					<p>50000</p>
-		        				</div>
-		        			</div>
+		        			<c:forEach items="${invenList}" var="dto">
+		        				<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 2}">
+				        			<div id="inven-item-show-outfit_${dto.itemId.itemId}" class="shop-item-show">
+				        				<div class="item-info">
+				        					<img src="/images/items/outfit/${dto.itemId.image}">
+				        					<p class="item-name">${dto.itemId.name }</p>
+				        				</div>
+				        				<div class="item-price">
+		        							<c:if test="${outfit == '' or outfit != dto.itemId.image}">
+			        							<button class="equipped">장착</button>
+				        					</c:if>
+				        					<c:if test="${outfit == dto.itemId.image }">
+				        						<button class="item-clear">해제</button>
+				        					</c:if>
+		        						</div>
+		        						<div class="item-options">
+				        					<p class="option_danse">${dto.itemId.itemInfo.dance}</p>
+				        					<p class="option_enter">${dto.itemId.itemInfo.entertainment}</p>
+				        					<p class="option_rap">${dto.itemId.itemInfo.rap}</p>
+				        					<p class="option_vocal">${dto.itemId.itemInfo.vocal}</p>
+				        					<p class="option_char">${dto.itemId.itemInfo.charm}</p>
+				        				</div>
+				        			</div>
+		        				</c:if>
+		        			</c:forEach>
 		        		</div>
 		        	</section>
 		        	<section id="bag-hare" class="tab-content">
 				        <div class="shop-items">
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/snack1.png">
-				                    <p class="item-name">초콜릿 바</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>5000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/snack2.png">
-				                    <p class="item-name">과일 바구니</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>12000</p>
-				                </div>
-				            </div>
+		        			<c:forEach items="${invenList}" var="dto">
+		        				<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 1}">
+				        			<div id="inven-item-show-hat_${dto.itemId.itemId}" class="shop-item-show">
+				        				<div class="item-info">
+				        					<img src="/images/items/hat/${dto.itemId.image}">
+				        					<p class="item-name">${dto.itemId.name }</p>
+				        				</div>
+				        				<div class="item-price">
+		        							<c:if test="${hat == '' or hat != dto.itemId.image}">
+			        							<button class="equipped">장착</button>
+				        					</c:if>
+				        					<c:if test="${hat == dto.itemId.image }">
+				        						<button class="item-clear">해제</button>
+				        					</c:if>
+		        						</div>
+		        						<div class="item-options">
+				        					<p class="option_danse">${dto.itemId.itemInfo.dance}</p>
+				        					<p class="option_enter">${dto.itemId.itemInfo.entertainment}</p>
+				        					<p class="option_rap">${dto.itemId.itemInfo.rap}</p>
+				        					<p class="option_vocal">${dto.itemId.itemInfo.vocal}</p>
+				        					<p class="option_char">${dto.itemId.itemInfo.charm}</p>
+				        				</div>
+				        			</div>
+		        				</c:if>
+		        			</c:forEach>
 				        </div>
 				    </section>
 		        	<section id="bag-accessories" class="tab-content">
 				        <div class="shop-items">
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory1.png">
-				                    <p class="item-name">진주 목걸이</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>15000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/accessory2.png">
-				                    <p class="item-name">금반지</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>18000</p>
-				                </div>
-				            </div>
+		        			<c:forEach items="${invenList}" var="dto">
+		        				<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 3}">
+				        			<div id="inven-item-show-pet_${dto.itemId.itemId}" class="shop-item-show">
+				        				<div class="item-info">
+				        					<img src="/images/items/pet/${dto.itemId.image}">
+				        					<p class="item-name">${dto.itemId.name }</p>
+				        				</div>
+				        				<div class="item-price">
+		        							<c:if test="${pet == '' or pet != dto.itemId.image}">
+			        							<button class="equipped">장착</button>
+				        					</c:if>
+				        					<c:if test="${pet == dto.itemId.image }">
+				        						<button class="item-clear">해제</button>
+				        					</c:if>
+		        						</div>
+				        			</div>
+		        				</c:if>
+		        			</c:forEach>
 				        </div>
 				    </section>
 				
 				    <section id="bag-interior" class="tab-content">
 				        <div class="shop-items">
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/interior1.png">
-				                    <p class="item-name">럭셔리 소파</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>50000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/interior2.png">
-				                    <p class="item-name">모던 테이블</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>40000</p>
-				                </div>
-				            </div>
+		        			<c:forEach items="${invenList}" var="dto">
+		        				<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId >= 6 and dto.itemId.itemInfo.itemType.itemTypeId <= 10}">
+				        			<div id="inven-item-show-${dto.itemId.itemInfo.itemType.itemTypeId}_interior_${dto.itemId.itemId}" class="shop-item-show">
+				        				<div class="item-info">
+				        					<img src="/images/items/interior/${dto.itemId.image}">
+				        					<p class="item-name">${dto.itemId.name }</p>
+				        				</div>
+				        				<div class="item-price">
+					        				<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 6}">
+			        							<c:if test="${pot == '' or pot != dto.itemId.image}">
+				        							<button class="equipped">장착</button>
+					        					</c:if>
+					        					<c:if test="${pot == dto.itemId.image }">
+					        						<button class="item-clear">해제</button>
+					        					</c:if>
+					        				</c:if>
+					        				<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 7}">
+			        							<c:if test="${sofa == '' or sofa != dto.itemId.image}">
+				        							<button class="equipped">장착</button>
+					        					</c:if>
+					        					<c:if test="${sofa == dto.itemId.image }">
+					        						<button class="item-clear">해제</button>
+					        					</c:if>
+					        				</c:if>
+					        				<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 8}">
+			        							<c:if test="${carpet == '' or carpet != dto.itemId.image}">
+				        							<button class="equipped">장착</button>
+					        					</c:if>
+					        					<c:if test="${carpet == dto.itemId.image }">
+					        						<button class="item-clear">해제</button>
+					        					</c:if>
+					        				</c:if>
+					        				<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 9}">
+			        							<c:if test="${drawer == '' or drawer != dto.itemId.image}">
+				        							<button class="equipped">장착</button>
+					        					</c:if>
+					        					<c:if test="${drawer == dto.itemId.image }">
+					        						<button class="item-clear">해제</button>
+					        					</c:if>
+					        				</c:if>
+					        				<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 10}">
+			        							<c:if test="${frame == '' or frame != dto.itemId.image}">
+				        							<button class="equipped">장착</button>
+					        					</c:if>
+					        					<c:if test="${frame == dto.itemId.image }">
+					        						<button class="item-clear">해제</button>
+					        					</c:if>
+					        				</c:if>
+		        						</div>
+				        			</div>
+		        				</c:if>
+		        			</c:forEach>
 				        </div>
 				    </section>
 				
 				    <section id="bag-snacks" class="tab-content">
 				        <div class="shop-items">
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/snack1.png">
-				                    <p class="item-name">초콜릿 바</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>5000</p>
-				                </div>
-				            </div>
-				            <div class="shop-item-show">
-				                <div class="item-info">
-				                    <img src="/images/snack2.png">
-				                    <p class="item-name">과일 바구니</p>
-				                </div>
-				                <div class="item-price">
-				                    <img src="/images/coinIcon.png">
-				                    <p>12000</p>
-				                </div>
-				            </div>
+		        			<c:forEach items="${invenList}" var="dto">
+		        				<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 4}">
+				        			<div id="inven-item-show-consumable_${dto.itemId.itemId}" class="shop-item-show">
+				        				<div class="item-info">
+				        					<img src="/images/items/consumable/${dto.itemId.image}">
+				        					<p class="item-name">${dto.itemId.name }</p>
+				        				</div>
+				        				<div class="item-price">
+		        							<button class="equipped">사용</button>
+		        						</div>
+				        			</div>
+		        				</c:if>
+		        			</c:forEach>
 				        </div>
 				    </section>
 		        	<div class="show-character-info">
 		        		<div class="show-character">
-			        		<img src="/images/test_character.png">
+			        		<img class="" src="/images/test_character.png">
+			        		<c:if test="${outfit != null }">			        		
+				        		<img id="" class="my_bag_outfit" src="/images/items/outfit/${outfit}">
+			        		</c:if>
+			        		<c:if test="${outfit == null }">
+			        			<img id="" class="my_bag_outfit" src="">
+			        		</c:if>
+			        		<c:if test="${hat != null }">
+				        		<img id="" class="my_bag_hat" src="/images/items/hat/${hat}">
+			        		</c:if>
+			        		<c:if test="${hat == null }">
+			        			<img id="" class="my_bag_hat" src="">
+			        		</c:if>
 		        		</div>
-		        		<div class="show-item-info">
-						    <p id="item_danse"><span class="label">댄스</span> <span class="value">+50</span></p>
-						    <p id="item_enter"><span class="label">예능</span> <span class="value">+50</span></p>
-						    <p id="item_rqp"><span class="label">랩</span> <span class="value">+50</span></p>
-						    <p id="item_vocal"><span class="label">보컬</span> <span class="value">+50</span></p>
-						    <p id="item_char"><span class="label">매력도</span> <span class="value">+50</span></p>
+		        		<div class="show-item-info my_bag_statuse">
+						    <p class="item_danse"><span class="label">댄스</span> <span class="value">+50</span></p>
+						    <p class="item_enter"><span class="label">예능</span> <span class="value">+50</span></p>
+						    <p class="item_rap"><span class="label">랩</span> <span class="value">+50</span></p>
+						    <p class="item_vocal"><span class="label">보컬</span> <span class="value">+50</span></p>
+						    <p class="item_char"><span class="label">매력도</span> <span class="value">+50</span></p>
 						</div>
 						<div>
 							<button class="save-button">적용하기</button>
@@ -1012,6 +930,7 @@
 		<script src="/js/modal.js" defer></script>
 		<script src="/js/shop.js" defer></script>
 		<script src="/js/mybag.js" defer></script>
+		<script src="/js/characterStyle.js" defer></script>
 		
 	</body>
 </html>
