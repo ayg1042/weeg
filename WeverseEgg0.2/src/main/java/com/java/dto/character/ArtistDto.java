@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import com.java.dto.group.ArtistNameDto;
 import com.java.dto.group.GroupDto;
+import com.java.entity.character.ArtistEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,5 +27,16 @@ public class ArtistDto {
     private int blueMark;
     /** 데뷔일 */
     private Timestamp debutDate;
+    
+    public static ArtistDto info(ArtistEntity entity) {
+    	ArtistDto artistDto = new ArtistDto();
+    	artistDto.setArtistId(entity.getArtistId());
+    	artistDto.setGroupId(GroupDto.info(entity.getGroup()));
+    	artistDto.setLevel(entity.getClevel());
+    	artistDto.setBlueMark(entity.getBlueMark());
+    	artistDto.setDebutDate(entity.getDebutDate());
+    	
+    	return artistDto;
+    }
     
 }

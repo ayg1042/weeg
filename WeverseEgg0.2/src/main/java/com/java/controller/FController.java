@@ -47,10 +47,7 @@ public class FController {
 		return "weNotice";
 	}
 	
-	@GetMapping("/modal")
-	public String modal() {
-		return "modal";
-	}
+
 	
 	
 }

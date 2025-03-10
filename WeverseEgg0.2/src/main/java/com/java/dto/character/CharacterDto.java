@@ -3,6 +3,8 @@ package com.java.dto.character;
 import java.util.List;
 
 import com.java.dto.member.MemberDto;
+import com.java.entity.character.ArtistEntity;
+import com.java.entity.character.CharacterEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,5 +52,48 @@ public class CharacterDto {
     private int rank;
     /** 표정 */
     private String expression;
+    
+    
+    public static CharacterDto from(CharacterEntity entity) {
+        CharacterDto dto = new CharacterDto();
+        dto.setCharacter_id(entity.getCharacterId());
+        dto.setNickName(entity.getNickName());
+        dto.setGender(entity.getGender());
+        dto.setMember(MemberDto.From(entity.getMember()));
+        dto.setCoin(entity.getCoin());
+        dto.setDance(entity.getDance());
+        dto.setHealth(entity.getHealth());
+        dto.setFatigue(entity.getFatigue());
+        dto.setVocal(entity.getVocal());
+        dto.setRap(entity.getRap());
+        dto.setEntertainment(entity.getEntertainment());
+        dto.setCharm(entity.getCharm());
+        dto.setPopularity(entity.getPopularity());
+        dto.setRank(entity.getRank());
+        dto.setExpression(entity.getExpression());
+        return dto;
+    }
+    
+    public static CharacterDto unit(CharacterEntity entity) {
+    	CharacterDto unitDto = new CharacterDto();
+    	unitDto.setCharacter_id(entity.getCharacterId());
+    	unitDto.setArtist(ArtistDto.info(entity.getArtist()));
+    	unitDto.setNickName(entity.getNickName());
+        unitDto.setGender(entity.getGender());
+        unitDto.setMember(MemberDto.From(entity.getMember()));
+        unitDto.setCoin(entity.getCoin());
+        unitDto.setDance(entity.getDance());
+        unitDto.setHealth(entity.getHealth());
+        unitDto.setFatigue(entity.getFatigue());
+        unitDto.setVocal(entity.getVocal());
+        unitDto.setRap(entity.getRap());
+        unitDto.setEntertainment(entity.getEntertainment());
+        unitDto.setCharm(entity.getCharm());
+        unitDto.setPopularity(entity.getPopularity());
+        unitDto.setRank(entity.getRank());
+        unitDto.setExpression(entity.getExpression());
+        return unitDto;
+    }
+    
     
 }
