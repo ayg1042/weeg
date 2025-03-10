@@ -691,7 +691,7 @@
 				        <div class="shop-items">
 		        			<c:forEach items="${invenList}" var="dto">
 		        				<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 4}">
-				        			<div id="inven-item-show-consumable_${dto.invenId }_${dto.itemId.itemId}" class="shop-item-show">
+				        			<div id="inven-item-show-consumable_${dto.invenId}_${dto.itemId.itemId}" class="shop-item-show">
 				        				<div class="item-info">
 				        					<img src="/images/items/consumable/${dto.itemId.image}">
 				        					<p class="item-name">${dto.itemId.name }</p>
