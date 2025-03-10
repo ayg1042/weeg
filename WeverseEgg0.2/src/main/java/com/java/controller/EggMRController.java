@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.dto.character.CharacterDto;
@@ -32,14 +33,16 @@ public class EggMRController {
 	
 	@GetMapping("/modal")
 	public String modal(Model model) {
-		List<ItemDto> items = modalServiceImpl.getAllItems();
+		int user_id = (Integer)session.getAttribute("session_userId");
+        
+        List<ItemDto> items = modalServiceImpl.getAllItems();
 		System.out.println(items);
 		model.addAttribute("shopList",items);
 		
+		
 		// 테스트용 세션 저장
-		session.setAttribute("session_id", new MemberDto()); 
+		//session.setAttribute("session_iddd", new MemberDto()); 
 		// 세션에서 로그인한 사용자 ID 가져오기
-//		MemberDto session_id = (MemberDto) session.getAttribute("session_id");
 //		System.out.println("session_idsession_id: "+session_id);
 //		System.out.println(session_id.getUser_id());
 		
@@ -83,11 +86,12 @@ public class EggMRController {
 //            System.out.println("Dance Practice : " + practiceData.get("danceDto"));
 //            System.out.println("Rap Practice : " + practiceData.get("rapDto"));
 //            System.out.println("entertainmentDto Practice : " + practiceData.get("entertainmentDto"));
-            
         }
         
         System.out.println("================= : "+character);
 		System.out.println("캐릭터 보유 코인 : "+character.getCoin());
+		//CharacterDto seccchchchch = (CharacterDto) session.getAttribute("character_id");
+		//System.out.println("><>>>>>>>>>>>>>>>>>>>>>>>>> : "+seccchchchch);
 		return "modal";
 	}
 	

@@ -48,24 +48,24 @@ public class CharacterController {
         return "choiceCharacter";
 	}
 	
-	@GetMapping("/modal")
-	public String modal(Model model) {
-		
-		int user_id = (Integer)session.getAttribute("session_userId");
-		// 사용자의 캐릭터 불러오기
-        List<CharacterDto> list = characterService.getCharactersByUserId(user_id);
-        if(list != null) {
-        	model.addAttribute("list", list);
-			return "modal";
-        }
-        model.addAttribute("list", null);
-        
-        List<ItemDto> items = modalServiceImpl.getAllItems();
-		System.out.println(items);
-		model.addAttribute("shopList",items);
-		
-		return "modal";
-	}
+//	@GetMapping("/modal")
+//	public String modal(Model model) {
+//		
+//		int user_id = (Integer)session.getAttribute("session_userId");
+//		// 사용자의 캐릭터 불러오기
+//        List<CharacterDto> list = characterService.getCharactersByUserId(user_id);
+//        if(list != null) {
+//        	model.addAttribute("list", list);
+//			return "modal";
+//        }
+//        model.addAttribute("list", null);
+//        
+//        List<ItemDto> items = modalServiceImpl.getAllItems();
+//		System.out.println(items);
+//		model.addAttribute("shopList",items);
+//		
+//		return "modal";
+//	}
 	
 	// 캐릭터 생성시 스토리 페이지
 	@GetMapping("/startStory") 

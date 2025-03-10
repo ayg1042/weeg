@@ -53,7 +53,6 @@ public class CharacterServiceImpl implements CharacterService {
 		
 	}
 
-<<<<<<< HEAD
 	// 임시_ 로그인한 유저의 캐릭터 테이블 가져오기
 	@Override
 	public CharacterDto unit(int i) {
@@ -116,16 +115,6 @@ public class CharacterServiceImpl implements CharacterService {
 		CharacterDto characterDto = CharacterDto.unit(character);
 		session.setAttribute("session_character", characterDto);
 	}
-=======
-
-
-
-
-
-
-
-
->>>>>>> refs/remotes/origin/master
 	
 	// 댄스 트레이닝 결과 유저 캐릭터에 저장
 	@Override
