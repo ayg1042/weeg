@@ -13,25 +13,31 @@
   <title>캐릭터 선택</title>
   
   <script>
-    function choiceBtn(isListNull){
+    function choiceBtn(isListNull,element){
     	if(isListNull){
-          // list가 null이 아닌 경우
-          if(confirm("해당 캐릭터로 게임을 시작하시겠습니까?")) {
-        	  location.href="/modal";
-          }
-      } else {
-          // list가 null일 경우
-          if(confirm("캐릭터를 생성하시겠습니까?")) {
-              location.href="/startStory";
-          }
-      }
-    }
-    
-    function lockBtn(isListNull){
-			if(confirm("캐릭터 슬롯창이 잠겨있습니다. 상점으로 이동하시겠습니까?")){
-				location.href="#";
-			}
-    }
+
+    		let characterId = element.getAttribute("data-character-id");
+	        // list가 null이 아닌 경우
+	        if(confirm("해당 캐릭터로 게임을 시작하시겠습니까?")) {
+	      	  sessionStorage.setItem("character_id", characterId);
+	      	  // 넘어오는지 확인
+	      	  console.log("character_id : ", sessionStorage.getItem("character_id"));
+	
+	      	  location.href="/modal";
+	        }
+	    } else {
+	        // list가 null일 경우 
+	        if(confirm("캐릭터를 생성하시겠습니까?")) {
+	            location.href="/startStory";
+	        }
+	    }
+	  }
+	  
+	  function lockBtn(isListNull){
+		if(confirm("캐릭터 슬롯창이 잠겨있습니다. 상점으로 이동하시겠습니까?")){
+			location.href="#";
+		}
+	  }
     </script>
   </head>
   
@@ -83,7 +89,7 @@
     <h2 id="ChoiceIdol">아이돌 선택</h2>
     <c:if test="${list != null}">
 	    <c:forEach items="${list}" var="cdto">
-		    <div id="FirstIdol_open" onclick="choiceBtn(true)">${cdto.nickName }</div>
+		    <div id="FirstIdol_open" data-character-id="${cdto.character_id}" onclick="choiceBtn(true,this)">${cdto.nickName }</div>
 	  	  <div id="SecondIdol" onclick="lockBtn()"></div>
 	    	<div id="ThirdIdol" onclick="lockBtn()"></div>
 	    </c:forEach>
