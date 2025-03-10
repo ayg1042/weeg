@@ -8,6 +8,15 @@ header{
   display: flex;
   background: white;
 }
+
+#main_top_gnb {
+  position: fixed;
+  top: 80px; /* 헤더 아래로 위치 */
+  left: 0;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
 #header_wrap{
   border-bottom: 1px solid #EBEDF2;
   width: 100%;
