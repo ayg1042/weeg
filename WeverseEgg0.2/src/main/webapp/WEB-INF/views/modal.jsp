@@ -212,8 +212,54 @@
 		<div id="modal1" class="modal">
 		    <div class="modal-frame dark">
 		    	<div class="modal-top">
-		    		<img id="hpBar" src="/images/hpBar_full.png">
-		    		<img id="fatigueBar" src="/images/fatigueBar_full.png">
+		    		<c:if test="${chDto.health == 100}">
+							<img id="hpBar" src="/images/hp/hp_100.png">
+						</c:if>
+						<c:if test="${chDto.health == 90}">
+							<img id="hpBar" src="/images/hp/hp_90.png">
+						</c:if>
+						<c:if test="${chDto.health == 80}">
+							<img id="hpBar" src="/images/hp/hp_80.png">
+						</c:if>
+						<c:if test="${chDto.health == 70}">
+							<img id="hpBar" src="/images/hp/hp_70.png">
+						</c:if>
+						<c:if test="${chDto.health == 60}">
+							<img id="hpBar" src="/images/hp/hp_60.png">
+						</c:if>
+						<c:if test="${chDto.health == 50}">
+							<img id="hpBar" src="/images/hp/hp_50.png">
+						</c:if>
+						<c:if test="${chDto.health == 40}">
+							<img id="hpBar" src="/images/hp/hp_40.png">
+						</c:if>
+						<c:if test="${chDto.health == 30}">
+							<img id="hpBar" src="/images/hp/hp_30.png">
+						</c:if>
+						<c:if test="${chDto.health == 20}">
+							<img id="hpBar" src="/images/hp/hp_20.png">
+						</c:if>
+						<c:if test="${chDto.health == 10}">
+							<img id="hpBar" src="/images/hp/hp_10.png">
+						</c:if>
+						<c:if test="${chDto.health == 0}">
+							<img id="hpBar" src="/images/hp/hp_0.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 0}">
+			    		<img id="fatigueBar" src="/images/hp/fp_0.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 25}">
+			    		<img id="fatigueBar" src="/images/hp/fp_25.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 50}">
+			    		<img id="fatigueBar" src="/images/hp/fp_50.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 75}">
+			    		<img id="fatigueBar" src="/images/hp/fp_75.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 100}">
+			    		<img id="fatigueBar" src="/images/hp/fp_100.png">
+						</c:if>
 		    		<div id="jellyBar">
 		    			<img id="jelly" src="/images/jellyIcon.png">
 		    			<p id="My_jelly">99999999</p>
@@ -349,8 +395,54 @@
 		<div id="modal2" class="modal">
 		    <div class="modal-frame dark">
 		    	<div class="modal-top">
-		    		<img id="hpBar" src="/images/hpBar_full.png">
-		    		<img id="fatigueBar" src="/images/fatigueBar_full.png">
+		    		<c:if test="${chDto.health == 100}">
+							<img id="hpBar" src="/images/hp/hp_100.png">
+						</c:if>
+						<c:if test="${chDto.health == 90}">
+							<img id="hpBar" src="/images/hp/hp_90.png">
+						</c:if>
+						<c:if test="${chDto.health == 80}">
+							<img id="hpBar" src="/images/hp/hp_80.png">
+						</c:if>
+						<c:if test="${chDto.health == 70}">
+							<img id="hpBar" src="/images/hp/hp_70.png">
+						</c:if>
+						<c:if test="${chDto.health == 60}">
+							<img id="hpBar" src="/images/hp/hp_60.png">
+						</c:if>
+						<c:if test="${chDto.health == 50}">
+							<img id="hpBar" src="/images/hp/hp_50.png">
+						</c:if>
+						<c:if test="${chDto.health == 40}">
+							<img id="hpBar" src="/images/hp/hp_40.png">
+						</c:if>
+						<c:if test="${chDto.health == 30}">
+							<img id="hpBar" src="/images/hp/hp_30.png">
+						</c:if>
+						<c:if test="${chDto.health == 20}">
+							<img id="hpBar" src="/images/hp/hp_20.png">
+						</c:if>
+						<c:if test="${chDto.health == 10}">
+							<img id="hpBar" src="/images/hp/hp_10.png">
+						</c:if>
+						<c:if test="${chDto.health == 0}">
+							<img id="hpBar" src="/images/hp/hp_0.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 0}">
+			    		<img id="fatigueBar" src="/images/hp/fp_0.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 25}">
+			    		<img id="fatigueBar" src="/images/hp/fp_25.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 50}">
+			    		<img id="fatigueBar" src="/images/hp/fp_50.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 75}">
+			    		<img id="fatigueBar" src="/images/hp/fp_75.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 100}">
+			    		<img id="fatigueBar" src="/images/hp/fp_100.png">
+						</c:if>
 		    		<div id="jellyBar">
 		    			<img id="jelly" src="/images/jellyIcon.png">
 		    			<p id="My_jelly">99999999</p>
@@ -358,7 +450,9 @@
 		    		</div>
 		    		<div id="coinBar">
 		    			<img id="coin" src="/images/coinIcon.png">
-		    			<p id="My_Coin">99999999</p>
+		    			<p id="My_Coin">
+		    			<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
+		    			</p>
 		    			<img id="plus" src="/images/plusIcon.png">
 		    		</div>
 		        	<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
