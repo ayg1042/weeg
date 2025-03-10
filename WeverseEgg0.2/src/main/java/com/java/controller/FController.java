@@ -44,14 +44,9 @@ public class FController {
 		return "main2";
 	}
 	
-	@GetMapping("/weverseaespa") // 위버스 에스파 페이지 캐릭터 랭킹 
+	@GetMapping("/aespa") // 위버스 에스파 페이지 캐릭터 랭킹 
 	public String weverseAespa() {
 		return "weverse_aespa";
-	}
-	
-	@GetMapping("/jellyshop") //젤리 구매 페이지
-	public String jellyShop() {
-		return "jelly_shop";
 	}
 	
 	@GetMapping("/eggmain") // 에그 메인 게임 시작 페이지
@@ -67,6 +62,11 @@ public class FController {
 	@GetMapping("/wenotice") // 위버스 공지사항
 	public String weNotice() {
 		return "weNotice";
+	}
+	
+	@GetMapping("/weNoticeView") // 위버스 공지사항 뷰페이지
+	public String weNoticeView() {
+		return "weNoticeView";
 	}
 	
 	@GetMapping("/modal")
@@ -178,5 +178,8 @@ public class FController {
 		return "1";
 	}
 	
-	
+	@GetMapping("/rank") // 랭킹 페이지
+	public String rank() {
+		return "rank";
+	}
 }

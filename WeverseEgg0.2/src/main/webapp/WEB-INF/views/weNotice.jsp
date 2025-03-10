@@ -44,8 +44,8 @@
         </ul>
         <ul>
           <li id="option_title">랭킹</li>
-          <li><a href="#">전체랭킹</a></li>
-          <li><a href="#">그룹랭킹 </a></li>
+          <li><a href="/rank">전체랭킹</a></li>
+          <li><a href="/rank">그룹랭킹 </a></li>
         </ul>
         <ul>
           <li id="option_title">고객지원</li>
@@ -83,7 +83,7 @@
       <tbody>
         <tr>
           <td class="td_title">
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
+            <a href="/weNoticeView"><span class="info_title">공지사항 게시글 제목입니다.</span></a>
           </td>
           <td class="info_date">2025-01-01</td>
         </tr>

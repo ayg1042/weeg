@@ -44,4 +44,11 @@ public class ItemEntity {
     	return entity;
     }
     
+    public static ItemEntity join(ItemDto dto) {
+    	ItemEntity entity = new ItemEntity();
+		entity.name = dto.getName();
+		entity.price = dto.getPrice();
+		entity.image = dto.getImage();
+		return entity;
+    }
 }

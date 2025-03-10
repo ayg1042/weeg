@@ -24,8 +24,15 @@ public class GroupDto {
 
     /** 멤버 수 - 그룹에 속한 멤버의 수 */
     private int memberCount;
-    
+
     /** 그룹에 속한 예명들 */
     private List<ArtistNameDto> artistNames;  // 리스트로 예명 정보 추가
+    
+	// 정적 팩토리 메서드 추가
+    public static GroupDto rank(GroupEntity entity) {
+    	GroupDto dto = new GroupDto();
+        dto.setGroupName(entity.getGroupName());
+        return dto;
+    }
 	
 }
