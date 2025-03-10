@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <body>
+	<%@ include file="header.jsp" %>
   <!-- 메인 -->
   <div id="egg_mainpage"> 
 

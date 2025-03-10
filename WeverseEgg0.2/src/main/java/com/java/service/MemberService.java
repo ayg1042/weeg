@@ -16,4 +16,7 @@ public interface MemberService {
 	MemberDto findByEmailAndPw(String email, String pw);
 
 	MemberDto kakaoLogin(JsonNode kakaoData);
+
+	int getByJelly(int id);
+
 }

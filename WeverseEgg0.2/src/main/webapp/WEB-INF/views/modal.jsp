@@ -160,12 +160,6 @@
 		</div>
 		<!-- 끝 ===== MainRoom ===== -->
 		
-		<!-- 모달 열기 버튼 -->
-		<button class="open-modal" data-modal="modal1">트레이닝 선택</button>
-		<button class="open-modal" data-modal="modal2">활동 선택</button>
-		<button class="open-modal" data-modal="modal3">상점</button>
-		<button class="open-modal" data-modal="modal4">내 가방</button>
-		
 		<!-- 트레이닝 모달 -->
 		<div id="modal1" class="modal">
 		    <div class="modal-frame dark">
