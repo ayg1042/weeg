@@ -33,11 +33,14 @@ a{
 	margin-bottom: 70px;
 }
 
-#FirstIdol_make{
+#IdolSelectArea{
+	margin-left: 415px; 
+}
+
+.Idolmake{
 	width: 336px; 
 	height: 586px; 
 	border: 7px solid #D2BDFF; 
-	margin-left: 415px; 
 	background-color: white; 
 	display: none;
 	background-image: url('/images/chocieCharacter/egg.png'); 
@@ -46,16 +49,15 @@ a{
 	background-position: center;
 }
 
-#FirstIdol_make:hover{
+.Idolmake:hover{
 	background-image: url('/images/chocieCharacter/egg_make.png'); 
 	cursor: pointer;
 }
 
-#FirstIdol_open{
+.Idolopen{
 	width: 336px; 
 	height: 586px; 
 	border: 7px solid #D2BDFF; 
-	margin-left: 415px; 
 	background-color: white; 
 	display: none;
 	background-image: url('/images/chocieCharacter/egg_break.png'); 
@@ -72,12 +74,12 @@ a{
   overflow: hidden;  /* 텍스트가 영역을 벗어나면 잘리게 */
 }
 
-#FirstIdol_open:hover{
+.Idolopen:hover{
 	background-image: url('/images/chocieCharacter/egg_break_hover.png'); 
 	cursor: pointer;
 }
 
-#SecondIdol{
+.Idollock{
 	width: 336px; 
 	height: 586px; 
 	background-image: url('/images/chocieCharacter/LockIdol.png');  
@@ -88,13 +90,3 @@ a{
 	cursor: pointer;
 }
 
-#ThirdIdol{
-	width: 336px; 
-	height: 586px; 
-	background-image: url('/images/chocieCharacter/LockIdol.png');  
-	border: 7px solid #D2BDFF; 
-	display: inline-block; 
-	margin-left: 15px; 
-	background-position: center;
-	cursor: pointer;
-}
