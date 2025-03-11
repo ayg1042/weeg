@@ -351,10 +351,7 @@ public class FController {
 		// 사용 로직
 		return "1";
 	}
-
-=======
 	
->>>>>>> refs/remotes/origin/master
 	@GetMapping("/rank") // 랭킹 페이지
 	public String rank() {
 		return "rank";
