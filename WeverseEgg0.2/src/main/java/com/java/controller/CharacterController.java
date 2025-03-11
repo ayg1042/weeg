@@ -62,7 +62,6 @@ public class CharacterController {
         return "choiceCharacter";
 	}
 	
-<<<<<<< HEAD
 	@PostMapping("/choiceCharacter")
 	public String buyCharacter(@SessionAttribute(name = "session_id", required = false) MemberDto memberDto) {
 		// 로그인한 사용자 정보 가져오기
@@ -70,10 +69,7 @@ public class CharacterController {
 		memberService.buyCharacter(id);
 		return "choiceCharacter";
 	}
-=======
 
->>>>>>> refs/remotes/origin/master
-	
 	// 캐릭터 생성시 스토리 페이지
 	@GetMapping("/startStory") 
 	public String startStory() {

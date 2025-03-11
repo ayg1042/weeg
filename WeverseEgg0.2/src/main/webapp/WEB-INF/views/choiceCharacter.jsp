@@ -111,18 +111,36 @@
 
   <div id="mainBack">
     <h2 id="ChoiceIdol">아이돌 선택</h2>
-    <c:if test="${list != null}">
-	    <c:forEach items="${list}" var="cdto">
-		    <div id="FirstIdol_open" data-character-id="${cdto.character_id}" onclick="choiceBtn(true,this)">${cdto.nickName }</div>
-	  	  <div id="SecondIdol" onclick="lockBtn()"></div>
-	    	<div id="ThirdIdol" onclick="lockBtn()"></div>
-	    </c:forEach>
-    </c:if>
-    <c:if test="${list == null}">
-		    <div id="FirstIdol_make" onclick="choiceBtn(false)"></div>
-	  	  <div id="SecondIdol" onclick="lockBtn()"></div>
-	    	<div id="ThirdIdol" onclick="lockBtn()"></div>
-    </c:if>
+    <div id="slot">
+	    <c:choose>
+	        <c:when test="${empty list}">
+	            <div id="FirstIdol_make" onclick="choiceBtn(false)"></div>
+	            <div id="SecondIdol" onclick="lockBtn()"></div>
+	            <div id="ThirdIdol" onclick="lockBtn()"></div>
+	        </c:when>
+	        <c:otherwise>
+	            <c:forEach var="cdto" items="${list}" varStatus="status">
+	                <c:choose>
+	                    <c:when test="${status.index == 0}">
+	                        <div id="FirstIdol_open" data-character-id="${cdto.character_id}" onclick="choiceBtn(true,this)">${cdto.nickName}</div>
+	                    </c:when>
+	                    <c:when test="${status.index == 1}">
+	                        <div id="FirstIdol_open" data-character-id="${cdto.character_id}" onclick="choiceBtn(true,this)">${cdto.nickName}</div>
+	                    </c:when>
+	                    <c:when test="${status.index == 2}">
+	                        <div id="FirstIdol_open" data-character-id="${cdto.character_id}" onclick="choiceBtn(true,this)">${cdto.nickName}</div>
+	                    </c:when>
+	                </c:choose>
+	            </c:forEach>
+	            <c:if test="${list.size() < 3}">
+	                <div id="SecondIdol" onclick="lockBtn()"></div>
+	            </c:if>
+	            <c:if test="${list.size() < 2}">
+	                <div id="ThirdIdol" onclick="lockBtn()"></div>
+	            </c:if>
+	        </c:otherwise>
+	    </c:choose>
+    </div>
   </div>  <!-- mainBack -->
   
 </body>
