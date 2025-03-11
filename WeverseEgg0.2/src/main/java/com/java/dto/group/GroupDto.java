@@ -1,8 +1,9 @@
 package com.java.dto.group;
 
-import java.util.List;
-
+import com.java.dto.character.ArtistDto;
+import com.java.entity.character.ArtistEntity;
 import com.java.entity.group.GroupEntity;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,6 +36,12 @@ public class GroupDto {
     	GroupDto dto = new GroupDto();
         dto.setGroupName(entity.getGroupName());
         return dto;
+    }
+    
+    public static GroupDto info(GroupEntity groupEntity) {
+    	GroupDto groupDto = new GroupDto();
+    	groupDto.setGroupName(groupEntity.getGroupName());
+    	return groupDto;
     }
 	
 }
