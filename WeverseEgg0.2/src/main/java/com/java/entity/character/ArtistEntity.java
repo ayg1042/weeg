@@ -2,6 +2,8 @@ package com.java.entity.character;
 
 import java.sql.Timestamp;
 
+import com.java.dto.character.ArtistDto;
+import com.java.dto.character.CharacterDto;
 import com.java.entity.group.ArtistNameEntity;
 import com.java.entity.group.GroupEntity;
 import jakarta.persistence.*;
@@ -34,4 +36,8 @@ public class ArtistEntity {
 
     @Column(nullable = false)
     private Timestamp debutDate;
+    
+    
+
+    
 }
