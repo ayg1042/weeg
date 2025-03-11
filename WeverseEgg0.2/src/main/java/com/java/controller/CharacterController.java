@@ -91,6 +91,7 @@ public class CharacterController {
 
 	    // 캐릭터 저장
 	    characterService.save(character);
+	    session.setAttribute("character", character);
 	    
 		return "redirect:/modal";
 	}
