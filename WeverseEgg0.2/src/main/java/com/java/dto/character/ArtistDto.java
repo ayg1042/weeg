@@ -44,4 +44,12 @@ public class ArtistDto {
         return dto;
     }
     
+    public static ArtistDto info(ArtistEntity entity) {
+    	ArtistDto ArtistDto = new ArtistDto();
+    	ArtistDto.setArtistName(ArtistNameDto.rank(entity.getArtistName()));
+    	ArtistDto.setBlueMark(entity.getBlueMark());
+    	ArtistDto.setLevel(entity.getClevel());
+    	return ArtistDto;
+    }
+    
 }

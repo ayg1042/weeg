@@ -1,7 +1,7 @@
 package com.java.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,7 +11,7 @@ import jakarta.transaction.Transactional;
 import com.java.dto.character.CharacterDto;
 import com.java.entity.character.CharacterEntity;
 
-public interface CharacterRepository extends JpaRepository<CharacterEntity, Integer> {
+public interface CharacterRepository extends JpaRepository<CharacterEntity, Integer>{
 
 	List<CharacterEntity> findByMemberUserId(int user_id);
 	
@@ -33,4 +33,6 @@ public interface CharacterRepository extends JpaRepository<CharacterEntity, Inte
     void updateCoinByUserId(@Param("userId") int userId, @Param("newCoin") int newCoin);
 
 	CharacterEntity findByMember_UserId(Integer userId);
+	
+	CharacterEntity findBycharacterId(int i);
 }

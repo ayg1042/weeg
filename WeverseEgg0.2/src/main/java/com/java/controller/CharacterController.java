@@ -49,6 +49,8 @@ public class CharacterController {
         return "choiceCharacter";
 	}
 	
+
+	
 	// 캐릭터 생성시 스토리 페이지
 	@GetMapping("/startStory") 
 	public String startStory() {

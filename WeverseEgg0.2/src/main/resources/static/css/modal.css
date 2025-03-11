@@ -27,7 +27,7 @@ button {
 }
 .info_area{
 	height: 70px;
-	margin :30px 0 0 411px;
+	margin :32px 0 0 412px;
 	position:relative;
 	z-index: 8;
 	display: flex;
@@ -433,6 +433,7 @@ button {
 }
 
 .training_text{
+	opacity:1;
 	color: black;
 	text-align: center;
 }
@@ -442,6 +443,30 @@ button {
 }
 .training_text p{
 	margin:0;
+}
+
+.training_text_hide{
+	opacity:0;
+	color: black;
+	text-align: center;
+}
+
+.training_text_hide h2{
+	color:#5A63DC;
+	margin: 25px 0 25px;
+	font-weight: normal;
+}
+.training_text_hide p{
+	margin:0;
+}
+
+.modal-item:hover .training_text_hide{
+	opacity: 1;
+	visibility: visible;
+}
+.modal-item:hover .training_text{
+	opacity: 0;
+	display: none;
 }
 
 

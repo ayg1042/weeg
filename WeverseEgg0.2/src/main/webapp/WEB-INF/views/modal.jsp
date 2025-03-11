@@ -69,11 +69,130 @@
 							stroke-linejoin="round">
 		           </path>
 		           </svg>
-				</button>
-				<div class="header_content">
-					<button type="button" class="egg"></button>
-					<button type="button" class="jelly"></button>
-					<button type="button" class="shop"></button>
+		         </button>
+		         <div class="header_content">
+		           <button type="button" class="egg"></button>
+		           <button type="button" class="jelly"></button>
+		           <button type="button" class="shop"></button>
+		         </div>
+		       </div>
+		     </div>
+		 </header>
+		<div class="main_bg">
+			<div class="game_main">
+			
+				<div class = 'info_area'>
+					<div id="bars">
+						<c:if test="${chDto.health == 100}">
+							<img id="hpBar" src="/images/hp/hp_100.png">
+						</c:if>
+						<c:if test="${chDto.health == 90}">
+							<img id="hpBar" src="/images/hp/hp_90.png">
+						</c:if>
+						<c:if test="${chDto.health == 80}">
+							<img id="hpBar" src="/images/hp/hp_80.png">
+						</c:if>
+						<c:if test="${chDto.health == 70}">
+							<img id="hpBar" src="/images/hp/hp_70.png">
+						</c:if>
+						<c:if test="${chDto.health == 60}">
+							<img id="hpBar" src="/images/hp/hp_60.png">
+						</c:if>
+						<c:if test="${chDto.health == 50}">
+							<img id="hpBar" src="/images/hp/hp_50.png">
+						</c:if>
+						<c:if test="${chDto.health == 40}">
+							<img id="hpBar" src="/images/hp/hp_40.png">
+						</c:if>
+						<c:if test="${chDto.health == 30}">
+							<img id="hpBar" src="/images/hp/hp_30.png">
+						</c:if>
+						<c:if test="${chDto.health == 20}">
+							<img id="hpBar" src="/images/hp/hp_20.png">
+						</c:if>
+						<c:if test="${chDto.health == 10}">
+							<img id="hpBar" src="/images/hp/hp_10.png">
+						</c:if>
+						<c:if test="${chDto.health == 0}">
+							<img id="hpBar" src="/images/hp/hp_0.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 0}">
+			    		<img id="fatigueBar" src="/images/hp/fp_0.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 25}">
+			    		<img id="fatigueBar" src="/images/hp/fp_25.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 50}">
+			    		<img id="fatigueBar" src="/images/hp/fp_50.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 75}">
+			    		<img id="fatigueBar" src="/images/hp/fp_75.png">
+						</c:if>
+						<c:if test="${chDto.fatigue == 100}">
+			    		<img id="fatigueBar" src="/images/hp/fp_100.png">
+						</c:if>
+		    		<div id="jellyBar">
+		    			<img id="jelly" src="/images/egg_info/jellyIcon.png">
+		    			<p id="My_jelly">
+		    			<fmt:formatNumber value="${character.member.jelly}" pattern="###,###,##0" />
+		    			</p>
+		    			<img id="plus" src="/images/egg_info/plusIcon.png">
+		    		</div>
+		    		<div id="coinBar" class="gap">
+		    			<img id="coin" src="/images/egg_info/coinIcon.png">
+		    			<p id="My_Coin">
+		    				<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
+		    			</p>
+		    			<img id="plus" src="/images/egg_info/plusIcon.png">
+		    		</div>
+					</div>
+	    		<div id="character_info">
+	    			<div id="character_nickname">${chDto.nickName}</div>
+	    			<div id="character_type">${chDto.artist.artistName.artistName}</div>
+	    			<div id="stat_hidden">
+	    				<div id="stat_hidden_level">
+	    					<p>LV.</p>
+	    					<p class="fc">${lvChk[0]}</p><!-- 캐릭터레벨 -->
+	    					<p class="mg_left">(</p>
+	    					<p class="fc">${lvChk[1]}</p><!-- 경험치 -->
+	    					<p>/100)</p>
+	    				</div>
+	    				<hr/>
+	    				<div id="stat_hidden_statArea">
+		    				<div>
+		    					<div class="stat_hidden_stTitle">보컬</div>
+		    					<div class="stat_hidden_stTitle">댄스</div>
+		    					<div class="stat_hidden_stTitle">랩</div>
+		    					<div class="stat_hidden_stTitle">예능</div>
+		    					<div class="stat_hidden_stTitle">매력도</div>
+		    					<div class="stat_hidden_stTitle">인기도</div>
+		    				</div>
+		    				<div>
+		    					<div class="stat_hidden_stats">
+			    					<div class="stat_hidden_stTitle">${chDto.vocal}</div>
+			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+		    					</div>
+		    					<div class="stat_hidden_stats">
+			    					<div class="stat_hidden_stTitle">${chDto.dance}</div>
+			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+		    					</div>
+		    					<div class="stat_hidden_stats">
+			    					<div class="stat_hidden_stTitle">${chDto.rap}</div>
+			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+		    					</div>
+		    					<div class="stat_hidden_stats">
+			    					<div class="stat_hidden_stTitle">${chDto.entertainment}</div>
+			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+		    					</div>
+		    					<div class="stat_hidden_stats">
+			    					<div class="stat_hidden_stTitle">${chDto.charm}</div>
+			    					<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+		    					</div>
+		    					<div class="stat_hidden_stTitle">${chDto.popularity}</div>
+		    				</div>
+	    				</div>
+	    			</div>
+	    		</div>
 				</div>
 			</div>
 		</div>
