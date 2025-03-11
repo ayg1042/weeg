@@ -1,8 +1,10 @@
 package com.java.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,21 +13,29 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.java.dto.character.CharacterDto;
 import com.java.dto.character.InvenDto;
 import com.java.dto.character.SaveStyleDto;
 import com.java.dto.character.StyleDto;
 import com.java.dto.item.ItemDto;
-import com.java.dto.member.MemberDto;
 import com.java.dto.practice.DancePracticeDto;
 import com.java.dto.practice.EntertainmentPracticeDto;
 import com.java.dto.practice.RapPracticeDto;
 import com.java.dto.practice.VocalPracticeDto;
+import com.java.dto.quest.QuestDto;
+import com.java.entity.character.CharacterEntity;
+import com.java.entity.quest.QuestHistoryEntity;
+import com.java.entity.quest.QuestProgressEntity;
+import com.java.repository.CharacterRepository;
+import com.java.repository.QuestHistoryRepository;
+import com.java.repository.QuestProgressRepository;
 import com.java.service.CharacterService;
 import com.java.service.ModalService;
+import com.java.service.QuestService;
 import com.java.util.LvCalc;
 
 import jakarta.servlet.http.HttpSession;
@@ -35,10 +45,14 @@ public class EggMRController {
 	
 	@Autowired HttpSession session;
 	@Autowired CharacterService characterService;
+	@Autowired CharacterRepository characterRepository;
+	@Autowired QuestHistoryRepository questHistoryRepository;
 	@Autowired ModalService modalServiceImpl;
+	@Autowired QuestService questService;
+	@Autowired QuestProgressRepository questProgressRepository;
 	
 	@GetMapping("/modal")
-	public String modal(Model model) {
+	public String modal(Model model) throws JsonProcessingException {
         
 		// 테스트용 세션 저장
 		//session.setAttribute("session_iddd", new MemberDto()); 
@@ -146,6 +160,58 @@ public class EggMRController {
 					model.addAttribute("frame_id", itemId);
 				}
 			}
+			
+			Integer userId = (Integer) session.getAttribute("user_id");
+			System.out.println("현재 사용자 ID: " + userId);  // userId 확인용
+			
+			// 퀘스트 전체 리스트 가져오기
+			List<QuestDto> list = questService.findAll();
+			model.addAttribute("list", list);
+			
+			// 현재 사용자(user_id = 1)의 진행 정보를 조회 (예시)
+	        // 실제 구현 시 로그인한 사용자의 정보를 사용하도록 수정. (임시) 나중에 세션 사용해야함.
+	        List<QuestProgressEntity> progressList = questProgressRepository.findAll()
+	                .stream()
+	                .filter(qp -> qp.getMember().getUserId() == 1)
+	                .collect(Collectors.toList());
+	        
+	        // 퀘스트 아이디를 key로 진행 정보를 매핑하여 Map 생성 (한 퀘스트에 한 진행 정보가 있다고 가정)
+	        Map<Integer, QuestProgressEntity> progressMap = new HashMap<>();
+	        for (QuestProgressEntity qp : progressList) {
+	            // 퀘스트 아이디를 key로 사용 (중복 없다고 가정)
+	            progressMap.put(qp.getQuest().getQuestId(), qp);
+	        }
+	        model.addAttribute("progressMap", progressMap);
+	        
+	     // 사용자 퀘스트 히스토리 가져오기 (isRewarded 확인)
+	        List<QuestHistoryEntity> historyList = questHistoryRepository.findByMember_UserId(userId);
+	        System.out.println("퀘스트 히스토리: " + historyList);  // 히스토리 확인용
+	        Map<Integer, Integer> rewardedMap = new HashMap<>();
+	        for (QuestHistoryEntity history : historyList) {
+	            // 각 퀘스트의 isRewarded 상태를 Map에 저장
+	            rewardedMap.put(history.getQuest().getQuestId(), history.getIsRewarded());
+	        }
+	        
+	     // rewardedMap을 JSON 문자열로 변환
+	        ObjectMapper objectMapper = new ObjectMapper();
+	        String rewardedMapJson = objectMapper.writeValueAsString(rewardedMap);
+	        
+	        // 모델에 JSON 문자열 전달
+	        model.addAttribute("rewardedMapJson", rewardedMapJson);
+	        System.out.println("rewardedMap: " + rewardedMap);
+	        model.addAttribute("rewardedMap", rewardedMap);
+	        
+	     // 캐릭터의 코인 정보 가져오기
+	        // userId로 해당 사용자의 캐릭터를 찾음
+	        CharacterEntity character1 = characterRepository.findByMember_UserId(userId);
+	        
+	        // 캐릭터가 존재한다면 코인 정보 전달
+	        if (character1 != null) {
+	            model.addAttribute("userCoin", character1.getCoin());
+	        } else {
+	            // 캐릭터가 없다면 기본값 0
+	            model.addAttribute("userCoin", 0);
+	        }
 		}
 		
 		
