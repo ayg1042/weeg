@@ -23,7 +23,10 @@ public interface MemberService {
 	// 젤리 정보 가져오기
 	int getByJelly(int id);
 
+<<<<<<< HEAD
 	// 추가 캐릭터 슬롯 구매
+=======
+>>>>>>> refs/remotes/origin/master
 	void buyCharacter(int id);
 
 }

@@ -18,10 +18,63 @@ a{
 }
 
 /* 캐릭터 선택 */
-#mainBack{
+/* #mainBack{
 	width: 100%; 
 	height: calc(100vh - 80px);
 	background-image: url("/images/chocieCharacter/game_back.jpg");
+} */
+
+#mainBack {
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-image: url("/images/chocieCharacter/game_back.jpg");
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#slot{
+	width: 100%;
+	gap: 15px; /* 슬롯 간 간격 */
+	display: flex;
+	margin: 0 auto;
+	padding-left: 417px;
+}
+
+.idol-slot {
+    width: 336px;
+    height: 586px;
+    border: 7px solid #D2BDFF;
+    background-color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* 캐릭터 슬롯 상태별 스타일 */
+#FirstIdol_make {
+    background-image: url('/images/chocieCharacter/egg.png');
+}
+
+#FirstIdol_make:hover {
+    background-image: url('/images/chocieCharacter/egg_make.png');
+}
+
+#FirstIdol_open, #SecondIdol_open, #ThirdIdol_open {
+    background-image: url('/images/chocieCharacter/egg_break.png');
+}
+
+#FirstIdol_open:hover, #SecondIdol_open:hover, #ThirdIdol_open:hover {
+    background-image: url('/images/chocieCharacter/egg_break_hover.png');
+}
+
+#SecondIdol, #ThirdIdol {
+    background-image: url('/images/chocieCharacter/LockIdol.png');
 }
 
 #ChoiceIdol{
@@ -33,14 +86,11 @@ a{
 	margin-bottom: 70px;
 }
 
-#IdolSelectArea{
-	margin-left: 415px; 
-}
-
-.Idolmake{
+#FirstIdol_make{
 	width: 336px; 
 	height: 586px; 
 	border: 7px solid #D2BDFF; 
+	margin-left: 415px; 
 	background-color: white; 
 	display: none;
 	background-image: url('/images/chocieCharacter/egg.png'); 
@@ -49,15 +99,16 @@ a{
 	background-position: center;
 }
 
-.Idolmake:hover{
+#FirstIdol_make:hover{
 	background-image: url('/images/chocieCharacter/egg_make.png'); 
 	cursor: pointer;
 }
 
-.Idolopen{
+#FirstIdol_open{
 	width: 336px; 
 	height: 586px; 
 	border: 7px solid #D2BDFF; 
+	/* margin-left: 415px;  */
 	background-color: white; 
 	display: none;
 	background-image: url('/images/chocieCharacter/egg_break.png'); 
@@ -74,19 +125,28 @@ a{
   overflow: hidden;  /* 텍스트가 영역을 벗어나면 잘리게 */
 }
 
-.Idolopen:hover{
+#FirstIdol_open:hover{
 	background-image: url('/images/chocieCharacter/egg_break_hover.png'); 
 	cursor: pointer;
 }
 
-.Idollock{
+#SecondIdol{
 	width: 336px; 
 	height: 586px; 
 	background-image: url('/images/chocieCharacter/LockIdol.png');  
 	border: 7px solid #D2BDFF; 
 	display: inline-block;  
-	margin-left: 14px; 
 	background-position: center;
 	cursor: pointer;
 }
 
+#ThirdIdol{
+	width: 336px; 
+	height: 586px; 
+	background-image: url('/images/chocieCharacter/LockIdol.png');  
+	border: 7px solid #D2BDFF; 
+	display: inline-block; 
+	margin-left: 15px; 
+	background-position: center;
+	cursor: pointer;
+}
