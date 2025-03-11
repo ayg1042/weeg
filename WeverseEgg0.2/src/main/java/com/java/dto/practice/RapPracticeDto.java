@@ -1,5 +1,7 @@
 package com.java.dto.practice;
 
+import com.java.entity.practice.RapPracticeEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,4 +22,14 @@ public class RapPracticeDto {
 	/** 랩 연습을 통해 얻는 점수 */
     private int rapScore;
     
+
+    public static RapPracticeDto pt_info(RapPracticeEntity entity) {
+        RapPracticeDto dto = new RapPracticeDto();
+        dto.setRapId(entity.getRapId());
+        dto.setPracticeId(PracticeDto.pt_info(entity.getPractice()));
+        dto.setRapName(entity.getRapName());
+        dto.setRapScore(entity.getRapScore());
+        return dto;
+    }
+
 }

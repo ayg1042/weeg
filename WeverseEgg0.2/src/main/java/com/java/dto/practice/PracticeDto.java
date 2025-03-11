@@ -1,5 +1,7 @@
 package com.java.dto.practice;
 
+import com.java.entity.practice.PracticeEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,5 +21,16 @@ public class PracticeDto {
     private int health;
     /** 연습 시 증가하는 피로도 */
     private int fatigue;
+    
+    public static PracticeDto pt_info(PracticeEntity entity) {
+        PracticeDto dto = new PracticeDto();
+        dto.setPracticeId(entity.getPracticeId());
+        dto.setPracticeType(PracticeType.pt_info(entity.getPracticeType()));
+        dto.setPrice(entity.getPrice());
+        dto.setHealth(entity.getHealth());
+        dto.setFatigue(entity.getFatigue());
+        return dto;
+    }
+
     
 }

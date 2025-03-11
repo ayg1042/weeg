@@ -1,5 +1,7 @@
 package com.java.dto.practice;
 
+import com.java.entity.practice.DancePracticeEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,5 +21,15 @@ public class DancePracticeDto {
 	private String danceName;
 	/** 댄스 연습 점수 (연습을 통해 증가하는 댄스 능력치) */
     private int danceScore;
+    
+    public static DancePracticeDto pt_info(DancePracticeEntity entity) {
+        DancePracticeDto dto = new DancePracticeDto();
+        dto.setDanceId(entity.getDanceId());
+        dto.setPracticeId(PracticeDto.pt_info(entity.getPractice()));
+        dto.setDanceName(entity.getDanceName());
+        dto.setDanceScore(entity.getDanceScore());
+        return dto;
+    }
+
     
 }

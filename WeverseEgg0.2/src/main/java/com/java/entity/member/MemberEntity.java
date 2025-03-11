@@ -54,4 +54,6 @@ public class MemberEntity {
     	return entity;
     }
     
+    
+    
 }

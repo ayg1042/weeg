@@ -11,10 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.java.dto.character.ArtistDto;
 import com.java.dto.character.CharacterDto;
+import com.java.dto.group.GroupDto;
 import com.java.dto.item.ItemDto;
 import com.java.dto.member.MemberDto;
+import com.java.entity.character.ArtistEntity;
 import com.java.entity.character.CharacterEntity;
+import com.java.entity.group.ArtistNameEntity;
+import com.java.entity.group.GroupEntity;
 import com.java.entity.member.MemberEntity;
 import com.java.service.CharacterService;
 import com.java.service.MemberService;
@@ -57,6 +62,7 @@ public class CharacterController {
         return "choiceCharacter";
 	}
 	
+<<<<<<< HEAD
 	@PostMapping("/choiceCharacter")
 	public String buyCharacter(@SessionAttribute(name = "session_id", required = false) MemberDto memberDto) {
 		// 로그인한 사용자 정보 가져오기
@@ -64,6 +70,9 @@ public class CharacterController {
 		memberService.buyCharacter(id);
 		return "choiceCharacter";
 	}
+=======
+
+>>>>>>> refs/remotes/origin/master
 	
 	// 캐릭터 생성시 스토리 페이지
 	@GetMapping("/startStory") 
@@ -90,9 +99,20 @@ public class CharacterController {
 		
 		// 캐릭터 생성
 		CharacterEntity character = new CharacterEntity();
+		ArtistEntity artist = new ArtistEntity();
+		ArtistNameEntity artistName = new ArtistNameEntity();
+		GroupEntity group = new GroupEntity();
+		group.setGroupId(1);
+		group.setGroupName("연습생");
+		artistName.setArtistNId(1);
+		artistName.setArtistName("연습생");
+		artistName.setGroup(group);
+		artist.setArtistId(1);
+		artist.setArtistName(artistName);
 	    character.setNickName(nickname); // 닉네임 설정
 	    character.setGender("여성"); // 기본값 설정 (예제)
 	    character.setMember(MemberEntity.From(member)); // 사용자 정보 연결
+	    character.setArtist(artist);
 	    character.setCoin(100000); // 기본 코인 지급
 	    character.setHealth(100); // 기본 체력
 	    character.setFatigue(0); // 기본 피로도
@@ -107,6 +127,9 @@ public class CharacterController {
 
 	    // 캐릭터 저장
 	    characterService.save(character);
+	    // 캐릭터 생성 후 세션 저장
+	    CharacterDto characterDto = CharacterDto.unit(character);
+	    session.setAttribute("character", characterDto);
 	    
 		return "redirect:/modal";
 	}
