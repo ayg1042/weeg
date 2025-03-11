@@ -8,13 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.dto.character.CharacterDto;
+import com.java.dto.feed.FeedDto;
+import com.java.dto.member.MemberDto;
 import com.java.entity.character.CharacterEntity;
+import com.java.entity.member.MemberEntity;
+import com.java.repository.AespaRepository;
 import com.java.repository.CharacterRepository;
 
 @Service
-public class RankServiceImpl implements RankService {
+public class AespaServiceImpl implements AespaService {
 	
 	@Autowired CharacterRepository characterRepository;
+	@Autowired AespaRepository aespaRepository;
 	
 	// 랭크 계산하기
 	public void getRankedCharacterList(String GroupKor) {
@@ -46,6 +51,24 @@ public class RankServiceImpl implements RankService {
 	        .sorted(Comparator.comparingInt(CharacterEntity::getRank))  // rank 기준 내림차순 정렬
 	        .map(CharacterDto::rank)  // CharacterEntity를 CharacterDto로 변환
 	        .collect(Collectors.toList());
+	}
+
+	@Override // 피드 글쓰기
+	public void newfeed(MemberDto memberDto, String feedWrite) {
+		MemberEntity member = MemberEntity.From(memberDto);
+		
+		FeedDto feedDto = new FeedDto();
+		feedDto.setBcontent(feedWrite);
+		feedDto.setMember(member);
+		feedDto.setBfile(null);
+		
+		aespaRepository.save(feedDto);
+	}
+
+	@Override
+	public List<FeedDto> feedlist() {
+		List<FeedDto> feedlist = aespaRepository.findAllByOrderByBdateDesc();
+		return feedlist;
 	}
 
 

@@ -199,6 +199,21 @@ header{
   object-fit: cover;
 }
 
+.feedsort{
+	height: 20px;
+	font-size: 14px;
+	padding-left: 6px;
+}
+
+.feedsort img{
+  height: 16px;
+  margin: 0px 10px 0 4px;
+  padding-top: 5px;
+  width: 16px;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
 /* 에스파 write 클릭 시 모달 */ 
 .feed_modal {
   display: none; /* 기본은 숨김 */
@@ -210,13 +225,13 @@ header{
   height: 100vh;
   padding: 180px 0;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .feed-content {
   background-color: #fff;
   margin: 0 auto;
-  border-radius: 8px;
+  border-radius: 20px;
   width: 767px;
   height: 540px;
   text-align: center;
@@ -225,6 +240,7 @@ header{
 
 .feed_content_top{
 	padding: 30px 30px 14px;
+	box-sizing: border-box;
 }
 
 .feed_content_top strong{
@@ -246,11 +262,14 @@ header{
 
 .feed_write_area textarea{
 	width: 100%;
-	height: 180px;
+	height: 380px;
+	padding: 14px;
 	border: none;
 	outline: none;
 	resize: none; 
     caret-color: #00c0b5;
+    font-size: 16px;
+    box-sizing: border-box;
 }
 
 .feed_write_area textarea::placeholder{
@@ -261,14 +280,104 @@ header{
 .close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 40px;
+  margin-right: 10px;
   cursor: pointer;
 }
 .close:hover {
   color: black;
 }
 
+.feed_button_area{
+	height: 75px;
+	box-sizing: border-box;
+	text-align: right;
+	padding: 0 28px;
+}
 
+.feed_button_area button{
+	background: #e4e4e4;
+    color: #8e8e8e;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    font-size: 15px;
+    height: 38px;
+    padding: 0 14px;
+    cursor: pointer;
+}
+
+
+
+/* 피드 게시글 */
+.new_feed_area{
+	padding: 22px 0 22px 6px;
+	border-bottom: 2px solid #f8f8f8;
+}
+
+.new_feed_info{
+	display: flex;
+}
+
+.new_feed_profileimg{
+	width: 36px;
+	height: 36px;
+	border-radius: 45px;
+	overflow: hidden;
+}
+
+.new_feed_profileimg img{
+	width: 100%;
+	height: 100%;
+}
+
+.new_feed_profile{
+	margin-left: 8px; 
+}
+
+.new_feed_profile strong{
+	font-size: 14px;
+	line-height: 17px;
+}
+
+.new_feed_profile p{
+	font-size: 12px;
+	color: #8e8e8e;
+	line-height: 14px;
+	margin-top: 3px;
+}
+
+.new_feed_content{
+	padding: 12px 0 15px;
+}
+
+.new_feedbtn{
+	width: 90px;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+}
+
+.feedEmotionBtn1, .feedEmotionBtn2{
+	align-items: center;
+    color: #444;
+    column-gap: 6px;
+    display: flex;
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    position: relative;
+    border:none;
+    background: none;
+    padding: 6px;
+}
+
+.feedEmotionBtn1:enabled:hover, .feedEmotionBtn2:enabled:hover {
+    background-color: #0000000a;
+    border-radius: 8px;
+    padding: 6px;
+}
 
 
 .aespa_side {
