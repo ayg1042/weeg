@@ -19,7 +19,8 @@
     		let characterId = element.getAttribute("data-character-id");
 	        // list가 null이 아닌 경우
 	        if(confirm("해당 캐릭터로 게임을 시작하시겠습니까?")) {
-	      	  sessionStorage.setItem("character_id", characterId);
+	        	characterId=sessionStorage.setItem("character_id", characterId);
+	      	  
 	      	  // 넘어오는지 확인
 	      	  console.log("character_id : ", sessionStorage.getItem("character_id"));
 	      	  
@@ -46,11 +47,21 @@
 	    }
 	  }
 	  
+    // 캐릭터 슬롯창이 잠겨있을 때
 	  function lockBtn(isListNull){
-		if(confirm("캐릭터 슬롯창이 잠겨있습니다. 상점으로 이동하시겠습니까?")){
-			location.href="#";
-		}
-	  }
+		  if(confirm("캐릭터 슬롯창이 잠겨있습니다.\n30젤리를 사용하여 슬롯을 구매하시겠습니까?\n(* 확인을 누르면 바로 결제가 진행되니 신중히 눌러주세요!)")){
+				if(${jelly}>=30){
+					alert("구매가 완료되었습니다.");
+		      location.href="/startStory";
+					var div = document.querySelector('.Idollock');
+		            div.className = 'Idolmake';
+			}else{
+				alert("젤리 부족\n젤리샵으로 이동합니다.")
+				location.href="/jellyshop";
+			}
+  		}
+    }
+	  
     </script>
   </head>
   
@@ -100,18 +111,36 @@
 
   <div id="mainBack">
     <h2 id="ChoiceIdol">아이돌 선택</h2>
-    <c:if test="${list != null}">
-	    <c:forEach items="${list}" var="cdto">
-		    <div id="FirstIdol_open" data-character-id="${cdto.character_id}" onclick="choiceBtn(true,this)">${cdto.nickName }</div>
-	  	  <div id="SecondIdol" onclick="lockBtn()"></div>
-	    	<div id="ThirdIdol" onclick="lockBtn()"></div>
-	    </c:forEach>
-    </c:if>
-    <c:if test="${list == null}">
-		    <div id="FirstIdol_make" onclick="choiceBtn(false)"></div>
-	  	  <div id="SecondIdol" onclick="lockBtn()"></div>
-	    	<div id="ThirdIdol" onclick="lockBtn()"></div>
-    </c:if>
+    <div id="slot">
+	    <c:choose>
+	        <c:when test="${empty list}">
+	            <div id="FirstIdol_make" onclick="choiceBtn(false)"></div>
+	            <div id="SecondIdol" onclick="lockBtn()"></div>
+	            <div id="ThirdIdol" onclick="lockBtn()"></div>
+	        </c:when>
+	        <c:otherwise>
+	            <c:forEach var="cdto" items="${list}" varStatus="status">
+	                <c:choose>
+	                    <c:when test="${status.index == 0}">
+	                        <div id="FirstIdol_open" data-character-id="${cdto.character_id}" onclick="choiceBtn(true,this)">${cdto.nickName}</div>
+	                    </c:when>
+	                    <c:when test="${status.index == 1}">
+	                        <div id="FirstIdol_open" data-character-id="${cdto.character_id}" onclick="choiceBtn(true,this)">${cdto.nickName}</div>
+	                    </c:when>
+	                    <c:when test="${status.index == 2}">
+	                        <div id="FirstIdol_open" data-character-id="${cdto.character_id}" onclick="choiceBtn(true,this)">${cdto.nickName}</div>
+	                    </c:when>
+	                </c:choose>
+	            </c:forEach>
+	            <c:if test="${list.size() < 3}">
+	                <div id="SecondIdol" onclick="lockBtn()"></div>
+	            </c:if>
+	            <c:if test="${list.size() < 2}">
+	                <div id="ThirdIdol" onclick="lockBtn()"></div>
+	            </c:if>
+	        </c:otherwise>
+	    </c:choose>
+    </div>
   </div>  <!-- mainBack -->
   
 </body>

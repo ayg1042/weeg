@@ -96,6 +96,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override // 뉴 캐릭터 슬롯 구매
+	public void buyCharacter(int id) {
+		MemberEntity member = memberRepository.findById(id)
+				.orElse(null);
+		
+		int jelly = member.getJelly();
+		member.setJelly(jelly-30);
+		
+		memberRepository.save(member);
+	}
+
+
 	
 
 

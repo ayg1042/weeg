@@ -136,6 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <img src="images/mainpage/main_banner_Img4.png" alt="메인 배너4">
     </div>
 
+		<div class="egg_main_bottom">
     <!-- 하단 이벤트 gnb -->
     <div id="main_bottom_gnb">
       <div class="box1">
@@ -154,15 +155,16 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="event-title">펫 뽑기쿠폰 업데이트</div>
         <div class="event-date">~2025.03.18</div>
       </div>
-    </div>
-
-    <!-- 게임 스타트 버튼 -->
-    <div id="game_start_btn">
-      <button type="button" onclick="stBtn()" class="game_start">
-        <img src="images/mainpage/start1.png" alt="게임 시작 버튼 호버 전" class="default">
-        <img src="images/mainpage/start2.png" alt="게임 시작 버튼 호버 후" class="hover">
-      </button>
-    </div>
+	   </div>
+	
+	    <!-- 게임 스타트 버튼 -->
+	    <div id="game_start_btn">
+	      <button type="button" onclick="stBtn()" class="game_start">
+	        <img src="images/mainpage/start1.png" alt="게임 시작 버튼 호버 전" class="default">
+	        <img src="images/mainpage/start2.png" alt="게임 시작 버튼 호버 후" class="hover">
+	      </button>
+	    </div>
+		</div>
 
   </div>
   <!-- 메인 끝 -->

@@ -9,11 +9,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.java.dto.character.ArtistDto;
 import com.java.dto.character.CharacterDto;
+import com.java.dto.group.GroupDto;
 import com.java.dto.item.ItemDto;
 import com.java.dto.member.MemberDto;
+import com.java.entity.character.ArtistEntity;
 import com.java.entity.character.CharacterEntity;
+import com.java.entity.group.ArtistNameEntity;
+import com.java.entity.group.GroupEntity;
 import com.java.entity.member.MemberEntity;
 import com.java.service.CharacterService;
 import com.java.service.MemberService;
@@ -34,21 +40,36 @@ public class CharacterController {
 	@Autowired ModalService modalServiceImpl;
 	
 	// 캐릭터 선택 페이지 열기
-	@GetMapping("/choiceCharacter") 
-	public String choiceCharacter(Model model) {
+	@GetMapping("/choiceCharacter")
+	public String choiceCharacter(Model model,
+			@SessionAttribute(name = "session_id", required = false) MemberDto memberDto) {
+		// 회원 정보 없으면 로그인
+		if (memberDto == null) {
+		        return "redirect:/login/login";
+		    }
 		// 로그인한 사용자 정보 가져오기
-		int user_id = (Integer)session.getAttribute("session_userId");
+		int user_id = memberDto.getUser_id();
+		int jelly = memberService.getByJelly(user_id);
 		
 	    // 사용자의 캐릭터 목록 불러오기
         List<CharacterDto> list = characterService.getCharactersByUserId(user_id);
         if(list != null) {
         	model.addAttribute("list", list);
+        	model.addAttribute("jelly", jelly);
 			return "choiceCharacter";
-        }model.addAttribute("list", null);
-        
+        }
+        model.addAttribute("list", null);
         return "choiceCharacter";
 	}
 	
+	@PostMapping("/choiceCharacter")
+	public String buyCharacter(@SessionAttribute(name = "session_id", required = false) MemberDto memberDto) {
+		// 로그인한 사용자 정보 가져오기
+		int id = memberDto.getUser_id();
+		memberService.buyCharacter(id);
+		return "choiceCharacter";
+	}
+
 	// 캐릭터 생성시 스토리 페이지
 	@GetMapping("/startStory") 
 	public String startStory() {
@@ -74,9 +95,20 @@ public class CharacterController {
 		
 		// 캐릭터 생성
 		CharacterEntity character = new CharacterEntity();
+		ArtistEntity artist = new ArtistEntity();
+		ArtistNameEntity artistName = new ArtistNameEntity();
+		GroupEntity group = new GroupEntity();
+		group.setGroupId(1);
+		group.setGroupName("연습생");
+		artistName.setArtistNId(1);
+		artistName.setArtistName("연습생");
+		artistName.setGroup(group);
+		artist.setArtistId(1);
+		artist.setArtistName(artistName);
 	    character.setNickName(nickname); // 닉네임 설정
 	    character.setGender("여성"); // 기본값 설정 (예제)
 	    character.setMember(MemberEntity.From(member)); // 사용자 정보 연결
+	    character.setArtist(artist);
 	    character.setCoin(100000); // 기본 코인 지급
 	    character.setHealth(100); // 기본 체력
 	    character.setFatigue(0); // 기본 피로도
@@ -91,6 +123,9 @@ public class CharacterController {
 
 	    // 캐릭터 저장
 	    characterService.save(character);
+	    // 캐릭터 생성 후 세션 저장
+	    CharacterDto characterDto = CharacterDto.unit(character);
+	    session.setAttribute("character", characterDto);
 	    
 		return "redirect:/modal";
 	}
@@ -102,6 +137,10 @@ public class CharacterController {
 		session.setAttribute("character", dto);
 		return "1";
 	}
+	
+
+	
+
 	
 	
 
