@@ -118,6 +118,7 @@ tr {
 }
 
 .btnArea button {
+	margin: 20px;
   background: #EAEAEA;
   border:none;
   z-index: 1;

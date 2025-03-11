@@ -1,5 +1,7 @@
 package com.java.controller;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,9 +108,8 @@ public class MemberController {
 			HttpSession session, RedirectAttributes redirectAttributes) {
 		MemberDto memberDto = memberService.findByEmailAndPw(email, pw);
 		if (memberDto != null) { // 회원 정보가 존재할 경우
-			session.setAttribute("session_id", memberDto.getEmail());
-//			session.setAttribute("session_nick", memberDto.getNickname());
-			session.setAttribute("user_id", memberDto.getUser_id());
+			session.setAttribute("session_email", email);
+			session.setAttribute("session_nick", memberDto.getNickname());
 			session.setAttribute("session_userId", memberDto.getUser_id()); // 1
 			session.setAttribute("session_id", memberDto); // ✅ MemberDto 객체 저장
 			System.out.println(memberDto.getNickname());

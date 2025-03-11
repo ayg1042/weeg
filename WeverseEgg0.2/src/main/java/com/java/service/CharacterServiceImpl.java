@@ -40,6 +40,12 @@ public class CharacterServiceImpl implements CharacterService {
 			
 		}
 
+	@Override
+	public CharacterDto getCharacterByCharacterId(int characterId) {
+		CharacterEntity entity = characterRepository.getById(characterId);
+		CharacterDto dto = CharacterDto.from(entity);
+		return dto;
+	}
 
     @Override
     public Integer getCoin(Integer userId) {

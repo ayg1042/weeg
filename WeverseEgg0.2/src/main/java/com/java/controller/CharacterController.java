@@ -8,13 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.dto.character.CharacterDto;
+import com.java.dto.item.ItemDto;
 import com.java.dto.member.MemberDto;
 import com.java.entity.character.CharacterEntity;
 import com.java.entity.member.MemberEntity;
 import com.java.service.CharacterService;
 import com.java.service.MemberService;
+import com.java.service.ModalService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -28,6 +31,7 @@ public class CharacterController {
 	CharacterService characterService;
 	@Autowired
 	HttpSession session;
+	@Autowired ModalService modalServiceImpl;
 	
 	// 캐릭터 선택 페이지 열기
 	@GetMapping("/choiceCharacter") 
@@ -40,8 +44,7 @@ public class CharacterController {
         if(list != null) {
         	model.addAttribute("list", list);
 			return "choiceCharacter";
-        }
-        model.addAttribute("list", null);
+        }model.addAttribute("list", null);
         
         return "choiceCharacter";
 	}
@@ -61,29 +64,16 @@ public class CharacterController {
 	// 캐릭터 생성, 닉네임 저장
 	@PostMapping("/nickname_input") 
 	public String nickname_input(@RequestParam("nicinput") String nickname, Model model) {
-	    // 로그인한 사용자 정보 가져오기
-	    int user_id = (Integer)session.getAttribute("session_userId");
-
-	    // 세션에서 사용자 정보 가져오기
-	    String email = (String)session.getAttribute("session_id");
-	    String sessionNickname = (String)session.getAttribute("session_nick");
-	    
-	    System.out.println("email : " + email
-	    		+ " sessionNickname : " + sessionNickname);
-
-	    if (sessionNickname == null || email == null) {
-	        // 세션에서 닉네임이나 이메일이 없으면 오류 처리
-	        model.addAttribute("error", "세션 정보가 유효하지 않습니다.");
-	        return "errorPage"; // 적절한 오류 페이지로 리다이렉트
-	    }
-
-	    MemberDto member = new MemberDto();
-	    member.setUser_id(user_id);
-	    member.setEmail(email);
-	    member.setNickname(sessionNickname);
-
-	    // 캐릭터 생성
-	    CharacterEntity character = new CharacterEntity();
+		// 로그인한 사용자 정보 가져오기
+		int user_id = (Integer)session.getAttribute("session_userId");
+		
+		MemberDto member = new MemberDto();
+		member.setUser_id(user_id);
+		member.setEmail((String)session.getAttribute("session_email"));
+		member.setNickname((String)session.getAttribute("session_nickname"));
+		
+		// 캐릭터 생성
+		CharacterEntity character = new CharacterEntity();
 	    character.setNickName(nickname); // 닉네임 설정
 	    character.setGender("여성"); // 기본값 설정 (예제)
 	    character.setMember(MemberEntity.From(member)); // 사용자 정보 연결
@@ -102,9 +92,16 @@ public class CharacterController {
 	    // 캐릭터 저장
 	    characterService.save(character);
 	    
-	    return "redirect:/modal";
+		return "redirect:/modal";
 	}
-
+	
+	@ResponseBody
+	@PostMapping("/selectCharacter")
+	public String selectCharacter(@RequestParam("character_id") int characterId) {
+		CharacterDto dto = characterService.getCharacterByCharacterId(characterId);
+		session.setAttribute("character", dto);
+		return "1";
+	}
 	
 	
 

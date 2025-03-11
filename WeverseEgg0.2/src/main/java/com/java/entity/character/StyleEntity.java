@@ -1,5 +1,6 @@
 package com.java.entity.character;
 
+import com.java.dto.character.StyleDto;
 import com.java.entity.item.ItemEntity;
 import com.java.entity.item.ItemInfoEntity;
 
@@ -32,4 +33,12 @@ public class StyleEntity {
     @ManyToOne
     @JoinColumn(name = "item_id", referencedColumnName = "item_id")
     private ItemEntity item;
+
+	public static StyleEntity From(StyleDto dto) {
+		StyleEntity entity = new StyleEntity();
+		entity.setCharacter(CharacterEntity.From(dto.getCharacter()));
+		entity.setItem(ItemEntity.From(dto.getItem()));
+		return entity;
+		
+	}
 }

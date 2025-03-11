@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="header.jsp" %>
 
 <!DOCTYPE html>
@@ -43,22 +43,18 @@
         <div class="LinkContent">
           <a href="#" class="LinkItem">
             <div class="Img_W"><img src="../images/WeMyPage/WeMa.png" class="WeMagazine"></div>
-            Weverse Magazine
           </a>
           <a href="#" class="LinkItem">
             <div class="Img_W"><img src="../images/WeMyPage/WeCo.png" class="WeMagazine"></div>
-            Weverse Concerts
           </a>
           <a href="#" class="LinkItem">
             <div class="Img_W"><img src="../images/WeMyPage/WeSu.png" class="WeMagazine"></div>
-            Weverse Survey
           </a>
           <a href="#" class="LinkItem">
             <div class="Img_W"><img src="../images/WeMyPage/WeBTS.png" class="WeMagazine"></div>
             BTS Island: In the SEOM
             <a href="/eggmain" class="LinkItem">
               <div class="Img_W"><img src="../images/WeMyPage/egg_icon.png" class="WeMagazine"></div>
-              Weverse Egg
             </a>
         </div>
       </div>

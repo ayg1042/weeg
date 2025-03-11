@@ -7,10 +7,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import jakarta.transaction.Transactional;
+
+import com.java.dto.character.CharacterDto;
 import com.java.entity.character.CharacterEntity;
 
 public interface CharacterRepository extends JpaRepository<CharacterEntity, Integer> {
-    
+
 	List<CharacterEntity> findByMemberUserId(int user_id);
 	
 	@Query("SELECT c FROM CharacterEntity c " +

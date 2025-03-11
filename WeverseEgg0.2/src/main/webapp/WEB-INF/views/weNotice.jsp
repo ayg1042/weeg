@@ -143,6 +143,16 @@
         });
       });
     });
+    
+ 		// 스크롤시 헤더 색상변경
+    window.addEventListener("scroll", function () {
+	    let gnb = document.getElementById("main_top_gnb");
+	    if (window.scrollY > 50) {  // 스크롤 50px 이상일 때 배경 변경
+	        gnb.classList.add("scrolled");
+	    } else {
+	        gnb.classList.remove("scrolled");
+	    }
+	});
 
 
   </script>
