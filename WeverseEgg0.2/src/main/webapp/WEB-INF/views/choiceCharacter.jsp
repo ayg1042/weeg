@@ -46,11 +46,21 @@
 	    }
 	  }
 	  
+    // 캐릭터 슬롯창이 잠겨있을 때
 	  function lockBtn(isListNull){
-		if(confirm("캐릭터 슬롯창이 잠겨있습니다. 상점으로 이동하시겠습니까?")){
-			location.href="#";
-		}
-	  }
+		  if(confirm("캐릭터 슬롯창이 잠겨있습니다.\n30젤리를 사용하여 슬롯을 구매하시겠습니까?\n(* 확인을 누르면 바로 결제가 진행되니 신중히 눌러주세요!)")){
+				if(${jelly}>=30){
+					alert("구매가 완료되었습니다.");
+		      location.href="/startStory";
+					var div = document.querySelector('.Idollock');
+		            div.className = 'Idolmake';
+			}else{
+				alert("젤리 부족\n젤리샵으로 이동합니다.")
+				location.href="/jellyshop";
+			}
+  		}
+    }
+	  
     </script>
   </head>
   
