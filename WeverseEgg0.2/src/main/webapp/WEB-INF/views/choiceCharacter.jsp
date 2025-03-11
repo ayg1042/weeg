@@ -100,18 +100,20 @@
 
   <div id="mainBack">
     <h2 id="ChoiceIdol">아이돌 선택</h2>
+    <div id="IdolSelectArea">
     <c:if test="${list != null}">
 	    <c:forEach items="${list}" var="cdto">
-		    <div id="FirstIdol_open" data-character-id="${cdto.character_id}" onclick="choiceBtn(true,this)">${cdto.nickName }</div>
-	  	  <div id="SecondIdol" onclick="lockBtn()"></div>
-	    	<div id="ThirdIdol" onclick="lockBtn()"></div>
+		    <div class="Idolopen" data-character-id="${cdto.character_id}" onclick="choiceBtn(true,this)">${cdto.nickName }</div>
+	  	  <div class="Idollock" onclick="lockBtn()"></div>
+	    	<div class="Idollock" onclick="lockBtn()"></div>
 	    </c:forEach>
     </c:if>
     <c:if test="${list == null}">
-		    <div id="FirstIdol_make" onclick="choiceBtn(false)"></div>
-	  	  <div id="SecondIdol" onclick="lockBtn()"></div>
-	    	<div id="ThirdIdol" onclick="lockBtn()"></div>
+		    <div class="Idolmake" onclick="choiceBtn(false)"></div>
+	  	  <div class="Idollock" onclick="lockBtn()"></div>
+	    	<div class="Idollock" onclick="lockBtn()"></div>
     </c:if>
+    </div>
   </div>  <!-- mainBack -->
   
 </body>
