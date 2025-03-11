@@ -12,22 +12,62 @@
 <body>
   <%@ include file="header.jsp" %>
 
-  <!-- 컨테이너 -->
   <div class="aespa_nav">
     <img src="../images/aespa/aespa_nav.png" alt="">
   </div>
+  
+  <!-- 컨테이너 -->
   <div id="aespa_container">
     <div class="aespa_mention">
       <img src="../images/aespa/aespa_mention.png" alt="">
     </div>
+    
     <div class="aespa_feed">
+    
       <div class="aespa_write_feed">
-        <img src="../images/aespa/aespa_write.png" alt="">
+        <img src="../images/aespa/aespa_write.png" alt="" id="writeFeedBtn">
         <img src="../images/aespa/aespa_feed1.png" alt="">
         <img src="../images/aespa/aespa_feed2.png" alt="">
         <img src="../images/aespa/aespa_feed3.png" alt="">
         <img src="../images/aespa/aespa_feed4.png" alt="">
       </div>
+      
+      <!-- 모달창 구조 -->
+		<div id="feed_modal" class="feed_modal">
+		  <div class="feed-content">
+		    <div class="feed close">&times;</div>
+		    <div class="feed_content_top">
+			    <strong>포스트 쓰기</strong>
+			    <p>aepsa</p>
+		    </div>
+		    <div class="feed_write_area">
+			    <textarea placeholder="위버스에 남겨보세요.."></textarea>
+		    </div>
+		    <button>등록</button>
+		  </div>
+		</div>
+		
+	<script>
+	  const modal = document.getElementById("feed_modal");
+	  const openBtn = document.getElementById("writeFeedBtn");
+	  const closeBtn = document.querySelector(".close");
+	
+	  openBtn.onclick = function () {
+	    modal.style.display = "block";
+	  }
+	
+	  closeBtn.onclick = function () {
+	    modal.style.display = "none";
+	  }
+	
+	  // 배경 클릭 시 모달 닫기
+	  window.onclick = function (event) {
+	    if (event.target == modal) {
+	      modal.style.display = "none";
+	    }
+	  }
+	</script>
+      
       <div class="aespa_side">
         <div class="aespa_members">
           <img src="../images/aespa/aespa_side.png" alt="">

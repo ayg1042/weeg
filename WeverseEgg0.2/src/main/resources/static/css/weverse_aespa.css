@@ -199,6 +199,78 @@ header{
   object-fit: cover;
 }
 
+/* 에스파 write 클릭 시 모달 */ 
+.feed_modal {
+  display: none; /* 기본은 숨김 */
+  position: fixed;
+  z-index: 3001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  padding: 180px 0;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.feed-content {
+  background-color: #fff;
+  margin: 0 auto;
+  border-radius: 8px;
+  width: 767px;
+  height: 540px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.feed_content_top{
+	padding: 30px 30px 14px;
+}
+
+.feed_content_top strong{
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+}
+
+.feed_content_top p{
+	font-size: 14px;
+	color: #8e8e8e;
+}
+
+.feed_write_area{
+	width: 100%;
+	padding: 0 30px;
+	box-sizing: border-box;
+}
+
+.feed_write_area textarea{
+	width: 100%;
+	height: 180px;
+	border: none;
+	outline: none;
+	resize: none; 
+    caret-color: #00c0b5;
+}
+
+.feed_write_area textarea::placeholder{
+	color: #c8c8c8;
+    font-size: 15px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
+}
+.close:hover {
+  color: black;
+}
+
+
+
+
 .aespa_side {
   padding-top: 12px;
   width: 353px;
