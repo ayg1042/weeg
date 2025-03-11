@@ -99,9 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <ul>
           <li id="option_title">뉴스</li>
           <li><a href="/wenotice">공지사항</a></li>
-          <li><a href="#">업데이트</a></li>
-          <li><a href="#">이벤트</a></li>
-          <li><a href="#">업데이트</a></li>
+          <li><a href="/weEventView">이벤트</a></li>
         </ul>
         <ul>
           <li id="option_title">가이드</li>
@@ -111,13 +109,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </ul>
         <ul>
           <li id="option_title">커뮤니티</li>
-          <li><a href="#">자유게시판</a></li>
+          <li><a href="/weBoard">자유게시판</a></li>
           <li><a href="#">EGG 코디</a></li>
         </ul>
         <ul>
           <li id="option_title">랭킹</li>
-          <li><a href="/rank">전체랭킹</a></li>
-          <li><a href="/rank">그룹랭킹 </a></li>
+          <li><a href="/rank">나의랭킹</a></li>
         </ul>
         <ul>
           <li id="option_title">고객지원</li>
@@ -130,29 +127,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <!-- 메인 이미지 화면 -->
     <div id="main_banner">
-      <img src="images/mainpage/main_banner_Img3.png" alt="메인 배너3">
-      <img src="images/mainpage/main_banner_Img2.png" alt="메인 배너2">
-      <img src="images/mainpage/main_banner_Img.png" alt="메인 배너1">
-      <img src="images/mainpage/main_banner_Img4.png" alt="메인 배너4">
+      <img src="images/mainpage/main_banner_Img5.png" alt="메인 배너1">
+      <img src="images/mainpage/main_banner_Img3.png" alt="메인 배너2">
+      <img src="images/mainpage/main_banner_Img2.png" alt="메인 배너3">
+      <img src="images/mainpage/main_banner_Img.png" alt="메인 배너4">
     </div>
 
 		<div class="egg_main_bottom">
     <!-- 하단 이벤트 gnb -->
     <div id="main_bottom_gnb">
       <div class="box1">
-        <div class="event-title">2025 패션왕</div>
+        <div class="event-title">팬싸인회 응모권 이벤트</div>
         <div class="event-date">~2025.03.26</div>
       </div>
       <div class="box2">
-        <div class="event-title">아티스트 생일 이벤트</div>
+        <div class="event-title">2025 패션왕</div>
         <div class="event-date">~2025.03.23</div>
       </div>
       <div class="box3">
-        <div class="event-title">신규유저 혜택 이벤트</div>
+        <div class="event-title">아티스트 생일 이벤트</div>
         <div class="event-date">~2025.03.20</div>
       </div>
       <div class="box4">
-        <div class="event-title">펫 뽑기쿠폰 업데이트</div>
+        <div class="event-title">신규유저 혜택 이벤트</div>
         <div class="event-date">~2025.03.18</div>
       </div>
 	   </div>

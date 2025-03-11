@@ -11,7 +11,7 @@
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/mainpage.css" />
   <link rel="stylesheet" type="text/css" href="css/header.css" />
-  <link rel="stylesheet" type="text/css" href="css/weNotice.css" />
+  <link rel="stylesheet" type="text/css" href="css/weBoard.css" />
   <title>WEVERSEGG_NOTICE</title>
 </head>
 
@@ -38,7 +38,7 @@
         </ul>
         <ul>
           <li id="option_title">커뮤니티</li>
-          <li><a href="/weBoard">자유게시판</a></li>
+          <li><a href="#">자유게시판</a></li>
           <li><a href="#">EGG 코디</a></li>
         </ul>
         <ul>
@@ -57,13 +57,13 @@
 
   <!-- 공지사항 -->
   <div id="notice_banner">
-    <img src="../images/weNotice/top_img.png">
+    <img src="../images/weNotice/top_img2.png">
   </div>
 
   <div id="notice_container">
     <div class="notice_title">
       <div class="title_between" style="justify-content: space-between; display: flex;">
-        <div class="title_txt">공지사항</div>
+        <div class="title_txt">자유게시판</div>
         <form action="">
           <div class="search_inputBox">
             <input type="text" name="text" class="searchN" placeholder="검색어를 입력하세요.">
@@ -81,30 +81,33 @@
       <tbody>
         <tr>
           <td class="td_title">
-            <a href="/weNoticeView"><span class="info_title">공지사항 게시글 제목입니다.</span></a>
+            <a href="/weBoardView"><span class="info_title">카리나 진화 공략법 아시는분?</span></a>
           </td>
           <td class="info_date">2025-01-01</td>
         </tr>
         <tr>
           <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
+            <span class="info_title">저랑 같이 콘서트 가실분</span>
           </td>
           <td class="info_date">2025-01-01</td>
         </tr>
         <tr>
           <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
+            <span class="info_title">제 코디 어때요?</span>
           </td>
           <td class="info_date">2025-01-01</td>
         </tr>
         <tr>
           <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
+            <span class="info_title">심심해서 올려보는 내사랑</span>
           </td>
           <td class="info_date">2025-01-01</td>
         </tr>
       </tbody>
     </table>
+    <div class="btnArea">
+  		<button id="WriteBtn" onclick="WriteBtn()" >글작성</button>
+ 		</div>
 
 
     <!-- 페이지 넘버링 -->
@@ -121,6 +124,12 @@
   </div>
 
   <script>
+  function WriteBtn(){
+	  if(confirm("게시글을 작성하시겠습니까?")) {
+    	location.href="/weBoardWrite";
+  	}
+  }
+  
     document.addEventListener("DOMContentLoaded", function () {
       const paginationLinks = document.querySelectorAll(".pagination a");
 

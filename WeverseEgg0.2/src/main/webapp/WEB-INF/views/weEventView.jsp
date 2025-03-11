@@ -11,7 +11,7 @@
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/mainpage.css" />
   <link rel="stylesheet" type="text/css" href="css/header.css" />
-  <link rel="stylesheet" type="text/css" href="css/weNoticeView.css" />
+  <link rel="stylesheet" type="text/css" href="css/weEventView.css" />
   <title>WEVERSEGG_NOTICE</title>
 </head>
 
@@ -28,7 +28,7 @@
         <ul>
           <li id="option_title">뉴스</li>
           <li><a href="/wenotice">공지사항</a></li>
-          <li><a href="/weEventView">이벤트</a></li>
+          <li><a href="#">이벤트</a></li>
         </ul>
         <ul>
           <li id="option_title">가이드</li>
@@ -38,7 +38,7 @@
         </ul>
         <ul>
           <li id="option_title">커뮤니티</li>
-          <li><a href="#">자유게시판</a></li>
+          <li><a href="/weBoard">자유게시판</a></li>
           <li><a href="#">EGG 코디</a></li>
         </ul>
         <ul>
@@ -57,13 +57,13 @@
 
   <!-- 공지사항 -->
   <div id="notice_banner">
-    <img src="../images/weNotice/top_img.png">
+    <img src="../images/weNotice/top_img3.png">
   </div>
 
   <div id="notice_container">
     <div class="notice_title">
       <div class="title_between" style="justify-content: space-between; display: flex;">
-        <div class="title_txt">공지사항</div>
+        <div class="title_txt">이벤트</div>
       </div>
     </div>
 
@@ -71,16 +71,17 @@
       <tbody>
         <tr>
           <td class="td_title">
-            <span class="info_title">[안내] 개인정보처리방침 변경 안내</span>
+            <span class="info_title">[이벤트] 한정판 코스튬과 펫 뽑기쿠폰 증정</span>
           </td>
         </tr>
       </tbody>
     </table>
     <div class="info_date">
-    	<p>2025-01-01 15:00</p>
+    	<p>2024-12-24 15:00</p>
     </div>
     <div class="info_area">
     	<div id="notice_img"></div>
+    	<div id="event_img"></div>
     	<p class="info_txt">
     		안녕하세요. 위버스EGG입니다.<br/><br/>
 				위버스EGG 서비스를 이용해 주시는 고객 여러분께 진심으로 감사드리며,<br/>
@@ -99,7 +100,7 @@
 				감사합니다.
     	</p>
     <div class="btnArea">
-    	<button onclick="listBtn()" >목록</button>
+    	<button onclick="listBtn()" >메인으로</button>
    	</div>
     </div> <!-- info_area -->
   </div> <!-- notice_container -->
@@ -116,7 +117,7 @@
 		});
 	  
 	  function listBtn(){
-		  location.href="/wenotice";
+		  location.href="/eggmain";
 	  }
   </script>
 

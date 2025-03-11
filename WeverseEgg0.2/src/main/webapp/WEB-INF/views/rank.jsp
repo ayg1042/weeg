@@ -114,9 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				<ul>
 					<li id="option_title">뉴스</li>
 					<li><a href="/wenotice">공지사항</a></li>
-					<li><a href="#">업데이트</a></li>
-					<li><a href="#">이벤트</a></li>
-					<li><a href="#">업데이트</a></li>
+					<li><a href="/weEventView">이벤트</a></li>
 				</ul>
 				<ul>
 					<li id="option_title">가이드</li>
@@ -126,13 +124,12 @@ document.addEventListener("DOMContentLoaded", function () {
 				</ul>
 				<ul>
 					<li id="option_title">커뮤니티</li>
-					<li><a href="#">자유게시판</a></li>
+					<li><a href="/weBoard">자유게시판</a></li>
 					<li><a href="#">EGG 코디</a></li>
 				</ul>
 				<ul>
 					<li id="option_title">랭킹</li>
-					<li><a href="#">전체랭킹</a></li>
-					<li><a href="#">그룹랭킹 </a></li>
+					<li><a href="#">나의랭킹</a></li>
 				</ul>
 				<ul>
 					<li id="option_title">고객지원</li>

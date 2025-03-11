@@ -61,18 +61,37 @@ public class FController {
 		return "weMyPage";
 	}
 	
-	@GetMapping("/wenotice") // 위버스 공지사항
+	@GetMapping("/wenotice") // 위버스에그 공지사항
 	public String weNotice() {
 		return "weNotice";
 	}
 	
-	@GetMapping("/weNoticeView") // 위버스 공지사항 뷰페이지
+	@GetMapping("/weNoticeView") // 위버스에그 공지사항 뷰페이지
 	public String weNoticeView() {
 		return "weNoticeView";
 	}
 	
+	@GetMapping("/weEventView") // 위버스에그 이벤트 뷰페이지
+	public String weEventView() {
+		return "weEventView";
+	}
 	
-	@GetMapping("/rank") // 랭킹 페이지
+	@GetMapping("/weBoard") // 위버스에그 자유게시판
+	public String weBoard() {
+		return "weBoard";
+	}
+	
+	@GetMapping("/weBoardView") // 위버스에그 자유게시판 뷰페이지
+	public String weBoardView() {
+		return "weBoardView";
+	}
+	
+	@GetMapping("/weBoardWrite") // 위버스에그 자유게시판 글작성 페이지
+	public String weBoardWrite() {
+		return "weBoardWrite";
+	}
+	
+	@GetMapping("/rank") // 위버스에그 랭킹 페이지
 	public String rank() {
 		return "rank";
 	}

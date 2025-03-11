@@ -11,7 +11,7 @@
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/mainpage.css" />
   <link rel="stylesheet" type="text/css" href="css/header.css" />
-  <link rel="stylesheet" type="text/css" href="css/weNoticeView.css" />
+  <link rel="stylesheet" type="text/css" href="css/weBoardView.css" />
   <title>WEVERSEGG_NOTICE</title>
 </head>
 
@@ -38,7 +38,7 @@
         </ul>
         <ul>
           <li id="option_title">커뮤니티</li>
-          <li><a href="#">자유게시판</a></li>
+          <li><a href="/weBoard">자유게시판</a></li>
           <li><a href="#">EGG 코디</a></li>
         </ul>
         <ul>
@@ -57,13 +57,13 @@
 
   <!-- 공지사항 -->
   <div id="notice_banner">
-    <img src="../images/weNotice/top_img.png">
+    <img src="../images/weNotice/top_img2.png">
   </div>
 
   <div id="notice_container">
     <div class="notice_title">
       <div class="title_between" style="justify-content: space-between; display: flex;">
-        <div class="title_txt">공지사항</div>
+        <div class="title_txt">자유게시판</div>
       </div>
     </div>
 
@@ -71,32 +71,19 @@
       <tbody>
         <tr>
           <td class="td_title">
-            <span class="info_title">[안내] 개인정보처리방침 변경 안내</span>
+            <span class="info_title">[자유] 카리나 진화 공략법 아시는분?</span>
           </td>
         </tr>
       </tbody>
     </table>
     <div class="info_date">
-    	<p>2025-01-01 15:00</p>
+    	<p>2024-12-24 15:00</p>
     </div>
     <div class="info_area">
     	<div id="notice_img"></div>
+    	<div id="board_img"></div>
     	<p class="info_txt">
-    		안녕하세요. 위버스EGG입니다.<br/><br/>
-				위버스EGG 서비스를 이용해 주시는 고객 여러분께 진심으로 감사드리며,<br/>
-				'개인정보처리방침'에 일부 수정 내용이 있어 2025년 01월 01일자로 변경됩니다.<br/><br/>
-				새롭게 바뀌는 주요 개정사항을 확인하시고, 서비스 이용에 참고 부탁드리겠습니다.<br/><br/>
-				▣ 개정 사유 및 내용<br/>
-				- 일부 개인정보 수탁 업체 삭제 및 위탁업무 내용 변경<br/><br/>
-				▣ 적용 일시: 2025년 01월 01일<br/><br/>
-				▣ 이의제기 및 문의<br/>
-				변경된 ‘개인정보 처리방침’의 내용에 동의하지 않으시는 경우,<br/>
-				위버스EGG 서비스의 원활한 제공에 제약이 발생할 수 있습니다.<br/><br/>
-				개인정보처리방침 변경에 대한 이의제기 및 문의는<br/>
-				고객센터로 접수해 주시면 신속하고 친절하게 안내해드리겠습니다.<br/><br/>
-				앞으로도 고객 여러분의 개인정보를 보다 안전하게 보호할 것을 약속드리며,<br/> 
-				신뢰받는 서비스로 보답하겠습니다.<br/><br/>
-				감사합니다.
+    		제발 알려주세요 ㅠㅠ~ 5번 시도했는데 지민이만 안나와..
     	</p>
     <div class="btnArea">
     	<button onclick="listBtn()" >목록</button>
@@ -116,7 +103,7 @@
 		});
 	  
 	  function listBtn(){
-		  location.href="/wenotice";
+		  location.href="/weBoard";
 	  }
   </script>
 
