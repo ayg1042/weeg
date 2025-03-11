@@ -1144,6 +1144,7 @@
 
 		</div>
 	</div>
+	
 	<!-- 퀘스트 모달 -->
 	<div id="modalq" class="modal">
 		<div class="modal-frame dark">
@@ -1152,13 +1153,17 @@
 					id="fatigueBar" src="images/modal/fatigueBar_full.png">
 				<div id="jellyBar">
 					<img id="jelly" src="images/modal/jellyIcon.png">
-					<p id="My_jelly">99999999</p>
+					<p id="My_jelly"><fmt:formatNumber value="${character.member.jelly}"
+								pattern="###,###,##0" /></p>
 					<img id="plus" src="images/modal/plusIcon.png">
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="images/modal/coinIcon.png">
-					<p id="My_Coin_q">
-						<fmt:formatNumber value="${userCoin}" pattern="#,###" />
+					<p id="My_Coin">
+						<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
+						<!-- 
+						<fmt:formatNumber value="${userCoin}" pattern="###,###,##0" />
+						 -->
 					</p>
 					<img id="plus" src="images/modal/plusIcon.png">
 				</div>
@@ -1189,15 +1194,16 @@
 
 
 								<!-- 퀘스트마다 필요한 총 수행 횟수는 퀘스트 아이디별로 다를 수 있으므로, 아이디별 필요 횟수를 설정합니다. -->
+								<!-- 무조건 5번으로 고정! -->
 								<c:choose>
 									<c:when test="${qdto.questId == 1 || qdto.questId == 2}">
-										<c:set var="required" value="10" />
+										<c:set var="required" value="5" />
 									</c:when>
 									<c:when test="${qdto.questId == 3 || qdto.questId == 4}">
 										<c:set var="required" value="5" />
 									</c:when>
 									<c:otherwise>
-										<c:set var="required" value="10" />
+										<c:set var="required" value="5" />
 									</c:otherwise>
 								</c:choose>
 
@@ -1252,10 +1258,10 @@
 										<c:set var="required" value="1" />
 									</c:when>
 									<c:when test="${qdto.questId == 7 || qdto.questId == 8}">
-										<c:set var="required" value="20" />
+										<c:set var="required" value="4" />
 									</c:when>
 									<c:otherwise>
-										<c:set var="required" value="10" />
+										<c:set var="required" value="1" />
 									</c:otherwise>
 								</c:choose>
 
@@ -1289,26 +1295,6 @@
 							</c:if>
 						</c:forEach>
 					</ul>
-
-
-					<!-- 보상받기 -->
-					<!-- 
-							<li>
-								<div class="quest_content">
-									<div class="quest_content_coin">
-										<img src="images/modal/coinIcon_big.png" alt="">
-										<span>999,999</span>
-									</div>
-									<div class="quest_content_title">
-										<div class="quest_content_titsub">연습만이 살 길</div>
-										<div class="quest_content_tit">보컬 능력치 100 만들기</div>
-									</div>
-									<div class="quest_content_rate clear">
-										<span>보상받기</span>
-									</div>
-								</div>
-							</li>
-						 -->
 
 					<script>
 						
@@ -1348,9 +1334,6 @@
 									element.querySelector("span").innerText = "받기완료";
 									element.classList.add("reward"); // "받기완료" 상태 CSS 적용
 								} else {
-									// 보상받기 상태 (rewardedMap에 questId가 없거나, 값이 1이 아니면 "보상받기")
-									//element.querySelector("span").innerText = "보상받기";
-									//element.classList.remove("clear"); // "보상받기" 상태 CSS 제거
 
 									// 진행 상태를 확인하여 "보상받기"로 변경
 									if (!rewardedMap[questId]) {
@@ -1374,6 +1357,7 @@
 									console.log("퀘스트 아이디 : " + questId); // 퀘스트 아이디 확인용
 
 									if (this.querySelector("span").innerText === "보상받기") {
+
 										fetch("/modal/reward?questId=" + questId, {
 											method: "POST"
 										})
@@ -1385,24 +1369,10 @@
 													this.querySelector("span").innerText = "받기완료";
 													this.classList.remove("clear"); // "보상받기" 클래스 제거
 													this.classList.add("reward"); // "받기완료" 상태 CSS 적용
-
-													// 코인 추가하기
-													const char = data.newCoin;
-
-													// .quest_content_coin의 span 요소 선택
-													const coinSpan = document.querySelector('#My_Coin_q');
-
-													// 기존 코인 값 가져오기 (숫자만 추출)
-													let currentCoin = parseInt(coinSpan.textContent.replace(/\D/g, ''), 10);
-													if (isNaN(currentCoin)) currentCoin = 0;  // 만약 숫자가 아닌 값이 들어갔으면 0으로 초기화
-
-													// 새로운 코인 값 계산 후 업데이트
-													const newCoin = char;
-													coinSpan.textContent = newCoin.toLocaleString();  // 숫자 형식으로 표시
-
+													
 													// 알림 메시지 출력
-													alert("추가할 코인 개수: " + char);
-													alert(data.message + " 현재 코인: " + newCoin);
+													alert(data.message);
+													location.href="/modal"
 												} else {
 													alert("보상 받기 실패: " + data.message);
 												}
@@ -1428,19 +1398,22 @@
 					id="fatigueBar" src="images/modal/fatigueBar_full.png">
 				<div id="jellyBar">
 					<img id="jelly" src="images/modal/jellyIcon.png">
-					<p id="My_jelly">99999999</p>
+					<p id="My_jelly">
+						<fmt:formatNumber value="${character.member.jelly}"
+							pattern="###,###,##0" />
+					</p>
 					<img id="plus" src="images/modal/plusIcon.png">
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="images/modal/coinIcon.png">
-					<p id="My_Coin_q">
-						<fmt:formatNumber value="${userCoin}" pattern="#,###" />
+					<p id="My_Coin">
+						<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
+						<!--<fmt:formatNumber value="${userCoin}" pattern="#,###" />-->
 					</p>
 					<img id="plus" src="images/modal/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
-
 
 			<div class="modal-event-title">
 				<div>이벤트</div>
@@ -1461,28 +1434,28 @@
 			</div>
 		</div>
 	</div>
-		<script>
-				document.querySelectorAll('.event-title li').forEach(function (li) {
-					li.addEventListener('click', function () {
-						// 클릭된 li의 data-image 속성값을 가져와 이미지 변경
-						var imageUrl = li.getAttribute('data-image');
-						document.getElementById('eventImage').src = imageUrl;
+	<script>
+		document.querySelectorAll('.event-title li').forEach(function (li) {
+			li.addEventListener('click', function () {
+				// 클릭된 li의 data-image 속성값을 가져와 이미지 변경
+				var imageUrl = li.getAttribute('data-image');
+				document.getElementById('eventImage').src = imageUrl;
 
-						// 모든 li에서 active 클래스를 제거
-						document.querySelectorAll('.event-title li').forEach(function (item) {
-							item.classList.remove('active');
-						});
-
-						// 클릭된 li에만 active 클래스 추가
-						li.classList.add('active');
-					});
+				// 모든 li에서 active 클래스를 제거
+				document.querySelectorAll('.event-title li').forEach(function (item) {
+					item.classList.remove('active');
 				});
 
+				// 클릭된 li에만 active 클래스 추가
+				li.classList.add('active');
+			});
+		});
 
-				// 페이지 로드 시 첫 번째 이벤트 항목을 기본적으로 활성화 상태로 만들기
-				document.querySelector('.event-title li').classList.add('active');
-				document.querySelector('.quest-title li').classList.add('active');
-			</script>
+
+		// 페이지 로드 시 첫 번째 이벤트 항목을 기본적으로 활성화 상태로 만들기
+		document.querySelector('.event-title li').classList.add('active');
+		document.querySelector('.quest-title li').classList.add('active');
+	</script>
 
 	<script src="/js/modal.js" defer></script>
 	<script src="/js/shop.js" defer></script>

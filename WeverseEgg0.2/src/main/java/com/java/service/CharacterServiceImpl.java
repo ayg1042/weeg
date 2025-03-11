@@ -20,6 +20,7 @@ import com.java.entity.practice.RapPracticeEntity;
 import com.java.entity.practice.VocalPracticeEntity;
 import com.java.repository.CharacterRepository;
 
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 
@@ -60,21 +61,11 @@ public class CharacterServiceImpl implements CharacterService {
 		return dto;
 	}
 
-    @Override
-    public Integer getCoin(Integer userId) {
-        return characterRepository.findCoinByUserId(userId);
-    }
-
-    @Override
-    @Transactional
-    public void updateCoin(Integer userId, int newCoin) {
-        characterRepository.updateCoinByUserId(userId, newCoin);
-    }
     
  // 임시_ 로그인한 유저의 캐릭터 테이블 가져오기
  	@Override
  	public CharacterDto unit(int i) {
- 		CharacterEntity unitEntity = characterRepository.findBycharacterId(i);
+ 		CharacterEntity unitEntity = characterRepository.findByCharacterId(i);
  		CharacterDto unitDto = CharacterDto.unit(unitEntity);
  		return unitDto;
  	}
@@ -112,12 +103,14 @@ public class CharacterServiceImpl implements CharacterService {
 
          return new HashMap<>(); // artist가 "윈터"가 아니면 빈 맵 반환
      }
+ 	
+
 
  	// 보컬연습결과 유저 캐릭터에 저장
  	@Override
  	@Transactional
  	public void vocalTrainSave(int character_id, int vocalScore, int health, int fatigue, int price) {
- 		CharacterEntity character = characterRepository.findBycharacterId(character_id);
+ 		CharacterEntity character = characterRepository.findByCharacterId(character_id);
  		System.out.println(character.getCharacterId());
  		System.out.println(character_id);
  		System.out.println(vocalScore);
@@ -138,7 +131,7 @@ public class CharacterServiceImpl implements CharacterService {
  	@Override
  	@Transactional
  	public void danceTrainSave(int character_id, int danceScore, int health, int fatigue, int price) {
- 		CharacterEntity character = characterRepository.findBycharacterId(character_id);
+ 		CharacterEntity character = characterRepository.findByCharacterId(character_id);
  		character.setDance(character.getDance()+danceScore);
  		character.setHealth(character.getHealth()-health);
  		character.setFatigue(character.getFatigue()+fatigue);
@@ -151,7 +144,7 @@ public class CharacterServiceImpl implements CharacterService {
  	@Override
  	@Transactional
  	public void rapTrainSave(int character_id, int rapScore, int health, int fatigue, int price) {
- 		CharacterEntity character = characterRepository.findBycharacterId(character_id);
+ 		CharacterEntity character = characterRepository.findByCharacterId(character_id);
  		character.setRap(character.getRap()+rapScore);
  		character.setHealth(character.getHealth()-health);
  		character.setFatigue(character.getFatigue()+fatigue);
@@ -164,7 +157,7 @@ public class CharacterServiceImpl implements CharacterService {
  	@Override
  	@Transactional
  	public void entTrainSave(int character_id, int entScore, int health, int fatigue, int price) {
- 		CharacterEntity character = characterRepository.findBycharacterId(character_id);
+ 		CharacterEntity character = characterRepository.findByCharacterId(character_id);
  		character.setEntertainment(character.getEntertainment()+entScore);
  		character.setHealth(character.getHealth()-health);
  		character.setFatigue(character.getFatigue()+fatigue);
@@ -177,7 +170,7 @@ public class CharacterServiceImpl implements CharacterService {
  	@Override
  	@Transactional
  	public void music_actvity_save(int character_id, int health, int fatigue, int price) {
- 		CharacterEntity character = characterRepository.findBycharacterId(character_id);
+ 		CharacterEntity character = characterRepository.findByCharacterId(character_id);
  		// 인기도
  		int userPop = character.getPopularity();
  		// 유저 스탯 합
@@ -204,7 +197,7 @@ public class CharacterServiceImpl implements CharacterService {
  	@Override
  	@Transactional
  	public void ent_actvity(int character_id, int health, int fatigue, int price) {
- 		CharacterEntity character = characterRepository.findBycharacterId(character_id);
+ 		CharacterEntity character = characterRepository.findByCharacterId(character_id);
  		// 인기도
  		int userPop = character.getPopularity();
  		// 유저 스탯 합
@@ -231,7 +224,7 @@ public class CharacterServiceImpl implements CharacterService {
  	@Override
  	@Transactional
  	public void con_actvity(int character_id, int health, int fatigue, int price) {
- 		CharacterEntity character = characterRepository.findBycharacterId(character_id);
+ 		CharacterEntity character = characterRepository.findByCharacterId(character_id);
  		// 인기도
  		int userPop = character.getPopularity();
  		// 유저 스탯 합
@@ -259,7 +252,7 @@ public class CharacterServiceImpl implements CharacterService {
  	@Override
  	@Transactional
  	public void sign_actvity(int character_id, int health, int fatigue, int price) {
- 		CharacterEntity character = characterRepository.findBycharacterId(character_id);
+ 		CharacterEntity character = characterRepository.findByCharacterId(character_id);
  		// 인기도
  		int userPop = character.getPopularity();
  		// 유저 스탯 합
@@ -281,5 +274,45 @@ public class CharacterServiceImpl implements CharacterService {
  		CharacterDto characterDto = CharacterDto.unit(character);
  		session.setAttribute("character", characterDto);
  	}
+
+ 	@Override
+ 	@Transactional
+ 	public void updateCoin(int character_id, int rewardCoin) {
+ 		System.out.println("캐릭터 코인 업데이트 시작!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+ 		System.out.println(character_id);
+ 		System.out.println(rewardCoin);
+ 		
+ 	    // 현재 캐릭터 가져오기
+ 	    CharacterEntity character = characterRepository.findByCharacterId(character_id);
+ 	    System.out.println(character);
+ 	    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+ 	    
+ 	    if (character != null) {
+ 	        // 코인 업데이트
+ 	        character.setCoin(character.getCoin() + rewardCoin);
+ 	        
+ 	        // 저장 (JPA의 @Transactional 덕분에 자동 반영됨)
+// 	        characterRepository.save(character);
+ 	        
+ 	        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!"+ character.getCoin());
+ 	        
+ 	        // DTO 변환 후 세션 저장
+ 	        CharacterDto characterDto = CharacterDto.unit(character);
+ 	        System.out.println("캐릭터 코인 업데이트 완료!!!!!!!!!!!!!!!: " + characterDto);
+ 	        session.setAttribute("character", characterDto);
+ 	    }
+ 	}
+
+ 	@Override
+ 	public Integer getUserCoin(int character_id) {
+ 	    // 해당 유저의 캐릭터 정보 가져오기
+ 	    CharacterEntity character = characterRepository.findByCharacterId(character_id);
+ 	    // 캐릭터가 존재하면 코인 반환, 없으면 0 반환
+ 	    return (character != null) ? character.getCoin() : 0;
+ 	}
+
+
+	
+
     
 }
