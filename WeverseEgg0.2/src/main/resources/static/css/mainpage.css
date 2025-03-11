@@ -159,10 +159,15 @@ nav:not(:hover) ul li a {
 }
 
 /* 하단 이벤트 gnb */
+.egg_main_bottom{
+	position: absolute;
+	bottom: 0px;
+	left: 260px;
+	display: flex;
+}
+
 #main_bottom_gnb {
   position: relative;
-  top: -35px;
-  left: 260px;
   width: 1120px;
   height: 100px;
   background-color: rgba(35, 35, 35, 0.8);
@@ -203,26 +208,26 @@ nav:not(:hover) ul li a {
 }
 
 /* GAME START BTN */
-
 .game_start {
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
   position: absolute;
-  right: 302px;
-  top: 747px;
   width: 200px; /* 버튼 크기 설정 (이미지 크기에 맞게 조절) */
   height: 80px; 
+  margin-bottom: 20px;
+  display: block;
+  margin-left: 42px;;
 }
 
 .game_start img {
+	position: absolute;
+	display: block;
   z-index: 5;
-  display: block;
   width: 100%;
   height: auto;
-  position: absolute;
-  top: 33px;;
+  top: 8px;
   left: 0;
   transition: opacity 0.2s ease-in-out;
 }
