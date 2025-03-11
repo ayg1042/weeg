@@ -15,6 +15,7 @@ public class MemberDto {
 	private String pw;
 	private String nickname; 
 	private int jelly;
+	private int admin;
 	
     // 정적 팩토리 메서드 추가
     public static MemberDto Email(MemberEntity entity) {

@@ -1,8 +1,11 @@
 package com.java.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,13 +15,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.character.CharacterDto;
 import com.java.dto.character.InvenDto;
 import com.java.dto.character.SaveStyleDto;
 import com.java.dto.character.StyleDto;
 import com.java.dto.item.ItemDto;
+import com.java.dto.item.ItemInfoDto;
+import com.java.dto.item.ItemTypeDto;
 import com.java.entity.character.StyleEntity;
 import com.java.service.ModalService;
 
@@ -32,8 +39,67 @@ public class FController {
 	@Autowired HttpSession session;
 	
 	@GetMapping("/index") //테스트 페이지
-	public String index() {
-		return "main";
+	public String index(Model model) {
+		List<ItemTypeDto> itemType = modalServiceImpl.getAllItemTypes();
+		List<ItemInfoDto> itemInfo = modalServiceImpl.getAllItemInfo();
+		System.out.println(itemInfo);
+		model.addAttribute("itemTypeList", itemType);
+		model.addAttribute("itemInfoList", itemInfo);
+		return "index";
+	}
+	
+	@PostMapping("/itemAdd")
+	@ResponseBody
+	@Transactional
+	public String itemAdd(
+			@RequestParam("itemName") String itemName,
+			@RequestParam("price") int price,
+			@RequestParam("itemInfoId") int itemInfoId,
+	        @RequestParam("category") String category,
+	        @RequestPart MultipartFile file) throws Exception {
+		
+		String imgName = "";
+		if(!file.isEmpty()) {
+			imgName = file.getOriginalFilename();
+			System.out.println("파일이름 : "+imgName);
+			String url = "C:/Users/KOSMO/git/weeg/WeverseEgg0.2/src/main/resources/static/images/items/"+category+"/";
+			File f = new File(url+imgName); //파일객체 생성
+			file.transferTo(f); //파일올리기
+		}
+		
+		ItemDto item = new ItemDto();
+		ItemInfoDto info = new ItemInfoDto();
+		info.setItemInfoId(itemInfoId);
+		item.setName(itemName);
+		item.setImage(imgName);
+		item.setPrice(price);
+		item.setItemInfo(info);
+		
+		modalServiceImpl.addItem(item);
+		
+		return "1";
+	}
+	
+	@PostMapping("/itemInfoAdd")
+	@ResponseBody
+	@Transactional
+	public String itemInfoAdd(@RequestParam("itemType") String itemType,
+			@RequestParam(value = "charm", defaultValue = "0") int charm,
+            @RequestParam(value = "dance", defaultValue = "0") int dance,
+            @RequestParam(value = "rap", defaultValue = "0") int rap,
+            @RequestParam(value = "vocal", defaultValue = "0") int vocal,
+            @RequestParam(value = "entertainment", defaultValue = "0") int entertainment,
+            @RequestParam(value = "fatgue_recovery", defaultValue = "0") int fatigueRecovery) {
+
+		ItemInfoDto info = new ItemInfoDto(); ItemTypeDto type = new ItemTypeDto();
+		type.setItemTypeId(Integer.parseInt(itemType)); info.setItemType(type);
+		info.setCharm(charm); info.setDance(dance); info.setRap(rap);
+		info.setVocal(vocal); info.setEntertainment(entertainment);
+		info.setFatigueRecovery(fatigueRecovery);
+		
+		modalServiceImpl.addItemInfo(info);
+
+		return "1";
 	}
 	
 	@GetMapping("/") // 위버스 로그인 안 된 페이지
@@ -140,22 +206,39 @@ public class FController {
 		return "modal";
 	}
 	
+	@Transactional
 	@ResponseBody
 	@PostMapping("/buyItem") //회원정보수정 저장
 	public String memDelete(String itemId) {
 		// 세션에서 가져올꺼임
 		CharacterDto character = (CharacterDto) session.getAttribute("character");
+		List<InvenDto> Inven = modalServiceImpl.getCharacterInven(character.getCharacter_id());
+		
+		// 중복아이템 확인
+		Set<Integer> invenItemIds = Inven.stream()
+                .map(inven -> inven.getItemId().getItemId())
+                .collect(Collectors.toSet());
+
+		if (invenItemIds.contains(Integer.parseInt(itemId))) {
+			return "2";
+		}
 		
 		// 케릭터 결제로직
+		ItemDto item = modalServiceImpl.getItem(Integer.parseInt(itemId));
 		
+		int coin = character.getCoin() - item.getPrice();
+		if(coin < 0) {
+			return "0";
+		}
+		character.setCoin(coin);
+		modalServiceImpl.characterSave(character);
 		// 결제
 		
-		InvenDto Inven = new InvenDto();
-		ItemDto item = new ItemDto();
-		item.setItemId(Integer.parseInt(itemId));
-		Inven.setCharacterId(character);
-		Inven.setItemId(item);
-		modalServiceImpl.buyItem(Inven);
+		InvenDto Inven1 = new InvenDto();
+		Inven1.setCharacterId(character);
+		Inven1.setItemId(item);
+		modalServiceImpl.buyItem(Inven1);
+		session.setAttribute("character", character);
 		
 		return "1";
 	}
@@ -187,8 +270,17 @@ public class FController {
 	public String itemUse(String invenId, String itemId) {
 		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		
-		System.out.println("인벤 아이디 = " + invenId + ", 아이템 아이디 = " + itemId);
 		// 사용 로직
+		ItemDto item = modalServiceImpl.getItem(Integer.parseInt(itemId));
+		if(character.getFatigue() == 0) return "0";
+		int fatigue = character.getFatigue() - item.getItemInfo().getFatigueRecovery();
+		if(fatigue < 0) fatigue = 0;
+		character.setFatigue(fatigue);
+		
+		// 해당 아이템 삭제
+		modalServiceImpl.deleteInvenItem(Integer.parseInt(itemId));
+		
+		session.setAttribute("character", character);
 		return "1";
 	}
 	

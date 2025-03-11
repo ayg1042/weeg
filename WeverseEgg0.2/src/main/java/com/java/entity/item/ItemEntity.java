@@ -41,6 +41,10 @@ public class ItemEntity {
     public static ItemEntity From(ItemDto dto) {
     	ItemEntity entity = new ItemEntity();
     	entity.setItemId(dto.getItemId());
+    	entity.setItemInfo(ItemInfoEntity.getId(dto.getItemInfo()));
+    	entity.setName(dto.getName());
+    	entity.setPrice(dto.getPrice());
+    	entity.setImage(dto.getImage());
     	return entity;
     }
     
@@ -49,6 +53,7 @@ public class ItemEntity {
 		entity.name = dto.getName();
 		entity.price = dto.getPrice();
 		entity.image = dto.getImage();
+		entity.itemInfo = ItemInfoEntity.From(dto.getItemInfo());
 		return entity;
     }
 }

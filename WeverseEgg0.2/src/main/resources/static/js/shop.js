@@ -105,8 +105,12 @@ document.addEventListener("DOMContentLoaded", function () {
 				  type:"post",
 				  data:{"itemId":itemId},
 				  success:function(data){
+					if(data == 1){						
 					  alert("구매 완료되었습니다.");
 					  location.href="/modal"
+					}else if(data == 0){
+						alert("코인이 부족합니다!")
+					}
 				  },
 				  error:function(){
 					  alert("실패");

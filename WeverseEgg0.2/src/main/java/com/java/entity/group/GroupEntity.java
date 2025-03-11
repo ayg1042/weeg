@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+import com.java.dto.group.GroupDto;
 import com.java.entity.character.ArtistEntity;
 
 @Entity
@@ -32,4 +33,13 @@ public class GroupEntity {
     /** 그룹에 속한 예명들 (1:N) */
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ArtistNameEntity> artistNames;
+    
+    public static GroupEntity From(GroupDto dto) {
+    	GroupEntity entity = new GroupEntity();
+    	entity.setGroupId(dto.getGroupId());
+    	entity.setGroupName(dto.getGroupName());
+    	entity.setGender(dto.getGender());
+    	entity.setMemberCount(dto.getMemberCount());
+    	return entity;
+    }
 }

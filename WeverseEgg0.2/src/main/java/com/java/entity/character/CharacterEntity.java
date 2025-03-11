@@ -100,6 +100,21 @@ public class CharacterEntity {
     public static CharacterEntity From(CharacterDto dto) {
     	CharacterEntity entity = new CharacterEntity();
     	entity.setCharacterId(dto.getCharacter_id());
+    	entity.setArtist(ArtistEntity.From(dto.getArtist()));
+    	entity.setMember(MemberEntity.From(dto.getMember()));
+    	entity.setNickName(dto.getNickName());
+    	entity.setGender(dto.getGender());
+    	entity.setCoin(dto.getCoin());
+    	entity.setHealth(dto.getHealth());
+    	entity.setFatigue(dto.getFatigue());
+    	entity.setDance(dto.getDance());
+    	entity.setVocal(dto.getVocal());
+    	entity.setRap(dto.getRap());
+    	entity.setEntertainment(dto.getEntertainment());
+    	entity.setCharm(dto.getCharm());
+    	entity.setPopularity(dto.getPopularity());
+    	entity.setRank(dto.getRank());
+    	entity.setExpression(dto.getExpression());
     	return entity;
     }
     

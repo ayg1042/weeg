@@ -256,11 +256,13 @@ selectedHats.push({ typeName: 'frame', itemId: `${frame_id}` });
 			url:"/itemUse",
 			type:"post",
 			data:{"invenId": invenItem, "itemId":itemId},
-			//dataType: 'json',
-			//contentType: 'application/json; charset=utf-8',
 			success:function(data){
-				alert("적용 되었습니다.");
-				//location.href="/modal"
+				if(data == 1){					
+					alert("적용 되었습니다.");
+					location.href="/modal"
+				}else if(data == 0){
+					alert("이미 피로도가 0 입니다!")
+				}
 			},
 				error:function(){
 				alert("실패");
