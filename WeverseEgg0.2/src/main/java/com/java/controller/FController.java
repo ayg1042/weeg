@@ -1,33 +1,37 @@
 package com.java.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
+import java.io.File;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.java.dto.character.CharacterDto;
-import com.java.dto.character.InvenDto;
-import com.java.dto.character.SaveStyleDto;
-import com.java.dto.character.StyleDto;
-import com.java.dto.item.ItemDto;
-import com.java.entity.character.StyleEntity;
+import com.java.dto.feed.FeedDto;
+import com.java.dto.member.MemberDto;
+import com.java.entity.member.MemberEntity;
+import com.java.repository.FeedRepository;
+import com.java.repository.MemberRepository;
+import com.java.service.AespaService;
 import com.java.service.ModalService;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 
 
 @Controller
 public class FController {
 	
+	@Autowired MemberRepository memberRepository;
+	@Autowired AespaService aespaService;
 	@Autowired ModalService modalServiceImpl;
 	@Autowired HttpSession session;
 	
@@ -83,12 +87,64 @@ public class FController {
 	
 	@GetMapping("/weBoardWrite") // 위버스에그 자유게시판 글작성 페이지
 	public String weBoardWrite() {
+		MemberDto user = (MemberDto) session.getAttribute("session_id");
+		if(user == null) {
+			return "redirect:/login/login";
+		}
 		return "weBoardWrite";
 	}
 	
-	/*
-	 * @PostMapping("/weBoardWrite") // 위버스에그 자유게시판 글작성, 이미지파일 업로드 public
-	 */
+	@ResponseBody
+	@Transactional
+	@PostMapping("/weBoardWrite") // 위버스에그 자유게시판 글작성, 이미지파일 업로드
+	public String weBoardWrite(
+			@RequestParam("btitle") String btitle,
+			@RequestParam("bcontent") String bcontent,
+	        @RequestPart MultipartFile files,  MemberRepository memberRepository,
+	        FeedRepository feedRepository
+	) throws IllegalStateException, IOException {
+		
+		// 로그인한 사용자 정보 가져오기
+        MemberDto user = (MemberDto) session.getAttribute("session_id");
+        FeedDto board = new FeedDto();
+		String real_fname = "";
+		if(!files.isEmpty()) {  // 파일첨부가 되어 있으면
+			
+			// 최초 파일이름 -> 중복방지를 위해 이름변경
+			String origin_fname = files.getOriginalFilename();
+			System.out.println("최초 파일이름 : "+origin_fname);
+			
+			// 방법1
+			long time = System.currentTimeMillis(); 
+			
+			real_fname = String.format("%d_%s", time, origin_fname);
+			System.out.println("변경 파일이름 : "+real_fname);
+			// 파일저장 위치
+			String url ="C:/Users/KOSMO/git/weeg/WeverseEgg0.2/src/main/resources/static/images/boardImg/";  // 파일 업로드
+			
+			// 파일저장
+			File f = new File(url+real_fname);
+			// 파일 업로드
+			files.transferTo(f);
+			// dto에 파일이름 저장
+			board.setBfile(real_fname);
+		}else {
+			board.setBfile("");
+		}
+		
+		board.setMember(MemberEntity.From(user));
+		board.setBtitle(btitle);
+		board.setBcontent(bcontent);
+		board.setBfile(real_fname);
+		board.setCategory("community");
+		board.setStatus("게시중");
+	    
+		// 게시글 저장
+		aespaService.weBoardWrite(board);
+		return "redirect:/weBoard";
+	}
+	
+	
 	
 	@GetMapping("/rank") // 위버스에그 랭킹 페이지
 	public String rank() {

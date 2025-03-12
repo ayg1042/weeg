@@ -67,30 +67,38 @@
       </div>
     </div>
 
+		<form action="/weBoardWrite" name="writeFrm" method="post" enctype="multipart/form-data"> 
     <table>
       <tbody>
         <tr>
         	<th class="info_txt">제목</th>
           <td class="td_title">
             <div class="info_title">
-           		<input type="text" id="inputTitle" placeholder="제목을 입력하세요." style="width:800px">
+           		<input type="text" id="inputTitle" name="btitle" placeholder="제목을 입력하세요." style="width:800px">
             </div>
           </td>
         </tr>
         <tr>
 	       	<th class="info_txt">내용</th>
 	       	<td>
-			    	<textarea rows="10" cols="50"></textarea>
+			    	<textarea rows="10" cols="50" name="bcontent"></textarea>
 			    </td>
    			</tr>
    			<tr>
           <th class="info_txt">파일첨부</th>
           <td>
-            <input type="file" name="file" id="file" style="width:800px">
+            <input type="file" name="files" id="file" onchange="readUrl(this);" style="width:800px">
+          </td>
+        </tr>
+        <tr>
+        	<th class="info_txt">미리보기</th>
+          <td class="img_preview">
+          	<img id="preview" style="width: 100px"/>
           </td>
         </tr>
       </tbody>
     </table>
+    </form>
     <div class="btnArea">
     	<button onclick="CancleBtn()" >취소	</button>
     	<button onclick="SaveBtn()" >저장</button>
@@ -112,11 +120,48 @@
 		  location.href="/weBoard";
 	  }
 	  
-	  function SaveBtn(){
+	  /* function SaveBtn(){
 		  if(confirm("게시글을 저장하시겠습니까?")) {
 	    	location.href="/weBoard";
 	  	}
-	  }
+	  } */
+	  
+	  function SaveBtn() {
+		    if (!confirm("게시글을 저장하시겠습니까?")) {
+		        return;
+		    }
+
+		    let formData = new FormData(document.writeFrm); // 폼 데이터 수집
+
+		    $.ajax({
+		        url: "/weBoardWrite",
+		        type: "POST",
+		        data: formData,
+		        processData: false,  // 필수: 파일 업로드 시 false로 설정
+		        contentType: false,  // 필수: multipart/form-data 설정
+		        success: function (response) {
+		            alert("게시글이 저장되었습니다.");
+		            window.location.href = "/weBoard"; // 성공 후 페이지 이동
+		        },
+		        error: function (xhr, status, error) {
+		            console.error(xhr.responseText);
+		            alert("게시글 저장에 실패했습니다.");
+		        }
+		    });
+		}
+	  
+	  const readUrl = (input) =>{
+			if(input.files && input.files[0]){ // 파일이름이 있으면..
+					var reader = new FileReader(); // 파일 읽기 객체
+					reader.onload = function(e){
+						document.getElementById("preview").src = e.target.result;
+						/* $("#preview").src = e.target.result; */
+					}
+					reader.readAsDataURL(input.files[0]);
+				}else{
+					document.getElementById("preview").src = "";
+				}
+		}
   </script>
 
 </body>

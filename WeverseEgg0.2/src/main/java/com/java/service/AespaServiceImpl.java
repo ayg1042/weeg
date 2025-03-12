@@ -73,5 +73,12 @@ public class AespaServiceImpl implements AespaService {
 		return feedlist;
 	}
 
+	
+	@Override // 자유게시판 게시글 저장
+	public void weBoardWrite(FeedDto fdto) {
+		aespaRepository.save(fdto);
+		
+	}
+
 
 }

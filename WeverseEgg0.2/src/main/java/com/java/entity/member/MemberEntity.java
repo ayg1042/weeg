@@ -53,7 +53,7 @@ public class MemberEntity {
 		entity.nickname = dto.getNickname();
     	return entity;
     }
-    
+
     
     
 }

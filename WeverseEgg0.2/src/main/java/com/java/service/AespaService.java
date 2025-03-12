@@ -20,4 +20,7 @@ public interface AespaService {
 	// 피드 리스트 가져오기
 	List<FeedDto> feedlist();
 
+	// 자유게시판 게시글 저장
+	void weBoardWrite(FeedDto fdto);
+
 }

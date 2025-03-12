@@ -48,6 +48,10 @@ tr {
   /* background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1)); */
 }
 
+td{
+	padding-left: 150px;
+}
+
 .td_title{
 	height:106px;
 }
