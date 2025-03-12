@@ -11,7 +11,9 @@
 <link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/modal.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/js/modalert.js"></script>
 </head>
+
 <body>
 	<!-- ===== MainRoom ===== -->
 	<!-- 헤더 -->
@@ -45,7 +47,8 @@
 							stroke-linejoin="round"></path>
 		           </svg>
 				</button>
-				<button type="button" class="header_mypage" onclick="location.href='/wemypage'">
+				<button type="button" class="header_mypage"
+					onclick="location.href='/wemypage'">
 					<svg width="38" height="38" viewBox="0 0 38 38" fill="none"
 						xmlns="http://www.w3.org/2000/svg">
 		             <path
@@ -71,13 +74,16 @@
 		           </svg>
 				</button>
 				<div class="header_content">
-					<button type="button" class="egg" onclick="location.href='/eggmain'"></button>
-		            <button type="button" class="jelly" onclick="location.href='/jellyshop'"></button>
+					<button type="button" class="egg"
+						onclick="location.href='/eggmain'"></button>
+					<button type="button" class="jelly"
+						onclick="location.href='/jellyshop'"></button>
 					<button type="button" class="shop"></button>
 				</div>
 			</div>
 		</div>
 	</header>
+	
 	<div class="main_bg">
 		<div class="game_main">
 
@@ -247,6 +253,28 @@
 		</div>
 	</div>
 	<!-- 끝 ===== MainRoom ===== -->
+	
+	<!-- 알림 모달 -->
+	<!-- 결과 확인 모달 -->
+	<div id="modal-background" class="modal-background"></div>
+	<!-- 메시지 표시 모달 -->
+	<div id="message-modal" class="modalmessage">
+		<p id="modal-message"></p>
+		<button id="modal-button" onclick="closeMessageModalAndRedirect()">확인</button>
+	</div>
+	
+	<!-- 알림 확인 모달 (링크 이동 X) -->
+	<div id="alert-modal" class="modalmessage">
+	    <p id="alert-message"></p>
+	    <button id="alert-button" onclick="closeAlertModal()">확인</button>
+	</div>
+	
+	<!-- Confirm 모달 (확인 + 취소) -->
+	<div id="confirm-modal" class="modalmessage">
+	    <p id="confirm-message"></p>
+	    <button id="confirm-button" onclick="confirmAction()">가보자고~</button>
+	   <button id="cancel-button" onclick="closeConfirmModal()">앗 다음에..</button>
+	</div>
 
 	<!-- 트레이닝 모달 -->
 	<div id="modal1" class="modal">
@@ -1246,7 +1274,7 @@
 
 		</div>
 	</div>
-	
+
 	<!-- 퀘스트 모달 -->
 	<div id="modalq" class="modal">
 		<div class="modal-frame dark">
@@ -1301,8 +1329,10 @@
 				</c:if>
 				<div id="jellyBar">
 					<img id="jelly" src="images/modal/jellyIcon.png">
-					<p id="My_jelly"><fmt:formatNumber value="${character.member.jelly}"
-								pattern="###,###,##0" /></p>
+					<p id="My_jelly">
+						<fmt:formatNumber value="${character.member.jelly}"
+							pattern="###,###,##0" />
+					</p>
 					<img id="plus" src="images/modal/plusIcon.png">
 				</div>
 				<div id="coinBar">
@@ -1519,8 +1549,9 @@
 													this.classList.add("reward"); // "받기완료" 상태 CSS 적용
 													
 													// 알림 메시지 출력
-													alert(data.message);
-													location.href="/modal"
+													//alert(data.message);
+													openMessageModal(data.message);
+													//location.href="/modal"
 												} else {
 													alert("보상 받기 실패: " + data.message);
 												}
