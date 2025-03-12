@@ -13,14 +13,14 @@
 
 a{
   text-decoration: none;
-  color: black;
+  color: inherit;
   cursor: pointer;
 }
 
 table, tr, td{
   border-collapse: collapse;
   text-align: center;
-  height: 50px;
+  
 }
 
 @font-face {
@@ -30,44 +30,6 @@ font-weight: 400;
 font-style: normal;
 } 
 
-
-/* gnb */
-#admin_container{
-	display: flex;
-}
-
-#admin_gnb{
-	 background-color: black;
-	 height: 100vh;
-	 width: 300px;
-	 box-sizing: border-box;      
-}
-
-.gnb_logo{
-	display: flex;
-  	align-items: center;
-  	justify-content: center;
-  	padding: 20px 0 40px;
-}
-    
-.gnb_list li{
-	 height: 56px;
-	 color: white;
-	 text-align: center;
-	 align-content: center;
-}
-
-
-.gnb_list li:hover{
-	background-color: rgb(153, 153, 153, 40%);
-	transition: background 0.3s ease-in-out, transform 0.2s;
-}
-
-/* 선택된 li에 대한 스타일 */
-.gnb_list li.active {
-	background-color: rgb(153, 153, 153, 40%);
-	color: white; /* 선택된 상태에서 글씨색을 흰색으로 */
-}
 
 #admin_content{
 	padding: 30px;
@@ -80,6 +42,15 @@ font-style: normal;
 
 .memberTable{
 	width: 100%;
+}
+
+.memberTable tr:nth-child(odd) {
+  background-color: #f0f8ff;
+}
+
+.memberTable th{
+  background-color: #ededed;
+  border-bottom: 1px solide #999;
 }
 
 
