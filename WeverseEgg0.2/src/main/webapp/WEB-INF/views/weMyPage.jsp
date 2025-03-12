@@ -33,7 +33,11 @@
   <div id="myPage_navi">
     <div id="left_navi">
       <div class="MyJellyContent">
+<<<<<<< HEAD
         <a class="MyJellyPoint" href="/jellyshop">0</a>
+=======
+        <a class="MyJellyPoint" href="#">0</a>
+>>>>>>> refs/remotes/origin/master
         <a class="MyJellyCharge" href="/jellyshop">충전</a>
       </div>
       <a class="MyShopView" href="#">샵 주문 내역</a>

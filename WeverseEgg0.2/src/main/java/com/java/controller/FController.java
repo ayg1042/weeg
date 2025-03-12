@@ -57,11 +57,6 @@ public class FController {
 		return "main2";
 	}
 	
-	@GetMapping("/aespa") // 위버스 에스파 페이지 캐릭터 랭킹 
-	public String weverseAespa() {
-		return "weverse_aespa";
-	}
-	
 	@GetMapping("/eggmain") // 에그 메인 게임 시작 페이지
 	public String eggMain() {
 		return "egg_main";
@@ -172,6 +167,7 @@ public class FController {
 	public String rank() {
 		return "rank";
 	}
+	
 
 	
 	
