@@ -63,32 +63,37 @@
   <div id="notice_container">
     <div class="notice_title">
       <div class="title_between" style="justify-content: space-between; display: flex;">
-        <div class="title_txt">자유게시판</div>
+        <div class="title_txt">게시글 작성</div>
       </div>
     </div>
 
     <table>
       <tbody>
         <tr>
+        	<th class="info_txt">제목</th>
           <td class="td_title">
             <div class="info_title">
-            	<input type="text" id="inputTitle" placeholder="제목을 입력하세요."/>
+           		<input type="text" id="inputTitle" placeholder="제목을 입력하세요." style="width:800px">
             </div>
+          </td>
+        </tr>
+        <tr>
+	       	<th class="info_txt">내용</th>
+	       	<td>
+			    	<textarea rows="10" cols="50"></textarea>
+			    </td>
+   			</tr>
+   			<tr>
+          <th class="info_txt">파일첨부</th>
+          <td>
+            <input type="file" name="file" id="file" style="width:800px">
           </td>
         </tr>
       </tbody>
     </table>
-    <div class="info_date">
-    	<p>2024-12-24 15:00</p>
-    </div>
-    <div class="info_area">
-    	<div id="board_img"></div>
-    	<p class="info_txt">
-    		제발 알려주세요 ㅠㅠ~ 5번 시도했는데 지민이만 안나와..
-    	</p>
     <div class="btnArea">
-    	<button onclick="listBtn()" >저장</button>
-   	</div>
+    	<button onclick="CancleBtn()" >취소	</button>
+    	<button onclick="SaveBtn()" >저장</button>
     </div> <!-- info_area -->
   </div> <!-- notice_container -->
 
@@ -103,8 +108,14 @@
 		    }
 		});
 	  
-	  function listBtn(){
+	  function CancleBtn(){
 		  location.href="/weBoard";
+	  }
+	  
+	  function SaveBtn(){
+		  if(confirm("게시글을 저장하시겠습니까?")) {
+	    	location.href="/weBoard";
+	  	}
 	  }
   </script>
 

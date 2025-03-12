@@ -91,6 +91,10 @@ public class FController {
 		return "weBoardWrite";
 	}
 	
+	/*
+	 * @PostMapping("/weBoardWrite") // 위버스에그 자유게시판 글작성, 이미지파일 업로드 public
+	 */
+	
 	@GetMapping("/rank") // 위버스에그 랭킹 페이지
 	public String rank() {
 		return "rank";
