@@ -153,6 +153,7 @@ public class EggMRController {
 		
 		// 케릭터 인벤토리
 		List<InvenDto> Inven = modalServiceImpl.getCharacterInven(character.getCharacter_id());
+		System.out.println(Inven);
 		model.addAttribute("invenList", Inven);
 		model.addAttribute("character", character);
 		
@@ -165,17 +166,15 @@ public class EggMRController {
 		// 세션에서 가져올꺼임
 		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		List<InvenDto> Inven = modalServiceImpl.getCharacterInven(character.getCharacter_id());
-		
 		// 중복아이템 확인
 		Set<Integer> invenItemIds = Inven.stream()
                 .map(inven -> inven.getItemId().getItemId())
                 .collect(Collectors.toSet());
-
 		if (invenItemIds.contains(Integer.parseInt(itemId))) {
 			return "2";
 		}
-		
 		// 케릭터 결제로직
+		// 아이템 가져오기
 		ItemDto item = modalServiceImpl.getItem(Integer.parseInt(itemId));
 		
 		int coin = character.getCoin() - item.getPrice();
@@ -184,13 +183,14 @@ public class EggMRController {
 		}
 		character.setCoin(coin);
 		modalServiceImpl.characterSave(character);
+		session.setAttribute("character", character);
 		// 결제
 		
+		// 아이템 추가
 		InvenDto Inven1 = new InvenDto();
 		Inven1.setCharacterId(character);
 		Inven1.setItemId(item);
 		modalServiceImpl.buyItem(Inven1);
-		session.setAttribute("character", character);
 		
 		return "1";
 	}

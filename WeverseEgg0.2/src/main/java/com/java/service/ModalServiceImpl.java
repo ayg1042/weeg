@@ -96,7 +96,7 @@ public class ModalServiceImpl implements ModalService {
 	@Override
 	public void characterSave(CharacterDto character) {
 		CharacterEntity entity = CharacterEntity.From(character);
-		characterRepository.save(entity);
+		characterRepository.saveAndFlush(entity);
 		
 	}
 

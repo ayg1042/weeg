@@ -43,5 +43,14 @@ public class GroupDto {
     	groupDto.setGroupName(groupEntity.getGroupName());
     	return groupDto;
     }
+
+	public static GroupDto From(GroupEntity entity) {
+		GroupDto dto = new GroupDto();
+		dto.setGroupId(entity.getGroupId());
+        dto.setGroupName(entity.getGroupName());
+        dto.setGender(entity.getGender());
+        dto.setMemberCount(entity.getMemberCount());
+        return dto;
+	}
 	
 }

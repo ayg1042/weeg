@@ -14,7 +14,7 @@ public class FileConfig implements WebMvcConfigurer {
 //		.addResourceLocations("file:///c:/upload/");
 		
 		//파일업로드에서 파일위치를 지정
-		registry.addResourceHandler("/upload/board/**")
+		registry.addResourceHandler("/images/items/**")
 		.addResourceLocations("file:///C:/Users/KOSMO/git/weeg/WeverseEgg0.2/src/main/resources/static/images/items/");
 		
 		

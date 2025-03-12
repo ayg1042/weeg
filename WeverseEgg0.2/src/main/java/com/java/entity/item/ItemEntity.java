@@ -56,4 +56,11 @@ public class ItemEntity {
 		entity.itemInfo = ItemInfoEntity.From(dto.getItemInfo());
 		return entity;
     }
+    
+    public static ItemEntity getId(ItemDto dto) {
+    	ItemEntity entity = new ItemEntity();
+		entity.setItemId(dto.getItemId());
+		return entity;
+    }
+    
 }

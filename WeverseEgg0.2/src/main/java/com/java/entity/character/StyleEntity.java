@@ -37,7 +37,7 @@ public class StyleEntity {
 	public static StyleEntity From(StyleDto dto) {
 		StyleEntity entity = new StyleEntity();
 		entity.setCharacter(CharacterEntity.From(dto.getCharacter()));
-		entity.setItem(ItemEntity.From(dto.getItem()));
+		entity.setItem(ItemEntity.getId(dto.getItem()));
 		return entity;
 		
 	}

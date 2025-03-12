@@ -76,7 +76,7 @@ public class CharacterDto {
         dto.setCharacter_id(entity.getCharacterId());
         dto.setNickName(entity.getNickName());
         dto.setGender(entity.getGender());
-        dto.setArtist(ArtistDto.rank(entity.getArtist()));
+        dto.setArtist(ArtistDto.From(entity.getArtist()));
         dto.setMember(MemberDto.From(entity.getMember()));
         dto.setCoin(entity.getCoin());
         dto.setDance(entity.getDance());

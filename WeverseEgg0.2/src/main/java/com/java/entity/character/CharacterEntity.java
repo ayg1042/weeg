@@ -27,7 +27,7 @@ public class CharacterEntity {
     private int characterId;
 
     /** 스타일 정보 (헤어스타일, 의상, 악세서리 등) */
-    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<StyleEntity> styles;
 
     /** 아티스트 정보 (1:1) */
@@ -42,7 +42,7 @@ public class CharacterEntity {
 
     // 수정됨
     /** 인벤토리 (1:N) */
-    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "character", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<InvenEntity> inven;
 
     /** 캐릭터 닉네임 */
