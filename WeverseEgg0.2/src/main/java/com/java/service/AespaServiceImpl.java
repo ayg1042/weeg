@@ -60,6 +60,8 @@ public class AespaServiceImpl implements AespaService {
 		FeedDto feedDto = new FeedDto();
 		feedDto.setBcontent(feedWrite);
 		feedDto.setMember(member);
+		feedDto.setCategory("feed");
+		feedDto.setStatus("게시중");
 		feedDto.setBfile(null);
 		
 		aespaRepository.save(feedDto);
@@ -67,7 +69,7 @@ public class AespaServiceImpl implements AespaService {
 
 	@Override
 	public List<FeedDto> feedlist() {
-		List<FeedDto> feedlist = aespaRepository.findAllByOrderByBdateDesc();
+		List<FeedDto> feedlist = aespaRepository.findAllByCategoryOrderByBdateDesc("feed");
 		return feedlist;
 	}
 

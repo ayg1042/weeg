@@ -6,8 +6,8 @@
     <a href="/admin"><img src="../images/mainpage/main_egg.png" alt=""></a>
   </div>
   <div class="gnb_list">
-  	<p>김아무개</p>
-  	<button type="button" onclick="logoutBtn()" class="outBtn">로그아웃</button>
+  	<p>${sessionScope.admin_nickname}</p>
+  	<button type="button" onclick="location.href='/admin/logout'" class="outBtn">로그아웃</button>
     <ul>
       <li class="active"><a href="/admin/main" >회원 정보</a></li>
       <li class="board_toggle">게시판 관리</li>

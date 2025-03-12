@@ -8,6 +8,9 @@ import com.java.dto.feed.FeedDto;
 
 public interface AespaRepository extends JpaRepository<FeedDto, Integer>{
 
-	List<FeedDto> findAllByOrderByBdateDesc();
+	List<FeedDto> findAllByCategoryOrderByBdateDesc(String category);
+
+	// 관리자페이지
+	List<FeedDto> findByCategory(String category);
 
 }

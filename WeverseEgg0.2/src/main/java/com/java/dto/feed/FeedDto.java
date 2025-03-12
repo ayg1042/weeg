@@ -22,7 +22,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Egg_AespaFeed")
+@Table(name = "Egg_Feed")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,6 +32,8 @@ public class FeedDto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int bno;
+	
+	private String btitle;
 	
 	@Lob
 	private String bcontent;
@@ -43,9 +45,14 @@ public class FeedDto {
 	private Timestamp bdate;
 	private String bfile;
 	
+	@Column(nullable= false)
+	private String category;
+	
+	private String status= "게시안함";
+	
 	@PrePersist
     public void setBdate() {
-        // 객체가 persist될 때, bdate를 현재 시간으로 자동 설정
+        // 객체가 null일 때, bdate를 현재 시간으로 자동 설정
         if (this.bdate == null) {
             this.bdate = Timestamp.valueOf(LocalDateTime.now());
         }
