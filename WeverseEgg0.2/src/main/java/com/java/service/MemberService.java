@@ -16,4 +16,6 @@ public interface MemberService {
 
 	int getByJelly(int id);
 
+	void buyCharacter(int id);
+
 }
