@@ -362,55 +362,6 @@ public class EggMRController {
 		return "연습을 열심히 했습니다!(뿌듯)";
 	}
 
-	// 퀘스트 진행도 업데이트 메서드
-	private void updateQuestProgress(CharacterDto character, int questId) {
-		// CharacterDto 내의 MemberDto에서 userId를 추출 (MemberEntity 조회가 필요하면 Service나
-		// Repository 사용)
-		int userId = character.getMember().getUser_id();
-
-		// Repository의 연관관계 기반 메서드 사용
-		QuestProgressEntity progressEntity = questProgressRepository.findByQuest_QuestIdAndMember_UserId(questId,
-				userId);
-
-		if (progressEntity == null) {
-			// 레코드가 없으면 새롭게 생성 (초기 진행도 "0%")
-			progressEntity = new QuestProgressEntity();
-
-			// 실제 MemberEntity와 QuestEntity를 조회해서 할당하는 것이 좋습니다.
-			// 여기서는 예시로 간단히 ID만 할당한 객체를 생성합니다.
-			MemberEntity member = new MemberEntity();
-			member.setUserId(userId);
-			progressEntity.setMember(member);
-
-			QuestEntity quest = new QuestEntity();
-			quest.setQuestId(questId);
-			progressEntity.setQuest(quest);
-
-			progressEntity.setIsCompleted(0);
-			progressEntity.setProgress("0%");
-		}
-
-		// 현재 진행도 ("30%" -> 30) 파싱
-		int currentProgress = Integer.parseInt(progressEntity.getProgress().replace("%", ""));
-
-		// 진행도가 100% 미만이면 20% 증가
-		if (currentProgress < 100) {
-			currentProgress += 20;
-			if (currentProgress > 100) { // 100을 초과하면 100으로 고정
-				currentProgress = 100;
-			}
-			progressEntity.setProgress(currentProgress + "%");
-
-			// 100%가 되면 완료 상태 업데이트
-			if (currentProgress == 100) {
-				progressEntity.setIsCompleted(1);
-			}
-
-			// 변경사항 저장
-			questProgressRepository.save(progressEntity);
-		}
-	}
-
 	// 음악방송출연
 	@PostMapping("/actSave/music_actvity")
 	@ResponseBody
@@ -441,6 +392,11 @@ public class EggMRController {
 		int character_id = character.getCharacter_id();
 		// 콘서트개최 결과 유저 캐릭터에 저장
 		characterService.con_actvity(character_id, health, fatigue, price);
+
+		// 퀘스트 진행도 업데이트 - 5번 퀘스트
+		int questId = 5;
+		updateQuestProgress(character, questId);
+
 		return "콘서트를 개최해서 인기도가 올랐습니다!(뿌듯)";
 	}
 
@@ -452,7 +408,62 @@ public class EggMRController {
 		int character_id = character.getCharacter_id();
 		// 팬사인회 결과 유저 캐릭터에 저장
 		characterService.sign_actvity(character_id, health, fatigue, price);
+
+		// 퀘스트 진행도 업데이트 - 6번 퀘스트
+		int questId = 6;
+		updateQuestProgress(character, questId);
 		return "팬사인회를 잘 마치고 인기도가 올랐습니다!(뿌듯)";
+	}
+
+	// 퀘스트 진행도 업데이트 메서드
+	private void updateQuestProgress(CharacterDto character, int questId) {
+		// CharacterDto 내의 MemberDto에서 userId를 추출
+		int userId = character.getMember().getUser_id();
+
+		// Repository의 연관관계 기반 메서드 사용
+		QuestProgressEntity progressEntity = questProgressRepository.findByQuest_QuestIdAndMember_UserId(questId,
+				userId);
+
+		if (progressEntity == null) {
+			// 레코드가 없으면 새롭게 생성 (초기 진행도 "0%")
+			progressEntity = new QuestProgressEntity();
+
+			// MemberEntity 및 QuestEntity 설정
+			MemberEntity member = new MemberEntity();
+			member.setUserId(userId);
+			progressEntity.setMember(member);
+
+			QuestEntity quest = new QuestEntity();
+			quest.setQuestId(questId);
+			progressEntity.setQuest(quest);
+
+			progressEntity.setIsCompleted(0);
+			progressEntity.setProgress("0%");
+		}
+
+		// 현재 진행도 ("30%" -> 30) 파싱
+		int currentProgress = Integer.parseInt(progressEntity.getProgress().replace("%", ""));
+
+		// 퀘스트 ID가 5 이상이면 한 번에 100%로 설정
+		if (questId >= 5) {
+			currentProgress = 100;
+		} else {
+			// 100% 미만이면 20% 증가
+			currentProgress += 20;
+			if (currentProgress > 100) { // 100을 초과하면 100으로 고정
+				currentProgress = 100;
+			}
+		}
+
+		progressEntity.setProgress(currentProgress + "%");
+
+		// 100%가 되면 완료 상태 업데이트
+		if (currentProgress == 100) {
+			progressEntity.setIsCompleted(1);
+		}
+
+		// 변경사항 저장
+		questProgressRepository.save(progressEntity);
 	}
 
 }
