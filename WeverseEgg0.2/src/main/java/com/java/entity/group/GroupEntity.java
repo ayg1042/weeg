@@ -42,4 +42,13 @@ public class GroupEntity {
     	entity.setMemberCount(dto.getMemberCount());
     	return entity;
     }
+    
+    public static GroupEntity nullId(GroupDto dto) {
+    	GroupEntity entity = new GroupEntity();
+    	entity.setGroupName(dto.getGroupName());
+    	entity.setGender(dto.getGender());
+    	entity.setMemberCount(dto.getMemberCount());
+    	return entity;
+    }
+    
 }

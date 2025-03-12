@@ -2,6 +2,8 @@ package com.java.service;
 
 import java.util.List;
 
+import com.java.dto.group.ArtistNameDto;
+import com.java.dto.group.GroupDto;
 import com.java.dto.character.CharacterDto;
 import com.java.dto.character.InvenDto;
 import com.java.dto.character.StyleDto;
@@ -36,5 +38,31 @@ public interface ModalService {
 	void addItem(ItemDto dto);
 
 	void addItemInfo(ItemInfoDto info);
+
+	void updateItemInfo(ItemInfoDto info);
+
+	ItemInfoDto getItemInfo(int itemInfoId);
+
+	void deleteItem(int itemId);
+
+	List<GroupDto> getAllGroup();
+
+	void addGroup(GroupDto dto);
+
+	void updateGroup(GroupDto dto);
+
+	GroupDto getGroup(int groupId);
+
+	void deleteGroup(int groupId);
+
+	void addArtistName(ArtistNameDto artist);
+
+	List<ArtistNameDto> getAllArtistName();
+
+	ArtistNameDto getArtistName(int artistNId);
+
+	void updateArtistName(ArtistNameDto artist);
+
+	void deleteArtistName(ArtistNameDto dto);
 
 }

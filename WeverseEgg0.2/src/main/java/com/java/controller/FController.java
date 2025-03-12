@@ -19,10 +19,13 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.java.dto.character.ArtistDto;
 import com.java.dto.character.CharacterDto;
 import com.java.dto.character.InvenDto;
 import com.java.dto.character.SaveStyleDto;
 import com.java.dto.character.StyleDto;
+import com.java.dto.group.ArtistNameDto;
+import com.java.dto.group.GroupDto;
 import com.java.dto.item.ItemDto;
 import com.java.dto.item.ItemInfoDto;
 import com.java.dto.item.ItemTypeDto;
@@ -42,9 +45,16 @@ public class FController {
 	public String index(Model model) {
 		List<ItemTypeDto> itemType = modalServiceImpl.getAllItemTypes();
 		List<ItemInfoDto> itemInfo = modalServiceImpl.getAllItemInfo();
-		System.out.println(itemInfo);
+		List<ItemDto> itemDto = modalServiceImpl.getAllItems();
+		List<GroupDto> group = modalServiceImpl.getAllGroup();
+		List<ArtistNameDto> artist = modalServiceImpl.getAllArtistName();
+
 		model.addAttribute("itemTypeList", itemType);
 		model.addAttribute("itemInfoList", itemInfo);
+		model.addAttribute("itemList", itemDto);
+		model.addAttribute("groupList", group);
+		model.addAttribute("artistList", artist);
+		
 		return "index";
 	}
 	
@@ -93,7 +103,8 @@ public class FController {
             @RequestParam(value = "entertainment", defaultValue = "0") int entertainment,
             @RequestParam(value = "fatgue_recovery", defaultValue = "0") int fatigueRecovery) {
 
-		ItemInfoDto info = new ItemInfoDto(); ItemTypeDto type = new ItemTypeDto();
+		ItemInfoDto info = new ItemInfoDto();
+		ItemTypeDto type = new ItemTypeDto();
 		type.setItemTypeId(Integer.parseInt(itemType)); info.setItemType(type);
 		info.setCharm(charm); info.setDance(dance); info.setRap(rap);
 		info.setVocal(vocal); info.setEntertainment(entertainment);
@@ -104,6 +115,119 @@ public class FController {
 		return "1";
 	}
 	
+	@PostMapping("/itemInfoUpdate")
+	@ResponseBody
+	@Transactional
+	public String itemInfoUpdate(@RequestParam("itemInfoId") String itemInfoId,
+			@RequestParam(value = "charm", defaultValue = "0") int charm,
+            @RequestParam(value = "dance", defaultValue = "0") int dance,
+            @RequestParam(value = "rap", defaultValue = "0") int rap,
+            @RequestParam(value = "vocal", defaultValue = "0") int vocal,
+            @RequestParam(value = "entertainment", defaultValue = "0") int entertainment,
+            @RequestParam(value = "fatgue_recovery", defaultValue = "0") int fatigueRecovery) {
+		ItemInfoDto info = modalServiceImpl.getItemInfo(Integer.parseInt(itemInfoId));
+		info.setCharm(charm);
+		info.setDance(dance);
+		info.setRap(rap);
+		info.setVocal(vocal);
+		info.setEntertainment(entertainment);
+		info.setFatigueRecovery(fatigueRecovery);
+		
+		modalServiceImpl.updateItemInfo(info);
+		
+		return "1";
+	}
+	
+	@PostMapping("/itemDelete")
+	@ResponseBody
+	@Transactional
+	public String itemDelete(@RequestParam("itemId") String itemId) {
+		ItemDto dto = modalServiceImpl.getItem(Integer.parseInt(itemId));
+		modalServiceImpl.deleteItem(dto.getItemId());
+		return "1";
+	}
+	
+	@PostMapping("/addGroup")
+	@ResponseBody
+	@Transactional
+	public String addGroup(
+			@RequestParam(value = "group_name", defaultValue = "0") String name,
+            @RequestParam(value = "member_count", defaultValue = "0") int count,
+            @RequestParam(value = "group_gender", defaultValue = "여자") String gender
+			) {
+		GroupDto dto= new GroupDto();
+		dto.setGroupName(name);
+		dto.setMemberCount(count);
+		dto.setGender(gender);
+		modalServiceImpl.addGroup(dto);
+		return "1";
+	}
+	
+	@PostMapping("/updateGroup")
+	@ResponseBody
+	@Transactional
+	public String updateGroup(
+			@RequestParam(value = "groupId", defaultValue = "1") int groupId,
+			@RequestParam(value = "group_name", defaultValue = "0") String name,
+            @RequestParam(value = "member_count", defaultValue = "0") int count,
+            @RequestParam(value = "group_gender", defaultValue = "여자") String gender
+			) {
+		GroupDto dto = new GroupDto();
+		dto.setGroupId(groupId);
+		dto.setGroupName(name);
+		dto.setMemberCount(count);
+		dto.setGender(gender);
+		modalServiceImpl.updateGroup(dto);
+		return "1";
+	}
+	
+	@PostMapping("/deleteGroup")
+	@ResponseBody
+	@Transactional
+	public String deleteGroup(@RequestParam(value = "groupId") int groupId) {
+		
+		GroupDto dto = modalServiceImpl.getGroup(groupId);
+		modalServiceImpl.deleteGroup(dto.getGroupId());
+		return "1";
+	}
+	
+	@PostMapping("/addArtistName")
+	@ResponseBody
+	@Transactional
+	public String addArtist(
+			@RequestParam(value = "groupId") int groupId,
+			@RequestParam(value = "artistName") String artistName
+			) {
+		GroupDto group = modalServiceImpl.getGroup(groupId);
+		ArtistNameDto artist = new ArtistNameDto();
+		artist.setGroup(group);
+		artist.setArtistName(artistName);
+		modalServiceImpl.addArtistName(artist);
+		return "1";
+	}
+	
+	@PostMapping("/updateArtistName")
+	@ResponseBody
+	@Transactional
+	public String updateAritstName(
+			@RequestParam(value = "artistNId") int artistNId,
+			@RequestParam(value = "artistName") String artistName
+			) {
+		ArtistNameDto artist = modalServiceImpl.getArtistName(artistNId);
+		artist.setArtistName(artistName);
+		modalServiceImpl.updateArtistName(artist);
+		return "1";
+	}
+	
+	@PostMapping("/deleteArtistName")
+	@ResponseBody
+	@Transactional
+	public String deleteArtistName(@RequestParam(value = "artistNId") int artistNId) {
+		ArtistNameDto dto = modalServiceImpl.getArtistName(artistNId);
+		modalServiceImpl.deleteArtistName(dto);
+		
+		return "1";
+	}
 	
 	
 	@GetMapping("/") // 위버스 로그인 안 된 페이지

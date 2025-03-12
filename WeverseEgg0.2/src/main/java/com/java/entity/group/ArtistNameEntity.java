@@ -33,4 +33,10 @@ public class ArtistNameEntity {
     	entity.setArtistName(dto.getArtistName());
     	return entity;
     }
+    public static ArtistNameEntity nullId(ArtistNameDto dto) {
+    	ArtistNameEntity entity = new ArtistNameEntity();
+    	entity.setGroup(GroupEntity.From(dto.getGroup()));
+    	entity.setArtistName(dto.getArtistName());
+    	return entity;
+    }
 }
