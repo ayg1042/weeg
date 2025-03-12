@@ -1,5 +1,8 @@
 package com.java.dto.member;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.java.entity.member.MemberEntity;
 
 import lombok.AllArgsConstructor;
@@ -41,6 +44,21 @@ public class MemberDto {
 		dto.jelly = entity.getJelly();
 		return dto;
 	}
+    
+    // 회원전체리스트
+    public static List<MemberDto> list(List<MemberEntity> memEntity) {
+    	List<MemberDto> memDtoList = new ArrayList<>();
+        
+        for (MemberEntity entity : memEntity) {
+            MemberDto dto = new MemberDto();
+            dto.user_id = entity.getUserId();
+            dto.email = entity.getEmail();
+            dto.nickname = entity.getNickname();
+            dto.jelly = entity.getJelly();
+            memDtoList.add(dto);
+        }
+        return memDtoList;
+    }
 
 	public static MemberDto kakaojoin(MemberEntity entity) {
 		MemberDto dto = new MemberDto();
