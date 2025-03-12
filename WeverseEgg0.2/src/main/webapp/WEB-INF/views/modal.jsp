@@ -45,7 +45,7 @@
 							stroke-linejoin="round"></path>
 		           </svg>
 				</button>
-				<button type="button" class="header_mypage">
+				<button type="button" class="header_mypage" onclick="location.href='/wemypage'">
 					<svg width="38" height="38" viewBox="0 0 38 38" fill="none"
 						xmlns="http://www.w3.org/2000/svg">
 		             <path
@@ -71,8 +71,8 @@
 		           </svg>
 				</button>
 				<div class="header_content">
-					<button type="button" class="egg"></button>
-					<button type="button" class="jelly"></button>
+					<button type="button" class="egg" onclick="location.href='/eggmain'"></button>
+		            <button type="button" class="jelly" onclick="location.href='/jellyshop'"></button>
 					<button type="button" class="shop"></button>
 				</div>
 			</div>
