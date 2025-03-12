@@ -69,6 +69,20 @@ font-style: normal;
 	border-bottom:1px solid #c8c8c8;
 }
 
+.noticeButtonArea {
+	margin: 20px;
+	text-align: right;
+}
+
+.noticeButtonArea button{
+	width: 70px;
+	height: 30px;
+	margin-right: 10px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
 
 
 

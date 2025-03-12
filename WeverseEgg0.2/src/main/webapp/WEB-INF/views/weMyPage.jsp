@@ -34,7 +34,7 @@
     <div id="left_navi">
       <div class="MyJellyContent">
         <a class="MyJellyPoint" href="#">0</a>
-        <a class="MyJellyCharge" href="#">충전</a>
+        <a class="MyJellyCharge" href="/jellyshop">충전</a>
       </div>
       <a class="MyShopView" href="#">샵 주문 내역</a>
 
