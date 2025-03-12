@@ -1,0 +1,88 @@
+*{
+  padding: 0; 
+  margin: 0;
+  font-family: "Pretendard Variable", 
+								Pretendard, 
+								-apple-system, 
+								BlinkMacSystemFont, 
+								system-ui, 
+								Roboto, 
+								"Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 
+								sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+table, tr, td{
+  border-collapse: collapse;
+}
+
+@font-face {
+font-family: 'Pretendard-Regular';
+src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+font-weight: 400;
+font-style: normal;
+} 
+
+
+#admin_content{
+	padding: 30px;
+	width: 100%;
+}
+
+.noticeTableArea{
+	margin-top: 50px;
+}
+
+.viewBoard{
+	width: 100%;
+	text-align: left;
+}
+.viewBoard th,td{
+	text-align: left;
+}
+.viewBoard th{
+	font-size:17px;
+	font-weight:500;
+	height: 80px;
+	padding-left:14px;
+	border-bottom:1px solid #c8c8c8;
+	border-top:1px solid #c8c8c8;
+}
+.viewBoard .viewDate td{
+	font-size:14px;
+	font-weight:400;
+	color:#666;
+	height: 30px;
+	padding-left:14px;
+	border-bottom:1px solid #c8c8c8;
+}
+.viewBoard .viewContent td{
+	font-size:16px;
+	font-weight:400;
+	height: 100%;
+	padding:20px 14px;
+	border-bottom:1px solid #c8c8c8;
+}
+
+.noticeButtonArea {
+	margin: 20px;
+	text-align: right;
+}
+
+.noticeButtonArea button{
+	width: 70px;
+	height: 30px;
+	margin-right: 10px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+
+
+

@@ -62,7 +62,8 @@ public class EggMRController {
 //        CharacterDto character = (CharacterDto) session.getAttribute("session_character");
 		CharacterDto character = (CharacterDto) session.getAttribute("character");
         model.addAttribute("chDto", character);
-        
+        System.out.println("==============dghjwkjdjklf[dkslafhlkjf오러ㅓ아어ㅏㅏㅣㅓㅇ노ㅓㅏㅣ");
+        System.out.println(character);
         //== 레벨 경험치 체크 ==
         int vocal = character.getVocal();
         int dance = character.getDance();

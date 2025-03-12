@@ -238,7 +238,7 @@ header{
 }
 
 .aespa:hover{
-  content: url('images/main_aespa_hover.png'); /* 마우스를 올리면 이미지 변경 */
+  content: url('../images/main/main_aespa_hover.png'); /* 마우스를 올리면 이미지 변경 */
 }
 
 

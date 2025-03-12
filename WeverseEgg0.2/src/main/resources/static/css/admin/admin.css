@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 *{
   padding: 0; 
   margin: 0;
@@ -15,11 +13,11 @@
 
 a{
   text-decoration: none;
-  color: black;
+  color:inherit;
   cursor: pointer;
 }
 
-table, tr, td{
+.memberTable table, tr, td{
   border-collapse: collapse;
   text-align: center;
   height: 50px;
@@ -49,87 +47,56 @@ font-style: normal;
 	display: flex;
   	align-items: center;
   	justify-content: center;
-  	padding: 20px 0 40px;
+  	padding: 20px 0 20px;
 }
     
 .gnb_list li{
 	 height: 56px;
-	 color: white;
+	 color: #aaa;
 	 text-align: center;
 	 align-content: center;
+	 margin-top: 10px;
 }
 
+.gnb_list p{
+	text-align:center;
+	color: white;
+}
 
 .gnb_list li:hover{
+	color: #fff;
 	background-color: rgb(153, 153, 153, 40%);
 	transition: background 0.3s ease-in-out, transform 0.2s;
 }
 
 /* 선택된 li에 대한 스타일 */
-.gnb_list li.active {
-	background-color: rgb(153, 153, 153, 40%);
+.gnb_list .active {
 	color: white; /* 선택된 상태에서 글씨색을 흰색으로 */
+	background-color: rgb(153, 153, 153, 40%);
 }
 
-#admin_content{
-	padding: 30px;
-	width: 100%;
-}
-
-.memberTableArea{
-	margin-top: 50px;
-}
-
-.memberTable{
-	width: 100%;
-}
-
-/* 여기 밑에 index에 있는 내용들 css */
-
-.data_input_from{
-	margin: 0 300px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed; /* 테이블 너비 고정 */
-    margin: 20px 0;
-}
-
-td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    vertical-align: middle;
-}
-
-label {
-    font-weight: bold;
-    white-space: nowrap; /* 긴 텍스트가 줄 바뀌지 않도록 */
-}
-
-input, select {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-button {
+.gnb_list button {
+    all: unset; /* 모든 기본 스타일 제거 */
+    color:#aaa;
+    font-size: 13px;
+    text-decoration: underline; /* 밑줄 추가 */
     display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
+    cursor: pointer; /* 클릭 가능한 요소임을 표시 */
+    margin:14px auto 40px;
 }
 
-button:hover {
-    background-color: #45a049;
+
+.gnb_list li.board_sub {
+	font-size:15px;
+	color:white;
+	height:48px;
+	margin:0;
+  list-style: none;
+	background-color: #222;
+	display:none;
 }
+.gnb_list li.board_sub.open{
+	display:list-item;
+}
+
+
