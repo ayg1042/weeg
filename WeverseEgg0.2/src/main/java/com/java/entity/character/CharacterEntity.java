@@ -31,7 +31,7 @@ public class CharacterEntity {
     private List<StyleEntity> styles;
 
     /** 아티스트 정보 (1:1) */
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "artist_id", referencedColumnName = "artist_id", nullable = true)
     private ArtistEntity artist;
 

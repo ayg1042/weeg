@@ -230,8 +230,8 @@ public class EggMRController {
 		character.setFatigue(fatigue);
 		
 		// 해당 아이템 삭제
-		modalServiceImpl.deleteInvenItem(Integer.parseInt(itemId));
-		
+		modalServiceImpl.deleteInvenItem(Integer.parseInt(invenId));
+		modalServiceImpl.characterSave(character);
 		session.setAttribute("character", character);
 		return "1";
 	}
