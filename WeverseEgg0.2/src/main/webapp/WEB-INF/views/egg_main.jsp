@@ -18,13 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const boxes = document.querySelectorAll('.box1, .box2, .box3, .box4');
     const banners = document.querySelectorAll('#main_banner img');
     const mainBanner = document.querySelector('#main_banner img');
-    const images = [
-      'images/main_banner_Img.png',
-      'images/main_banner2.png',
-      'images/main_banner3.png',
-      'images/main_banner4.png'
-    ];
+    const images = Array.from(banners);
 
+    
     // 초기 상태 설정
     banners[0].classList.add('active');
 
@@ -83,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	    // 3초마다 이미지 변경
 	    setInterval(showNextImage, 3000);
 	});
+	
 
 </script>
 
@@ -136,26 +133,18 @@ document.addEventListener('DOMContentLoaded', () => {
     </c:forEach>
     </div>
 
-		<div class="egg_main_bottom">
-    <!-- 하단 이벤트 gnb -->
-    <div id="main_bottom_gnb">
-      <div class="box1">
-        <div class="event-title">2025 패션왕</div>
-        <div class="event-date">~2025.03.26</div>
-      </div>
-      <div class="box2">
-        <div class="event-title">아티스트 생일 이벤트</div>
-        <div class="event-date">~2025.03.23</div>
-      </div>
-      <div class="box3">
-        <div class="event-title">신규유저 혜택 이벤트</div>
-        <div class="event-date">~2025.03.20</div>
-      </div>
-      <div class="box4">
-        <div class="event-title">펫 뽑기쿠폰 업데이트</div>
-        <div class="event-date">~2025.03.18</div>
-      </div>
-	   </div>
+	<div class="egg_main_bottom">
+	    <!-- 하단 이벤트 gnb -->
+	    <div id="main_bottom_gnb">
+	    <c:forEach items="${banners }" var="banner" varStatus="vs">
+	     <c:if test="${vs.index < 4}">
+	      <div class="box${vs.index +1 }">
+	        <div class="event-title">${banner.btitle}</div>
+	        <div class="event-date">~2025.03.26</div>
+	      </div>
+	     </c:if>
+	    </c:forEach>
+		</div>
 	
 	    <!-- 게임 스타트 버튼 -->
 	    <div id="game_start_btn">
