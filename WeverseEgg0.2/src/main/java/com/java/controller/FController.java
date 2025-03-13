@@ -18,8 +18,10 @@ import com.java.dto.character.CharacterDto;
 import com.java.dto.character.InvenDto;
 import com.java.dto.character.SaveStyleDto;
 import com.java.dto.character.StyleDto;
+import com.java.dto.feed.FeedDto;
 import com.java.dto.item.ItemDto;
 import com.java.entity.character.StyleEntity;
+import com.java.service.AespaService;
 import com.java.service.ModalService;
 
 import jakarta.servlet.http.HttpSession;
@@ -29,6 +31,7 @@ import jakarta.servlet.http.HttpSession;
 public class FController {
 	
 	@Autowired ModalService modalServiceImpl;
+	@Autowired AespaService aespaService;
 	@Autowired HttpSession session;
 	
 	@GetMapping("/index") //테스트 페이지
@@ -47,7 +50,9 @@ public class FController {
 	}
 	
 	@GetMapping("/eggmain") // 에그 메인 게임 시작 페이지
-	public String eggMain() {
+	public String eggMain(Model model) {
+		List<FeedDto> banners = aespaService.bannerlist();
+		model.addAttribute("banners",banners);
 		return "egg_main";
 	}
 	
@@ -57,13 +62,35 @@ public class FController {
 	}
 	
 	@GetMapping("/wenotice") // 위버스 공지사항
-	public String weNotice() {
+	public String weNotice(Model model) {
+		String category = "notice";
+		String status = "게시중";
+		List<FeedDto> notilist = aespaService.notilist(category, status);
+		model.addAttribute("notilist",notilist);
 		return "weNotice";
 	}
 	
 	@GetMapping("/weNoticeView") // 위버스 공지사항 뷰페이지
-	public String weNoticeView() {
+	public String weNoticeView(@RequestParam int bno, Model model) {
+		FeedDto notice = aespaService.notiview(bno);
+		model.addAttribute("fdto",notice);
 		return "weNoticeView";
+	}
+	
+	@GetMapping("/weevent") // 위버스 이벤트
+	public String weevent(Model model) {
+		String category = "event";
+		String status = "게시중";
+		List<FeedDto> eventlist = aespaService.notilist(category, status);
+		model.addAttribute("eventlist",eventlist);
+		return "weEvent";
+	}
+	
+	@GetMapping("/weEventView") // 위버스 이벤트 뷰페이지
+	public String weEventView(@RequestParam int bno, Model model) {
+		FeedDto event = aespaService.notiview(bno);
+		model.addAttribute("fdto",event);
+		return "weEventView";
 	}
 	
 	

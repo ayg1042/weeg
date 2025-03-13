@@ -18,27 +18,45 @@
     <%@ include file="gnb.jsp" %>
     
     <div id="admin_content">
-    	<h2>공지사항</h2>
+    	<h2>이벤트 관리</h2>
     	<div class="noticeTableArea">
-	    	<button class="writeBtn" onclick="location.href='/admin/noticeWrite'">글쓰기</button>
+	    	<button class="writeBtn" onclick="location.href='/admin/eventWrite'">글쓰기</button>
     		<table class="noticeTable">
     			<colgroup>
 		        <col style="width: 10%;">
 		        <col style="width: *;">
-		        <col style="width: 30%;">
+		        <col style="width: 25%;">
+		        <col style="width: 10%;">
+		        <col style="width: 10%;">
+		        <col style="width: 10%;">
 		        <col style="width: 20%;">
 	    		</colgroup>
     			<tr>
     				<th>NO.</th>
     				<th>제목</th>
     				<th>작성일</th>
+    				<th>이미지<br/>(notice)</th>
+    				<th>이미지<br/>(banner)</th>
+    				<th>이미지<br/>(modal)</th>
     				<th>게시상태</th>
     			</tr>
     			<c:forEach items="${notilist }" var="fdto" varStatus="no">
 	    			<tr>
 	    				<td>${no.index + 1}</td>
-	    				<td><a href="/admin/noticeView?bno=${fdto.bno }">${fdto.btitle }</a></td>
+	    				<td><a href="/admin/eventView?bno=${fdto.bno }">${fdto.btitle }</a></td>
 	    				<td><fmt:formatDate value="${fdto.bdate}" pattern="yyyy-MM-dd"/></td>
+	    				<td>
+	    					<c:if test="${fdto.bfile != null }">O</c:if>
+	    					<c:if test="${fdto.bfile == null }">X</c:if>
+	    				</td>
+	    				<td>
+	    					<c:if test="${fdto.bfile_banner != null }">O</c:if>
+	    					<c:if test="${fdto.bfile_banner == null }">X</c:if>
+	    				</td>
+	    				<td>
+	    					<c:if test="${fdto.bfile_modal != null }">O</c:if>
+	    					<c:if test="${fdto.bfile_modal == null }">X</c:if>
+	    				</td>
 	    				<td>
 	    					<label class="switch">
 								<input type="checkbox" class="toggleStatus"

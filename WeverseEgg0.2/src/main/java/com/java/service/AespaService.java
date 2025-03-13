@@ -20,4 +20,13 @@ public interface AespaService {
 	// 피드 리스트 가져오기
 	List<FeedDto> feedlist();
 
+	// 공지사항 리스트 가져오기
+	List<FeedDto> notilist(String category, String status);
+
+	// 공지사항 뷰페이지
+	FeedDto notiview(int bno);
+
+	// egg main 배너 이미지 가져오기
+	List<FeedDto> bannerlist();
+
 }

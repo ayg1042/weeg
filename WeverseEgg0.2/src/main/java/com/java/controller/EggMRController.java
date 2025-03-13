@@ -18,12 +18,14 @@ import com.java.dto.character.CharacterDto;
 import com.java.dto.character.InvenDto;
 import com.java.dto.character.SaveStyleDto;
 import com.java.dto.character.StyleDto;
+import com.java.dto.feed.FeedDto;
 import com.java.dto.item.ItemDto;
 import com.java.dto.member.MemberDto;
 import com.java.dto.practice.DancePracticeDto;
 import com.java.dto.practice.EntertainmentPracticeDto;
 import com.java.dto.practice.RapPracticeDto;
 import com.java.dto.practice.VocalPracticeDto;
+import com.java.service.AespaService;
 import com.java.service.CharacterService;
 import com.java.service.ModalService;
 import com.java.util.LvCalc;
@@ -36,6 +38,7 @@ public class EggMRController {
 	@Autowired HttpSession session;
 	@Autowired CharacterService characterService;
 	@Autowired ModalService modalServiceImpl;
+	@Autowired AespaService aespaService;
 	
 	@GetMapping("/modal")
 	public String modal(Model model) {
@@ -155,6 +158,9 @@ public class EggMRController {
 		model.addAttribute("invenList", Inven);
 		model.addAttribute("character", character);
 		
+		//이벤트 리스트
+		List<FeedDto> events = aespaService.bannerlist();
+		model.addAttribute("events",events);
 		return "modal";
 	}
 	

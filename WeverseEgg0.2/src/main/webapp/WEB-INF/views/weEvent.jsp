@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href="css/mainpage.css" />
   <link rel="stylesheet" type="text/css" href="css/header.css" />
   <link rel="stylesheet" type="text/css" href="css/weNotice.css" />
-  <title>WEVERSEGG_NOTICE</title>
+  <title>WEVERSEGG_EVENT</title>
 </head>
 
 <body>
@@ -30,8 +30,7 @@
           <li id="option_title">뉴스</li>
           <li><a href="/wenotice">공지사항</a></li>
           <li><a href="#">업데이트</a></li>
-          <li><a href="#">이벤트</a></li>
-          <li><a href="#">업데이트</a></li>
+          <li><a href="/weevent">이벤트</a></li>
         </ul>
         <ul>
           <li id="option_title">가이드</li>
@@ -67,7 +66,7 @@
   <div id="notice_container">
     <div class="notice_title">
       <div class="title_between" style="justify-content: space-between; display: flex;">
-        <div class="title_txt">공지사항</div>
+        <div class="title_txt">이벤트</div>
         <form action="">
           <div class="search_inputBox">
             <input type="text" name="text" class="searchN" placeholder="검색어를 입력하세요.">
@@ -83,10 +82,10 @@
         <col class="w-[160px]">
       </colgroup>
       <tbody>
-      <c:forEach items="${notilist}" var="tdto">
+      <c:forEach items="${eventlist}" var="tdto">
         <tr>
           <td class="td_title">
-            <a href="/weNoticeView?bno=${tdto.bno }"><span class="info_title">${tdto.btitle }</span></a>
+            <a href="/weEventView?bno=${tdto.bno }"><span class="info_title">${tdto.btitle }</span></a>
           </td>
           <td class="info_date"><fmt:formatDate value="${fdto.bdate}" pattern="yyyy-MM-dd"/></td>
         </tr>

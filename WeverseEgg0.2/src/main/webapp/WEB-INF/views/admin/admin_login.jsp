@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../css/admin.css"/>
 <title>Insert title here</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 	#admin_login_area{
 		margin: 200px auto;
@@ -59,7 +59,7 @@
 <body>
 	<div id="admin_login_area">
 		<img src="../images/mainpage/main_egg.png">
-		<form action="" method="post" name="adminloginFrm" class="adminloginFrm">
+		<form action="/admin" method="post" name="adminloginFrm" class="adminloginFrm">
 			<div class="gichanta">
 				<div class="form-row">
 					<label>아이디</label>
@@ -68,36 +68,37 @@
 				<br/>
 				<div class="form-row">
 					<label>비밀번호</label>
-					<input type="password" name="adminPw">
+					<input type="password" name="adminPw" id="admin_pw">
 				</div>
 			</div>
-			<button>로그인</button>
+			<button type="button" class="login_btn">로그인</button>
 		</form>
 	</div>
 
 	<script>
-	
-		if ('{{lmsg}}' == '1'){
-			alert("관리자 로그인되었습니다.")
-			location.href='/admin1/admin_memList/'
-		}else if('{{lmsg}}' == '0'){
-				alert("아이디 또는 패스워드가 일치하지 않습니다.")
-		};
-		$(function(){
-			$(".login_btn").click(function(){
-				if($("#user_id").val().length<1){
-					alert("아이디를 입력하세요.")
-					$("#user_id").focus()
+		$(function () {
+			// 클릭 이벤트
+			$(".login_btn").click(function () {
+				if ($("#admin_pw").val().length < 1) {
+					alert("비밀번호를 입력하세요.");
+					$("#admin_pw").focus();
 					return false;
 				}
-				if($("#user_pw").val().length<1){
-						alert("비밀번호를 입력하세요.")
-						$("#user_pw").focus()
-						return false;
+				adminloginFrm.submit();
+			});
+	
+			<%
+				String lmsg = (String) request.getAttribute("lmsg");
+				if (lmsg != null) {
+			%>
+				const lmsg = "<%= lmsg %>";
+				if (lmsg === '1') {
+					alert("관리자 로그인되었습니다.");
+				} else if (lmsg === '0') {
+					alert("패스워드가 일치하지 않습니다.");
 				}
-				login_frm.submit()
-				})
-		})
+			<% } %>
+		});
 	</script>
 </body>
 </html>

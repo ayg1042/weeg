@@ -44,6 +44,8 @@ public class FeedDto {
 	
 	private Timestamp bdate;
 	private String bfile;
+	private String bfile_banner;
+	private String bfile_modal;
 	
 	@Column(nullable= false)
 	private String category;

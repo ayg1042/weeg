@@ -74,33 +74,20 @@
       <tbody>
         <tr>
           <td class="td_title">
-            <span class="info_title">[안내] 개인정보처리방침 변경 안내</span>
+            <span class="info_title">${fdto.btitle }</span>
           </td>
         </tr>
       </tbody>
     </table>
     <div class="info_date">
-    	<p>2025-01-01 15:00</p>
+    	<p><fmt:formatDate value="${fdto.bdate}" pattern="yyyy-MM-dd HH:mm"/></p>
     </div>
     <div class="info_area">
     	<div id="notice_img"></div>
     	<p class="info_txt">
-    		안녕하세요. 위버스EGG입니다.<br/><br/>
-				위버스EGG 서비스를 이용해 주시는 고객 여러분께 진심으로 감사드리며,<br/>
-				'개인정보처리방침'에 일부 수정 내용이 있어 2025년 01월 01일자로 변경됩니다.<br/><br/>
-				새롭게 바뀌는 주요 개정사항을 확인하시고, 서비스 이용에 참고 부탁드리겠습니다.<br/><br/>
-				▣ 개정 사유 및 내용<br/>
-				- 일부 개인정보 수탁 업체 삭제 및 위탁업무 내용 변경<br/><br/>
-				▣ 적용 일시: 2025년 01월 01일<br/><br/>
-				▣ 이의제기 및 문의<br/>
-				변경된 ‘개인정보 처리방침’의 내용에 동의하지 않으시는 경우,<br/>
-				위버스EGG 서비스의 원활한 제공에 제약이 발생할 수 있습니다.<br/><br/>
-				개인정보처리방침 변경에 대한 이의제기 및 문의는<br/>
-				고객센터로 접수해 주시면 신속하고 친절하게 안내해드리겠습니다.<br/><br/>
-				앞으로도 고객 여러분의 개인정보를 보다 안전하게 보호할 것을 약속드리며,<br/> 
-				신뢰받는 서비스로 보답하겠습니다.<br/><br/>
-				감사합니다.
+    		${fdto.bcontent }
     	</p>
+    	<c:if test="${fdto.bfile != null }"><img src="../images/notice/${fdto.bfile}"></c:if>
     <div class="btnArea">
     	<button onclick="listBtn()" >목록</button>
    	</div>

@@ -100,8 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <li id="option_title">뉴스</li>
           <li><a href="/wenotice">공지사항</a></li>
           <li><a href="#">업데이트</a></li>
-          <li><a href="#">이벤트</a></li>
-          <li><a href="#">업데이트</a></li>
+          <li><a href="/weevent">이벤트</a></li>
         </ul>
         <ul>
           <li id="option_title">가이드</li>
@@ -130,10 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <!-- 메인 이미지 화면 -->
     <div id="main_banner">
-      <img src="images/mainpage/main_banner_Img3.png" alt="메인 배너3">
-      <img src="images/mainpage/main_banner_Img2.png" alt="메인 배너2">
-      <img src="images/mainpage/main_banner_Img.png" alt="메인 배너1">
-      <img src="images/mainpage/main_banner_Img4.png" alt="메인 배너4">
+    <c:forEach items="${banners }" var="banner">
+      <c:if test="${not empty banner.bfile_banner}">
+      <img src="../images/event/${banner.bfile_banner}" alt="메인 배너 이미지">
+    </c:if>
+    </c:forEach>
     </div>
 
 		<div class="egg_main_bottom">
