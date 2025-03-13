@@ -2,10 +2,14 @@ package com.java.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,12 +19,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.java.dto.character.CharacterDto;
 import com.java.dto.feed.FeedDto;
 import com.java.dto.member.MemberDto;
 import com.java.entity.member.MemberEntity;
 import com.java.repository.FeedRepository;
 import com.java.repository.MemberRepository;
 import com.java.service.AespaService;
+import com.java.service.CharacterService;
+import com.java.service.MemberService;
 import com.java.service.ModalService;
 
 import jakarta.servlet.http.HttpSession;
@@ -33,6 +40,8 @@ public class FController {
 	@Autowired MemberRepository memberRepository;
 	@Autowired AespaService aespaService;
 	@Autowired ModalService modalServiceImpl;
+	@Autowired CharacterService characterService;
+	@Autowired MemberService memberService;
 	@Autowired HttpSession session;
 	
 	@GetMapping("/index") //테스트 페이지
@@ -41,12 +50,36 @@ public class FController {
 	}
 	
 	@GetMapping("/") // 위버스 로그인 안 된 페이지
-	public String index1() {
+	public String index1(Model model,
+			@SessionAttribute(name = "session_id", required = false) MemberDto memberDto) {
+		// 로그인한 사용자 정보 가져오기
+		if(memberDto!=null) {
+			int user_id = memberDto.getUser_id();
+			// 사용자의 캐릭터 목록 불러오기
+	        List<CharacterDto> list = characterService.getCharactersByUserId(user_id);
+	        if(list != null) {
+	        	model.addAttribute("list", list);
+	        }else {
+	        	model.addAttribute("list", null);
+	        }
+	        System.out.println("!!!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@"+list);
+		}
 		return "main";
 	}
 	
 	@GetMapping("/loggedIn") // 위버스 로그인 된 메인 페이지
-	public String index2() {
+	public String index2(Model model,
+			@SessionAttribute(name = "session_id", required = false) MemberDto memberDto) {
+		// 로그인한 사용자 정보 가져오기
+		int user_id = memberDto.getUser_id();
+		// 사용자의 캐릭터 목록 불러오기
+        List<CharacterDto> list = characterService.getCharactersByUserId(user_id);
+        if(list != null) {
+        	model.addAttribute("list", list);
+        }else {
+        	model.addAttribute("list", null);
+        }
+        System.out.println("!!!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@"+list);
 		return "main2";
 	}
 	
@@ -56,8 +89,30 @@ public class FController {
 	}
 	
 	@GetMapping("/wemypage") // 위버스 마이페이지 (대표캐릭터 선택)
-	public String weMypage() {
-		return "weMyPage";
+	public String weMypage(Model model,
+			@SessionAttribute(name = "session_id", required = false) MemberDto memberDto) {
+		// 로그인한 사용자 정보 가져오기
+		int user_id = memberDto.getUser_id();
+		// 사용자의 캐릭터 목록 불러오기
+        List<CharacterDto> list = characterService.getCharactersByUserId(user_id);
+        if(list != null) {
+        	model.addAttribute("list", list);
+        	//model.addAttribute("userId", user_id);
+        }else {
+        	model.addAttribute("list", null);
+        }
+        System.out.println(list);
+        return "weMyPage";
+	}
+	
+	@PostMapping("/deleteCharacter") // 위버스 마이페이지 캐릭터 삭제
+	@ResponseBody
+	@Transactional
+	public String deleteCharacter(int characterId) {
+		
+		characterService.deleteCharacterById(characterId);
+		
+		return "1";
 	}
 	
 	@GetMapping("/wenotice") // 위버스에그 공지사항
@@ -70,18 +125,27 @@ public class FController {
 		return "weNoticeView";
 	}
 	
+	@GetMapping("/weEvent") // 위버스에그 이벤트
+	public String weEvent() {
+		return "weEvent";
+	}
+	
 	@GetMapping("/weEventView") // 위버스에그 이벤트 뷰페이지
 	public String weEventView() {
 		return "weEventView";
 	}
 	
-	@GetMapping("/weBoard") // 위버스에그 자유게시판
-	public String weBoard() {
+	@GetMapping("/weBoard") // 위버스에그 자유게시판 
+	public String weBoard(Model model) {
+		List<FeedDto> list = aespaService.findAll();
+		model.addAttribute("list",list);
 		return "weBoard";
 	}
 	
 	@GetMapping("/weBoardView") // 위버스에그 자유게시판 뷰페이지
-	public String weBoardView() {
+	public String weBoardView(int bno, Model model) {
+		FeedDto feedDto = aespaService.findById(bno);
+		model.addAttribute("fdto",feedDto);
 		return "weBoardView";
 	}
 	

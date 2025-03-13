@@ -69,35 +69,27 @@
 
         <div class="avatar_list">
 
+          <c:forEach items="${list}" var="adto" varStatus="status">
           <div class="myAvatarContainer">
             <div class="myAvatar">
               <!-- "main_avatar" 대표 캐릭터 (img에 아이디/클래스 만들어서 캐릭터 가져가세요.)-->
-              <div id="main_avatar">메인</div>
-              <img src="../images/WeMyPage/winter.png" class="myidol" alt="첫번째 대표 캐릭터">
+              <!-- <div id="main_avatar">메인</div> -->
+              <img src="../images/WeMyPage/winter.png" class="myidol" alt="대표 캐릭터">
             </div>
             <div class="avatar_blank">
             </div>
             <div class="al_img1">
               <img src="../images/WeMyPage/al.png">
             </div>
-            <div class="avatar_name">윈터츄</div>
-            <button class="selectButton">대표 아바타 선택</button>
+            <div class="avatar_name">${adto.nickName }</div>
+            <!-- <button class="selectButton">대표 아바타 선택</button> -->
+            <button class="deleteBtn" data-character-id="${adto.character_id}">캐릭터 삭제</button>
           </div>
+          </c:forEach>
 
-          <div class="myAvatarContainer">
+          <!-- <div class="myAvatarContainer">
             <div class="myAvatar">
-              <img src="../images/WeMyPage/zizel.png" class="myidol" alt="두번째 캐릭터">
-            </div>
-            <div class="al_img2">
-              <img src="../images/WeMyPage/al.png">
-            </div>
-            <div class="avatar_name">지젤츄</div>
-            <button class="selectButton">대표 캐릭터 선택</button>
-          </div>
-
-          <div class="myAvatarContainer">
-            <div class="myAvatar">
-              <!-- 이미지 이름 lockidol.png 시 대표 캐릭터로 선택 불가 -->
+              이미지 이름 lockidol.png 시 대표 캐릭터로 선택 불가
               <img src="../images/WeMyPage/lockidol.png" class="myidol" alt="생성전 캐릭터">
             </div>
             <div class="avatar_blank">
@@ -107,7 +99,7 @@
             </div>
             <div class="avatar_name">미생성 아바타</div>
             <button class="selectButton">대표 캐릭터 선택</button>
-          </div>
+          </div>  -->
 
         </div>
       </div>
@@ -117,7 +109,37 @@
 
   <!-- 대표 캐릭터 선택 스크립트 -->
   <script>
-    document.querySelectorAll('.myAvatarContainer').forEach(container => {
+  $(function(){
+	
+	  $(".deleteBtn").click(function(){
+			const characterId = this.getAttribute("data-character-id");
+			if(confirm("캐릭터를 삭제하시겠어요? 복구 불가합니다.")){
+
+				console.log("삭제할 캐릭터 ID:", characterId);
+				
+				$.ajax({
+					url:"/deleteCharacter",
+					type:"post",
+					data:{"characterId":characterId},
+					success: function(data){
+						alert(data);
+						alert("캐릭터가 삭제되었습니다.");
+						location.href="/wemypage";
+					},
+					error:function(){
+						alert("실패");
+					}
+				}) // ajax
+			}
+	  });
+  });
+  
+  
+  
+  
+  
+  
+   /*  document.querySelectorAll('.myAvatarContainer').forEach(container => {
       container.addEventListener('click', function () {
         const firstContainer = document.querySelector('.avatar_list .myAvatarContainer:first-child');
         const firstImage = firstContainer.querySelector('.myAvatar img');
@@ -144,6 +166,43 @@
         }
       });
     });
+    
+ 	 // 캐릭터 삭제 함수
+   const deleteBtn = () => {
+       if (confirm("정말 해당 캐릭터를 삭제하시겠습니까?")) {
+           $.ajax({
+               url: "/deleteCharacter",
+               type: "post",
+               data: { "characterId": characterId },
+               success: function(data) {
+                   if (data === "1") {
+                       alert("캐릭터를 삭제하였습니다.");
+                       location.reload(); // 삭제 후 페이지 새로고침
+                   } else {
+                       alert("캐릭터 삭제에 실패했습니다.");
+                   }
+               },
+               error: function() {
+                   alert("서버 오류로 삭제 실패");
+               }
+           });
+       }
+   }
+
+   // 삭제 버튼 클릭 이벤트 등록
+   document.querySelectorAll(".deleteBtn").forEach(button => {
+       button.addEventListener("click", function(event) {
+           event.stopPropagation(); // 이벤트 버블링 방지
+           const characterId = this.getAttribute("data-character-id"); // 버튼의 캐릭터 ID 가져오기
+           console.log("선택된 캐릭터 ID:", characterId);  // 콘솔로 ID 확인
+           
+           if (characterId) {
+               deleteCharacter(characterId);
+           } else {
+               alert("캐릭터 ID를 찾을 수 없습니다.");
+           }
+       });
+   }); */
   </script>
 
 </body>

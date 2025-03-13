@@ -271,5 +271,12 @@ public class CharacterServiceImpl implements CharacterService {
 		session.setAttribute("character", characterDto);
 	}
 
+	// 위버스 마이페이지 캐릭터 삭제
+	@Override 
+	public void deleteCharacterById(int characterId) {
+		characterRepository.deleteCharacterByCharacterId(characterId);
+		
+	}
+
 
 }

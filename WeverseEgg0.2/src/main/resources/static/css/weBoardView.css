@@ -88,9 +88,8 @@ tr {
 }
 
 #board_img{
-	width: 800px;
-	height: 590px;
-	background-image: url("/images/weEvent/board_Img.jpg");
+/* 	width: 800px;
+	height: 590px; */
 	background-repeat: no-repeat;
 	background-position: center;
 	margin-top: 40px;

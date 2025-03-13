@@ -1,5 +1,6 @@
 package com.java.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.java.dto.character.CharacterDto;
@@ -22,5 +23,11 @@ public interface AespaService {
 
 	// 자유게시판 게시글 저장
 	void weBoardWrite(FeedDto fdto);
+
+	// 위버스에그 자유게시판 페이지
+	List<FeedDto> findAll();
+
+	// 위버스에그 자유게시판 뷰페이지
+	FeedDto findById(int bno);
 
 }

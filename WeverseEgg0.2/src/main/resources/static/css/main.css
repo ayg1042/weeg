@@ -149,7 +149,7 @@ header{
 }
 
 #main_container .main_banner1{
-  padding: 36px 0 26px;
+  padding: 36px 0 36px;
 }
 
 .main_banner1 img{
@@ -159,7 +159,7 @@ header{
 
 .main_gray{
   background-color: #F7F7FA;
-  padding: 30px 157px;
+  padding: 60px 157px;
 }
 
 .main_dm{
@@ -192,7 +192,7 @@ header{
 
 /* 로그인 후 추가되는 컨테이너 요소 (main2)*/
 .main_my{
-  display: flex;
+ /* display: flex; */
   margin: 0 auto;
   width: 1000px;
   column-gap: 160px;
@@ -212,7 +212,7 @@ header{
 }
 
 .main_myidol{
-  padding-top: 3px;
+  margin-top: 60px;
   height: 300px;
   right: 0;
 }
@@ -223,12 +223,16 @@ header{
   line-height: 28px;
   margin-bottom: 28px;
 }
-
+#myIdolSection{
+	display: flex;
+}
 .my_idol{
   width: 208px;
   height: 250px;
   cursor: pointer;
   position: relative;
+  margin-left: 7px;
+  margin-right: 6px;
 }
 
 .main_al{
@@ -237,6 +241,9 @@ header{
   top: 150px;
 }
 
+.aespa{
+   transition: background-image 0.3s ease;
+}
 .aespa:hover{
   content: url('../images/main/main_aespa_hover.png'); /* 마우스를 올리면 이미지 변경 */
 }

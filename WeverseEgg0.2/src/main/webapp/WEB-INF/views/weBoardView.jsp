@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="header.jsp" %>
 
 <!DOCTYPE html>
@@ -71,19 +72,23 @@
       <tbody>
         <tr>
           <td class="td_title">
-            <span class="info_title">[자유] 카리나 진화 공략법 아시는분?</span>
+            <span class="info_title">${fdto.btitle}</span>
           </td>
         </tr>
       </tbody>
     </table>
     <div class="info_date">
-    	<p>2024-12-24 15:00</p>
+    	<p><fmt:formatDate value="${fdto.bdate }" pattern="yyyy-MM-dd"/></p>
     </div>
     <div class="info_area">
     	<div id="notice_img"></div>
-    	<div id="board_img"></div>
+    	<div id="board_img">
+    		<c:if test="${fdto.bfile != null}">
+        	<img src="/images/boardImg/${fdto.bfile }"/>
+        </c:if>
+    	</div>
     	<p class="info_txt">
-    		제발 알려주세요 ㅠㅠ~ 5번 시도했는데 지민이만 안나와..
+    		${fdto.bcontent }
     	</p>
     <div class="btnArea">
     	<button onclick="listBtn()" >목록</button>

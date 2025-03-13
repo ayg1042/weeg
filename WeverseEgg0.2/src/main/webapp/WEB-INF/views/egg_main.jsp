@@ -19,10 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const banners = document.querySelectorAll('#main_banner img');
     const mainBanner = document.querySelector('#main_banner img');
     const images = [
-      'images/main_banner_Img.png',
-      'images/main_banner2.png',
-      'images/main_banner3.png',
-      'images/main_banner4.png'
+      'images/mainpage/main_banner_Img5.png',
+      'images/mainpage/main_banner_Img3.png',
+      'images/mainpage/main_banner_Img2.png',
+      'images/mainpage/main_banner_Img.png'
     ];
 
     // 초기 상태 설정
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <ul>
           <li id="option_title">뉴스</li>
           <li><a href="/wenotice">공지사항</a></li>
-          <li><a href="/weEventView">이벤트</a></li>
+          <li><a href="weEvent">이벤트</a></li>
         </ul>
         <ul>
           <li id="option_title">가이드</li>
@@ -127,10 +127,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <!-- 메인 이미지 화면 -->
     <div id="main_banner">
-      <img src="images/mainpage/main_banner_Img5.png" alt="메인 배너1">
-      <img src="images/mainpage/main_banner_Img3.png" alt="메인 배너2">
-      <img src="images/mainpage/main_banner_Img2.png" alt="메인 배너3">
-      <img src="images/mainpage/main_banner_Img.png" alt="메인 배너4">
+      <a href="/weEventView"><img src="images/mainpage/main_banner_Img5.png" alt="메인 배너1"></a>
+      <a href="/weEventView"><img src="images/mainpage/main_banner_Img3.png" alt="메인 배너2"></a>
+      <a href="/weEventView"><img src="images/mainpage/main_banner_Img2.png" alt="메인 배너3"></a>
+      <a href="/weEventView"><img src="images/mainpage/main_banner_Img.png" alt="메인 배너4"></a>
     </div>
 
 		<div class="egg_main_bottom">

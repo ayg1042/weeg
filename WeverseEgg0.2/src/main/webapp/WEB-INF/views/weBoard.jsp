@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="header.jsp" %>
 
 <!DOCTYPE html>
@@ -55,7 +56,7 @@
     </div>
   </div>
 
-  <!-- 공지사항 -->
+  <!-- 자유게시판 -->
   <div id="notice_banner">
     <img src="../images/weNotice/top_img2.png">
   </div>
@@ -79,30 +80,16 @@
         <col class="w-[160px]">
       </colgroup>
       <tbody>
+      <c:forEach items="${list}" var="fdto">
         <tr>
+        	<td>${fdto.bno}</td>
           <td class="td_title">
-            <a href="/weBoardView"><span class="info_title">카리나 진화 공략법 아시는분?</span></a>
+            <a href="/weBoardView?bno=${fdto.bno}"><span class="info_title">${fdto.btitle }</span></a>
           </td>
-          <td class="info_date">2025-01-01</td>
+          <td class="td_wrtier">${fdto.member.nickname}</td>
+          <td class="info_date"><fmt:formatDate value="${fdto.bdate }" pattern="yyyy-MM-dd"/></td>
         </tr>
-        <tr>
-          <td>
-            <span class="info_title">저랑 같이 콘서트 가실분</span>
-          </td>
-          <td class="info_date">2025-01-01</td>
-        </tr>
-        <tr>
-          <td>
-            <span class="info_title">제 코디 어때요?</span>
-          </td>
-          <td class="info_date">2025-01-01</td>
-        </tr>
-        <tr>
-          <td>
-            <span class="info_title">심심해서 올려보는 내사랑</span>
-          </td>
-          <td class="info_date">2025-01-01</td>
-        </tr>
+      </c:forEach>
       </tbody>
     </table>
     <div class="btnArea">

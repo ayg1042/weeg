@@ -26,4 +26,5 @@ public interface MemberService {
 	// 추가 캐릭터 슬롯 구매
 	void buyCharacter(int id);
 
+
 }

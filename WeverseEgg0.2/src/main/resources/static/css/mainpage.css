@@ -18,6 +18,7 @@ body {
 #main_banner{
   width: 100%;
   height: 809px;
+  cursor: pointer;
 }
 
 /* 메뉴 내비 */
@@ -151,6 +152,10 @@ nav:not(:hover) ul li a {
   object-fit: cover;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
+}
+
+#main_banner a {
+    display: block; /* 링크를 클릭할 수 있도록 블록 요소로 변경 */
 }
 
 #main_banner img.active {

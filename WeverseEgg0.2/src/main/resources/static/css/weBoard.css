@@ -92,6 +92,7 @@ td {
 
 .td_title {
   width: 1056px;
+  padding-left: 50px;
 }
 
 .info_title {
@@ -106,9 +107,15 @@ td {
   color: inherit; /* 색상 변경 방지 */
 }
 
+.td_wrtier{
+	color: rgba(152, 162, 179);
+	width:100px;
+}
+
 .info_date {
+	width:100px;
   color: rgba(152, 162, 179);
-  text-align: center;
+  padding-left: 70px;
 }
 
 .btnArea{
