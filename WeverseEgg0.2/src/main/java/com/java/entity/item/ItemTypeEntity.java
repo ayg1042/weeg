@@ -1,5 +1,7 @@
 package com.java.entity.item;
 
+import com.java.dto.item.ItemTypeDto;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +23,12 @@ public class ItemTypeEntity {
     /** 아이템 타입 (예: "헤어", "의상", "악세서리", "소모품", "이벤트") */
     @Column(name = "item_type", nullable = false, length = 50)
     private String itemType;
+
+	public static ItemTypeEntity From(ItemTypeDto dto) {
+		ItemTypeEntity entity = new ItemTypeEntity();
+		entity.setItemTypeId(dto.getItemTypeId());
+		entity.setItemType(dto.getItemType());
+		return entity;
+	}
 
 }

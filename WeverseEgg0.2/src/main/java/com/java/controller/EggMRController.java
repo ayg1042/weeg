@@ -3,6 +3,8 @@ package com.java.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -152,6 +154,7 @@ public class EggMRController {
 		
 		// 케릭터 인벤토리
 		List<InvenDto> Inven = modalServiceImpl.getCharacterInven(character.getCharacter_id());
+		System.out.println(Inven);
 		model.addAttribute("invenList", Inven);
 		model.addAttribute("character", character);
 		
@@ -159,21 +162,36 @@ public class EggMRController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/buyItem") //회원정보수정 저장
+	@PostMapping("/buyItem") //아이템 구매
 	public String memDelete(String itemId) {
 		// 세션에서 가져올꺼임
 		CharacterDto character = (CharacterDto) session.getAttribute("character");
-		
+		List<InvenDto> Inven = modalServiceImpl.getCharacterInven(character.getCharacter_id());
+		// 중복아이템 확인
+		Set<Integer> invenItemIds = Inven.stream()
+                .map(inven -> inven.getItemId().getItemId())
+                .collect(Collectors.toSet());
+		if (invenItemIds.contains(Integer.parseInt(itemId))) {
+			return "2";
+		}
 		// 케릭터 결제로직
+		// 아이템 가져오기
+		ItemDto item = modalServiceImpl.getItem(Integer.parseInt(itemId));
 		
+		int coin = character.getCoin() - item.getPrice();
+		if(coin < 0) {
+			return "0";
+		}
+		character.setCoin(coin);
+		modalServiceImpl.characterSave(character);
+		session.setAttribute("character", character);
 		// 결제
 		
-		InvenDto Inven = new InvenDto();
-		ItemDto item = new ItemDto();
-		item.setItemId(Integer.parseInt(itemId));
-		Inven.setCharacterId(character);
-		Inven.setItemId(item);
-		modalServiceImpl.buyItem(Inven);
+		// 아이템 추가
+		InvenDto Inven1 = new InvenDto();
+		Inven1.setCharacterId(character);
+		Inven1.setItemId(item);
+		modalServiceImpl.buyItem(Inven1);
 		
 		return "1";
 	}
@@ -205,13 +223,20 @@ public class EggMRController {
 	public String itemUse(String invenId, String itemId) {
 		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		
-		System.out.println("인벤 아이디 = " + invenId + ", 아이템 아이디 = " + itemId);
 		// 사용 로직
+		ItemDto item = modalServiceImpl.getItem(Integer.parseInt(itemId));
+		if(character.getFatigue() == 0) return "0";
+		int fatigue = character.getFatigue() - item.getItemInfo().getFatigueRecovery();
+		if(fatigue < 0) fatigue = 0;
+		character.setFatigue(fatigue);
+		
+		// 해당 아이템 삭제
+		modalServiceImpl.deleteInvenItem(Integer.parseInt(invenId));
+		modalServiceImpl.characterSave(character);
+		session.setAttribute("character", character);
 		return "1";
 	}
 		
-		
-
 	
 	// 보컬트레이닝
 	@PostMapping("/trainSave/vocal")

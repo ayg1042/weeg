@@ -51,5 +51,15 @@ public class ArtistDto {
     	ArtistDto.setLevel(entity.getClevel());
     	return ArtistDto;
     }
+    public static ArtistDto From(ArtistEntity entity) {
+    	ArtistDto dto = new ArtistDto();
+    	dto.setArtistId(entity.getArtistId());
+    	dto.setArtistName(ArtistNameDto.From(entity.getArtistName()));
+    	dto.setBlueMark(entity.getBlueMark());
+    	dto.setLevel(entity.getClevel());
+    	dto.setDebutDate(entity.getDebutDate());
+    	return dto;
+    }
+    
     
 }
