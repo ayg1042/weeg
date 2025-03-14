@@ -39,7 +39,7 @@ public class FeedDto {
 	private String bcontent;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id")
+	@JoinColumn(name="member_id")
 	private MemberEntity member;
 	
 	private Timestamp bdate;
