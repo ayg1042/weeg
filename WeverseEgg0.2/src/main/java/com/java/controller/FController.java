@@ -212,16 +212,6 @@ public class FController {
 	}
 
 	
-	@GetMapping("/weEvent") // 위버스에그 이벤트
-	public String weEvent() {
-		return "weEvent";
-	}
-	
-	@GetMapping("/weEventView") // 위버스에그 이벤트 뷰페이지
-	public String weEventView() {
-		return "weEventView";
-	}
-	
 	@GetMapping("/weBoard") // 위버스에그 자유게시판 
 	public String weBoard(Model model) {
 		List<FeedDto> list = aespaService.findAll();
@@ -236,14 +226,6 @@ public class FController {
 		return "weBoardView";
 	}
 	
-	@GetMapping("/weBoardWrite") // 위버스에그 자유게시판 글작성 페이지
-	public String weBoardWrite() {
-		MemberDto user = (MemberDto) session.getAttribute("session_id");
-		if(user == null) {
-			return "redirect:/login/login";
-		}
-		return "weBoardWrite";
-	}
 	
 	@ResponseBody
 	@Transactional
