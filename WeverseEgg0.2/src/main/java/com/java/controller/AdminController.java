@@ -175,6 +175,25 @@ public class AdminController {
 		return "/admin/admin_items";
 	}
 	
+	@GetMapping("/artist")
+	public String artist(Model model) {
+		List<ArtistNameDto> artist = modalServiceImpl.getAllArtistName();
+		List<GroupDto> group = modalServiceImpl.getAllGroup();
+		
+		model.addAttribute("groupList", group);
+		model.addAttribute("artistList", artist);
+		
+		return "/admin/admin_artist";
+	}
+	@GetMapping("/group")
+	public String group(Model model) {
+		List<GroupDto> group = modalServiceImpl.getAllGroup();
+		
+		model.addAttribute("groupList", group);
+		
+		return "/admin/admin_group";
+	}
+	
 
 	@GetMapping("/index") //어드민
 	public String index(Model model) {
@@ -195,7 +214,13 @@ public class AdminController {
 	
 	// 아이템 추가
 		@GetMapping("/itemAdd")
-		public String itemAdd() {
+		public String itemAdd(Model model) {
+			List<ItemTypeDto> itemType = modalServiceImpl.getAllItemTypes();
+			List<ItemInfoDto> itemInfo = modalServiceImpl.getAllItemInfo();
+			
+			model.addAttribute("itemTypeList", itemType);
+			model.addAttribute("itemInfoList", itemInfo);
+			
 			return "/admin/admin_itemAdd";
 		}
 	
