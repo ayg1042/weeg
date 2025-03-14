@@ -1,5 +1,6 @@
 package com.java.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.java.dto.group.ArtistNameDto;
@@ -25,6 +26,8 @@ public interface ModalService {
 
 	void styleSave(StyleDto dto);
 
+	Collection<? extends ItemDto> findByItemInfo_ItemType_ItemTypeIdIn(List<Integer> item_type);
+	
 	ItemDto getItem(int item_id);
 
 	void characterSave(CharacterDto character);

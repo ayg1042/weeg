@@ -1,0 +1,120 @@
+*{
+  padding: 0; 
+  margin: 0;
+  font-family: "Pretendard Variable", 
+								Pretendard, 
+								-apple-system, 
+								BlinkMacSystemFont, 
+								system-ui, 
+								Roboto, 
+								"Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 
+								sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+table, tr, td{
+  border-collapse: collapse;
+}
+
+@font-face {
+font-family: 'Pretendard-Regular';
+src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+font-weight: 400;
+font-style: normal;
+} 
+
+
+#admin_content{
+	padding: 30px;
+	width: 100%;
+}
+
+.memViewTableArea{
+	margin-top: 50px;
+}
+
+.viewMem{
+	width: 100%;
+	text-align: left;
+	margin:20px 0;
+}
+.viewMem tr{
+	height: 40px;
+	border-bottom:1px solid #c8c8c8;
+	border-top:1px solid #c8c8c8;
+}
+.viewMem th,td{
+	text-align: left;
+	font-size:15px;
+	font-weight:400;
+}
+.viewMem th{
+	width: 160px;
+	font-weight:500;
+	padding-left:14px;
+}
+.viewMem td{
+	width: 400px;
+	
+}
+.viewMem input{
+	all:unset;
+	font-size:15px;
+	font-weight:400;
+}
+
+.charaViewArea{
+	margin:20px 0;
+	display: flex;
+}
+h3{
+	margin-top:60px;
+}
+.viewCharacter{
+	width: 400px;
+	font-size:15px;
+	font-weight:400;
+	margin-bottom: 20px;
+}
+.chara_view{
+	margin-right: 80px;
+}
+.chara_view .viewCharacter tr{
+	height: 40px;
+	border-bottom:1px solid #c8c8c8;
+	border-top:1px solid #c8c8c8;
+}
+.chara_view .viewCharacter th{
+	text-align: left;
+	font-weight:500;
+	padding-left:14px;
+}
+.viewCharacter td{
+	padding-left:14px;
+}
+.viewCharacter input{
+	all:unset;
+	font-size:15px;
+	font-weight:400;
+}
+
+button{
+	all:unset;
+	width: 120px;
+	height: 34px;
+	font-size: 14px;
+	color : #eb482f;
+	text-align: center;
+	border: 1px solid #999;
+	border-radius: 10px;
+	margin-right: 10px;
+}
+
+
+
+
