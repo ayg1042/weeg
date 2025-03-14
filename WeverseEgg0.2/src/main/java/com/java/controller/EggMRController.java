@@ -154,7 +154,6 @@ public class EggMRController {
 		
 		// 케릭터 인벤토리
 		List<InvenDto> Inven = modalServiceImpl.getCharacterInven(character.getCharacter_id());
-		System.out.println(Inven);
 		model.addAttribute("invenList", Inven);
 		model.addAttribute("character", character);
 		

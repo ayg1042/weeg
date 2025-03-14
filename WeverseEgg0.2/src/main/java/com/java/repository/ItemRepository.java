@@ -10,4 +10,6 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Integer> {
 
 	List<ItemEntity> findAll();
 
+	List<ItemEntity> findByItemInfo_ItemType_ItemTypeIdIn(List<Integer> item_type);
+
 }
