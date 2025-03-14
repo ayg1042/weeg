@@ -23,7 +23,7 @@ public class EventQuestEntity {
     @JoinColumn(name = "reward_item_id", referencedColumnName = "item_id")
     private ItemEntity rewardItem;
 
-    /** 연관된 퀘스트 (FK) */
+    /** 연관된 퀘스트 (FK) quest_id : 4 ~ 8 번 */
     @ManyToOne
     @JoinColumn(name = "quest_id", referencedColumnName = "quest_id")
     private QuestEntity quest;

@@ -65,18 +65,22 @@
 		      <div class="main_my">
 		        <div class="main_community">
 		          <img src="../images/main/main_community1.png" alt="">
-		          <a href="/aespa"><img src="../images/main/main_aespa.png" class="aespa" alt=""></a>
+		          <a href="/aespa"  class="aespa"><img src="../images/main/main_aespa.png" alt=""></a>
 		        </div>
 		        <div class="main_myidol">
 		          <h1>나의 아이돌</h1>
-		          <div class="my_idol" onclick="idolBtn()">
-		            <div class="my_idol_cha">
-		              <img src="../images/main/my_idol.png" alt="">
-		            </div>
-		            <img class="main_al" src="../images/main/al.png" alt="">
-		            <div class="my_idol_nickbox">
-		              <p class="my_idol_nick">닉네임 들어감</p>
-		            </div>
+		          <div id="myIdolSection">
+			          <c:forEach items="${list}" var="idto" varStatus="status">
+			          <div class="my_idol" onclick="location.href='/wemypage'">
+			            <div class="my_idol_cha">
+			              <img src="../images/main/my_idol.png" alt="">
+			            </div>
+			            <img class="main_al" src="../images/main/al.png" alt="">
+			            <div class="my_idol_nickbox">
+			              <p class="my_idol_nick">${idto.nickName }</p>
+			            </div>
+			          </div>
+		       			</c:forEach>
 		          </div>
 		        </div>
 		      </div>

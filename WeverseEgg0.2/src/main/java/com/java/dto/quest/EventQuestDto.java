@@ -1,7 +1,5 @@
 package com.java.dto.quest;
 
-import java.sql.Timestamp;
-
 import com.java.dto.item.ItemDto;
 
 import lombok.AllArgsConstructor;

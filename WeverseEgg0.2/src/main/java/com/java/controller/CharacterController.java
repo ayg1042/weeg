@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.java.dto.character.ArtistDto;
 import com.java.dto.character.CharacterDto;
-import com.java.dto.group.GroupDto;
-import com.java.dto.item.ItemDto;
 import com.java.dto.member.MemberDto;
 import com.java.entity.character.ArtistEntity;
 import com.java.entity.character.CharacterEntity;
@@ -95,20 +92,9 @@ public class CharacterController {
 		
 		// 캐릭터 생성
 		CharacterEntity character = new CharacterEntity();
-		ArtistEntity artist = new ArtistEntity();
-		ArtistNameEntity artistName = new ArtistNameEntity();
-		GroupEntity group = new GroupEntity();
-		group.setGroupId(1);
-		group.setGroupName("연습생");
-		artistName.setArtistNId(1);
-		artistName.setArtistName("연습생");
-		artistName.setGroup(group);
-		artist.setArtistId(1);
-		artist.setArtistName(artistName);
 	    character.setNickName(nickname); // 닉네임 설정
 	    character.setGender("여성"); // 기본값 설정 (예제)
 	    character.setMember(MemberEntity.From(member)); // 사용자 정보 연결
-	    character.setArtist(artist);
 	    character.setCoin(100000); // 기본 코인 지급
 	    character.setHealth(100); // 기본 체력
 	    character.setFatigue(0); // 기본 피로도

@@ -3,8 +3,6 @@ package com.java.entity.quest;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Timestamp;
-
 @Entity
 @Table(name = "Egg_Quest")
 @Getter
@@ -15,7 +13,7 @@ public class QuestEntity {
 
     /** 퀘스트 고유번호 (Primary Key) */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "quest_id")
     private int questId;
 
@@ -31,7 +29,9 @@ public class QuestEntity {
     @Column(nullable = false)
     private int coin;
 
-    /** 퀘스트 리셋 시간 (리셋 주기) */
-    @Column(nullable = false)
-    private Timestamp resetTime;
+    /** 타임스탬프 (낙관적 락을 위한 버전 필드) */
+    @Version
+    @Column(name = "lst_upd_tstamp", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private java.sql.Timestamp lstUpdTstamp;  // Hibernate가 자동으로 관리
+
 }

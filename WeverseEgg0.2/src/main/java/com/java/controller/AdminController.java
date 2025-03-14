@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.dto.feed.FeedDto;
+import com.java.dto.member.MemberDto;
 import com.java.dto.group.ArtistNameDto;
 import com.java.dto.group.GroupDto;
 import com.java.service.AdminService;
@@ -24,7 +26,6 @@ import com.java.dto.character.CharacterDto;
 import com.java.dto.item.ItemDto;
 import com.java.dto.item.ItemInfoDto;
 import com.java.dto.item.ItemTypeDto;
-import com.java.dto.member.MemberDto;
 import com.java.service.CharacterService;
 import com.java.service.MemberService;
 import com.java.service.ModalService;
@@ -32,10 +33,8 @@ import com.java.service.ModalServiceImpl;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
-
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
-
 
 @Controller
 @RequestMapping("/admin")
@@ -54,10 +53,17 @@ public class AdminController {
 	}
 	
 	@PostMapping("")
-	public String admin(String adminId, String adminPw) {
+	public String admin(String adminId, String adminPw, 
+			Model model, RedirectAttributes redirectAttributes) {
 		MemberDto admin = memberService.findByEmailAndPw(adminId, adminPw);
-		session.setAttribute("admin_nickname", admin.getNickname());
-		return "/admin/admin_main";
+		if (admin != null) {
+	        session.setAttribute("session_admin", admin);
+	        redirectAttributes.addFlashAttribute("lmsg", "1");
+	        return "redirect:/admin/main";
+	    } else {
+	        redirectAttributes.addFlashAttribute("lmsg", "0");
+	        return "redirect:/admin";
+	    }
 	}
 	
 	@GetMapping("/logout")
@@ -91,14 +97,15 @@ public class AdminController {
 		return "/admin/admin_memView";
 	}
 	
-	// 회원삭제
-	@PostMapping("/memDelete")
-	@ResponseBody
-	public String memDelete(int userId) {
-		System.out.println("에이잭스 확인 : "+userId);
-		memberService.deleteById(userId);
-		return "회원이 삭제되었습니다.";
-	}
+	/*
+	 * // 회원삭제
+	 * 
+	 * @PostMapping("/memDelete")
+	 * 
+	 * @ResponseBody public String memDelete(int userId) {
+	 * System.out.println("에이잭스 확인 : "+userId); memberService.deleteById(userId);
+	 * return "회원이 삭제되었습니다."; }
+	 */
 	
 	@GetMapping("/notice")
 	public String board(Model model) {
@@ -175,6 +182,113 @@ public class AdminController {
 		return "/admin/admin_items";
 	}
 	
+	
+	
+	// 공지글 작성
+	@GetMapping("/noticeWrite")
+	public String noticeWrite() {
+		return "/admin/admin_noticeWrite";
+	}
+	
+	@PostMapping("/noticeWrite")
+	public String noticeWrite(
+			@RequestParam("notiTitle") String title,
+            @RequestParam("notiContent") String content,
+            @RequestParam("file") MultipartFile file,
+            HttpSession session) {
+		
+		String category = "notice";
+		 // 예: 세션에서 로그인한 사용자 ID 가져오기
+	    MemberDto member = (MemberDto) session.getAttribute("session_admin"); 
+		adminService.notiWrite(title,content,file,category,member);
+		
+		return "redirect:/admin/notice";
+	}
+	
+	// 공지글 수정
+	@GetMapping("/noticeModify")
+	public String noticeModify(@RequestParam int bno, Model model) {
+		FeedDto notice = adminService.notiview(bno);
+		model.addAttribute("notimodi",notice);
+		return "/admin/admin_noticeWrite";
+	}
+	
+	@PostMapping("/noticeModify")
+	public String noticeModify(
+			@RequestParam("bno") int bno,
+			@RequestParam("notiTitle") String title,
+            @RequestParam("notiContent") String content,
+            @RequestParam("file") MultipartFile file) {
+		
+		adminService.notiModi(title,content,file,bno);
+		
+		return "redirect:/admin/notice";
+	}
+	
+	// 이벤트
+	@GetMapping("/event")
+	public String event(Model model) {
+		String category = "event";
+		List<FeedDto> notilist = adminService.notilist(category);
+		model.addAttribute("notilist",notilist);
+		return "/admin/admin_event";
+	}
+	
+	@GetMapping("/eventView")
+	public String eventView(@RequestParam int bno, Model model) {
+		FeedDto event = adminService.notiview(bno);
+		model.addAttribute("fdto",event);
+		return "/admin/admin_eventView";
+	}
+	
+	@GetMapping("/eventWrite")
+	public String eventWrite() {
+		return "/admin/admin_eventWrite";
+	}
+	
+	@PostMapping("/eventWrite")
+	public String eventWrite(
+			@RequestParam("eventTitle") String title,
+            @RequestParam("eventContent") String content,
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("file_banner") MultipartFile fileb,
+            @RequestParam("file_modal") MultipartFile filem,
+            HttpSession session) {
+		
+		String category = "event";
+		 // 예: 세션에서 로그인한 사용자 ID 가져오기
+	    MemberDto member = (MemberDto) session.getAttribute("session_admin"); 
+		adminService.eventWrite(title,content,file,fileb,filem,category,member);
+		
+		return "redirect:/admin/event";
+	}
+	
+	// 이벤트 수정
+	@GetMapping("/eventModify")
+	public String eventModify(@RequestParam int bno, Model model) {
+		FeedDto event = adminService.notiview(bno);
+		model.addAttribute("eventmodi",event);
+		return "/admin/admin_eventWrite";
+	}
+	
+	@PostMapping("/eventModify")
+	public String eventModify(
+			@RequestParam("bno") int bno,
+			@RequestParam("eventTitle") String title,
+            @RequestParam("eventContent") String content,
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("file_banner") MultipartFile fileb,
+            @RequestParam("file_modal") MultipartFile filem,
+            @RequestParam(value="deleteFile_notice", required = false) boolean delfile,
+            @RequestParam(value="deleteFile_banner", required = false) boolean delfileb,
+            @RequestParam(value="deleteFile_modal", required = false) boolean delfilem) {
+		
+		adminService.eventModi(title,content,file,fileb,filem,bno,delfile,delfileb,delfilem);
+		
+		return "redirect:/admin/event";
+	}
+	
+
 
 	@GetMapping("/index") //어드민
 	public String index(Model model) {

@@ -120,5 +120,6 @@ public class CharacterDto {
     	dto.setCoin(entity.getCoin());
     	return dto;
     }
+
     
 }
