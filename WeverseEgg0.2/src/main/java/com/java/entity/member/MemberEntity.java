@@ -36,9 +36,7 @@ public class MemberEntity {
     
     @Column(nullable = false, length = 100)
     private int jelly;
-    
-    @Column(nullable = true, length = 10)
-    private int admin = 0;
+
     
  // 정적 팩토리 메서드 추가
     public static MemberEntity join(MemberDto dto) {
