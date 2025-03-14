@@ -18,7 +18,7 @@ public class QuestRewardResetScheduler {
     
 //   스케줄러 시간 설정
 
-    @Scheduled(cron = "0 0 10 * * ?") // 매일 00:00 실행
+    @Scheduled(cron = "0 0 3 * * ?") // 매일 00:00 실행
     @Transactional
     public void resetDailyQuestRewards() {
         log.info("🔄 [퀘스트 보상 초기화] 시작...");
