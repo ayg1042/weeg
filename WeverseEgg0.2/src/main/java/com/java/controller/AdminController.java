@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.java.dto.feed.FeedDto;
+import com.java.service.AdminService;
 import com.java.dto.character.CharacterDto;
 import com.java.dto.item.ItemDto;
 import com.java.dto.item.ItemInfoDto;
@@ -39,10 +43,24 @@ public class AdminController {
 	@Autowired MemberService memberService;
 	@Autowired ModalService modalService;
 	@Autowired ModalServiceImpl modalServiceImpl;
+	@Autowired AdminService adminService;
 	
 	@GetMapping("")
 	public String admin() {
 		return "/admin/admin_login";
+	}
+	
+	@PostMapping("")
+	public String admin(String adminId, String adminPw) {
+		MemberDto admin = memberService.findByEmailAndPw(adminId, adminPw);
+		session.setAttribute("admin_nickname", admin.getNickname());
+		return "/admin/admin_main";
+	}
+	
+	@GetMapping("/logout")
+	public String logout() {
+		session.removeAttribute("admin_nickname");
+		return "redirect:/admin";
 	}
 	
 	// 회원관리
@@ -80,14 +98,48 @@ public class AdminController {
 	}
 	
 	@GetMapping("/notice")
-	public String board() {
+	public String board(Model model) {
+		String category = "notice";
+		List<FeedDto> notilist = adminService.notilist(category);
+		model.addAttribute("notilist",notilist);
 		return "/admin/admin_notice";
 	}
 	
+	// 게시상태 업데이트 메서드
+	@PostMapping("/updateStatus")
+	@ResponseBody
+	public ResponseEntity<String> updateStatus(
+			@RequestParam int bno, @RequestParam String status) {
+		
+		if("1".equals(status)) {
+			status = "게시중";
+		}else if("0".equals(status)){
+			status = "게시안함";
+		}
+		
+	    try {
+	        // FeedDto에 해당하는 엔티티를 찾아서 상태 업데이트
+	    	adminService.updateStatus(bno, status);
+	        return ResponseEntity.ok("상태 업데이트 성공");
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("상태 업데이트 실패");
+	    }
+	}
+	
+	// 공지사항 뷰페이지
 	@GetMapping("/noticeView")
-	public String noticeView() {
+	public String noticeView(@RequestParam int bno, Model model) {
+		FeedDto notice = adminService.notiview(bno);
+		model.addAttribute("fdto",notice);
 		return "/admin/admin_noticeView";
 	}
+	
+	// 공지사항 삭제
+		@GetMapping("/deleteFeed")
+		public String deleteFeed(@RequestParam int bno) {
+			adminService.delFeed(bno);
+			return "/admin/admin_notice";
+		}
 	
 	// 아이템 리스트
 	@GetMapping("/items")
