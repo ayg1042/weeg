@@ -48,6 +48,10 @@ public interface CharacterService {
 	// 팬사인회 결과 유저 캐릭터에 저장
 	void sign_actvity(int character_id, int health, int fatigue, int price);
 
+	// 레벨 캐릭터db 저장
+	void lvSave(int character_id, int level);
+
+
 
 
 

@@ -13,11 +13,14 @@ import com.java.dto.practice.DancePracticeDto;
 import com.java.dto.practice.EntertainmentPracticeDto;
 import com.java.dto.practice.RapPracticeDto;
 import com.java.dto.practice.VocalPracticeDto;
+import com.java.entity.character.ArtistEntity;
 import com.java.entity.character.CharacterEntity;
 import com.java.entity.practice.DancePracticeEntity;
 import com.java.entity.practice.EntertainmentPracticeEntity;
 import com.java.entity.practice.RapPracticeEntity;
 import com.java.entity.practice.VocalPracticeEntity;
+import com.java.repository.ArtistNameRepository;
+import com.java.repository.ArtistRepository;
 import com.java.repository.CharacterRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -29,6 +32,7 @@ public class CharacterServiceImpl implements CharacterService {
 	@Autowired HttpSession session;
 	@Autowired CharacterRepository characterRepository;
 	@Autowired PracticeService practiceService;
+	@Autowired ArtistRepository artistRepository;
 	
 	// 캐릭터 선택 페이지 열기
 	@Override
@@ -270,6 +274,23 @@ public class CharacterServiceImpl implements CharacterService {
 		CharacterDto characterDto = CharacterDto.unit(character);
 		session.setAttribute("character", characterDto);
 	}
+
+	
+	// 레벨 캐릭터db 저장
+	@Override
+	public void lvSave(int character_id, int level) {
+		ArtistEntity entity = artistRepository.findByArtistId(character_id);
+		entity.setClevel(level);
+		artistRepository.save(entity);
+		CharacterEntity character = characterRepository.findBycharacterId(character_id);
+		CharacterDto characterDto = CharacterDto.unit(character);
+		session.setAttribute("character", characterDto);
+		
+	}
+
+	
+
+
 
 
 }
