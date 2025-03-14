@@ -122,7 +122,6 @@
 					type:"post",
 					data:{"characterId":characterId},
 					success: function(data){
-						alert(data);
 						alert("캐릭터가 삭제되었습니다.");
 						location.href="/wemypage";
 					},
