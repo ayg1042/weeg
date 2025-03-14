@@ -44,5 +44,14 @@ public class ArtistNameDto {
     	
     	return artistNameDto;
     }
+
+
+	public static ArtistNameDto From(ArtistNameEntity entity) {
+		ArtistNameDto dto = new ArtistNameDto();
+    	dto.setArtistNId(entity.getArtistNId());
+    	dto.setGroup(GroupDto.From(entity.getGroup()));
+        dto.setArtistName(entity.getArtistName());
+        return dto;
+	}
     
 }

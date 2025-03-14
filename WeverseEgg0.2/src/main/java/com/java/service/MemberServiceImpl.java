@@ -1,10 +1,13 @@
 package com.java.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.java.dto.character.CharacterDto;
 import com.java.dto.member.MemberDto;
 import com.java.entity.member.MemberEntity;
 import com.java.repository.MemberRepository;
@@ -107,6 +110,32 @@ public class MemberServiceImpl implements MemberService {
 		memberRepository.save(member);
 	}
 
+
+
+	// 회원전체리스트
+	@Override
+	public List<MemberDto> findAll() {
+		List<MemberEntity> memEntity = memberRepository.findAll();
+		List<MemberDto> mdto = MemberDto.list(memEntity);
+		return mdto;
+	}
+
+
+	// 회원 1명 정보 가져오기
+	@Override
+	public MemberDto findByUserId(int user_id) {
+		MemberEntity entity = memberRepository.findById(user_id)
+				.orElseThrow(()-> new IllegalArgumentException("가입되지 않은 유저입니다."));
+		MemberDto mdto = MemberDto.login(entity);
+		return mdto;
+	}
+
+
+	// 회원삭제
+	@Override
+	public void deleteById(int userId) {
+		memberRepository.deleteById(userId);
+	}
 
 
 	

@@ -58,5 +58,26 @@ public class ItemInfoEntity {
     /** 판매 종료일 (nullable 허용) */
     @Column(name = "end_date", nullable = true)
     private Timestamp endDate;
+
+	public static ItemInfoEntity From(ItemInfoDto dto) {
+		ItemInfoEntity entity = new ItemInfoEntity();
+		entity.setItemInfoId(dto.getItemInfoId());
+		entity.setItemType(ItemTypeEntity.From(dto.getItemType()));
+		entity.setFatigueRecovery(dto.getFatigueRecovery());
+		entity.setCharm(dto.getCharm());
+		entity.setDance(dto.getDance());
+		entity.setVocal(dto.getVocal());
+		entity.setRap(dto.getRap());
+		entity.setEntertainment(dto.getEntertainment());
+		entity.setStartDate(dto.getStartDate());
+		entity.setEndDate(dto.getEndDate());
+		return entity;
+	}
+	
+	public static ItemInfoEntity getId(ItemInfoDto dto) {
+		ItemInfoEntity entity = new ItemInfoEntity();
+		entity.setItemInfoId(dto.getItemInfoId());
+		return entity;
+	}
     
 }

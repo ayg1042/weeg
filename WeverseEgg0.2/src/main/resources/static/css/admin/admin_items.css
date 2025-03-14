@@ -20,7 +20,7 @@ a{
 table, tr, td{
   border-collapse: collapse;
   text-align: center;
-  
+  line-height: 22px;
 }
 
 @font-face {
@@ -36,29 +36,56 @@ font-style: normal;
 	width: 100%;
 }
 
-.memberTableArea{
-	margin-top: 50px;
-}
-
-.memberTable{
-	width: 100%;
-}
-
-.memberTable tr a{
+#admin_content a{
+	font-size: 15px;
 	text-decoration: underline;
 }
 
-.memberTable tr:nth-child(odd) {
+.itemsTableArea label{
+	margin-right: 10px;
+}
+
+.itemsTableArea{
+	margin-top: 50px;
+}
+
+.itemsTableArea label{
+	cursor: pointer;
+}
+
+.itemTable{
+	width: 100%;
+}
+
+.itemTable .item_cont {
+  height: 150px;
+}
+
+.itemTable tr:nth-child(odd) {
   background-color: #f0f8ff;
 }
 
-.memberTable tr:last-child {
-	border-bottom: 1px solid #ededed;
-}
-
-.memberTable th{
+.itemTable th{
   background-color: #ededed;
   border-bottom: 1px solide #999;
 }
 
+.itemTable img{
+	width: 138px;
+	height: 138px;
+	border: 1px solid #ccc;
+}
+.itemTable button{
+	all:unset;
+	width: 110px;
+	height: 40px;
+	font-size: 15px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin: 6px 0;
+	cursor: pointer;
+}
 
+.itemTable tr:last-child {
+    border-bottom: 1px solid #ededed;
+}

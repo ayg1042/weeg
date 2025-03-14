@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.java.dto.character.ArtistDto;
 import com.java.dto.character.CharacterDto;
 import com.java.dto.feed.FeedDto;
 import com.java.dto.member.MemberDto;
@@ -28,6 +32,14 @@ import com.java.repository.MemberRepository;
 import com.java.service.AespaService;
 import com.java.service.CharacterService;
 import com.java.service.MemberService;
+import com.java.dto.character.InvenDto;
+import com.java.dto.character.SaveStyleDto;
+import com.java.dto.character.StyleDto;
+import com.java.dto.group.ArtistNameDto;
+import com.java.dto.group.GroupDto;
+import com.java.dto.item.ItemDto;
+import com.java.dto.item.ItemTypeDto;
+import com.java.entity.character.StyleEntity;
 import com.java.service.ModalService;
 
 import jakarta.servlet.http.HttpSession;
@@ -44,10 +56,7 @@ public class FController {
 	@Autowired MemberService memberService;
 	@Autowired HttpSession session;
 	
-	@GetMapping("/index") //테스트 페이지
-	public String index() {
-		return "main";
-	}
+	
 	
 	@GetMapping("/") // 위버스 로그인 안 된 페이지
 	public String index1(Model model,
@@ -62,25 +71,8 @@ public class FController {
 	        }else {
 	        	model.addAttribute("list", null);
 	        }
-	        System.out.println("!!!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@"+list);
 		}
 		return "main";
-	}
-	
-	@GetMapping("/loggedIn") // 위버스 로그인 된 메인 페이지
-	public String index2(Model model,
-			@SessionAttribute(name = "session_id", required = false) MemberDto memberDto) {
-		// 로그인한 사용자 정보 가져오기
-		int user_id = memberDto.getUser_id();
-		// 사용자의 캐릭터 목록 불러오기
-        List<CharacterDto> list = characterService.getCharactersByUserId(user_id);
-        if(list != null) {
-        	model.addAttribute("list", list);
-        }else {
-        	model.addAttribute("list", null);
-        }
-        System.out.println("!!!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@"+list);
-		return "main2";
 	}
 	
 	@GetMapping("/eggmain") // 에그 메인 게임 시작 페이지

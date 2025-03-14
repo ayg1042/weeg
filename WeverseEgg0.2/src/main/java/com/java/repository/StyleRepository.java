@@ -13,5 +13,7 @@ public interface StyleRepository extends JpaRepository<StyleEntity, Integer> {
 	List<StyleEntity> findAllByCharacter_CharacterId(int character_id);
 
 	void deleteAllByCharacter_CharacterId(int character_id);
+
+	void deleteAllByItem_ItemId(int itemId);
 	
 }

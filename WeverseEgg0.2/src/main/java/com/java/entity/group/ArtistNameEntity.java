@@ -2,6 +2,8 @@ package com.java.entity.group;
 
 import lombok.*;
 
+import com.java.dto.group.ArtistNameDto;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -23,4 +25,18 @@ public class ArtistNameEntity {
 
     @Column(name = "artist_name", nullable = false, length = 100)
     private String artistName;
+    
+    public static ArtistNameEntity From(ArtistNameDto dto) {
+    	ArtistNameEntity entity = new ArtistNameEntity();
+    	entity.setArtistNId(dto.getArtistNId());
+    	entity.setGroup(GroupEntity.From(dto.getGroup()));
+    	entity.setArtistName(dto.getArtistName());
+    	return entity;
+    }
+    public static ArtistNameEntity nullId(ArtistNameDto dto) {
+    	ArtistNameEntity entity = new ArtistNameEntity();
+    	entity.setGroup(GroupEntity.From(dto.getGroup()));
+    	entity.setArtistName(dto.getArtistName());
+    	return entity;
+    }
 }
