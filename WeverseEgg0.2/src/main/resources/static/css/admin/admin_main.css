@@ -20,7 +20,6 @@ a{
 table, tr, td{
   border-collapse: collapse;
   text-align: center;
-  
 }
 
 @font-face {
@@ -50,7 +49,7 @@ font-style: normal;
 
 .memberTable th{
   background-color: #ededed;
-  border-bottom: 1px solide #999;
+  border-bottom: 1px solid #999;
 }
 
 

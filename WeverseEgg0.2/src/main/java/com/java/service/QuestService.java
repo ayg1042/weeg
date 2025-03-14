@@ -13,4 +13,6 @@ public interface QuestService {
 
 	void updateQuestRewards();
 
+	void saveQuest(QuestDto questDto);
+
 }

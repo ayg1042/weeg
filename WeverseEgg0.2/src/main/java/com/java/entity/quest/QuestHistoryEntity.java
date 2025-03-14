@@ -22,12 +22,12 @@ public class QuestHistoryEntity {
     private int questHistoryId;
 
     /** 플레이어 ID (FK) */
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private MemberEntity member;
 
     /** 퀘스트 ID (FK) */
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "quest_id", referencedColumnName = "quest_id")
     private QuestEntity quest;
 

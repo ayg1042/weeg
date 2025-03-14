@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.java.dto.feed.FeedDto;
 import com.java.dto.member.MemberDto;
+import com.java.dto.quest.QuestDto;
 import com.java.service.AdminService;
 import com.java.service.MemberService;
+import com.java.service.QuestService;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 
 @Controller
 @RequestMapping("/admin")
@@ -95,5 +99,40 @@ public class AdminController {
 		adminService.delFeed(bno);
 		return "/admin/admin_notice";
 	}
+	
+	// 퀘스트 관리
+	@GetMapping("/admin_quest")
+	public String updateQuest() {
+		return "/admin/admin_quest";
+	}
+	
+	@RestController
+	@RequestMapping("/admin")
+	public class AdminQuestController {
+
+	    @Autowired
+	    private QuestService questService;
+
+	    // 퀘스트 저장 (기존 퀘스트 수정 또는 새 퀘스트 생성)
+	    @PostMapping("/admin_quest/save")
+	    @Transactional
+	    @ResponseBody
+	    public String saveQuest(QuestDto questdto) {
+	    	System.out.println("퀘스트 저장됨: " + questdto);
+	    	questService.saveQuest(questdto);
+	    	return "퀘스트가 성공적으로 저장되었습니다.";
+	    }
+
+
+	    // 퀘스트 목록 조회
+	    @GetMapping("/admin_quest/list")
+	    public List<QuestDto> getAllQuests() {
+	        return questService.findAll();
+	    }
+	}
+
+
+
+
 
 }

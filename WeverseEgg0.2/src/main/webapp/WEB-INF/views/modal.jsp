@@ -1375,7 +1375,7 @@
 								<!-- 무조건 5번으로 고정! -->
 								<c:choose>
 									<c:when test="${qdto.questId == 1 || qdto.questId == 2}">
-										<c:set var="required" value="5" />
+										<c:set var="required" value="10" />
 									</c:when>
 									<c:when test="${qdto.questId == 3 || qdto.questId == 4}">
 										<c:set var="required" value="5" />

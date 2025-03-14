@@ -119,12 +119,8 @@ public class FController {
 	        }
 
 	        // ✅ 코인 업데이트 (기존 코인 + 보상 코인)
-//	        int updatedCoin = currentCoin + rewardCoin;
 	        characterService.updateCoin(character_id, rewardCoin);
 	        System.out.println("보상 코인: " + rewardCoin);
-
-	        // ✅ 세션의 캐릭터 정보 업데이트
-	        // session.setAttribute("character", character);
 
 	        // ✅ 보상 기록 저장
 	        MemberEntity member = memberRepository.findById(userId)

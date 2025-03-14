@@ -4,9 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.java.dto.member.MemberDto;
-import com.java.entity.member.MemberEntity;
-import com.java.entity.quest.QuestEntity;
 import com.java.entity.quest.QuestProgressEntity;
 
 import jakarta.transaction.Transactional;

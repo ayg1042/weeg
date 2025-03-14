@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.java.dto.character.CharacterDto;
@@ -22,20 +21,20 @@ import com.java.dto.character.InvenDto;
 import com.java.dto.character.SaveStyleDto;
 import com.java.dto.character.StyleDto;
 import com.java.dto.item.ItemDto;
-import com.java.dto.member.MemberDto;
 import com.java.dto.practice.DancePracticeDto;
 import com.java.dto.practice.EntertainmentPracticeDto;
 import com.java.dto.practice.RapPracticeDto;
 import com.java.dto.practice.VocalPracticeDto;
 import com.java.dto.quest.QuestDto;
-import com.java.entity.character.CharacterEntity;
 import com.java.entity.member.MemberEntity;
 import com.java.entity.quest.QuestEntity;
 import com.java.entity.quest.QuestHistoryEntity;
 import com.java.entity.quest.QuestProgressEntity;
 import com.java.repository.CharacterRepository;
+import com.java.repository.MemberRepository;
 import com.java.repository.QuestHistoryRepository;
 import com.java.repository.QuestProgressRepository;
+import com.java.repository.QuestRepository;
 import com.java.service.CharacterService;
 import com.java.service.ModalService;
 import com.java.service.QuestService;
@@ -60,6 +59,10 @@ public class EggMRController {
 	QuestService questService;
 	@Autowired
 	QuestProgressRepository questProgressRepository;
+	@Autowired
+	QuestRepository questRepository;
+	@Autowired
+	MemberRepository memberRepository ;
 
 	@GetMapping("/modal")
 	public String modal(Model model) throws JsonProcessingException {
@@ -417,53 +420,73 @@ public class EggMRController {
 
 	// 퀘스트 진행도 업데이트 메서드
 	private void updateQuestProgress(CharacterDto character, int questId) {
-		// CharacterDto 내의 MemberDto에서 userId를 추출
-		int userId = character.getMember().getUser_id();
+	    // CharacterDto 내의 MemberDto에서 userId를 추출
+	    int userId = character.getMember().getUser_id();
 
-		// Repository의 연관관계 기반 메서드 사용
-		QuestProgressEntity progressEntity = questProgressRepository.findByQuest_QuestIdAndMember_UserId(questId,
-				userId);
+	    // Repository의 연관관계 기반 메서드 사용하여 progressEntity 조회
+	    QuestProgressEntity progressEntity = questProgressRepository.findByQuest_QuestIdAndMember_UserId(questId, userId);
 
-		if (progressEntity == null) {
-			// 레코드가 없으면 새롭게 생성 (초기 진행도 "0%")
-			progressEntity = new QuestProgressEntity();
+	    if (progressEntity == null) {
+	        // 레코드가 없으면 새롭게 생성 (초기 진행도 "0%")
+	        progressEntity = new QuestProgressEntity();
 
-			// MemberEntity 및 QuestEntity 설정
-			MemberEntity member = new MemberEntity();
-			member.setUserId(userId);
-			progressEntity.setMember(member);
+	        // MemberEntity 및 QuestEntity 설정
+	        MemberEntity member = memberRepository.findById(userId).orElse(null);
+	        if (member == null) {
+	            // 만약 member가 DB에 없다면 새로 생성 후 저장
+	            member = new MemberEntity();
+	            member.setUserId(userId);
+	            memberRepository.save(member);
+	        }
+	        progressEntity.setMember(member);
 
-			QuestEntity quest = new QuestEntity();
-			quest.setQuestId(questId);
-			progressEntity.setQuest(quest);
+	        QuestEntity quest = questRepository.findById(questId).orElse(null);
+	        if (quest == null) {
+	            // 만약 quest가 DB에 없다면 새로 생성 후 저장
+	            quest = new QuestEntity();
+	            quest.setQuestId(questId);
+	            questRepository.save(quest);
+	        }
+	        progressEntity.setQuest(quest);
 
-			progressEntity.setIsCompleted(0);
-			progressEntity.setProgress("0%");
-		}
+	        progressEntity.setIsCompleted(0);
+	        progressEntity.setProgress("0%");
+	    }
 
-		// 현재 진행도 ("30%" -> 30) 파싱
-		int currentProgress = Integer.parseInt(progressEntity.getProgress().replace("%", ""));
+	    // 현재 진행도 ("30%" -> 30) 파싱
+	    int currentProgress = Integer.parseInt(progressEntity.getProgress().replace("%", ""));
 
-		// 퀘스트 ID가 5 이상이면 한 번에 100%로 설정
-		if (questId >= 5) {
-			currentProgress = 100;
-		} else {
-			// 100% 미만이면 20% 증가
-			currentProgress += 20;
-			if (currentProgress > 100) { // 100을 초과하면 100으로 고정
-				currentProgress = 100;
-			}
-		}
+	    // 퀘스트 수행 횟수 설정 (기본값: 5)
+	    int required = 5;
+	    if (questId == 1 || questId == 2) {
+	        required = 10;
+	    } else if (questId == 3 || questId == 4) {
+	        required = 5;
+	    } else {
+	        required = 1; // 예외적인 경우 1번 수행으로 100% 완료
+	    }
 
-		progressEntity.setProgress(currentProgress + "%");
+	    // 증가량 계산 (100%를 required 횟수로 나누기)
+	    int increment = 100 / required;
 
-		// 100%가 되면 완료 상태 업데이트
-		if (currentProgress == 100) {
-			progressEntity.setIsCompleted(1);
-		}
+	    // 현재 진행도 업데이트 (100%를 초과할 경우 100으로 고정)
+	    currentProgress += increment;
+	    if (currentProgress > 100) {
+	        currentProgress = 100;
+	    }
 
-		// 변경사항 저장
-		questProgressRepository.save(progressEntity);
+	    progressEntity.setProgress(currentProgress + "%");
+
+	    // 100%가 되면 완료 상태 업데이트
+	    if (currentProgress == 100) {
+	        progressEntity.setIsCompleted(1);
+	    }
+
+	    // 변경사항 저장
+	    questProgressRepository.save(progressEntity);
 	}
+
+	
+	
 
 }

@@ -16,7 +16,7 @@
       <li class="board_sub"><a href="/admin/board">하위 메뉴 3</a></li>
       <li><a href="" >상품 관리</a></li>
       <li><a href="" >트레이닝 관리</a></li>
-      <li><a href="" >퀘스트 관리</a></li>
+      <li><a href="/admin/admin_quest" >퀘스트 관리</a></li>
       <li><a href="" >이벤트 관리</a></li>
       <li><a href="" >아이돌 관리</a></li>
     </ul>
