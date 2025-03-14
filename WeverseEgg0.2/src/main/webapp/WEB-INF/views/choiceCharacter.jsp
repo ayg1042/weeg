@@ -29,7 +29,6 @@
 		      	    type: "POST",
 		      	    data: { "character_id": sessionStorage.getItem("character_id") },  // 데이터 전송
 		      	    success: function(response) {
-		      	    	alert("test");
 		      	      	location.href="/modal";
 		      	    },
 		      	    error: function() {
