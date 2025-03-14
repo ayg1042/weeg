@@ -28,12 +28,8 @@
         <ul>
           <li id="option_title">뉴스</li>
           <li><a href="/wenotice">공지사항</a></li>
-<<<<<<< HEAD
           <li><a href="#">업데이트</a></li>
-          <li><a href="#">이벤트</a></li>
-=======
           <li><a href="/weEvent">이벤트</a></li>
->>>>>>> refs/remotes/origin/master
         </ul>
         <ul>
           <li id="option_title">가이드</li>
