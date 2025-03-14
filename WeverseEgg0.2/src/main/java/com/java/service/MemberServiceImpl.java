@@ -1,12 +1,16 @@
 package com.java.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.java.dto.character.CharacterDto;
 import com.java.dto.member.MemberDto;
 import com.java.entity.member.MemberEntity;
+import com.java.repository.FeedRepository;
 import com.java.repository.MemberRepository;
 
 import jakarta.transaction.Transactional;
@@ -15,9 +19,10 @@ import jakarta.transaction.Transactional;
 public class MemberServiceImpl implements MemberService {
 	
 	@Autowired MemberRepository memberRepository;
+	@Autowired FeedRepository feedRepository;
 	
 
-	@Override // singin 시작 시 이메일 입력 
+	@Override // sign in 시작 시 이메일 입력 
 	public MemberDto findByEmail(String email) {
 	    MemberEntity memberEntity = memberRepository.findByEmail(email)
 	            .orElse(null); // 데이터가 없으면 null 반환
@@ -51,7 +56,7 @@ public class MemberServiceImpl implements MemberService {
 				.orElse(null); // 데이터가 없으면 null 반환
 		
 		if (memberEntity == null) {
-	        return null; // MemberEntity가 null인 경우, DTO도 null 반환
+	        return null; // MemberEntity가 null 인 경우, DTO도 null 반환
 	    }
 
 	    return MemberDto.login(memberEntity);
@@ -106,6 +111,35 @@ public class MemberServiceImpl implements MemberService {
 		
 		memberRepository.save(member);
 	}
+
+
+
+	// 회원전체리스트
+	@Override
+	public List<MemberDto> findAll() {
+		List<MemberEntity> memEntity = memberRepository.findAll();
+		List<MemberDto> mdto = MemberDto.list(memEntity);
+		return mdto;
+	}
+
+
+	// 회원 1명 정보 가져오기
+	@Override
+	public MemberDto findByUserId(int user_id) {
+		MemberEntity entity = memberRepository.findById(user_id)
+				.orElseThrow(()-> new IllegalArgumentException("가입되지 않은 유저입니다."));
+		MemberDto mdto = MemberDto.login(entity);
+		return mdto;
+	}
+
+
+	/*
+	 * // 회원삭제
+	 * 
+	 * @Override public void deleteById(int userId) {
+	 * feedRepository.deleteFeedByMemberId(userId);
+	 * memberRepository.deleteById(userId); }
+	 */
 
 
 	

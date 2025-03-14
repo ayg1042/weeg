@@ -18,7 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const boxes = document.querySelectorAll('.box1, .box2, .box3, .box4');
     const banners = document.querySelectorAll('#main_banner img');
     const mainBanner = document.querySelector('#main_banner img');
+<<<<<<< HEAD
     const images = Array.from(banners);
+=======
+    const images = [
+      'images/mainpage/main_banner_Img5.png',
+      'images/mainpage/main_banner_Img3.png',
+      'images/mainpage/main_banner_Img2.png',
+      'images/mainpage/main_banner_Img.png'
+    ];
+>>>>>>> refs/remotes/origin/master
 
     
     // 초기 상태 설정
@@ -97,7 +106,12 @@ document.addEventListener('DOMContentLoaded', () => {
           <li id="option_title">뉴스</li>
           <li><a href="/wenotice">공지사항</a></li>
           <li><a href="#">업데이트</a></li>
+<<<<<<< HEAD
           <li><a href="/weevent">이벤트</a></li>
+=======
+          <li><a href="#">이벤트</a></li>
+          <li><a href="weEvent">이벤트</a></li>
+>>>>>>> refs/remotes/origin/master
         </ul>
         <ul>
           <li id="option_title">가이드</li>
@@ -107,13 +121,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </ul>
         <ul>
           <li id="option_title">커뮤니티</li>
-          <li><a href="#">자유게시판</a></li>
+          <li><a href="/weBoard">자유게시판</a></li>
           <li><a href="#">EGG 코디</a></li>
         </ul>
         <ul>
           <li id="option_title">랭킹</li>
-          <li><a href="/rank">전체랭킹</a></li>
-          <li><a href="/rank">그룹랭킹 </a></li>
+          <li><a href="/rank">나의랭킹</a></li>
         </ul>
         <ul>
           <li id="option_title">고객지원</li>
@@ -126,13 +139,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <!-- 메인 이미지 화면 -->
     <div id="main_banner">
+<<<<<<< HEAD
     <c:forEach items="${banners }" var="banner">
       <c:if test="${not empty banner.bfile_banner}">
       <img src="../images/event/${banner.bfile_banner}" alt="메인 배너 이미지">
     </c:if>
     </c:forEach>
+=======
+      <a href="/weEventView"><img src="images/mainpage/main_banner_Img5.png" alt="메인 배너1"></a>
+      <a href="/weEventView"><img src="images/mainpage/main_banner_Img3.png" alt="메인 배너2"></a>
+      <a href="/weEventView"><img src="images/mainpage/main_banner_Img2.png" alt="메인 배너3"></a>
+      <a href="/weEventView"><img src="images/mainpage/main_banner_Img.png" alt="메인 배너4"></a>
+>>>>>>> refs/remotes/origin/master
     </div>
 
+<<<<<<< HEAD
 	<div class="egg_main_bottom">
 	    <!-- 하단 이벤트 gnb -->
 	    <div id="main_bottom_gnb">
@@ -145,6 +166,28 @@ document.addEventListener('DOMContentLoaded', () => {
 	     </c:if>
 	    </c:forEach>
 		</div>
+=======
+		<div class="egg_main_bottom">
+    <!-- 하단 이벤트 gnb -->
+    <div id="main_bottom_gnb">
+      <div class="box1">
+        <div class="event-title">팬싸인회 응모권 이벤트</div>
+        <div class="event-date">~2025.03.26</div>
+      </div>
+      <div class="box2">
+        <div class="event-title">2025 패션왕</div>
+        <div class="event-date">~2025.03.23</div>
+      </div>
+      <div class="box3">
+        <div class="event-title">아티스트 생일 이벤트</div>
+        <div class="event-date">~2025.03.20</div>
+      </div>
+      <div class="box4">
+        <div class="event-title">신규유저 혜택 이벤트</div>
+        <div class="event-date">~2025.03.18</div>
+      </div>
+	   </div>
+>>>>>>> refs/remotes/origin/master
 	
 	    <!-- 게임 스타트 버튼 -->
 	    <div id="game_start_btn">

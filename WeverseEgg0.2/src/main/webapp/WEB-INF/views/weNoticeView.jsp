@@ -28,9 +28,7 @@
         <ul>
           <li id="option_title">뉴스</li>
           <li><a href="/wenotice">공지사항</a></li>
-          <li><a href="#">업데이트</a></li>
-          <li><a href="#">이벤트</a></li>
-          <li><a href="#">업데이트</a></li>
+          <li><a href="/weEvent">이벤트</a></li>
         </ul>
         <ul>
           <li id="option_title">가이드</li>
@@ -45,8 +43,7 @@
         </ul>
         <ul>
           <li id="option_title">랭킹</li>
-          <li><a href="/rank">전체랭킹</a></li>
-          <li><a href="/rank">그룹랭킹 </a></li>
+          <li><a href="/rank">나의랭킹</a></li>
         </ul>
         <ul>
           <li id="option_title">고객지원</li>
@@ -60,7 +57,7 @@
 
   <!-- 공지사항 -->
   <div id="notice_banner">
-    <img src="../images/weNotice/noticeBanner.jpg">
+    <img src="../images/weNotice/top_img.png">
   </div>
 
   <div id="notice_container">

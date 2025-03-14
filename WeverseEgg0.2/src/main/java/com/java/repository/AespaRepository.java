@@ -12,6 +12,8 @@ public interface AespaRepository extends JpaRepository<FeedDto, Integer>{
 
 	// 관리자페이지
 	List<FeedDto> findByCategory(String category);
+	
+	List<FeedDto> findAllByOrderByBnoDesc();  // bno 기준 내림차순 정렬
 
 	// 에그 메인 공지사항
 	List<FeedDto> findAllByCategoryAndStatusOrderByBdateDesc(String category, String status);

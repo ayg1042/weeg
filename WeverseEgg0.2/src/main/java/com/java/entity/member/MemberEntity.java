@@ -36,6 +36,7 @@ public class MemberEntity {
     
     @Column(nullable = false, length = 100)
     private int jelly;
+
     
  // 정적 팩토리 메서드 추가
     public static MemberEntity join(MemberDto dto) {
@@ -53,7 +54,7 @@ public class MemberEntity {
 		entity.nickname = dto.getNickname();
     	return entity;
     }
-    
+
     
     
 }
