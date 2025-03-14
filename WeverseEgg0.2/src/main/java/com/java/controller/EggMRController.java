@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.java.dto.character.CharacterDto;
@@ -60,7 +61,7 @@ public class EggMRController {
 	@Autowired MemberRepository memberRepository ;
 	
 	@GetMapping("/modal")
-	public String modal(Model model) {
+	public String modal(Model model) throws JsonProcessingException {
         
 		// === 세션에서 캐릭터 정보 가져오기 ===
 		CharacterDto character = (CharacterDto) session.getAttribute("character");
@@ -76,7 +77,7 @@ public class EggMRController {
         int[] lvResult = LvCalc.lvCalc(vocal, dance, ent, rap);
         // 레벨 캐릭터db 저장
         int level = lvResult[0];
-        characterService.lvSave(character.getCharacter_id(), level);
+//        characterService.lvSave(character.getCharacter_id(), level);
         
         model.addAttribute("lvChk", lvResult);
 

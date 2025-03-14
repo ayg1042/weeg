@@ -70,9 +70,9 @@ public class CharacterServiceImpl implements CharacterService {
 		entity.setDebutDate(new Timestamp(System.currentTimeMillis()));
 		artistRepository.save(entity);
 		List<ArtistEntity> artistList = artistRepository.findAll();
-		character.setArtist(artistList.get(artistList.size() - 1));
+		character.setArtist(artistList.get(artistList.size()-1));
 		characterRepository.save(character);
-
+		
 	}
 
 	@Override
@@ -338,16 +338,16 @@ public class CharacterServiceImpl implements CharacterService {
 	}
 	
 	// 레벨 캐릭터db 저장
-	@Override
-	public void lvSave(int character_id, int level) {
-		ArtistEntity entity = artistRepository.findByArtistId(character_id);
-		entity.setClevel(level);
-		artistRepository.save(entity);
-		CharacterEntity character = characterRepository.findBycharacterId(character_id);
-		CharacterDto characterDto = CharacterDto.unit(character);
-		session.setAttribute("character", characterDto);
-		
-	}
+//	@Override
+//	public void lvSave(int character_id, int level) {
+//		ArtistEntity entity = artistRepository.findByArtistId(character_id);
+//		entity.setClevel(level);
+//		artistRepository.save(entity);
+//		CharacterEntity character = characterRepository.findBycharacterId(character_id);
+//		CharacterDto characterDto = CharacterDto.unit(character);
+//		session.setAttribute("character", characterDto);
+//		
+//	}
 
 	
 

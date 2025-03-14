@@ -48,7 +48,7 @@ public interface CharacterService {
 	void sign_actvity(int character_id, int health, int fatigue, int price);
 
 	// 레벨 캐릭터db 저장
-	void lvSave(int character_id, int level);
+	//void lvSave(int character_id, int level);
 
 	Integer getUserCoin(int character_id);
 

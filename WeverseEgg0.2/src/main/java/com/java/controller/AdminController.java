@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.dto.feed.FeedDto;
 import com.java.dto.member.MemberDto;
+import com.java.dto.quest.QuestDto;
 import com.java.dto.group.ArtistNameDto;
 import com.java.dto.group.GroupDto;
 import com.java.service.AdminService;
@@ -30,6 +32,7 @@ import com.java.service.CharacterService;
 import com.java.service.MemberService;
 import com.java.service.ModalService;
 import com.java.service.ModalServiceImpl;
+import com.java.service.QuestService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
@@ -308,10 +311,16 @@ public class AdminController {
 	}
 	
 	// 아이템 추가
-		@GetMapping("/itemAdd")
-		public String itemAdd() {
-			return "/admin/admin_itemAdd";
-		}
+	@GetMapping("/itemAdd")
+	public String itemAdd(Model model) {
+		List<ItemTypeDto> itemType = modalServiceImpl.getAllItemTypes();
+		List<ItemInfoDto> itemInfo = modalServiceImpl.getAllItemInfo();
+		
+		model.addAttribute("itemTypeList", itemType);
+		model.addAttribute("itemInfoList", itemInfo);
+		
+		return "/admin/admin_itemAdd";
+	}
 	
 	
 	// 아이템 정보 추가
@@ -484,5 +493,52 @@ public class AdminController {
 		
 		return "1";
 	}
+	
+	@GetMapping("/artist")
+	public String artist(Model model) {
+		List<ArtistNameDto> artist = modalServiceImpl.getAllArtistName();
+		List<GroupDto> group = modalServiceImpl.getAllGroup();
+		
+		model.addAttribute("groupList", group);
+		model.addAttribute("artistList", artist);
+		
+		return "/admin/admin_artist";
+	}
+	@GetMapping("/group")
+	public String group(Model model) {
+		List<GroupDto> group = modalServiceImpl.getAllGroup();
+		
+		model.addAttribute("groupList", group);
+		
+		return "/admin/admin_group";
+	}
+	
+	@GetMapping("/admin_quest")
+	public String updateQuest() {
+		return "/admin/admin_quest";
+	}
+	@RestController
+ 	@RequestMapping("/admin")
+ 	public class AdminQuestController {
+ 	    @Autowired
+ 	    private QuestService questService;
+ 	   
+ 	    // 퀘스트 목록 조회
+ 	    @GetMapping("/admin_quest/list")
+ 	    public List<QuestDto> getAllQuests() {
+ 	    	return questService.findAll();
+ 	    }
+ 	   
+ 	    // 퀘스트 저장 (기존 퀘스트 수정 또는 새 퀘스트 생성)
+ 	    @PostMapping("/admin_quest/save")
+ 	    @Transactional
+ 	    @ResponseBody
+ 	    public String saveQuest(QuestDto questdto) {
+ 	    	System.out.println("퀘스트 저장됨: " + questdto);
+ 	    	questService.saveQuest(questdto);
+ 	    	return "퀘스트가 성공적으로 저장되었습니다.";
+ 	    }
+	}
+	
 	
 }
