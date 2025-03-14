@@ -2,7 +2,9 @@ package com.java.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +15,17 @@ import com.java.dto.practice.DancePracticeDto;
 import com.java.dto.practice.EntertainmentPracticeDto;
 import com.java.dto.practice.RapPracticeDto;
 import com.java.dto.practice.VocalPracticeDto;
+import com.java.entity.character.ArtistEntity;
 import com.java.entity.character.CharacterEntity;
+import com.java.entity.group.ArtistNameEntity;
+import com.java.entity.group.GroupEntity;
 import com.java.entity.practice.DancePracticeEntity;
 import com.java.entity.practice.EntertainmentPracticeEntity;
 import com.java.entity.practice.RapPracticeEntity;
 import com.java.entity.practice.VocalPracticeEntity;
+import com.java.repository.ArtistRepository;
 import com.java.repository.CharacterRepository;
+import com.java.repository.GroupRepository;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
@@ -29,6 +36,8 @@ public class CharacterServiceImpl implements CharacterService {
 	@Autowired HttpSession session;
 	@Autowired CharacterRepository characterRepository;
 	@Autowired PracticeService practiceService;
+	@Autowired ArtistRepository artistRepository;
+	@Autowired GroupRepository groupRepository;
 	
 	// 캐릭터 선택 페이지 열기
 	@Override
@@ -49,6 +58,18 @@ public class CharacterServiceImpl implements CharacterService {
 	// 캐릭터 생성, 닉네임 저장
 	@Override
 	public void save(CharacterEntity character) {
+		GroupEntity group = groupRepository.findById(1).orElseThrow();
+		ArtistNameEntity artistN = new ArtistNameEntity();
+		artistN.setArtistNId(1);
+		artistN.setGroup(group);
+		artistN.setArtistName("연습생");
+		ArtistEntity entity = new ArtistEntity();
+		entity.setArtistName(artistN);
+		entity.setBlueMark(0);
+		entity.setDebutDate(new Timestamp(System.currentTimeMillis()));
+		artistRepository.save(entity);
+		List<ArtistEntity> artistList = artistRepository.findAll();
+		character.setArtist(artistList.get(artistList.size()-1));
 		characterRepository.save(character);
 		
 	}

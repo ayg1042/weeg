@@ -36,6 +36,6 @@ public interface MemberService {
 	MemberDto findByUserId(int user_id);
 
 	// 회원삭제
-	void deleteById(int userId);
+	/* void deleteById(int userId); */
 
 }
