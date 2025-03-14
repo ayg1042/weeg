@@ -1,0 +1,91 @@
+*{
+  padding: 0; 
+  margin: 0;
+  font-family: "Pretendard Variable", 
+								Pretendard, 
+								-apple-system, 
+								BlinkMacSystemFont, 
+								system-ui, 
+								Roboto, 
+								"Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 
+								sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+table, tr, td{
+  border-collapse: collapse;
+  text-align: center;
+  line-height: 22px;
+}
+
+@font-face {
+font-family: 'Pretendard-Regular';
+src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+font-weight: 400;
+font-style: normal;
+} 
+
+
+#admin_content{
+	padding: 30px;
+	width: 100%;
+}
+
+#admin_content a{
+	font-size: 15px;
+	text-decoration: underline;
+}
+
+.itemsTableArea label{
+	margin-right: 10px;
+}
+
+.itemsTableArea{
+	margin-top: 50px;
+}
+
+.itemsTableArea label{
+	cursor: pointer;
+}
+
+.itemTable{
+	width: 100%;
+}
+
+.itemTable .item_cont {
+  height: 150px;
+}
+
+.itemTable tr:nth-child(odd) {
+  background-color: #f0f8ff;
+}
+
+.itemTable th{
+  background-color: #ededed;
+  border-bottom: 1px solide #999;
+}
+
+.itemTable img{
+	width: 138px;
+	height: 138px;
+	border: 1px solid #ccc;
+}
+.itemTable button{
+	all:unset;
+	width: 110px;
+	height: 40px;
+	font-size: 15px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin: 6px 0;
+	cursor: pointer;
+}
+
+.itemTable tr:last-child {
+    border-bottom: 1px solid #ededed;
+}

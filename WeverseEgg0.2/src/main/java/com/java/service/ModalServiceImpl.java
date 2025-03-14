@@ -1,6 +1,7 @@
 package com.java.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,21 @@ public class ModalServiceImpl implements ModalService {
 	public void styleSave(StyleDto dto) {
 		StyleEntity entity = StyleEntity.From(dto);
 		styleRepository.save(entity);
+		
+	}
+
+	@Override
+	public Collection<? extends ItemDto> findByItemInfo_ItemType_ItemTypeIdIn(List<Integer> item_type) {
+		List<ItemEntity> list = itemRepository.findByItemInfo_ItemType_ItemTypeIdIn(item_type);
+		List<ItemDto> Items = new ArrayList();
+		for(ItemEntity entity : list) {
+			Items.add(ItemDto.From(entity));
+		}
+		return Items;
+	}
+
+	public void addItem(ItemDto item) {
+		// TODO Auto-generated method stub
 		
 	}
 

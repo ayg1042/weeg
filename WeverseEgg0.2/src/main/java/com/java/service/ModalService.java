@@ -1,5 +1,6 @@
 package com.java.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.java.dto.character.InvenDto;
@@ -19,5 +20,7 @@ public interface ModalService {
 	void deleteStyleByUserId(int character_id);
 
 	void styleSave(StyleDto dto);
+
+	Collection<? extends ItemDto> findByItemInfo_ItemType_ItemTypeIdIn(List<Integer> item_type);
 
 }
