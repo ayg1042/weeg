@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.java.dto.character.CharacterDto;
 import com.java.entity.member.MemberEntity;
 import com.java.entity.quest.QuestEntity;
@@ -23,10 +22,9 @@ import com.java.repository.QuestProgressRepository;
 import com.java.repository.QuestRepository;
 import com.java.service.CharacterService;
 import com.java.service.QuestService;
+import com.java.service.ModalService;
 
 import jakarta.servlet.http.HttpSession;
-
-import com.java.service.ModalService;
 
 
 @Controller
@@ -42,10 +40,7 @@ public class FController {
 	@Autowired ModalService modalServiceImpl;
 	@Autowired HttpSession session;
 	
-	@GetMapping("/index") //테스트 페이지
-	public String index() {
-		return "main";
-	}
+	
 	
 	@GetMapping("/") // 위버스 로그인 안 된 페이지
 	public String index1() {
@@ -157,7 +152,6 @@ public class FController {
 	    return ResponseEntity.ok(response);
 	}
 
-	
 	
 	@GetMapping("/rank") // 랭킹 페이지
 	public String rank() {

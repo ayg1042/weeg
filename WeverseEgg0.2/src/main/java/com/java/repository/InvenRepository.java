@@ -11,4 +11,6 @@ public interface InvenRepository extends JpaRepository<InvenEntity, Integer> {
 
 	List<InvenEntity> findAllByCharacter_CharacterId(int character_id);
 
+	void deleteAllByItem_ItemId(int itemId);
+
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,47 +18,32 @@
     	<div class="memberTableArea">
     		<table class="memberTable">
 	    		<colgroup>
-		        <col style="width: 5%;">
+		        <col style="width: 10%;">
 		        <col style="width: 25%;">
-		        <col style="width: 20%;">
 		        <col style="width: 20%;">
 		        <col style="width: 15%;">
 	    		</colgroup>
     			<tr>
     				<th>NO.</th>
     				<th>이메일</th>
-    				<th>이름</th>
     				<th>닉네임</th>
     				<th>보유젤리</th>
     			</tr>
-    			<tr>
-    				<td>1</td>
-    				<td><a href="#">aaa@naver.com</a></td>
-    				<td>홍길동</td>
-    				<td>길동스</td>
-    				<td>1000</td>
-    			</tr>
-    			<tr>
-    				<td>1</td>
-    				<td><a href="#">aaa@naver.com</a></td>
-    				<td>홍길동</td>
-    				<td>길동스</td>
-    				<td>1000</td>
-    			</tr>
-    			<tr>
-    				<td>1</td>
-    				<td><a href="#">aaa@naver.com</a></td>
-    				<td>홍길동</td>
-    				<td>길동스</td>
-    				<td>1000</td>
-    			</tr>
-    			<tr>
-    				<td>1</td>
-    				<td><a href="#">aaa@naver.com</a></td>
-    				<td>홍길동</td>
-    				<td>길동스</td>
-    				<td>1000</td>
-    			</tr>
+    			<c:if test="${not empty memberList}">
+    				<c:forEach items="${memberList}" var="mlist">
+		    			<tr>
+		    				<td>${mlist.user_id}</td>
+		    				<td><a href="/admin/memView?user=${mlist.user_id}">${mlist.email}</a></td>
+		    				<td>${mlist.nickname}</td>
+		    				<td>${mlist.jelly}</td>
+		    			</tr>
+    				</c:forEach>
+    			</c:if>
+    			<c:if test="empty memberList">
+	    			<tr>
+	    				<td>등록된 회원이 없습니다.</td>
+	    			</tr>
+    			</c:if>
     		</table>
     	</div>
     </div>

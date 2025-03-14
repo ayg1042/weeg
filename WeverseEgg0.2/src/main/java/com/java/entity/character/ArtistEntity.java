@@ -37,7 +37,15 @@ public class ArtistEntity {
     @Column(nullable = false)
     private Timestamp debutDate;
     
+    public static ArtistEntity From(ArtistDto dto) {
+    	ArtistEntity entity = new ArtistEntity();
+    	entity.setArtistId(dto.getArtistId());
+    	entity.setArtistName(ArtistNameEntity.From(dto.getArtistName()));
+    	entity.setClevel(dto.getLevel());
+    	entity.setBlueMark(dto.getBlueMark());
+    	entity.setDebutDate(dto.getDebutDate());
+    	return entity;
+    }
     
-
     
 }
