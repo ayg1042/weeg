@@ -329,7 +329,28 @@ a {
   display: block;
   /* 호버 시 버튼을 표시 */
 }
+.myAvatarContainer:hover .deleteBtn {
+  display: block;
+  /* 호버 시 버튼을 표시 */
+}
 
+.deleteBtn {
+  font-size: 14px;
+  color: #fe3e23;
+  font-weight: 500;
+  width: 140px;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background-color: #ededed;
+  border: 1px solid #fe3e23;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
 .selectButton {
   font-size: 14px;
   color: black;
@@ -337,7 +358,7 @@ a {
   width: 140px;
   display: none;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;

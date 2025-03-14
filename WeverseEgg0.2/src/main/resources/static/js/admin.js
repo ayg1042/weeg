@@ -100,6 +100,10 @@ $(document).ready(function() {
 			
 		})
 		
+<<<<<<< HEAD
+		
+    });
+=======
 		// 아이템 정보 수정
 		$("#update_item-info").change(function () {
 		        let selectedText = $(this).find("option:selected").text();
@@ -378,3 +382,4 @@ $(document).ready(function() {
 		
 		
 });
+>>>>>>> refs/remotes/origin/master

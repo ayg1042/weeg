@@ -11,7 +11,7 @@
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/mainpage.css" />
   <link rel="stylesheet" type="text/css" href="css/header.css" />
-  <link rel="stylesheet" type="text/css" href="css/weNoticeView.css" />
+  <link rel="stylesheet" type="text/css" href="css/weBoardWrite.css" />
   <title>WEVERSEGG_NOTICE</title>
 </head>
 
@@ -38,7 +38,7 @@
         </ul>
         <ul>
           <li id="option_title">커뮤니티</li>
-          <li><a href="#">자유게시판</a></li>
+          <li><a href="/weBoard">자유게시판</a></li>
           <li><a href="#">EGG 코디</a></li>
         </ul>
         <ul>
@@ -57,50 +57,51 @@
 
   <!-- 공지사항 -->
   <div id="notice_banner">
-    <img src="../images/weNotice/top_img.png">
+    <img src="../images/weNotice/top_img2.png">
   </div>
 
   <div id="notice_container">
     <div class="notice_title">
       <div class="title_between" style="justify-content: space-between; display: flex;">
-        <div class="title_txt">공지사항</div>
+        <div class="title_txt">게시글 작성</div>
       </div>
     </div>
 
+		<form action="/weBoardWrite" name="writeFrm" method="post" enctype="multipart/form-data"> 
     <table>
       <tbody>
         <tr>
+        	<th class="info_txt">제목</th>
           <td class="td_title">
-            <span class="info_title">[안내] 개인정보처리방침 변경 안내</span>
+            <div class="info_title">
+           		<input type="text" id="inputTitle" name="btitle" placeholder="제목을 입력하세요." style="width:800px">
+            </div>
+          </td>
+        </tr>
+        <tr>
+	       	<th class="info_txt">내용</th>
+	       	<td>
+			    	<textarea rows="10" cols="50" name="bcontent"></textarea>
+			    </td>
+   			</tr>
+   			<tr>
+          <th class="info_txt">파일첨부</th>
+          <td>
+            <input type="file" name="files" id="file" onchange="readUrl(this);" style="width:800px">
+          </td>
+        </tr>
+        <tr>
+        	<th class="info_txt">미리보기</th>
+          <td class="img_preview">
+          	<img id="preview" style="width: 100px"/>
           </td>
         </tr>
       </tbody>
     </table>
-    <div class="info_date">
-    	<p>2025-01-01 15:00</p>
-    </div>
-    <div class="info_area">
-    	<div id="notice_img"></div>
-    	<p class="info_txt">
-    		안녕하세요. 위버스EGG입니다.<br/><br/>
-				위버스EGG 서비스를 이용해 주시는 고객 여러분께 진심으로 감사드리며,<br/>
-				'개인정보처리방침'에 일부 수정 내용이 있어 2025년 01월 01일자로 변경됩니다.<br/><br/>
-				새롭게 바뀌는 주요 개정사항을 확인하시고, 서비스 이용에 참고 부탁드리겠습니다.<br/><br/>
-				▣ 개정 사유 및 내용<br/>
-				- 일부 개인정보 수탁 업체 삭제 및 위탁업무 내용 변경<br/><br/>
-				▣ 적용 일시: 2025년 01월 01일<br/><br/>
-				▣ 이의제기 및 문의<br/>
-				변경된 ‘개인정보 처리방침’의 내용에 동의하지 않으시는 경우,<br/>
-				위버스EGG 서비스의 원활한 제공에 제약이 발생할 수 있습니다.<br/><br/>
-				개인정보처리방침 변경에 대한 이의제기 및 문의는<br/>
-				고객센터로 접수해 주시면 신속하고 친절하게 안내해드리겠습니다.<br/><br/>
-				앞으로도 고객 여러분의 개인정보를 보다 안전하게 보호할 것을 약속드리며,<br/> 
-				신뢰받는 서비스로 보답하겠습니다.<br/><br/>
-				감사합니다.
-    	</p>
+    </form>
     <div class="btnArea">
-    	<button onclick="listBtn()" >목록</button>
-   	</div>
+    	<button onclick="CancleBtn()" >취소	</button>
+    	<button onclick="SaveBtn()" >저장</button>
     </div> <!-- info_area -->
   </div> <!-- notice_container -->
 
@@ -115,9 +116,52 @@
 		    }
 		});
 	  
-	  function listBtn(){
-		  location.href="/wenotice";
+	  function CancleBtn(){
+		  location.href="/weBoard";
 	  }
+	  
+	  /* function SaveBtn(){
+		  if(confirm("게시글을 저장하시겠습니까?")) {
+	    	location.href="/weBoard";
+	  	}
+	  } */
+	  
+	  function SaveBtn() {
+		    if (!confirm("게시글을 저장하시겠습니까?")) {
+		        return;
+		    }
+
+		    let formData = new FormData(document.writeFrm); // 폼 데이터 수집
+
+		    $.ajax({
+		        url: "/weBoardWrite",
+		        type: "POST",
+		        data: formData,
+		        processData: false,  // 필수: 파일 업로드 시 false로 설정
+		        contentType: false,  // 필수: multipart/form-data 설정
+		        success: function (response) {
+		            alert("게시글이 저장되었습니다.");
+		            window.location.href = "/weBoard"; // 성공 후 페이지 이동
+		        },
+		        error: function (xhr, status, error) {
+		            console.error(xhr.responseText);
+		            alert("게시글 저장에 실패했습니다.");
+		        }
+		    });
+		}
+	  
+	  const readUrl = (input) =>{
+			if(input.files && input.files[0]){ // 파일이름이 있으면..
+					var reader = new FileReader(); // 파일 읽기 객체
+					reader.onload = function(e){
+						document.getElementById("preview").src = e.target.result;
+						/* $("#preview").src = e.target.result; */
+					}
+					reader.readAsDataURL(input.files[0]);
+				}else{
+					document.getElementById("preview").src = "";
+				}
+		}
   </script>
 
 </body>

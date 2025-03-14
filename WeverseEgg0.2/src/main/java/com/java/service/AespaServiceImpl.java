@@ -1,5 +1,6 @@
 package com.java.service;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,12 +15,14 @@ import com.java.entity.character.CharacterEntity;
 import com.java.entity.member.MemberEntity;
 import com.java.repository.AespaRepository;
 import com.java.repository.CharacterRepository;
+import com.java.repository.FeedRepository;
 
 @Service
 public class AespaServiceImpl implements AespaService {
 	
 	@Autowired CharacterRepository characterRepository;
 	@Autowired AespaRepository aespaRepository;
+	@Autowired FeedRepository feedRepository;
 	
 	// 랭크 계산하기
 	public void getRankedCharacterList(String GroupKor) {
@@ -71,6 +74,30 @@ public class AespaServiceImpl implements AespaService {
 	public List<FeedDto> feedlist() {
 		List<FeedDto> feedlist = aespaRepository.findAllByCategoryOrderByBdateDesc("feed");
 		return feedlist;
+	}
+
+	
+	@Override // 자유게시판 게시글 저장
+	public void weBoardWrite(FeedDto fdto) {
+		aespaRepository.save(fdto);
+		
+	}
+
+	@Override // 위버스에그 자유게시판 페이지
+	public List<FeedDto> findAll() {
+		List<FeedDto> list = aespaRepository.findAll();
+		return list.stream()
+	               .sorted(Comparator.comparing(FeedDto::getBno).reversed()) // bno 기준 내림차순 정렬
+	               .collect(Collectors.toList());
+	}
+
+	@Override // 위버스에그 자유게시판 뷰페이지
+	public FeedDto findById(int bno) {
+		FeedDto feedDto = aespaRepository.findById(bno).orElseThrow(
+				()->{  // 람다식
+					return new IllegalArgumentException("데이터 처리시 에러!");
+				});
+		return feedDto;
 	}
 
 

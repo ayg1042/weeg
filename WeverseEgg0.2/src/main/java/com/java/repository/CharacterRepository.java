@@ -22,6 +22,9 @@ public interface CharacterRepository extends JpaRepository<CharacterEntity, Inte
 	
 	CharacterEntity findBycharacterId(int i);
 
+	void deleteCharacterByCharacterId(int characterId);
+
+
 
 
 

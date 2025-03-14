@@ -48,6 +48,9 @@ public interface CharacterService {
 	// 팬사인회 결과 유저 캐릭터에 저장
 	void sign_actvity(int character_id, int health, int fatigue, int price);
 
+	// 위버스 마이페이지 캐릭터 삭제
+	void deleteCharacterById(int characterId);
+
 
 
 
