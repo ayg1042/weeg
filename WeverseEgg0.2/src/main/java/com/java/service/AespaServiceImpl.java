@@ -75,7 +75,6 @@ public class AespaServiceImpl implements AespaService {
 		List<FeedDto> feedlist = aespaRepository.findAllByCategoryOrderByBdateDesc("feed");
 		return feedlist;
 	}
-
 	
 	@Override // 자유게시판 게시글 저장
 	public void weBoardWrite(FeedDto fdto) {
@@ -98,6 +97,25 @@ public class AespaServiceImpl implements AespaService {
 					return new IllegalArgumentException("데이터 처리시 에러!");
 				});
 		return feedDto;
+	}
+
+	@Override // 공지사항 가져오기
+	public List<FeedDto> notilist(String category, String status) {
+		List<FeedDto> notilist = aespaRepository.findAllByCategoryAndStatusOrderByBdateDesc(category, status);
+		return notilist;
+	}
+
+	@Override // 공지사항 뷰페이지
+	public FeedDto notiview(int bno) {
+		FeedDto feed = aespaRepository.findById(bno)
+				.orElse(null);
+		return feed;
+	}
+
+	@Override // egg main 배너 이미지 가져오기
+	public List<FeedDto> bannerlist() {
+		List<FeedDto> banners = aespaRepository.findByCategoryAndStatus("event", "게시중");
+		return banners;
 	}
 
 

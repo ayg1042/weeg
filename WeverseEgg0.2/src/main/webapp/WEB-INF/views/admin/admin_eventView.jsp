@@ -24,7 +24,7 @@
 	<div id="admin_container">
   	<%@ include file="gnb.jsp" %>
 	  	<div id="admin_content">
-	   		<h2>공지사항 상세보기</h2>
+	   		<h2>이벤트 상세보기</h2>
 	   		<div class="noticeTableArea">
 	   			<table class="viewBoard">
 	   				<tr>
@@ -36,14 +36,24 @@
 	   				<tr class="viewContent">
 	   					<td>
 	   					${fdto.bcontent }<br/>
-	   					<c:if test="${fdto.bfile != null }"><img src="../images/notice/${fdto.bfile}"></c:if>
+	   					<c:if test="${fdto.bfile != null }"><img src="../images/event/${fdto.bfile}"></c:if>
+	   					<c:if test="${fdto.bfile_banner != null }">
+	   						<hr/>
+	   						EGG MAIN - 배너 이미지<br/><br/>
+	   						<img src="../images/event/${fdto.bfile_banner}">
+	   					</c:if>
+	   					<c:if test="${fdto.bfile_modal != null }">
+	   						<hr/>
+	   						EGG MAIN - 모달 이벤트창 이미지<br/><br/>
+	   						<img src="../images/event/${fdto.bfile_modal}">
+	   					</c:if>
 	   					</td>
 	   				</tr>
 	   			</table>
 	  		</div>
 	  		<div class="noticeButtonArea">
-	  			<button type="button" onclick="location.href='/admin/notice'">목록</button>
-	  			<button type="button" onclick="location.href='/admin/noticeModify?bno=${fdto.bno}'">수정</button>
+	  			<button type="button" onclick="location.href='/admin/event'">목록</button>
+	  			<button type="button" onclick="location.href='/admin/eventModify?bno=${fdto.bno}'">수정</button>
 	  			<button type="button" onclick="delBtn()">삭제</button>
 	  		</div>
  		</div>

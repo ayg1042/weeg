@@ -21,6 +21,7 @@ import com.java.dto.character.CharacterDto;
 import com.java.dto.character.InvenDto;
 import com.java.dto.character.SaveStyleDto;
 import com.java.dto.character.StyleDto;
+import com.java.dto.feed.FeedDto;
 import com.java.dto.item.ItemDto;
 import com.java.dto.practice.DancePracticeDto;
 import com.java.dto.practice.EntertainmentPracticeDto;
@@ -36,6 +37,7 @@ import com.java.repository.MemberRepository;
 import com.java.repository.QuestHistoryRepository;
 import com.java.repository.QuestProgressRepository;
 import com.java.repository.QuestRepository;
+import com.java.service.AespaService;
 import com.java.service.CharacterService;
 import com.java.service.ModalService;
 import com.java.service.QuestService;
@@ -45,26 +47,18 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class EggMRController {
-
-	@Autowired
-	HttpSession session;
-	@Autowired
-	CharacterService characterService;
-	@Autowired
-	CharacterRepository characterRepository;
-	@Autowired
-	QuestHistoryRepository questHistoryRepository;
-	@Autowired
-	ModalService modalServiceImpl;
-	@Autowired
-	QuestService questService;
-	@Autowired
-	QuestProgressRepository questProgressRepository;
-	@Autowired
-	QuestRepository questRepository;
-	@Autowired
-	MemberRepository memberRepository ;
-
+	
+	@Autowired HttpSession session;
+	@Autowired CharacterService characterService;
+	@Autowired CharacterRepository characterRepository;
+	@Autowired QuestHistoryRepository questHistoryRepository;
+	@Autowired ModalService modalServiceImpl;
+	@Autowired AespaService aespaService;
+	@Autowired QuestService questService;
+	@Autowired QuestProgressRepository questProgressRepository;
+	@Autowired QuestRepository questRepository;
+	@Autowired MemberRepository memberRepository ;
+	
 	@GetMapping("/modal")
 	public String modal(Model model) throws JsonProcessingException {
 
@@ -218,7 +212,10 @@ public class EggMRController {
 		List<InvenDto> Inven = modalServiceImpl.getCharacterInven(character.getCharacter_id());
 		model.addAttribute("invenList", Inven);
 		model.addAttribute("character", character);
-
+		
+		//이벤트 리스트
+		List<FeedDto> events = aespaService.bannerlist();
+		model.addAttribute("events",events);
 		return "modal";
 	}
 

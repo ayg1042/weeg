@@ -1565,9 +1565,49 @@
 
 				</div>
 
+<<<<<<< HEAD
+
+		    	<div class="modal-event-title">
+			        <div>이벤트</div>
+		    	</div>
+		        <div class="modal-event">
+		        	<div id="event_layout">
+		        		<ul class="event-title">
+		        			<c:forEach items="${events }" var="event" varStatus="vs">
+						      <c:if test="${not empty event.bfile_modal}">
+		        				<li class="event_item" data-image="../images/event/${event.bfile_modal}"><a onclick="">${event.btitle }</a></li>
+						      </c:if>
+						    </c:forEach>
+		        		</ul>	
+						<div class="event_content">
+							<img id="eventImage" src="" alt="Event Image">
+						</div>
+		        	</div>
+		    	</div>
+=======
+>>>>>>> refs/remotes/origin/master
 			</div>
 		</div>
+<<<<<<< HEAD
+		<script>
+			// 페이지 로드시 첫 번째 이벤트 항목의 이미지가 보여지도록 처리
+		    var firstImage = document.querySelector('.event-title li');
+		    if (firstImage) {
+		        // 첫 번째 이벤트의 이미지를 기본으로 설정
+		        var firstImageUrl = firstImage.getAttribute('data-image');
+		        document.getElementById('eventImage').src = firstImageUrl;
+		        
+		        // 첫 번째 항목에 active 클래스 추가
+		        firstImage.classList.add('active');
+		    }
+			document.querySelectorAll('.event-title li').forEach(function (li) {
+				li.addEventListener('click', function () {
+					// 클릭된 li의 data-image 속성값을 가져와 이미지 변경
+					var imageUrl = li.getAttribute('data-image');
+					document.getElementById('eventImage').src = imageUrl;
+=======
 	</div>
+>>>>>>> refs/remotes/origin/master
 
 	<!-- 이벤트 모달 -->
 	<div id="modale" class="modal">

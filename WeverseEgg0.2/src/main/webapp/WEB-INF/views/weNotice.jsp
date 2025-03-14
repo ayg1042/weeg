@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="header.jsp" %>
 
 <!DOCTYPE html>
@@ -84,30 +85,14 @@
         <col class="w-[160px]">
       </colgroup>
       <tbody>
+      <c:forEach items="${notilist}" var="tdto">
         <tr>
           <td class="td_title">
-            <a href="/weNoticeView"><span class="info_title">공지사항 게시글 제목입니다.</span></a>
+            <a href="/weNoticeView?bno=${tdto.bno }"><span class="info_title">${tdto.btitle }</span></a>
           </td>
-          <td class="info_date">2025-01-01</td>
+          <td class="info_date"><fmt:formatDate value="${fdto.bdate}" pattern="yyyy-MM-dd"/></td>
         </tr>
-        <tr>
-          <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
-          </td>
-          <td class="info_date">2025-01-01</td>
-        </tr>
-        <tr>
-          <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
-          </td>
-          <td class="info_date">2025-01-01</td>
-        </tr>
-        <tr>
-          <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
-          </td>
-          <td class="info_date">2025-01-01</td>
-        </tr>
+      </c:forEach>
       </tbody>
     </table>
 
