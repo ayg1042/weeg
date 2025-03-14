@@ -25,6 +25,7 @@ import com.java.dto.character.SaveStyleDto;
 import com.java.dto.character.StyleDto;
 import com.java.dto.feed.FeedDto;
 import com.java.dto.item.ItemDto;
+import com.java.dto.member.MemberDto;
 import com.java.entity.character.StyleEntity;
 import com.java.entity.member.MemberEntity;
 import com.java.entity.quest.QuestEntity;
@@ -60,7 +61,6 @@ public class FController {
 	@Autowired MemberService memberService;
 	@Autowired AespaService aespaService;
 	@Autowired HttpSession session;
-	@Autowired AespaService aespaService;
 	
 	
 	
