@@ -101,6 +101,7 @@ tr {
 }
 
 .btnArea button {
+  margin: 20px;
   width: 130px;
   height: 40px;
   color: #000;

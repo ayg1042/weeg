@@ -73,4 +73,6 @@ public class MemberDto {
 		dto.jelly = entity.getJelly();
 		return dto;
 	}
+
+
 }

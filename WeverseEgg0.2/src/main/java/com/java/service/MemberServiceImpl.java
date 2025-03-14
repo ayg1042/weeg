@@ -22,7 +22,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired FeedRepository feedRepository;
 	
 
-	@Override // singin 시작 시 이메일 입력 
+	@Override // sign in 시작 시 이메일 입력 
 	public MemberDto findByEmail(String email) {
 	    MemberEntity memberEntity = memberRepository.findByEmail(email)
 	            .orElse(null); // 데이터가 없으면 null 반환
@@ -56,7 +56,7 @@ public class MemberServiceImpl implements MemberService {
 				.orElse(null); // 데이터가 없으면 null 반환
 		
 		if (memberEntity == null) {
-	        return null; // MemberEntity가 null인 경우, DTO도 null 반환
+	        return null; // MemberEntity가 null 인 경우, DTO도 null 반환
 	    }
 
 	    return MemberDto.login(memberEntity);

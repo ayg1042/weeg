@@ -85,6 +85,8 @@ font-style: normal;
     margin:14px auto 40px;
 }
 
+.gnb_list li.board_toggle {cursor:pointer;}
+
 
 .gnb_list li.board_sub {
 	font-size:15px;
@@ -98,5 +100,3 @@ font-style: normal;
 .gnb_list li.board_sub.open{
 	display:list-item;
 }
-
-

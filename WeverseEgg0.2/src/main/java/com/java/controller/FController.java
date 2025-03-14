@@ -2,14 +2,11 @@ package com.java.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,24 +19,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.java.dto.character.ArtistDto;
 import com.java.dto.character.CharacterDto;
 import com.java.dto.feed.FeedDto;
 import com.java.dto.member.MemberDto;
 import com.java.entity.member.MemberEntity;
+import com.java.entity.quest.QuestEntity;
+import com.java.entity.quest.QuestHistoryEntity;
+import com.java.entity.quest.QuestProgressEntity;
+import com.java.repository.CharacterRepository;
 import com.java.repository.FeedRepository;
 import com.java.repository.MemberRepository;
+import com.java.repository.QuestHistoryRepository;
+import com.java.repository.QuestProgressRepository;
+import com.java.repository.QuestRepository;
 import com.java.service.AespaService;
 import com.java.service.CharacterService;
 import com.java.service.MemberService;
-import com.java.dto.character.InvenDto;
-import com.java.dto.character.SaveStyleDto;
-import com.java.dto.character.StyleDto;
-import com.java.dto.group.ArtistNameDto;
-import com.java.dto.group.GroupDto;
-import com.java.dto.item.ItemDto;
-import com.java.dto.item.ItemTypeDto;
-import com.java.entity.character.StyleEntity;
+import com.java.service.QuestService;
 import com.java.service.ModalService;
 
 import jakarta.servlet.http.HttpSession;
@@ -49,12 +45,17 @@ import jakarta.transaction.Transactional;
 @Controller
 public class FController {
 	
-	@Autowired MemberRepository memberRepository;
-	@Autowired AespaService aespaService;
-	@Autowired ModalService modalServiceImpl;
+	@Autowired QuestService questService;
+	@Autowired QuestProgressRepository questProgressRepository;
 	@Autowired CharacterService characterService;
+	@Autowired QuestHistoryRepository questHistoryRepository;
+	@Autowired MemberRepository memberRepository;
+	@Autowired QuestRepository questRepository;
+	@Autowired CharacterRepository characterRepository;
+	@Autowired ModalService modalServiceImpl;
 	@Autowired MemberService memberService;
 	@Autowired HttpSession session;
+	@Autowired AespaService aespaService;
 	
 	
 	
@@ -116,6 +117,87 @@ public class FController {
 	public String weNoticeView() {
 		return "weNoticeView";
 	}
+		
+	
+	@PostMapping("/modal/reward")
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> claimReward(@RequestParam int questId, HttpSession session) {
+	    Map<String, Object> response = new HashMap<>();
+	    
+	    // 세션에서 캐릭터 정보 가져오기
+	    CharacterDto character = (CharacterDto) session.getAttribute("character");
+
+	    if (character == null) {
+	        response.put("success", false);
+	        response.put("message", "로그인이 필요합니다.");
+	        return ResponseEntity.ok(response);
+	    }
+
+	    try {
+	    	int userId = character.getMember().getUser_id();
+	        int character_id = character.getCharacter_id();
+	        System.out.println("userId : " + character_id);
+	        System.out.println("questId : " + questId);
+
+	        // 퀘스트 보상 코인 가져오기
+	        Integer rewardCoin = questService.getRewardCoin(questId);
+	        if (rewardCoin == null) {
+	            response.put("success", false);
+	            response.put("message", "해당 퀘스트가 존재하지 않습니다.");
+	            return ResponseEntity.ok(response);
+	        }
+
+	        // 기존 코인 가져오기
+	        Integer currentCoin = characterService.getUserCoin(character_id);
+	        if (currentCoin == null) currentCoin = 0;
+
+	        // 기존 보상 기록 확인
+	        QuestHistoryEntity existingHistory = questHistoryRepository.findByQuest_QuestIdAndMember_UserId(questId, userId);
+	        if (existingHistory != null && existingHistory.getIsRewarded() == 1) {
+	            response.put("success", false);
+	            response.put("message", "이미 보상을 받았습니다.");
+	            return ResponseEntity.ok(response);
+	        }
+
+	        // ✅ 코인 업데이트 (기존 코인 + 보상 코인)
+	        characterService.updateCoin(character_id, rewardCoin);
+	        System.out.println("보상 코인: " + rewardCoin);
+
+	        // ✅ 보상 기록 저장
+	        MemberEntity member = memberRepository.findById(userId)
+	                .orElseThrow(() -> new Exception("사용자 정보를 찾을 수 없습니다."));
+	        QuestEntity quest = questRepository.findById(questId)
+	                .orElseThrow(() -> new Exception("퀘스트 정보를 찾을 수 없습니다."));
+
+	        QuestHistoryEntity history = new QuestHistoryEntity();
+	        history.setMember(member);
+	        history.setQuest(quest);
+	        history.setIsRewarded(1);
+	        history.setCompletionDate(new Timestamp(System.currentTimeMillis()));
+	        questHistoryRepository.save(history);
+
+	        // ✅ 진행 상태 업데이트 (퀘스트 완료 처리)
+	        QuestProgressEntity progress = questProgressRepository.findByQuest_QuestIdAndMember_UserId(questId, userId);
+	        if (progress != null) {
+	            progress.setIsCompleted(1);
+	            questProgressRepository.save(progress);
+	        }
+
+	        // 응답 데이터 구성
+	        response.put("success", true);
+	        response.put("rewardCoin", rewardCoin);
+	        response.put("message", "퀘스트 보상을 받았습니다!");
+	        response.put("isRewarded", 1);
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        response.put("success", false);
+	        response.put("message", "보상 받기를 실패했습니다.");
+	    }
+
+	    return ResponseEntity.ok(response);
+	}
+
 	
 	@GetMapping("/weEvent") // 위버스에그 이벤트
 	public String weEvent() {

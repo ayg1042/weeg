@@ -232,7 +232,8 @@ nav:not(:hover) ul li a {
   z-index: 5;
   width: 100%;
   height: auto;
-  top: 8px;
+  position: absolute;
+  top: 33px;
   left: 0;
   transition: opacity 0.2s ease-in-out;
 }

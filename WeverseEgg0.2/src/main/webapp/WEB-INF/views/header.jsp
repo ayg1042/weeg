@@ -50,6 +50,7 @@
 		  <header>
 		      <div id="header_wrap">
 		        <div class="main_logo">
+		        <a href="/">
 		            <img src="../images/main/weverse_logo.png" alt="">
 		          </a>
 		        </div>

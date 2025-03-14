@@ -1,6 +1,3 @@
-/**
- * 
- */
 $(document).ready(function() {
 		// 아이템 추가
         $('#item_save').on('click', function(event) {

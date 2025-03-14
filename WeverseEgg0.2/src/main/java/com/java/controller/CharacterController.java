@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.java.dto.character.ArtistDto;
 import com.java.dto.character.CharacterDto;
-import com.java.dto.group.GroupDto;
-import com.java.dto.item.ItemDto;
 import com.java.dto.member.MemberDto;
 import com.java.entity.character.ArtistEntity;
 import com.java.entity.character.CharacterEntity;
