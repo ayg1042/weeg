@@ -88,14 +88,15 @@ public class AdminController {
 		return "/admin/admin_memView";
 	}
 	
-	// 회원삭제
-	@PostMapping("/memDelete")
-	@ResponseBody
-	public String memDelete(int userId) {
-		System.out.println("에이잭스 확인 : "+userId);
-		memberService.deleteById(userId);
-		return "회원이 삭제되었습니다.";
-	}
+	/*
+	 * // 회원삭제
+	 * 
+	 * @PostMapping("/memDelete")
+	 * 
+	 * @ResponseBody public String memDelete(int userId) {
+	 * System.out.println("에이잭스 확인 : "+userId); memberService.deleteById(userId);
+	 * return "회원이 삭제되었습니다."; }
+	 */
 	
 	@GetMapping("/notice")
 	public String board(Model model) {

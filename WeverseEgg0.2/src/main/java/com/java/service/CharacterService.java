@@ -51,6 +51,8 @@ public interface CharacterService {
 
 	void updateCoin(int userId, int updatedCoin);
 
+	// 위버스 마이페이지 캐릭터 삭제
+	void deleteCharacterById(int characterId);
 
 
 

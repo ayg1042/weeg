@@ -22,6 +22,7 @@ public interface CharacterRepository extends JpaRepository<CharacterEntity, Inte
            "WHERE g.groupName = :groupName")
     List<CharacterEntity> findAllByGroupName(@Param("groupName") String groupName);
 
+    void deleteCharacterByCharacterId(int characterId);
     // 특정 사용자 ID로 캐릭터 찾기 (단일 조회)
     CharacterEntity findByMember_UserId(Integer userId);
 

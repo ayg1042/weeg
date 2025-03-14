@@ -12,7 +12,7 @@
   <link rel="stylesheet" type="text/css" href="css/mainpage.css" />
   <link rel="stylesheet" type="text/css" href="css/header.css" />
   <link rel="stylesheet" type="text/css" href="css/weNotice.css" />
-  <title>WEVERSEGG_NOTICE</title>
+  <title>WEVERSEGG_EVENT</title>
 </head>
 
 <body>
@@ -28,12 +28,7 @@
         <ul>
           <li id="option_title">뉴스</li>
           <li><a href="/wenotice">공지사항</a></li>
-<<<<<<< HEAD
-          <li><a href="#">업데이트</a></li>
           <li><a href="#">이벤트</a></li>
-=======
-          <li><a href="/weEvent">이벤트</a></li>
->>>>>>> refs/remotes/origin/master
         </ul>
         <ul>
           <li id="option_title">가이드</li>
@@ -60,7 +55,7 @@
     </div>
   </div>
 
-  <!-- 공지사항 -->
+  <!-- 이벤트 -->
   <div id="notice_banner">
     <img src="../images/weNotice/top_img.png">
   </div>
@@ -68,7 +63,7 @@
   <div id="notice_container">
     <div class="notice_title">
       <div class="title_between" style="justify-content: space-between; display: flex;">
-        <div class="title_txt">공지사항</div>
+        <div class="title_txt">이벤트</div>
         <form action="">
           <div class="search_inputBox">
             <input type="text" name="text" class="searchN" placeholder="검색어를 입력하세요.">
@@ -86,25 +81,25 @@
       <tbody>
         <tr>
           <td class="td_title">
-            <a href="/weNoticeView"><span class="info_title">공지사항 게시글 제목입니다.</span></a>
+            <a href="/weEventView"><span class="info_title">이벤트 게시글 제목입니다.</span></a>
           </td>
           <td class="info_date">2025-01-01</td>
         </tr>
         <tr>
           <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
+            <span class="info_title">이벤트 게시글 제목입니다.</span>
           </td>
           <td class="info_date">2025-01-01</td>
         </tr>
         <tr>
           <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
+            <span class="info_title">이벤트 게시글 제목입니다.</span>
           </td>
           <td class="info_date">2025-01-01</td>
         </tr>
         <tr>
           <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
+            <span class="info_title">이벤트 게시글 제목입니다.</span>
           </td>
           <td class="info_date">2025-01-01</td>
         </tr>

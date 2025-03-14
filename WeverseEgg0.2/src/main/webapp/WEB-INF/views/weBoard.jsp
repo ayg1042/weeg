@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="header.jsp" %>
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/mainpage.css" />
   <link rel="stylesheet" type="text/css" href="css/header.css" />
-  <link rel="stylesheet" type="text/css" href="css/weNotice.css" />
+  <link rel="stylesheet" type="text/css" href="css/weBoard.css" />
   <title>WEVERSEGG_NOTICE</title>
 </head>
 
@@ -28,12 +29,7 @@
         <ul>
           <li id="option_title">뉴스</li>
           <li><a href="/wenotice">공지사항</a></li>
-<<<<<<< HEAD
-          <li><a href="#">업데이트</a></li>
-          <li><a href="#">이벤트</a></li>
-=======
-          <li><a href="/weEvent">이벤트</a></li>
->>>>>>> refs/remotes/origin/master
+          <li><a href="/weEventView">이벤트</a></li>
         </ul>
         <ul>
           <li id="option_title">가이드</li>
@@ -43,7 +39,7 @@
         </ul>
         <ul>
           <li id="option_title">커뮤니티</li>
-          <li><a href="/weBoard">자유게시판</a></li>
+          <li><a href="#">자유게시판</a></li>
           <li><a href="#">EGG 코디</a></li>
         </ul>
         <ul>
@@ -60,15 +56,15 @@
     </div>
   </div>
 
-  <!-- 공지사항 -->
+  <!-- 자유게시판 -->
   <div id="notice_banner">
-    <img src="../images/weNotice/top_img.png">
+    <img src="../images/weNotice/top_img2.png">
   </div>
 
   <div id="notice_container">
     <div class="notice_title">
       <div class="title_between" style="justify-content: space-between; display: flex;">
-        <div class="title_txt">공지사항</div>
+        <div class="title_txt">자유게시판</div>
         <form action="">
           <div class="search_inputBox">
             <input type="text" name="text" class="searchN" placeholder="검색어를 입력하세요.">
@@ -84,32 +80,21 @@
         <col class="w-[160px]">
       </colgroup>
       <tbody>
+      <c:forEach items="${list}" var="fdto">
         <tr>
+        	<td>${fdto.bno}</td>
           <td class="td_title">
-            <a href="/weNoticeView"><span class="info_title">공지사항 게시글 제목입니다.</span></a>
+            <a href="/weBoardView?bno=${fdto.bno}"><span class="info_title">${fdto.btitle }</span></a>
           </td>
-          <td class="info_date">2025-01-01</td>
+          <td class="td_wrtier">${fdto.member.nickname}</td>
+          <td class="info_date"><fmt:formatDate value="${fdto.bdate }" pattern="yyyy-MM-dd"/></td>
         </tr>
-        <tr>
-          <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
-          </td>
-          <td class="info_date">2025-01-01</td>
-        </tr>
-        <tr>
-          <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
-          </td>
-          <td class="info_date">2025-01-01</td>
-        </tr>
-        <tr>
-          <td>
-            <span class="info_title">공지사항 게시글 제목입니다.</span>
-          </td>
-          <td class="info_date">2025-01-01</td>
-        </tr>
+      </c:forEach>
       </tbody>
     </table>
+    <div class="btnArea">
+  		<button id="WriteBtn" onclick="WriteBtn()" >글작성</button>
+ 		</div>
 
 
     <!-- 페이지 넘버링 -->
@@ -126,6 +111,12 @@
   </div>
 
   <script>
+  function WriteBtn(){
+	  if(confirm("게시글을 작성하시겠습니까?")) {
+    	location.href="/weBoardWrite";
+  	}
+  }
+  
     document.addEventListener("DOMContentLoaded", function () {
       const paginationLinks = document.querySelectorAll(".pagination a");
 

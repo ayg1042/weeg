@@ -24,6 +24,7 @@ public interface MemberService {
 	// 추가 캐릭터 슬롯 구매
 	void buyCharacter(int id);
 
+
 	// 회원전체리스트
 	List<MemberDto> findAll();
 
@@ -31,6 +32,6 @@ public interface MemberService {
 	MemberDto findByUserId(int user_id);
 
 	// 회원삭제
-	void deleteById(int userId);
+	/* void deleteById(int userId); */
 
 }

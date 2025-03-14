@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.java.dto.character.CharacterDto;
 import com.java.dto.member.MemberDto;
 import com.java.entity.member.MemberEntity;
+import com.java.repository.FeedRepository;
 import com.java.repository.MemberRepository;
 
 import jakarta.transaction.Transactional;
@@ -18,6 +19,7 @@ import jakarta.transaction.Transactional;
 public class MemberServiceImpl implements MemberService {
 	
 	@Autowired MemberRepository memberRepository;
+	@Autowired FeedRepository feedRepository;
 	
 
 	@Override // sign in 시작 시 이메일 입력 
@@ -111,6 +113,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+
 	// 회원전체리스트
 	@Override
 	public List<MemberDto> findAll() {
@@ -130,11 +133,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
-	// 회원삭제
-	@Override
-	public void deleteById(int userId) {
-		memberRepository.deleteById(userId);
-	}
+	/*
+	 * // 회원삭제
+	 * 
+	 * @Override public void deleteById(int userId) {
+	 * feedRepository.deleteFeedByMemberId(userId);
+	 * memberRepository.deleteById(userId); }
+	 */
 
 
 	
