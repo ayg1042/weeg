@@ -17,7 +17,10 @@ public class FileConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/images/items/**")
 		.addResourceLocations("file:///C:/Users/KOSMO/git/weeg/WeverseEgg0.2/src/main/resources/static/images/items/");
 		
+		registry.addResourceHandler("/images/notice/**")
+        .addResourceLocations("file:///C:/Users/KOSMO/git/weeg/WeverseEgg0.2/src/main/resources/static/images/notice/");
 		
+		registry.addResourceHandler("/images/event/**")
+		.addResourceLocations("file:///C:/Users/KOSMO/git/weeg/WeverseEgg0.2/src/main/resources/static/images/event/");
 	}
-
 }

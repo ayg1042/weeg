@@ -1,0 +1,60 @@
+#admin_quest_main {
+	display: flex;
+}
+
+#quest_container {
+	width: 100%;
+	padding: 30px;
+	margin-left: 300px;
+}
+
+h2 {
+	display: block;
+	font-size: 1.5em;
+}
+
+.questTableArea {
+	margin-top: 50px;
+}
+
+.questTable {
+    width: 100%;
+    table-layout: fixed; /* 테이블이 컨테이너에 맞춰지도록 설정 */
+    border-collapse: collapse; /* 경계를 겹치도록 설정 */
+}
+
+.questTable td {
+    padding: 10px;
+    text-align: center; /* 텍스트 가운데 정렬 */
+    border-left: 1px solid #d7d7d7; /* 테두리 추가 */
+}
+
+.questTable td:first-child {
+   border : none;
+}
+
+.questTable tr:nth-child(even) {
+	background-color: #f0f8ff;
+}
+
+.questTable th {
+	background-color: #ededed;
+	border-bottom: 1px solide #999;
+}
+
+.addqbtn {
+	height: 50px;
+	display: block;
+	margin: 20px auto;
+	padding: 10px 20px;
+	font-size: 16px;
+	background-color: #f0f8ff;
+	border-radius: 5px;
+}
+
+.savebtn{
+	background-color: #f0f8ff;
+	border-radius: 5px;
+	width: 50px;
+	height: 30px;
+}

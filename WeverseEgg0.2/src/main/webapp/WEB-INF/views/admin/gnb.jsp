@@ -6,7 +6,7 @@
     <a href="/admin"><img src="../images/mainpage/main_egg.png" alt=""></a>
   </div>
   <div class="gnb_list">
-  	<p>${sessionScope.admin_nickname}</p>
+  	<p>${sessionScope.session_admin.nickname}</p>
   	<button type="button" onclick="location.href='/admin/logout'" class="outBtn">로그아웃</button>
     <ul>
       <li class="active"><a href="/admin/main" >회원 정보</a></li>
@@ -16,8 +16,8 @@
       <li class="board_sub"><a href="/admin/board">하위 메뉴 3</a></li>
       <li><a href="/admin/items" >아이템 관리</a></li>
       <li><a href="" >트레이닝 관리</a></li>
-      <li><a href="" >퀘스트 관리</a></li>
-      <li><a href="" >이벤트 관리</a></li>
+      <li><a href="/admin/event" >이벤트 관리</a></li>
+      <li><a href="/admin/admin_quest" >퀘스트 관리</a></li>
       <li><a href="/admin/artist" >아이돌 관리</a></li>
     </ul>
   </div>

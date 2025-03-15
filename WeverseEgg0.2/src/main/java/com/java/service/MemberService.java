@@ -1,12 +1,8 @@
 package com.java.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import com.fasterxml.jackson.databind.JsonNode;
-import com.java.dto.character.CharacterDto;
 import com.java.dto.member.MemberDto;
-import com.java.entity.member.MemberEntity;
 
 public interface MemberService {
 
@@ -27,6 +23,7 @@ public interface MemberService {
 
 	// 추가 캐릭터 슬롯 구매
 	void buyCharacter(int id);
+
 
 	// 회원전체리스트
 	List<MemberDto> findAll();

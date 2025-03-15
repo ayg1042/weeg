@@ -111,7 +111,7 @@ public class MemberController {
 			session.setAttribute("session_email", email);
 			session.setAttribute("session_nick", memberDto.getNickname());
 			session.setAttribute("session_userId", memberDto.getUser_id()); // 1
-			session.setAttribute("session_id", memberDto);
+			session.setAttribute("session_id", memberDto); // ✅ MemberDto 객체 저장
 			System.out.println(memberDto.getNickname());
 	        return "redirect:/"; // 로그인 성공
 	    } else { // 회원 정보가 없을 경우
@@ -217,9 +217,6 @@ public class MemberController {
 		session.invalidate(); // 세션 삭제
 		return "main";
 	}
-	
-	
-	
 	
 	
 	

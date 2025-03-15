@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script src="/js/admin_itemAdd.js"></script>
+  <!-- <script src="/js/admin_itemAdd.js"></script> -->
   <link rel="stylesheet" type="text/css" href="../css/admin/admin.css"/>
   <link rel="stylesheet" type="text/css" href="../css/admin/admin_memView.css"/>
   <script src="/js/admin0.2.js" defer></script>
@@ -37,6 +37,7 @@
 		            <td><label for="item-type">아이템 타입</label></td>
 		            <td>
 		                <select name="item-type" id="item-type">
+		                    	<option>선택</option>
 		                    <c:forEach items="${itemTypeList}" var="dto" varStatus="i">
 		                    	<option>선택</option>
 			                    <option value="${dto.itemTypeId}">

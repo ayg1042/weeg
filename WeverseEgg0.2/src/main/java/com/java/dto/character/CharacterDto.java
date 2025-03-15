@@ -95,7 +95,7 @@ public class CharacterDto {
     public static CharacterDto unit(CharacterEntity entity) {
     	CharacterDto unitDto = new CharacterDto();
     	unitDto.setCharacter_id(entity.getCharacterId());
-    	unitDto.setArtist(ArtistDto.info(entity.getArtist()));
+    	unitDto.setArtist(ArtistDto.From(entity.getArtist()));
     	unitDto.setNickName(entity.getNickName());
         unitDto.setGender(entity.getGender());
         unitDto.setMember(MemberDto.From(entity.getMember()));
@@ -120,5 +120,6 @@ public class CharacterDto {
     	dto.setCoin(entity.getCoin());
     	return dto;
     }
+
     
 }

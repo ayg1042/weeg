@@ -29,7 +29,30 @@
 				})// ajax
 			}
 		})//회원삭제버튼 
+		
+  	<!-- 캐릭터 삭제 -->
+		$("#charDeleteBtn").click(function(){
+			const characterId = $(this).data("character-id");
+			if(confirm("해당 회원의 캐릭터를 삭제하시겠습니까?")){
+				
+				console.log("삭제할 캐릭터 ID:", characterId);
+				$.ajax({
+					url:"/deleteCharacter",
+					type:"post",
+					data:{"characterId":characterId},
+					success: function(data){
+						alert("캐릭터가 삭제되었습니다.");
+						location.reload();
+					},
+					error:function(){
+						alert("실패");
+					}
+				}) // ajax 
+			}
+		}) // 캐릭터삭제 버튼
+		
   });// jquery
+  
   </script>
 </head>
 
@@ -95,7 +118,7 @@
 				   				</tr>
 				   			</table>
 			   			</form>
-							<button type="button">캐릭터 삭제</button>	   					
+							<button type="button" id="charDeleteBtn" data-character-id="${chDto.character_id}">캐릭터 삭제</button>	   					
 				  	</div>
 				  </c:forEach>
 			  </c:if>

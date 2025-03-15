@@ -83,6 +83,7 @@ header{
 }
 /* 로그인 후 추가되는 헤더 요소 */
 .header_search, .header_alram, .header_mypage, .header_setting {
+  padding: 0px;
   background: none;
   border: none;
   cursor: pointer;

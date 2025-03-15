@@ -9,12 +9,11 @@ import com.java.dto.character.CharacterDto;
 import com.java.dto.practice.VocalPracticeDto;
 
 public interface CharacterService {
-	
 	// 캐릭터 선택 페이지 열기
 	List<CharacterDto> getCharactersByUserId(int user_id);
 
 	// 캐릭터 생성, 닉네임 저장
-	void save(CharacterEntity character);
+	CharacterEntity save(CharacterEntity character);
 	
 	CharacterDto getCharacterByCharacterId(int characterId);
 
@@ -48,6 +47,15 @@ public interface CharacterService {
 	// 팬사인회 결과 유저 캐릭터에 저장
 	void sign_actvity(int character_id, int health, int fatigue, int price);
 
+	// 레벨 캐릭터db 저장
+	//void lvSave(int character_id, int level);
+
+	Integer getUserCoin(int character_id);
+
+	void updateCoin(int userId, int updatedCoin);
+
+	// 위버스 마이페이지 캐릭터 삭제
+	void deleteCharacterById(int characterId);
 
 
 

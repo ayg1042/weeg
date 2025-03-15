@@ -20,6 +20,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import jakarta.persistence.ForeignKey;
 
 @Entity
 @Table(name = "Egg_Feed")
@@ -39,11 +40,13 @@ public class FeedDto {
 	private String bcontent;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id")
+	@JoinColumn(name="member_id", foreignKey = @ForeignKey(foreignKeyDefinition = "ON DELETE SET NULL"))
 	private MemberEntity member;
 	
 	private Timestamp bdate;
 	private String bfile;
+	private String bfile_banner;
+	private String bfile_modal;
 	
 	@Column(nullable= false)
 	private String category;
@@ -57,5 +60,7 @@ public class FeedDto {
             this.bdate = Timestamp.valueOf(LocalDateTime.now());
         }
     }
+
+
 
 }

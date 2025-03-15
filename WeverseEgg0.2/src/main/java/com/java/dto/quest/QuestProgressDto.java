@@ -1,6 +1,5 @@
 package com.java.dto.quest;
 
-import java.sql.Timestamp;
 
 import com.java.dto.member.MemberDto;
 
@@ -25,7 +24,7 @@ public class QuestProgressDto {
     private int isCompleted;
     /** 퀘스트 진행률 (예: "50%" 같은 문자열) */
     private String progress;
-    /** 퀘스트 남은 시간 */
-    private Timestamp remainingTime;
+    /** 퀘스트 시작 시간*/
+//    private Timestamp startTime;
     
 }

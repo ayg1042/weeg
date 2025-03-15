@@ -35,14 +35,15 @@
 	   				</tr>
 	   				<tr class="viewContent">
 	   					<td>
-	   					${fdto.bcontent }
+	   					${fdto.bcontent }<br/>
+	   					<c:if test="${fdto.bfile != null }"><img src="../images/notice/${fdto.bfile}"></c:if>
 	   					</td>
 	   				</tr>
 	   			</table>
 	  		</div>
 	  		<div class="noticeButtonArea">
 	  			<button type="button" onclick="location.href='/admin/notice'">목록</button>
-	  			<button type="button">수정</button>
+	  			<button type="button" onclick="location.href='/admin/noticeModify?bno=${fdto.bno}'">수정</button>
 	  			<button type="button" onclick="delBtn()">삭제</button>
 	  		</div>
  		</div>

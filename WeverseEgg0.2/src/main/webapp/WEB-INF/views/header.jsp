@@ -1,3 +1,4 @@
+
 <c:choose>
     <c:when test="${not empty sessionScope.session_id}">
         <!-- 로그인 상태 -->
