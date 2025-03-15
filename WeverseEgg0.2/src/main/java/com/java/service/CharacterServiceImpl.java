@@ -58,7 +58,7 @@ public class CharacterServiceImpl implements CharacterService {
 
 	// 캐릭터 생성, 닉네임 저장
 	@Override
-	public void save(CharacterEntity character) {
+	public CharacterEntity save(CharacterEntity character) {
 		GroupEntity group = groupRepository.findById(1).orElseThrow();
 		ArtistNameEntity artistN = new ArtistNameEntity();
 		artistN.setArtistNId(1);
@@ -72,6 +72,7 @@ public class CharacterServiceImpl implements CharacterService {
 		List<ArtistEntity> artistList = artistRepository.findAll();
 		character.setArtist(artistList.get(artistList.size()-1));
 		characterRepository.save(character);
+		return character;
 		
 	}
 
