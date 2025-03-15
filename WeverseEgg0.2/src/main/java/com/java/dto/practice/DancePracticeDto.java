@@ -31,5 +31,14 @@ public class DancePracticeDto {
         return dto;
     }
 
+	public static DancePracticeDto From(DancePracticeEntity entity) {
+		DancePracticeDto dto = new DancePracticeDto();
+        dto.setDanceId(entity.getDanceId());
+        dto.setPracticeId(PracticeDto.From(entity.getPractice()));
+        dto.setDanceName(entity.getDanceName());
+        dto.setDanceScore(entity.getDanceScore());
+        return dto;
+	}
+
     
 }

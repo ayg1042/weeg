@@ -39,7 +39,6 @@
 		                <select name="item-type" id="item-type">
 		                    	<option>선택</option>
 		                    <c:forEach items="${itemTypeList}" var="dto" varStatus="i">
-		                    	<option>선택</option>
 			                    <option value="${dto.itemTypeId}">
 			                    	<c:if test="${dto.itemType == 1}">모자</c:if>
 			                    	<c:if test="${dto.itemType == 2}">의상</c:if>

@@ -15,6 +15,12 @@ import com.java.dto.group.GroupDto;
 import com.java.dto.item.ItemDto;
 import com.java.dto.item.ItemInfoDto;
 import com.java.dto.item.ItemTypeDto;
+import com.java.dto.practice.DancePracticeDto;
+import com.java.dto.practice.EntertainmentPracticeDto;
+import com.java.dto.practice.PracticeDto;
+import com.java.dto.practice.PracticeType;
+import com.java.dto.practice.RapPracticeDto;
+import com.java.dto.practice.VocalPracticeDto;
 import com.java.entity.character.CharacterEntity;
 import com.java.entity.character.InvenEntity;
 import com.java.entity.character.StyleEntity;
@@ -23,13 +29,25 @@ import com.java.entity.group.GroupEntity;
 import com.java.entity.item.ItemEntity;
 import com.java.entity.item.ItemInfoEntity;
 import com.java.entity.item.ItemTypeEntity;
+import com.java.entity.practice.DancePracticeEntity;
+import com.java.entity.practice.EntertainmentPracticeEntity;
+import com.java.entity.practice.PracticeEntity;
+import com.java.entity.practice.PracticeTypeEntity;
+import com.java.entity.practice.RapPracticeEntity;
+import com.java.entity.practice.VocalPracticeEntity;
 import com.java.repository.CharacterRepository;
+import com.java.repository.DancePracticeRepository;
+import com.java.repository.EntertainmentPracticeRepository;
 import com.java.repository.GroupRepository;
 import com.java.repository.InvenRepository;
 import com.java.repository.ItemInfoRepository;
 import com.java.repository.ItemRepository;
 import com.java.repository.ItemTypeRepository;
+import com.java.repository.PracticeRepository;
+import com.java.repository.PracticeTypeRepository;
+import com.java.repository.RapPracticeRepository;
 import com.java.repository.StyleRepository;
+import com.java.repository.VocalPracticeRepository;
 import com.java.repository.ArtistNameRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -45,6 +63,12 @@ public class ModalServiceImpl implements ModalService {
 	@Autowired ItemInfoRepository itemInfoRepository;
 	@Autowired GroupRepository groupRepository;
 	@Autowired ArtistNameRepository artistNameRepository;
+	@Autowired PracticeRepository practiceRepository;
+	@Autowired PracticeTypeRepository practiceTypeRepository;
+	@Autowired DancePracticeRepository dancePracticeRepository;
+	@Autowired VocalPracticeRepository vocalPracticeRepository;
+	@Autowired RapPracticeRepository rapPracticeRepository;
+	@Autowired EntertainmentPracticeRepository enterPracticeRepository;
 	
 	@Override
 	public List<ItemDto> getAllItems() {
@@ -258,6 +282,170 @@ public class ModalServiceImpl implements ModalService {
 		ArtistNameEntity entity = ArtistNameEntity.From(dto);
 		artistNameRepository.delete(entity);
 		
+	}
+
+	public List<PracticeDto> getAllPractice() {
+		List<PracticeEntity> list = practiceRepository.findAll();
+		List<PracticeDto> dto = new ArrayList<>();
+		for(PracticeEntity entity : list) {
+			dto.add(PracticeDto.From(entity));
+		}
+		
+		return dto;
+	}
+
+	public List<PracticeType> getAllPracticeType() {
+		List<PracticeTypeEntity> list = practiceTypeRepository.findAll();
+		List<PracticeType> dto = new ArrayList<>();
+		
+		for(PracticeTypeEntity entity : list) {
+			dto.add(PracticeType.From(entity));
+		}
+		
+		return dto;
+	}
+
+	public void addPracticeType(PracticeType dto) {
+		PracticeTypeEntity entity = PracticeTypeEntity.nullId(dto);
+		practiceTypeRepository.save(entity);
+		
+	}
+
+	public void deletePracticeType(PracticeType dto) {
+		practiceTypeRepository.delete(PracticeTypeEntity.From(dto));
+	}
+
+	public PracticeType getPracticeType(int practiceTypeId) {
+		PracticeType dto = PracticeType.From(practiceTypeRepository.getById(practiceTypeId));
+		return dto;
+	}
+
+	public void addPractice(PracticeDto dto) {
+		PracticeEntity entity = PracticeEntity.nullId(dto);
+		practiceRepository.save(entity);
+		
+	}
+
+	public PracticeDto getPractice(int updatePracticeId) {
+		PracticeDto dto= PracticeDto.From(practiceRepository.getById(updatePracticeId));
+		return dto;
+	}
+
+	public void updatePractice(PracticeDto dto) {
+		PracticeEntity entity = PracticeEntity.From(dto);
+		practiceRepository.save(entity);
+	}
+
+	public void deletePractice(PracticeDto dto) {
+		PracticeEntity entity = PracticeEntity.From(dto);
+		practiceRepository.delete(entity);
+	}
+
+	public void addDancePractice(DancePracticeDto dto) {
+		DancePracticeEntity entity = DancePracticeEntity.nullId(dto);
+		dancePracticeRepository.save(entity);
+		
+	}
+
+	public List<DancePracticeDto> getAllDancePractice() {
+		List<DancePracticeEntity> list = dancePracticeRepository.findAll();
+		List<DancePracticeDto> dto = new ArrayList<>();
+		
+		for(DancePracticeEntity entity : list) {
+			dto.add(DancePracticeDto.From(entity));
+		}
+		
+		return dto;
+	}
+
+	public DancePracticeDto getDancePractice(int danceId) {
+		DancePracticeDto dto = DancePracticeDto.From(dancePracticeRepository.getById(danceId));
+		return dto;
+	}
+
+	public void deleteDancePractice(DancePracticeDto dto) {
+		DancePracticeEntity entity = DancePracticeEntity.From(dto);
+		dancePracticeRepository.delete(entity);
+	}
+
+	public List<VocalPracticeDto> getAllVocalPractice() {
+		List<VocalPracticeEntity> list = vocalPracticeRepository.findAll();
+		List<VocalPracticeDto> dto = new ArrayList<>();
+		
+		for(VocalPracticeEntity entity : list) {
+			dto.add(VocalPracticeDto.From(entity));
+		}
+		
+		return dto;
+	}
+
+	public void addVocalPractice(VocalPracticeDto dto) {
+		VocalPracticeEntity entity = VocalPracticeEntity.nullId(dto);
+		vocalPracticeRepository.save(entity);
+		
+	}
+
+	public VocalPracticeDto getVocalPractice(int vocalId) {
+		VocalPracticeDto dto = VocalPracticeDto.From(vocalPracticeRepository.getById(vocalId));
+		return dto;
+	}
+
+	public void deleteVocalPractice(VocalPracticeDto dto) {
+		VocalPracticeEntity entity = VocalPracticeEntity.From(dto);
+		vocalPracticeRepository.delete(entity);
+	}
+
+	public List<RapPracticeDto> getAllRapPractice() {
+		List<RapPracticeEntity> list = rapPracticeRepository.findAll();
+		List<RapPracticeDto> dto = new ArrayList<>();
+		
+		for(RapPracticeEntity entity : list) {
+			dto.add(RapPracticeDto.From(entity));
+		}
+		
+		return dto;
+	}
+
+	public void addRapPractice(RapPracticeDto dto) {
+		RapPracticeEntity entity = RapPracticeEntity.nullId(dto);
+		rapPracticeRepository.save(entity);
+	}
+
+	public RapPracticeDto getRapPractice(int rapId) {
+		RapPracticeDto dto = RapPracticeDto.From(rapPracticeRepository.getById(rapId));
+		return dto;
+	}
+
+	public void deleteRapPractice(RapPracticeDto dto) {
+		RapPracticeEntity entity = RapPracticeEntity.From(dto);
+		rapPracticeRepository.delete(entity);
+		
+	}
+
+	public List<EntertainmentPracticeDto> getAllEnterPractice() {
+		List<EntertainmentPracticeEntity> list = enterPracticeRepository.findAll();
+		List<EntertainmentPracticeDto> dto = new ArrayList<>();
+		
+		for(EntertainmentPracticeEntity entity : list) {
+			dto.add(EntertainmentPracticeDto.From(entity));
+		}
+		
+		return dto;
+	}
+
+	public void addEntertainmentPractice(EntertainmentPracticeDto dto) {
+		EntertainmentPracticeEntity entity = EntertainmentPracticeEntity.nullId(dto); 
+		enterPracticeRepository.save(entity);
+	}
+
+	public EntertainmentPracticeDto getEntertainmentPractice(int enterId) {
+		EntertainmentPracticeDto dto = EntertainmentPracticeDto.From(enterPracticeRepository.getById(enterId));
+		return dto;
+	}
+
+	public void deleteEntertainmentPractice(EntertainmentPracticeDto dto) {
+		EntertainmentPracticeEntity entity = EntertainmentPracticeEntity.From(dto);
+		enterPracticeRepository.delete(entity);
 	}
 
 }

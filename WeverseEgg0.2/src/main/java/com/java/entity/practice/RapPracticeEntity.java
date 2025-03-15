@@ -1,5 +1,7 @@
 package com.java.entity.practice;
 
+import com.java.dto.practice.RapPracticeDto;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,4 +31,21 @@ public class RapPracticeEntity {
     /** 랩 연습 점수 (연습을 통해 얻는 랩 능력치) */
     @Column(nullable = false)
     private int rapScore;
+
+	public static RapPracticeEntity nullId(RapPracticeDto dto) {
+		RapPracticeEntity entity = new RapPracticeEntity();
+		entity.setPractice(PracticeEntity.From(dto.getPracticeId()));
+		entity.setRapName(dto.getRapName());
+		entity.setRapScore(dto.getRapScore());
+		return entity;
+	}
+
+	public static RapPracticeEntity From(RapPracticeDto dto) {
+		RapPracticeEntity entity = new RapPracticeEntity();
+		entity.setRapId(dto.getRapId());
+		entity.setPractice(PracticeEntity.From(dto.getPracticeId()));
+		entity.setRapName(dto.getRapName());
+		entity.setRapScore(dto.getRapScore());
+		return entity;
+	}
 }

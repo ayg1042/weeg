@@ -32,6 +32,16 @@ public class EntertainmentPracticeDto {
         return dto;
     }
 
+
+	public static EntertainmentPracticeDto From(EntertainmentPracticeEntity entity) {
+		EntertainmentPracticeDto dto = new EntertainmentPracticeDto();
+        dto.setEntertainmentId(entity.getEntertainmentId());
+        dto.setPracticeId(PracticeDto.pt_info(entity.getPractice()));
+        dto.setEntertainmentName(entity.getEntertainmentName());
+        dto.setEntertainmentScore(entity.getEntertainmentScore());
+        return dto;
+	}
+
     
     
 }

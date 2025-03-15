@@ -599,10 +599,10 @@
 						<img class="background-image" src="/images/vocal_training.png">
 						<div class="training_img_text">
 							<p>
-								보컬<span class="positive">50 필요</span>
+								보컬<span class="positive">75 필요</span>
 							</p>
 							<p>
-								랩&nbsp&nbsp <span class="positive">50 필요</span>
+								랩&nbsp&nbsp <span class="positive">75 필요</span>
 							</p>
 							<p>
 								체력<span class="negative">- 40</span>

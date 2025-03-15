@@ -1,5 +1,7 @@
 package com.java.entity.practice;
 
+import com.java.dto.practice.DancePracticeDto;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,4 +31,21 @@ public class DancePracticeEntity {
     /** 댄스 연습 점수 (연습을 통해 증가하는 댄스 능력치) */
     @Column(nullable = false)
     private int danceScore;
+
+	public static DancePracticeEntity nullId(DancePracticeDto dto) {
+		DancePracticeEntity entity = new DancePracticeEntity();
+		entity.setDanceName(dto.getDanceName());
+		entity.setDanceScore(dto.getDanceScore());
+		entity.setPractice(PracticeEntity.From(dto.getPracticeId()));
+		return entity;
+	}
+
+	public static DancePracticeEntity From(DancePracticeDto dto) {
+		DancePracticeEntity entity = new DancePracticeEntity();
+		entity.setDanceId(dto.getDanceId());
+		entity.setDanceName(dto.getDanceName());
+		entity.setDanceScore(dto.getDanceScore());
+		entity.setPractice(PracticeEntity.From(dto.getPracticeId()));
+		return entity;
+	}
 }
