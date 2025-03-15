@@ -7,10 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>EGG-Weverse: Global Fandom Platform</title>
 <link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/modal.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5.0.0/dist/stomp.min.js"></script>
 <script src="/js/modalert.js"></script>
 </head>
 
