@@ -25,7 +25,7 @@ public interface AespaService {
 	void weBoardWrite(FeedDto fdto);
 
 	// 위버스에그 자유게시판 페이지
-	List<FeedDto> findAll();
+	List<FeedDto> findCommunity();
 
 	// 위버스에그 자유게시판 뷰페이지
 	FeedDto findById(int bno);

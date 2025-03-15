@@ -215,7 +215,7 @@ public class FController {
 
 	@GetMapping("/weBoard") // 위버스에그 자유게시판 
 	public String weBoard(Model model) {
-		List<FeedDto> list = aespaService.findAll();
+		List<FeedDto> list = aespaService.findCommunity();
 		model.addAttribute("list",list);
 		return "weBoard";
 	}
@@ -286,8 +286,8 @@ public class FController {
 		return "redirect:/weBoard";
 	}
 	
-	@GetMapping("/weevent") // 위버스 이벤트
-	public String weevent(Model model) {
+	@GetMapping("/weEvent") // 위버스 이벤트
+	public String weEvent(Model model) {
 		String category = "event";
 		String status = "게시중";
 		List<FeedDto> eventlist = aespaService.notilist(category, status);
