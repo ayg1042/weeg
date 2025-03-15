@@ -13,7 +13,7 @@ public interface CharacterService {
 	List<CharacterDto> getCharactersByUserId(int user_id);
 
 	// 캐릭터 생성, 닉네임 저장
-	void save(CharacterEntity character);
+	CharacterEntity save(CharacterEntity character);
 	
 	CharacterDto getCharacterByCharacterId(int characterId);
 

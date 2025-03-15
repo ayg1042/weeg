@@ -104,7 +104,7 @@
 		});
 	  
 	  function listBtn(){
-		  location.href="/weevent";
+		  location.href="/weEvent";
 	  }
   </script>
 

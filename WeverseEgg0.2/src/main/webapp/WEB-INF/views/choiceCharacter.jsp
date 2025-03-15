@@ -35,8 +35,6 @@
 		      	        console.log("에러 발생");
 		      	    }
 		      	});
-	
-	      	  
 	        }
 	    } else {
 	        // list가 null일 경우 
