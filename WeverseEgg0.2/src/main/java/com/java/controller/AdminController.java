@@ -213,16 +213,16 @@ public class AdminController {
 	}
 	
 	// 아이템 추가
-		@GetMapping("/itemAdd")
-		public String itemAdd(Model model) {
-			List<ItemTypeDto> itemType = modalServiceImpl.getAllItemTypes();
-			List<ItemInfoDto> itemInfo = modalServiceImpl.getAllItemInfo();
-			
-			model.addAttribute("itemTypeList", itemType);
-			model.addAttribute("itemInfoList", itemInfo);
-			
-			return "/admin/admin_itemAdd";
-		}
+	@GetMapping("/itemAdd")
+	public String itemAdd(Model model) {
+		List<ItemTypeDto> itemType = modalServiceImpl.getAllItemTypes();
+		List<ItemInfoDto> itemInfo = modalServiceImpl.getAllItemInfo();
+		
+		model.addAttribute("itemTypeList", itemType);
+		model.addAttribute("itemInfoList", itemInfo);
+		
+		return "/admin/admin_itemAdd";
+	}
 	
 	
 	// 아이템 정보 추가

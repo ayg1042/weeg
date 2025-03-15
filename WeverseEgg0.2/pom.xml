@@ -11,6 +11,7 @@
 	<groupId>com.java</groupId>
 	<artifactId>WeverseEgg0.2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>WeverseEgg0.2</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
