@@ -12,15 +12,8 @@ import com.java.dto.feed.FeedDto;
 import jakarta.transaction.Transactional;
 
 public interface FeedRepository extends JpaRepository<FeedDto, Integer>{
-	
-	/*
-	 * @Modifying
-	 * 
-	 * @Transactional
-	 * 
-	 * @Query("DELETE FROM Feed f WHERE f.member.userId = :userId") void
-	 * deleteFeedByMemberId(@Param("userId") int userId);
-	 */
 
+	@Transactional
+	void deleteByMember_UserId(int userId);
 	
 }

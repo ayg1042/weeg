@@ -83,11 +83,10 @@ public class AespaServiceImpl implements AespaService {
 	}
 
 	@Override // 위버스에그 자유게시판 페이지
-	public List<FeedDto> findAll() {
-		List<FeedDto> list = aespaRepository.findAll();
-		return list.stream()
-	               .sorted(Comparator.comparing(FeedDto::getBno).reversed()) // bno 기준 내림차순 정렬
-	               .collect(Collectors.toList());
+	public List<FeedDto> findCommunity() {
+		List<FeedDto> list = aespaRepository.findByCategoryOrderByBnoDesc("community");
+		
+		return list;
 	}
 
 	@Override // 위버스에그 자유게시판 뷰페이지
