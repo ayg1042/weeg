@@ -1438,7 +1438,7 @@
 										<c:set var="required" value="1" />
 									</c:when>
 									<c:when test="${qdto.questId == 7 || qdto.questId == 8}">
-										<c:set var="required" value="4" />
+										<c:set var="required" value="1" />
 									</c:when>
 									<c:otherwise>
 										<c:set var="required" value="1" />
