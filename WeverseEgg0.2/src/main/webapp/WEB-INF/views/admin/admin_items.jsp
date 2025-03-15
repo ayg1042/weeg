@@ -8,6 +8,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/admin/admin.css"/>
 <link rel="stylesheet" type="text/css" href="../css/admin/admin_items.css"/>
+<script src="/js/admin0.2.js" defer></script>
 <title>Insert title here</title>
 
 </head>
@@ -17,7 +18,7 @@
         
     <div id="admin_content">
     	<h2>아이템 관리</h2></br>
-    	<a href="/admin/itemAdd">아이템 추가</a>
+    	<a href="/admin/itemAdd">아이템 추가 및 수정</a>
     	<div class="itemsTableArea">
     		<form action="/admin/items" id="filterForm" method="GET">
 			    <label><input type="radio" name="category" value="0"
@@ -59,7 +60,7 @@
     			</tr>
     			<c:forEach items="${items}" var="items">
     			<tr class="item_cont">
-    				<td>${items.itemId}</td>
+    				<td id="item_id">${items.itemId}</td>
     				<c:if test="${items.itemInfo.itemType.itemType == 1}">
     				<td>모자</td>
     				</c:if>
@@ -113,10 +114,25 @@
     				판매종료 : ${items.itemInfo.endDate}
     				</td>
     				<td>
-    					<img alt="" src="">
+    					<c:if test="${items.itemInfo.itemType.itemType == 1}">
+	    					<img alt="" src="/images/items/hat/${items.image}">
+	    				</c:if>
+    					<c:if test="${items.itemInfo.itemType.itemType == 2}">
+	    					<img alt="" src="/images/items/outfit/${items.image}">
+	    				</c:if>
+    					<c:if test="${items.itemInfo.itemType.itemType == 3}">
+	    					<img alt="" src="/images/items/pet/${items.image}">
+	    				</c:if>
+    					<c:if test="${items.itemInfo.itemType.itemType == 4}">
+	    					<img alt="" src="/images/items/consumable/${items.image}">
+	    				</c:if>
+	    				<c:if test="${items.itemInfo.itemType.itemType >= 6 && items.itemInfo.itemType.itemType <= 10}">
+	    					<img alt="" src="/images/items/interior/${items.image}">
+	    				</c:if>
+	    				
     				</td>
     				<td>
-    					<button type="button">삭제</button>
+    					<button id="delete_item_info_save" type="button">삭제</button>
     				</td>
     			</tr>
     			</c:forEach>

@@ -16,11 +16,12 @@ public interface CharacterRepository extends JpaRepository<CharacterEntity, Inte
 
     // 특정 그룹의 모든 캐릭터 조회
     @Query("SELECT c FROM CharacterEntity c " +
-           "JOIN c.artist a " +
-           "JOIN a.artistName an " +
-           "JOIN an.group g " +
-           "WHERE g.groupName = :groupName")
-    List<CharacterEntity> findAllByGroupName(@Param("groupName") String groupName);
+		       "JOIN c.artist a " +
+		       "JOIN a.artistName an "+
+		       "JOIN an.group g "+
+		       "WHERE g.groupName = :groupName")
+		List<CharacterEntity> findAllByGroupName(@Param("groupName") String GroupKor);
+	
 
     void deleteCharacterByCharacterId(int characterId);
     // 특정 사용자 ID로 캐릭터 찾기 (단일 조회)
@@ -41,4 +42,5 @@ public interface CharacterRepository extends JpaRepository<CharacterEntity, Inte
     @Modifying
     @Query("UPDATE CharacterEntity c SET c.health = 100, c.fatigue = 0")
     int resetCharacterStats();
+	CharacterEntity findBycharacterId(int character_id);
 }

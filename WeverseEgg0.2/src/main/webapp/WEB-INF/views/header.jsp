@@ -1,3 +1,4 @@
+
 <c:choose>
     <c:when test="${not empty sessionScope.session_id}">
         <!-- 로그인 상태 -->
@@ -50,7 +51,6 @@
 		  <header>
 		      <div id="header_wrap">
 		        <div class="main_logo">
-		        <a href="/">
 		            <img src="../images/main/weverse_logo.png" alt="">
 		          </a>
 		        </div>

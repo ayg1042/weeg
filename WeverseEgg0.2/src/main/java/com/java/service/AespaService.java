@@ -20,14 +20,23 @@ public interface AespaService {
 
 	// 피드 리스트 가져오기
 	List<FeedDto> feedlist();
-
+	
 	// 자유게시판 게시글 저장
 	void weBoardWrite(FeedDto fdto);
 
 	// 위버스에그 자유게시판 페이지
-	List<FeedDto> findAll();
+	List<FeedDto> findCommunity();
 
 	// 위버스에그 자유게시판 뷰페이지
 	FeedDto findById(int bno);
+
+	// 공지사항 리스트 가져오기
+	List<FeedDto> notilist(String category, String status);
+
+	// 공지사항 뷰페이지
+	FeedDto notiview(int bno);
+
+	// egg main 배너 이미지 가져오기
+	List<FeedDto> bannerlist();
 
 }

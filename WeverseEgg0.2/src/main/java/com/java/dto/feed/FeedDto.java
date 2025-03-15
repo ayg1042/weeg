@@ -40,11 +40,13 @@ public class FeedDto {
 	private String bcontent;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id", foreignKey = @ForeignKey(foreignKeyDefinition = "ON DELETE SET NULL"))
+	@JoinColumn(name="member_id", foreignKey = @ForeignKey(foreignKeyDefinition = "ON DELETE SET NULL"))
 	private MemberEntity member;
 	
 	private Timestamp bdate;
 	private String bfile;
+	private String bfile_banner;
+	private String bfile_modal;
 	
 	@Column(nullable= false)
 	private String category;

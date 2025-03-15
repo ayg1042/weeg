@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="header.jsp" %>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,22 +11,14 @@
   <link rel="stylesheet" type="text/css" href="../css/header.css"/>
   <title>WEVERSEGG</title>
 </head>
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const boxes = document.querySelectorAll('.box1, .box2, .box3, .box4');
     const banners = document.querySelectorAll('#main_banner img');
     const mainBanner = document.querySelector('#main_banner img');
-    const images = [
-      'images/mainpage/main_banner_Img5.png',
-      'images/mainpage/main_banner_Img3.png',
-      'images/mainpage/main_banner_Img2.png',
-      'images/mainpage/main_banner_Img.png'
-    ];
-
+    const images = Array.from(banners);
     // 초기 상태 설정
     banners[0].classList.add('active');
-
     boxes.forEach((box, index) => {
       box.addEventListener('click', () => {
         // 모든 박스에서 fade-in 클래스 제거
@@ -42,17 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // 클릭된 박스에 fade-in 클래스 추가
         box.querySelector('.event-title').classList.add('fade-in');
         box.querySelector('.event-date').classList.add('fade-in');
-
         // 모든 배너 숨기기
         banners.forEach(banner => {
           banner.classList.remove('active');
         });
-
         // 클릭된 박스에 해당하는 배너 표시
         if (index < banners.length) {
           banners[index].classList.add('active');
         }
-
         // 박스 1 클릭 시 텍스트 색상 흰색으로 변경
         if (box.classList.contains('box1')) {
           box.querySelector('.event-title').style.color = '#FFFFFF';
@@ -61,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
-  
   function stBtn() {
     location.href = "/choiceCharacter";
   }
@@ -70,26 +57,21 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener("DOMContentLoaded", function () {
 	    let images = document.querySelectorAll("#main_banner img");
 	    let currentIndex = 0;
-
 	    function showNextImage() {
 	        images[currentIndex].classList.remove("active");
 	        currentIndex = (currentIndex + 1) % images.length; // 다음 이미지로 변경
 	        images[currentIndex].classList.add("active");
 	    }
-
 	    // 처음에 첫 번째 이미지를 활성화
 	    images[currentIndex].classList.add("active");
-
 	    // 3초마다 이미지 변경
 	    setInterval(showNextImage, 3000);
 	});
-
+	
 </script>
-
 <body>
   <!-- 메인 -->
-  <div id="egg_mainpage"> 
-
+  <div id="egg_mainpage">
     <!-- 탑 gnb -->
     <div class="hover_blocker1"></div> <!-- 투명한 네모 박스 (호버방지용)-->
     <div class="hover_blocker2"></div> <!-- 투명한 네모 박스 (호버방지용)-->
@@ -100,7 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <li id="option_title">뉴스</li>
           <li><a href="/wenotice">공지사항</a></li>
           <li><a href="#">업데이트</a></li>
-          <li><a href="weEvent">이벤트</a></li>
+          <li><a href="/weEvent">이벤트</a></li>
+  
         </ul>
         <ul>
           <li id="option_title">가이드</li>
@@ -123,37 +106,27 @@ document.addEventListener('DOMContentLoaded', () => {
           <li><a href="#">버그악용/신고</a></li>
         </ul>
       </nav>
-
     </div>
-
     <!-- 메인 이미지 화면 -->
     <div id="main_banner">
-      <a href="/weEventView"><img src="images/mainpage/main_banner_Img5.png" alt="메인 배너1"></a>
-      <a href="/weEventView"><img src="images/mainpage/main_banner_Img3.png" alt="메인 배너2"></a>
-      <a href="/weEventView"><img src="images/mainpage/main_banner_Img2.png" alt="메인 배너3"></a>
-      <a href="/weEventView"><img src="images/mainpage/main_banner_Img.png" alt="메인 배너4"></a>
+    <c:forEach items="${banners }" var="banner">
+      <c:if test="${not empty banner.bfile_banner}">
+      <img src="../images/event/${banner.bfile_banner}" alt="메인 배너 이미지">
+    </c:if>
+    </c:forEach>
     </div>
-
-		<div class="egg_main_bottom">
-    <!-- 하단 이벤트 gnb -->
-    <div id="main_bottom_gnb">
-      <div class="box1">
-        <div class="event-title">팬싸인회 응모권 이벤트</div>
-        <div class="event-date">~2025.03.26</div>
-      </div>
-      <div class="box2">
-        <div class="event-title">2025 패션왕</div>
-        <div class="event-date">~2025.03.23</div>
-      </div>
-      <div class="box3">
-        <div class="event-title">아티스트 생일 이벤트</div>
-        <div class="event-date">~2025.03.20</div>
-      </div>
-      <div class="box4">
-        <div class="event-title">신규유저 혜택 이벤트</div>
-        <div class="event-date">~2025.03.18</div>
-      </div>
-	   </div>
+	<div class="egg_main_bottom">
+	    <!-- 하단 이벤트 gnb -->
+	    <div id="main_bottom_gnb">
+	    <c:forEach items="${banners }" var="banner" varStatus="vs">
+	     <c:if test="${vs.index < 4}">
+	      <div class="box${vs.index +1 }">
+	        <div class="event-title">${banner.btitle}</div>
+	        <div class="event-date">~2025.03.26</div>
+	      </div>
+	     </c:if>
+	    </c:forEach>
+		</div>
 	
 	    <!-- 게임 스타트 버튼 -->
 	    <div id="game_start_btn">
@@ -162,10 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	        <img src="images/mainpage/start2.png" alt="게임 시작 버튼 호버 후" class="hover">
 	      </button>
 	    </div>
-		</div>
-
   </div>
   <!-- 메인 끝 -->
-  
 </body>
 </html>

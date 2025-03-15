@@ -22,6 +22,7 @@ import com.java.entity.practice.DancePracticeEntity;
 import com.java.entity.practice.EntertainmentPracticeEntity;
 import com.java.entity.practice.RapPracticeEntity;
 import com.java.entity.practice.VocalPracticeEntity;
+import com.java.repository.ArtistNameRepository;
 import com.java.repository.ArtistRepository;
 import com.java.repository.CharacterRepository;
 import com.java.repository.GroupRepository;
@@ -31,17 +32,12 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class CharacterServiceImpl implements CharacterService {
-
-	@Autowired
-	HttpSession session;
-	@Autowired
-	CharacterRepository characterRepository;
-	@Autowired
-	PracticeService practiceService;
-	@Autowired
-	ArtistRepository artistRepository;
-	@Autowired
-	GroupRepository groupRepository;
+	
+	@Autowired HttpSession session;
+	@Autowired CharacterRepository characterRepository;
+	@Autowired PracticeService practiceService;
+	@Autowired ArtistRepository artistRepository;
+	@Autowired GroupRepository groupRepository;
 
 	// 캐릭터 선택 페이지 열기
 	@Override
@@ -74,9 +70,9 @@ public class CharacterServiceImpl implements CharacterService {
 		entity.setDebutDate(new Timestamp(System.currentTimeMillis()));
 		artistRepository.save(entity);
 		List<ArtistEntity> artistList = artistRepository.findAll();
-		character.setArtist(artistList.get(artistList.size() - 1));
+		character.setArtist(artistList.get(artistList.size()-1));
 		characterRepository.save(character);
-
+		
 	}
 
 	@Override
@@ -340,5 +336,22 @@ public class CharacterServiceImpl implements CharacterService {
 		characterRepository.deleteCharacterByCharacterId(characterId);
 
 	}
+	
+	// 레벨 캐릭터db 저장
+//	@Override
+//	public void lvSave(int character_id, int level) {
+//		ArtistEntity entity = artistRepository.findByArtistId(character_id);
+//		entity.setClevel(level);
+//		artistRepository.save(entity);
+//		CharacterEntity character = characterRepository.findBycharacterId(character_id);
+//		CharacterDto characterDto = CharacterDto.unit(character);
+//		session.setAttribute("character", characterDto);
+//		
+//	}
+
+	
+
+
+
 
 }

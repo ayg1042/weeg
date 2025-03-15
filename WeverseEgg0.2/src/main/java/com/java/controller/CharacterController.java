@@ -55,6 +55,7 @@ public class CharacterController {
         	model.addAttribute("jelly", jelly);
 			return "choiceCharacter";
         }
+        model.addAttribute("jelly", jelly);
         model.addAttribute("list", null);
         return "choiceCharacter";
 	}

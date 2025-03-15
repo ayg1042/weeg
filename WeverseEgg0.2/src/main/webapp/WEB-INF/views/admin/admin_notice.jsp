@@ -20,7 +20,7 @@
     <div id="admin_content">
     	<h2>공지사항</h2>
     	<div class="noticeTableArea">
-	    	<button class="writeBtn">글쓰기</button>
+	    	<button class="writeBtn" onclick="location.href='/admin/noticeWrite'">글쓰기</button>
     		<table class="noticeTable">
     			<colgroup>
 		        <col style="width: 10%;">

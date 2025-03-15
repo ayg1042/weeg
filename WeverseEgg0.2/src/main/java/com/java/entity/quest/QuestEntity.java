@@ -13,7 +13,7 @@ public class QuestEntity {
 
     /** 퀘스트 고유번호 (Primary Key) */
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "quest_id")
     private int questId;
 
