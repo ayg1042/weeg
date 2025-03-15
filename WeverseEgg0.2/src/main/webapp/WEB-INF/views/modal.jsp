@@ -1474,6 +1474,10 @@
 						</c:forEach>
 					</ul>
 
+					</div>
+				</div>
+			</div>
+		</div>
 					<script>
 						
 							$(document).ready(function () {
@@ -1561,55 +1565,11 @@
 									});
 								});
 
-						</script>
+					</script>
 
-				</div>
 
-<<<<<<< HEAD
 
-		    	<div class="modal-event-title">
-			        <div>이벤트</div>
-		    	</div>
-		        <div class="modal-event">
-		        	<div id="event_layout">
-		        		<ul class="event-title">
-		        			<c:forEach items="${events }" var="event" varStatus="vs">
-						      <c:if test="${not empty event.bfile_modal}">
-		        				<li class="event_item" data-image="../images/event/${event.bfile_modal}"><a onclick="">${event.btitle }</a></li>
-						      </c:if>
-						    </c:forEach>
-		        		</ul>	
-						<div class="event_content">
-							<img id="eventImage" src="" alt="Event Image">
-						</div>
-		        	</div>
-		    	</div>
-=======
->>>>>>> refs/remotes/origin/master
-			</div>
-		</div>
-<<<<<<< HEAD
-		<script>
-			// 페이지 로드시 첫 번째 이벤트 항목의 이미지가 보여지도록 처리
-		    var firstImage = document.querySelector('.event-title li');
-		    if (firstImage) {
-		        // 첫 번째 이벤트의 이미지를 기본으로 설정
-		        var firstImageUrl = firstImage.getAttribute('data-image');
-		        document.getElementById('eventImage').src = firstImageUrl;
-		        
-		        // 첫 번째 항목에 active 클래스 추가
-		        firstImage.classList.add('active');
-		    }
-			document.querySelectorAll('.event-title li').forEach(function (li) {
-				li.addEventListener('click', function () {
-					// 클릭된 li의 data-image 속성값을 가져와 이미지 변경
-					var imageUrl = li.getAttribute('data-image');
-					document.getElementById('eventImage').src = imageUrl;
-=======
-	</div>
->>>>>>> refs/remotes/origin/master
-
-	<!-- 이벤트 모달 -->
+		<!-- 이벤트 모달 -->
 	<div id="modale" class="modal">
 		<div class="modal-frame dark">
 			<div class="modal-top">
@@ -1679,48 +1639,45 @@
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
-
 			<div class="modal-event-title">
-				<div>이벤트</div>
-			</div>
-			<div class="modal-event">
-				<div id="event_layout">
-					<ul class="event-title">
-						<li class="event_item" data-image="images/modal/event1.png"><a
-							onclick="">2월 발렌타인 BIG EVENT</a></li>
-						<li class="event_item" data-image="images/modal/event2.png"><a
-							onclick="">화이트엔젤 VS 다크히어로</a></li>
-					</ul>
-					<div class="event_content">
-						<img id="eventImage" src="images/modal/event1.png"
-							alt="Event Image">
-					</div>
+			        <div>이벤트</div>
+		    	</div>
+		        <div class="modal-event">
+		        	<div id="event_layout">
+		        		<ul class="event-title">
+		        			<c:forEach items="${events }" var="event" varStatus="vs">
+						      <c:if test="${not empty event.bfile_modal}">
+		        				<li class="event_item" data-image="../images/event/${event.bfile_modal}"><a onclick="">${event.btitle }</a></li>
+						      </c:if>
+						    </c:forEach>
+		        		</ul>	
+						<div class="event_content">
+							<img id="eventImage" src="" alt="Event Image">
+						</div>
+		        	</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	<script>
-		document.querySelectorAll('.event-title li').forEach(function (li) {
-			li.addEventListener('click', function () {
-				// 클릭된 li의 data-image 속성값을 가져와 이미지 변경
-				var imageUrl = li.getAttribute('data-image');
-				document.getElementById('eventImage').src = imageUrl;
-
-				// 모든 li에서 active 클래스를 제거
-				document.querySelectorAll('.event-title li').forEach(function (item) {
-					item.classList.remove('active');
+				</div>
+				</div>
+				</div>
+		<script>
+			// 페이지 로드시 첫 번째 이벤트 항목의 이미지가 보여지도록 처리
+		    var firstImage = document.querySelector('.event-title li');
+		    if (firstImage) {
+		        // 첫 번째 이벤트의 이미지를 기본으로 설정
+		        var firstImageUrl = firstImage.getAttribute('data-image');
+		        document.getElementById('eventImage').src = firstImageUrl;
+		       
+		        // 첫 번째 항목에 active 클래스 추가
+		        firstImage.classList.add('active');
+		    }
+			document.querySelectorAll('.event-title li').forEach(function (li) {
+				li.addEventListener('click', function () {
+					// 클릭된 li의 data-image 속성값을 가져와 이미지 변경
+					var imageUrl = li.getAttribute('data-image');
+					document.getElementById('eventImage').src = imageUrl;
 				});
-
-				// 클릭된 li에만 active 클래스 추가
-				li.classList.add('active');
 			});
-		});
-
-
-		// 페이지 로드 시 첫 번째 이벤트 항목을 기본적으로 활성화 상태로 만들기
-		document.querySelector('.event-title li').classList.add('active');
-		document.querySelector('.quest-title li').classList.add('active');
-	</script>
+		</script>
 
 	<script src="/js/modal.js" defer></script>
 	<script src="/js/shop.js" defer></script>

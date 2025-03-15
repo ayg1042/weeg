@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.java.dto.character.CharacterDto;
@@ -61,36 +62,27 @@ public class EggMRController {
 	
 	@GetMapping("/modal")
 	public String modal(Model model) throws JsonProcessingException {
-
-		// 테스트용 세션 저장
-		// session.setAttribute("session_iddd", new MemberDto());
-		// 세션에서 로그인한 사용자 ID 가져오기
-//		System.out.println("session_idsession_id: "+session_id);
-//		System.out.println(session_id.getUser_id());
-
-		// ======== 트레이닝 ========
-		// 임시_ 로그인한 유저의 캐릭터 캐릭터아이디 1인 테이블 가져오기
-//		int g = 1;
-//		CharacterDto unitDto = characterService.unit(g);
-//		System.out.println("unitDto : "+unitDto);
-//		session.setAttribute("session_character", unitDto);
-//		System.out.println("session_character 세셔ㅑㄴ : "+session.getAttribute("session_character"));
-
-		// 유저가 연습생일때의 "PRACTICE_ID = 1" 연습 가져오기(artist가 null이면 vocalId = 1)
+        
 		// === 세션에서 캐릭터 정보 가져오기 ===
-//        CharacterDto character = (CharacterDto) session.getAttribute("session_character");
 		CharacterDto character = (CharacterDto) session.getAttribute("character");
         model.addAttribute("chDto", character);
-        System.out.println("==============dghjwkjdjklf[dkslafhlkjf오러ㅓ아어ㅏㅏㅣㅓㅇ노ㅓㅏㅣ");
-        System.out.println(character);
+//        System.out.println(character);
+
+  
         //== 레벨 경험치 체크 ==
         int vocal = character.getVocal();
         int dance = character.getDance();
         int rap = character.getRap();
         int ent = character.getEntertainment();
         int[] lvResult = LvCalc.lvCalc(vocal, dance, ent, rap);
+        // 레벨 캐릭터db 저장
+        int level = lvResult[0];
+//        characterService.lvSave(character.getCharacter_id(), level);
+        
         model.addAttribute("lvChk", lvResult);
-        // === artist가 "윈터"인지 확인 후 연습 데이터 가져오기 ===
+
+        // === artist가 "연습생"인지 확인 후 연습생의 트레이닝 데이터 가져오기 ===
+        // 유저가 연습생일때의 "PRACTICE_ID = 1" 연습 가져오기(artist가 null이면 vocalId = 1)
         if (character.getArtist().getArtistName().getArtistName() != null && "연습생".equals(character.getArtist().getArtistName().getArtistName())) {
             Map<String, Object> practiceData = characterService.getPracticeIfArtistIsBasic(character);
             // 보컬
@@ -104,15 +96,12 @@ public class EggMRController {
             model.addAttribute("rap", rapBasic);
             model.addAttribute("ent", entertainmentBasic);
 
-//            System.out.println("Vocal Practice : " + practiceData.get("vocalDto"));
-//            System.out.println("Dance Practice : " + practiceData.get("danceDto"));
-//            System.out.println("Rap Practice : " + practiceData.get("rapDto"));
-//            System.out.println("entertainmentDto Practice : " + practiceData.get("entertainmentDto"));
-		}
-
-		System.out.println("================= : " + character);
-		System.out.println("캐릭터 보유 코인 : " + character.getCoin());
-
+        }
+        
+        System.out.println("================= : "+character);
+		System.out.println("캐릭터 보유 코인 : "+character.getCoin());
+		
+		
 //		전체 아이템 리스트
 		List<ItemDto> items = modalServiceImpl.getAllItems();
 		model.addAttribute("shopList", items);
@@ -208,14 +197,19 @@ public class EggMRController {
 			model.addAttribute("userCoin", character.getCoin());
 		}
 
+		//이벤트 리스트
+		List<FeedDto> events = aespaService.bannerlist();
+		model.addAttribute("events",events);
+		
 		// 케릭터 인벤토리
 		List<InvenDto> Inven = modalServiceImpl.getCharacterInven(character.getCharacter_id());
 		model.addAttribute("invenList", Inven);
 		model.addAttribute("character", character);
 		
-		//이벤트 리스트
-		List<FeedDto> events = aespaService.bannerlist();
-		model.addAttribute("events",events);
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println(character.getArtist().getLevel());
+		
+		
 		return "modal";
 	}
 
