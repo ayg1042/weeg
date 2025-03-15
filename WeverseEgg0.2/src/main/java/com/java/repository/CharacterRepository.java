@@ -36,5 +36,11 @@ public interface CharacterRepository extends JpaRepository<CharacterEntity, Inte
     @Query("UPDATE CharacterEntity c SET c.coin = c.coin + :rewardCoin WHERE c.member.userId = :userId")
     int addCoinByUserId(@Param("userId") int userId, @Param("rewardCoin") int rewardCoin);
 
+    
+    // ✅ 캐릭터의 체력 업데이트 (최적화)
+    @Transactional
+    @Modifying
+    @Query("UPDATE CharacterEntity c SET c.health = 100, c.fatigue = 0")
+    int resetCharacterStats();
 	CharacterEntity findBycharacterId(int character_id);
 }

@@ -1,5 +1,6 @@
 package com.java.scheduler;
 
+import com.java.repository.CharacterRepository;
 import com.java.repository.QuestHistoryRepository;
 import com.java.repository.QuestProgressRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,10 +16,9 @@ public class QuestRewardResetScheduler {
 
     private final QuestHistoryRepository questHistoryRepository;
     private final QuestProgressRepository questProgressRepository;
-    
-//   스케줄러 시간 설정
+    private final CharacterRepository characterRepository;
 
-    @Scheduled(cron = "0 0 3 * * ?") // 매일 00:00 실행
+    @Scheduled(cron = "0 14 15 * * ?") // 매일 자정에 초기화
     @Transactional
     public void resetDailyQuestRewards() {
         log.info("🔄 [퀘스트 보상 초기화] 시작...");
@@ -30,6 +30,10 @@ public class QuestRewardResetScheduler {
         // 2. 진행 상태 초기화 (isCompleted = 0, progress = '0%')
         int updatedProgress = questProgressRepository.resetDailyQuestProgress();
         log.info("✅ 초기화된 퀘스트 진행 개수: {}", updatedProgress);
+        
+     // 3. 모든 캐릭터의 체력과 피로도를 초기화 (체력 100, 피로도 0)
+        int updatedCharacters = characterRepository.resetCharacterStats();
+        log.info("✅ 초기화된 캐릭터 개수: {}", updatedCharacters);
 
         log.info("🔄 [퀘스트 보상 초기화] 완료!");
     }

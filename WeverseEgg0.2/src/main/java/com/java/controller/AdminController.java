@@ -54,7 +54,7 @@ public class AdminController {
 	public String admin() {
 		return "/admin/admin_login";
 	}
-	
+
 	@PostMapping("")
 	public String admin(String adminId, String adminPw, 
 			Model model, RedirectAttributes redirectAttributes) {
@@ -68,13 +68,13 @@ public class AdminController {
 	        return "redirect:/admin";
 	    }
 	}
-	
+
 	@GetMapping("/logout")
 	public String logout() {
 		session.removeAttribute("admin_nickname");
 		return "redirect:/admin";
 	}
-	
+
 	// 회원관리
 	@GetMapping("/main")
 	public String main(Model model) {
@@ -84,7 +84,7 @@ public class AdminController {
 		model.addAttribute("memberList", memberDto);
 		return "/admin/admin_main";
 	}
-	
+
 	// 회원 상세보기
 	@GetMapping("/memView")
 	public String memview(int user, Model model) {
@@ -93,13 +93,13 @@ public class AdminController {
 		// 해당 회원의 캐릭터 가져오기
 		List<CharacterDto> characterDtos = characterService.getCharactersByUserId(user);
 		int chListSize = (characterDtos != null) ? characterDtos.size() : 0;
-		
+
 		model.addAttribute("member", memberDto);
 		model.addAttribute("chListSize", chListSize);
 		model.addAttribute("chList", characterDtos);
 		return "/admin/admin_memView";
 	}
-	
+
 	
 	 // 회원삭제
 	 @PostMapping("/memDelete")
@@ -112,74 +112,73 @@ public class AdminController {
 	public String board(Model model) {
 		String category = "notice";
 		List<FeedDto> notilist = adminService.notilist(category);
-		model.addAttribute("notilist",notilist);
+		model.addAttribute("notilist", notilist);
 		return "/admin/admin_notice";
 	}
-	
+
 	// 게시상태 업데이트 메서드
 	@PostMapping("/updateStatus")
 	@ResponseBody
-	public ResponseEntity<String> updateStatus(
-			@RequestParam int bno, @RequestParam String status) {
-		
-		if("1".equals(status)) {
+	public ResponseEntity<String> updateStatus(@RequestParam int bno, @RequestParam String status) {
+
+		if ("1".equals(status)) {
 			status = "게시중";
-		}else if("0".equals(status)){
+		} else if ("0".equals(status)) {
 			status = "게시안함";
 		}
-		
-	    try {
-	        // FeedDto에 해당하는 엔티티를 찾아서 상태 업데이트
-	    	adminService.updateStatus(bno, status);
-	        return ResponseEntity.ok("상태 업데이트 성공");
-	    } catch (Exception e) {
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("상태 업데이트 실패");
-	    }
+
+		try {
+			// FeedDto에 해당하는 엔티티를 찾아서 상태 업데이트
+			adminService.updateStatus(bno, status);
+			return ResponseEntity.ok("상태 업데이트 성공");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("상태 업데이트 실패");
+		}
 	}
-	
+
 	// 공지사항 뷰페이지
 	@GetMapping("/noticeView")
 	public String noticeView(@RequestParam int bno, Model model) {
 		FeedDto notice = adminService.notiview(bno);
-		model.addAttribute("fdto",notice);
+		model.addAttribute("fdto", notice);
 		return "/admin/admin_noticeView";
 	}
-	
+
 	// 공지사항 삭제
-		@GetMapping("/deleteFeed")
-		public String deleteFeed(@RequestParam int bno) {
-			adminService.delFeed(bno);
-			return "/admin/admin_notice";
-		}
-	
+	@GetMapping("/deleteFeed")
+	public String deleteFeed(@RequestParam int bno) {
+		adminService.delFeed(bno);
+		return "/admin/admin_notice";
+	}
+
 	// 아이템 리스트
 	@GetMapping("/items")
 	public String items(@RequestParam(required = false) String category, Model model) {
 		// 아이템리스트 가져오기
 		Collection<? extends ItemDto> itemLists = new ArrayList<>();
-		
+
 		if (category == null || "0".equals(category)) {// 아이템 전체
 			itemLists = modalService.getAllItems();
-        }else {// 체크된 아이템 리스트
-        	List<Integer> item_type = new ArrayList<>();
-    		if("4".equals(category)) {
-    			item_type.add(Integer.parseInt(category));
-    			item_type.add(Integer.parseInt(category)+1);
-    		}else if("6".equals(category)) {
-    			item_type.add(Integer.parseInt(category));
-    			item_type.add(Integer.parseInt(category)+1);
-    			item_type.add(Integer.parseInt(category)+2);
-    			item_type.add(Integer.parseInt(category)+3);
-    			item_type.add(Integer.parseInt(category)+4);
-    		}else {
-    			item_type.add(Integer.parseInt(category));
-    		}
-    		itemLists = modalService.findByItemInfo_ItemType_ItemTypeIdIn(item_type);
-    	}
-        
+		} else {// 체크된 아이템 리스트
+			List<Integer> item_type = new ArrayList<>();
+			if ("4".equals(category)) {
+				item_type.add(Integer.parseInt(category));
+				item_type.add(Integer.parseInt(category) + 1);
+			} else if ("6".equals(category)) {
+				item_type.add(Integer.parseInt(category));
+				item_type.add(Integer.parseInt(category) + 1);
+				item_type.add(Integer.parseInt(category) + 2);
+				item_type.add(Integer.parseInt(category) + 3);
+				item_type.add(Integer.parseInt(category) + 4);
+			} else {
+				item_type.add(Integer.parseInt(category));
+			}
+			itemLists = modalService.findByItemInfo_ItemType_ItemTypeIdIn(item_type);
+		}
+
 		model.addAttribute("items", itemLists);
 		model.addAttribute("selectedCategories", category);
-		
+
 		return "/admin/admin_items";
 	}
 	
@@ -290,8 +289,7 @@ public class AdminController {
 	}
 	
 
-
-	@GetMapping("/index") //어드민
+	@GetMapping("/index") // 어드민
 	public String index(Model model) {
 		List<ItemTypeDto> itemType = modalServiceImpl.getAllItemTypes();
 		List<ItemInfoDto> itemInfo = modalServiceImpl.getAllItemInfo();
@@ -304,11 +302,12 @@ public class AdminController {
 		model.addAttribute("itemList", itemDto);
 		model.addAttribute("groupList", group);
 		model.addAttribute("artistList", artist);
-		
+
 		return "index";
 	}
-	
+
 	// 아이템 추가
+
 	@GetMapping("/itemAdd")
 	public String itemAdd(Model model) {
 		List<ItemTypeDto> itemType = modalServiceImpl.getAllItemTypes();
@@ -333,14 +332,14 @@ public class AdminController {
 	        @RequestPart MultipartFile file) throws Exception {
 		
 		String imgName = "";
-		if(!file.isEmpty()) {
+		if (!file.isEmpty()) {
 			imgName = file.getOriginalFilename();
 			System.out.println("파일이름 : "+imgName);
 			String url = "C:/Users/KOSMO/git/weeg/WeverseEgg0.2/src/main/resources/static/images/items/"+category+"/";
 			File f = new File(url+imgName); //파일객체 생성
 			file.transferTo(f); //파일올리기
 		}
-		
+
 		ItemDto item = new ItemDto();
 		ItemInfoDto info = new ItemInfoDto();
 		info.setItemInfoId(itemInfoId);
@@ -348,12 +347,12 @@ public class AdminController {
 		item.setImage(imgName);
 		item.setPrice(price);
 		item.setItemInfo(info);
-		
+
 		modalServiceImpl.addItem(item);
-		
+
 		return "1";
 	}
-	
+
 	// 아이템 추가
 	@PostMapping("/itemInfoAdd")
 	@ResponseBody
@@ -372,12 +371,12 @@ public class AdminController {
 		info.setCharm(charm); info.setDance(dance); info.setRap(rap);
 		info.setVocal(vocal); info.setEntertainment(entertainment);
 		info.setFatigueRecovery(fatigueRecovery);
-		
+
 		modalServiceImpl.addItemInfo(info);
 
 		return "1";
 	}
-	
+
 	@PostMapping("/itemInfoUpdate")
 	@ResponseBody
 	@Transactional
@@ -395,12 +394,12 @@ public class AdminController {
 		info.setVocal(vocal);
 		info.setEntertainment(entertainment);
 		info.setFatigueRecovery(fatigueRecovery);
-		
+
 		modalServiceImpl.updateItemInfo(info);
-		
+
 		return "1";
 	}
-	
+
 	@PostMapping("/itemDelete")
 	@ResponseBody
 	@Transactional
@@ -409,7 +408,7 @@ public class AdminController {
 		modalServiceImpl.deleteItem(dto.getItemId());
 		return "1";
 	}
-	
+
 	@PostMapping("/addGroup")
 	@ResponseBody
 	@Transactional
@@ -425,7 +424,7 @@ public class AdminController {
 		modalServiceImpl.addGroup(dto);
 		return "1";
 	}
-	
+
 	@PostMapping("/updateGroup")
 	@ResponseBody
 	@Transactional
@@ -443,24 +442,22 @@ public class AdminController {
 		modalServiceImpl.updateGroup(dto);
 		return "1";
 	}
-	
+
 	@PostMapping("/deleteGroup")
 	@ResponseBody
 	@Transactional
 	public String deleteGroup(@RequestParam(value = "groupId") int groupId) {
-		
+
 		GroupDto dto = modalServiceImpl.getGroup(groupId);
 		modalServiceImpl.deleteGroup(dto.getGroupId());
 		return "1";
 	}
-	
+
 	@PostMapping("/addArtistName")
 	@ResponseBody
 	@Transactional
-	public String addArtist(
-			@RequestParam(value = "groupId") int groupId,
-			@RequestParam(value = "artistName") String artistName
-			) {
+	public String addArtist(@RequestParam(value = "groupId") int groupId,
+			@RequestParam(value = "artistName") String artistName) {
 		GroupDto group = modalServiceImpl.getGroup(groupId);
 		ArtistNameDto artist = new ArtistNameDto();
 		artist.setGroup(group);
@@ -468,7 +465,7 @@ public class AdminController {
 		modalServiceImpl.addArtistName(artist);
 		return "1";
 	}
-	
+
 	@PostMapping("/updateArtistName")
 	@ResponseBody
 	@Transactional
@@ -481,14 +478,14 @@ public class AdminController {
 		modalServiceImpl.updateArtistName(artist);
 		return "1";
 	}
-	
+
 	@PostMapping("/deleteArtistName")
 	@ResponseBody
 	@Transactional
 	public String deleteArtistName(@RequestParam(value = "artistNId") int artistNId) {
 		ArtistNameDto dto = modalServiceImpl.getArtistName(artistNId);
 		modalServiceImpl.deleteArtistName(dto);
-		
+
 		return "1";
 	}
 	
