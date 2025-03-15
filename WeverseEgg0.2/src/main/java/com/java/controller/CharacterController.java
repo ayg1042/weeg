@@ -109,9 +109,8 @@ public class CharacterController {
 	    character.setExpression("기본");
 
 	    // 캐릭터 저장
-	    characterService.save(character);
 	    // 캐릭터 생성 후 세션 저장
-	    CharacterDto characterDto = CharacterDto.unit(character);
+	    CharacterDto characterDto = CharacterDto.unit(characterService.save(character));
 	    session.setAttribute("character", characterDto);
 	    
 		return "redirect:/modal";

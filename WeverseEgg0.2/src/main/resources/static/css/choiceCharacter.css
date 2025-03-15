@@ -38,10 +38,12 @@ a{
 	gap: 15px; /* 슬롯 간 간격 */
 	display: flex;
 	margin: 0 auto;
-	padding-left: 417px;
+	/* padding-left: 417px; */
+	display: flex;
+	justify-content : center;
 }
 
-.idol-slot {
+/* .idol-slot {
     width: 336px;
     height: 586px;
     border: 7px solid #D2BDFF;
@@ -55,7 +57,7 @@ a{
     color: #333;
     cursor: pointer;
 }
-
+ */
 /* 캐릭터 슬롯 상태별 스타일 */
 #FirstIdol_make {
     background-image: url('/images/chocieCharacter/egg.png');
@@ -90,7 +92,7 @@ a{
 	width: 336px; 
 	height: 586px; 
 	border: 7px solid #D2BDFF; 
-	margin-left: 415px; 
+	/* margin-left: 415px;  */
 	background-color: white; 
 	display: none;
 	background-image: url('/images/chocieCharacter/egg.png'); 
