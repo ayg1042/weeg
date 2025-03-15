@@ -913,25 +913,33 @@ a {
 
 /* 내 가방 옷, 모자 */
 .my_bag_hat{
-	position: absolute;
-    top: -23px;  /* 위쪽으로 10px */
-    left: -20px; /* 왼쪽으로 50px */
+	  position: absolute;
+    top: -23px;
+    left: -20px;
+    width: 186px;
+    height: 208px;
 }
 .my_bag_outfit{
-	position: absolute;
-    top: 160px;  /* 위쪽으로 10px */
-    left: 19px; /* 왼쪽으로 50px */
+	  position: absolute;
+    width: 100px;
+    top: 160px;
+    left: 19px;
+    height: 110px;
 }
 /* 상점 옷, 모자 */
 .shop_hat{
 	position: absolute;
-    top: -25px;  
-    left: -20px; 
+    top: -23px;
+    left: -20px;
+    width: 186px;
+    height: 208px;
 }
 .shop_outfit{
 	position: absolute;
+    width: 100px;
     top: 160px;
-    left: 18px;
+    left: 19px;
+    height: 110px;
 }
 .item-options{
 	display: none;
