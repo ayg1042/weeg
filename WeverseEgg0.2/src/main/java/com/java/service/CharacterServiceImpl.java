@@ -2,6 +2,8 @@ package com.java.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.dto.character.CharacterDto;
+import com.java.dto.character.DebutCheckDto;
 import com.java.dto.practice.DancePracticeDto;
 import com.java.dto.practice.EntertainmentPracticeDto;
 import com.java.dto.practice.RapPracticeDto;
@@ -25,6 +28,7 @@ import com.java.entity.practice.VocalPracticeEntity;
 import com.java.repository.ArtistNameRepository;
 import com.java.repository.ArtistRepository;
 import com.java.repository.CharacterRepository;
+import com.java.repository.DebutCheckRepository;
 import com.java.repository.GroupRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -37,7 +41,9 @@ public class CharacterServiceImpl implements CharacterService {
 	@Autowired CharacterRepository characterRepository;
 	@Autowired PracticeService practiceService;
 	@Autowired ArtistRepository artistRepository;
+	@Autowired ArtistNameRepository artistNameRepository;
 	@Autowired GroupRepository groupRepository;
+	@Autowired DebutCheckRepository debutCheckRepository;
 
 	// 캐릭터 선택 페이지 열기
 	@Override
@@ -91,10 +97,9 @@ public class CharacterServiceImpl implements CharacterService {
 		return unitDto;
 	}
 
-	// 유저가 연습생일때의 트래이닝 가져오기(artist가 윈터이면 PracticeId = 1)
+	// 유저가 연습생일때의 트래이닝 가져오기(artist가 연습생이면 PracticeId = 1)
 	@Override
 	public Map<String, Object> getPracticeIfArtistIsBasic(CharacterDto character) {
-
 		// 세션에 저장된 캐릭터 정보가 없으면 빈 맵 반환
 		if (character == null || character.getArtist().getArtistName().getArtistName() == null) {
 			return new HashMap<>();
@@ -102,7 +107,6 @@ public class CharacterServiceImpl implements CharacterService {
 		// ArtistName이 "윈터(연습생)"인지 확인
 		if ("연습생".equals(character.getArtist().getArtistName().getArtistName())) {
 			Map<String, Object> basicPracticeMap = new HashMap<>();
-
 			// PRACTICE_ID = 1인 보컬, 댄스, 랩, 예능 연습 데이터 가져오기
 			VocalPracticeEntity vpEntity = (VocalPracticeEntity) practiceService.getVocalPracticeByPracticeId(1);
 			VocalPracticeDto vocalDto = VocalPracticeDto.pt_info(vpEntity);
@@ -118,17 +122,35 @@ public class CharacterServiceImpl implements CharacterService {
 			basicPracticeMap.put("danceDto", danceDto);
 			basicPracticeMap.put("rapDto", rapDto);
 			basicPracticeMap.put("entertainmentDto", entertainmentDto);
-
 			return basicPracticeMap;
+		} else {
+			Map<String, Object> debutPracticeMap = new HashMap<>();
+			// 유저가 데뷔한 후의 트레이닝 가져오기
+			// PRACTICE_ID = 2인 보컬, 댄스, 랩, 예능 연습 데이터 가져오기
+			VocalPracticeEntity vpEntity = (VocalPracticeEntity) practiceService.getVocalPracticeByPracticeId(2);
+			VocalPracticeDto vocalDto = VocalPracticeDto.pt_info(vpEntity);
+			DancePracticeEntity dpEntity = (DancePracticeEntity) practiceService.getDancePracticeByPracticeId(2);
+			DancePracticeDto danceDto = DancePracticeDto.pt_info(dpEntity);
+			RapPracticeEntity rpEntity = (RapPracticeEntity) practiceService.getRapPracticeByPracticeId(2);
+			RapPracticeDto rapDto = RapPracticeDto.pt_info(rpEntity);
+			EntertainmentPracticeEntity epEntity = (EntertainmentPracticeEntity) practiceService
+					.getEntertainmentPracticeByPracticeId(2);
+			EntertainmentPracticeDto entertainmentDto = EntertainmentPracticeDto.pt_info(epEntity);
+			System.out.println("ddddddddddd   " + danceDto);
+			debutPracticeMap.put("vocalDto", vocalDto);
+			debutPracticeMap.put("danceDto", danceDto);
+			debutPracticeMap.put("rapDto", rapDto);
+			debutPracticeMap.put("entertainmentDto", entertainmentDto);
+			
+			return debutPracticeMap;
 		}
-
-		return new HashMap<>(); // artist가 "윈터"가 아니면 빈 맵 반환
 	}
 
 	// 보컬연습결과 유저 캐릭터에 저장
 	@Override
 	@Transactional
 	public void vocalTrainSave(int character_id, int vocalScore, int health, int fatigue, int price) {
+		DebutCheckDto Check = debutCheckRepository.findByCharacter_CharacterId(character_id);
 		CharacterEntity character = characterRepository.findByCharacterId(character_id);
 		System.out.println(character.getCharacterId());
 		System.out.println(character_id);
@@ -142,6 +164,25 @@ public class CharacterServiceImpl implements CharacterService {
 		character.setFatigue(character.getFatigue() + fatigue);
 		character.setCoin(character.getCoin() - price);
 		System.out.println(character.getHealth());
+		if(Check == null) {
+			if(character.getVocal() >= 75 && character.getRap() >= 75) {
+				List<ArtistNameEntity> list = artistNameRepository.findAll();
+				Random random = new Random();
+				int randomIndex = 2 + random.nextInt(list.size() - 2);
+				
+				ArtistNameEntity entity = artistNameRepository.findById(randomIndex).orElseThrow(()-> new RuntimeException("해당 ID의 아티스트를 찾을 수 없습니다."));
+				if(entity != null) {
+					ArtistEntity artist = character.getArtist();
+					artist.setArtistName(entity);
+					DebutCheckDto update = new DebutCheckDto();
+					update.setArtist(artist);
+					update.setCharacter(character);
+					debutCheckRepository.save(update);
+					session.setAttribute("debut", 1);
+				}
+				
+			}
+		}
 		CharacterDto characterDto = CharacterDto.unit(character);
 		session.setAttribute("character", characterDto);
 	}
@@ -149,7 +190,7 @@ public class CharacterServiceImpl implements CharacterService {
 	// 댄스 트레이닝 결과 유저 캐릭터에 저장
 	@Override
 	@Transactional
-	public void danceTrainSave(int character_id, int danceScore, int health, int fatigue, int price) {
+	public void danceTrainSave(int character_id, int danceScore, int health, int fatigue, int price) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 		CharacterEntity character = characterRepository.findByCharacterId(character_id);
 		character.setDance(character.getDance() + danceScore);
 		character.setHealth(character.getHealth() - health);
@@ -163,11 +204,31 @@ public class CharacterServiceImpl implements CharacterService {
 	@Override
 	@Transactional
 	public void rapTrainSave(int character_id, int rapScore, int health, int fatigue, int price) {
+		DebutCheckDto Check = debutCheckRepository.findByCharacter_CharacterId(character_id);
 		CharacterEntity character = characterRepository.findByCharacterId(character_id);
 		character.setRap(character.getRap() + rapScore);
 		character.setHealth(character.getHealth() - health);
 		character.setFatigue(character.getFatigue() + fatigue);
 		character.setCoin(character.getCoin() - price);
+		if(Check == null) {
+			if(character.getVocal() >= 75 && character.getRap() >= 75) {
+				List<ArtistNameEntity> list = artistNameRepository.findAll();
+				Random random = new Random();
+				int randomIndex = 2 + random.nextInt(list.size() - 2);
+				
+				ArtistNameEntity entity = artistNameRepository.findById(randomIndex).orElseThrow(()-> new RuntimeException("해당 ID의 아티스트를 찾을 수 없습니다."));
+				if(entity != null) {
+					ArtistEntity artist = character.getArtist();
+					artist.setArtistName(entity);
+					DebutCheckDto update = new DebutCheckDto();
+					update.setArtist(artist);
+					update.setCharacter(character);
+					debutCheckRepository.save(update);
+					session.setAttribute("debut", 1);
+				}
+				
+			}
+		}
 		CharacterDto characterDto = CharacterDto.unit(character);
 		session.setAttribute("character", characterDto);
 	}

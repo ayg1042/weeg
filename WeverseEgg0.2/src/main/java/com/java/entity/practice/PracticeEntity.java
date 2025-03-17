@@ -1,5 +1,8 @@
 package com.java.entity.practice;
 
+import com.java.dto.practice.PracticeDto;
+import com.java.dto.practice.PracticeType;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,4 +36,23 @@ public class PracticeEntity {
     /** 연습 시 증가하는 피로도 */
     @Column(nullable = false)
     private int fatigue;
+
+	public static PracticeEntity nullId(PracticeDto dto) {
+		PracticeEntity entity = new PracticeEntity();
+		entity.setPracticeType(PracticeTypeEntity.From(dto.getPracticeType()));
+		entity.setPrice(dto.getPrice());
+		entity.setHealth(dto.getHealth());
+		entity.setFatigue(dto.getFatigue());
+		return entity;
+	}
+
+	public static PracticeEntity From(PracticeDto dto) {
+		PracticeEntity entity = new PracticeEntity();
+		entity.setPracticeId(dto.getPracticeId());
+		entity.setPracticeType(PracticeTypeEntity.From(dto.getPracticeType()));
+		entity.setPrice(dto.getPrice());
+		entity.setHealth(dto.getHealth());
+		entity.setFatigue(dto.getFatigue());
+		return entity;
+	}
 }

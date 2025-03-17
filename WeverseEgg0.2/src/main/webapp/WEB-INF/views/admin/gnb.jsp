@@ -12,10 +12,10 @@
       <li class="active"><a href="/admin/main" >회원 정보</a></li>
       <li class="board_toggle">게시판 관리</li>
       <li class="board_sub"><a href="/admin/notice">공지사항</a></li>
-      <li class="board_sub"><a href="/admin/board">자유게시판</a></li>
-      <li class="board_sub"><a href="/admin/board">하위 메뉴 3</a></li>
+      <li class="board_sub"><a href="/admin/admin_board">자유게시판</a></li>
+      <li class="board_sub"><a href="/admin/admin_board">하위 메뉴 3</a></li>
       <li><a href="/admin/items" >아이템 관리</a></li>
-      <li><a href="" >트레이닝 관리</a></li>
+      <li><a href="/admin/training" >트레이닝 관리</a></li>
       <li><a href="/admin/event" >이벤트 관리</a></li>
       <li><a href="/admin/admin_quest" >퀘스트 관리</a></li>
       <li><a href="/admin/artist" >아이돌 관리</a></li>

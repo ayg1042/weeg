@@ -1,4 +1,5 @@
 $(function() {
+<<<<<<< HEAD
 	// 음방활동
 	$("#music_actvity").click(function() {
 		if (userCoin < 50000) {
@@ -17,6 +18,26 @@ $(function() {
 			openAlertModal("음악방송 출연에 필요한 랩 능력이 부족해요...ㅜㅜ");
 			return;
 		}
+=======
+    // 음방활동
+    $("#music_actvity").click(function() {
+        if (userCoin < 50000) {
+            openAlertModal("보유 코인이 부족해요.");
+            return;
+        } else if (userHealth < 40) {
+            openAlertModal("체력이 부족해서 휴식이 필요해요...ㅜㅜ");
+            return;
+        } else if (userFatigue + 75 > 100) {
+            openAlertModal("너무 피로해서 간식이 필요해요...ㅜㅜ");
+            return;
+        } else if (userVocal < 75) {
+            openAlertModal("음악방송 출연에 필요한 보컬 능력이 부족해요...ㅜㅜ");
+            return;
+        } else if (userRap < 75) {
+            openAlertModal("음악방송 출연에 필요한 랩 능력이 부족해요...ㅜㅜ");
+            return;
+        }
+>>>>>>> refs/remotes/origin/master
 
 		// Confirm 모달을 호출하여 확인/취소 받기
 		openConfirmModal("음악방송에 출연할까요?", function(confirm) {

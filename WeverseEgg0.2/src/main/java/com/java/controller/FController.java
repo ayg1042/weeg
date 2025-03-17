@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -21,12 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.character.CharacterDto;
 import com.java.dto.character.InvenDto;
-import com.java.dto.character.SaveStyleDto;
-import com.java.dto.character.StyleDto;
 import com.java.dto.feed.FeedDto;
 import com.java.dto.item.ItemDto;
 import com.java.dto.member.MemberDto;
-import com.java.entity.character.StyleEntity;
 import com.java.entity.member.MemberEntity;
 import com.java.entity.quest.QuestEntity;
 import com.java.entity.quest.QuestHistoryEntity;
@@ -48,30 +44,20 @@ import jakarta.transaction.Transactional;
 
 @Controller
 public class FController {
-
-	@Autowired
-	QuestService questService;
-	@Autowired
-	QuestProgressRepository questProgressRepository;
-	@Autowired
-	CharacterService characterService;
-	@Autowired
-	QuestHistoryRepository questHistoryRepository;
-	@Autowired
-	MemberRepository memberRepository;
-	@Autowired
-	QuestRepository questRepository;
-	@Autowired
-	CharacterRepository characterRepository;
-	@Autowired
-	ModalService modalServiceImpl;
-	@Autowired
-	MemberService memberService;
-	@Autowired
-	AespaService aespaService;
-	@Autowired
-	HttpSession session;
-
+	
+	@Autowired QuestService questService;
+	@Autowired QuestProgressRepository questProgressRepository;
+	@Autowired CharacterService characterService;
+	@Autowired QuestHistoryRepository questHistoryRepository;
+	@Autowired MemberRepository memberRepository;
+	@Autowired QuestRepository questRepository;
+	@Autowired CharacterRepository characterRepository;
+	@Autowired ModalService modalServiceImpl;
+	@Autowired MemberService memberService;
+	@Autowired AespaService aespaService;
+	@Autowired HttpSession session;
+	
+	
 	@GetMapping("/") // 위버스 로그인 안 된 페이지
 	public String index1(Model model, @SessionAttribute(name = "session_id", required = false) MemberDto memberDto) {
 		// 로그인한 사용자 정보 가져오기

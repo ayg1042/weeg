@@ -38,10 +38,22 @@ function openAlertModal(message) {
     document.getElementById("alert-modal").style.display = "flex";
     document.getElementById("modal-background").style.display = "block";
 }
+// 데뷔 모달 열기 (링크 이동 X)
+function openDebutModal(message) {
+    document.getElementById("alert-debut-message").innerText = message;
+    document.getElementById("alert-debut-modal").style.display = "flex";
+    document.getElementById("modal-background").style.display = "block";
+}
 
 // 알림 모달 닫기 (링크 이동 X)
 function closeAlertModal() {
     document.getElementById("alert-modal").style.display = "none";
+    document.getElementById("modal-background").style.display = "none";
+}
+
+// 데뷔 모달 닫기 (링크 이동 X)
+function closeAlertModal() {
+    document.getElementById("alert-debut-modal").style.display = "none";
     document.getElementById("modal-background").style.display = "none";
 }
 

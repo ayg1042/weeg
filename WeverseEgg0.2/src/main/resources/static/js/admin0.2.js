@@ -376,6 +376,376 @@ $(document).ready(function() {
 		        });
 				
 			 })
+			 
+			 // 연습 타입 추가
+			 $("#practiceType_save").click(function(event){
+				event.preventDefault();
+				
+				var practiceType = $("#practiceType").val();
+				
+				console.log(practiceType);
+				
+				$.ajax({
+		            url: "/admin/addpracticeType", // 서버에서 처리할 URL
+		            type: "POST",
+		            data: {
+						practiceType: practiceType
+					},
+		            success: function(response) {
+		                alert("추가되었습니다.");
+		                //location.reload(); // 페이지 새로고침
+		            },
+		            error: function(xhr) {
+		                alert("삭제 실패: " + xhr.responseText);
+		            }
+		        });
+				
+			 })
+			 
+			 // 연습 타입 삭제
+			 $("#delete_practiceType_save").click(function(event){
+ 				event.preventDefault();
+ 				
+ 				var practiceType = $("#delete_practiceType").val();
+ 				
+ 				console.log(practiceType);
+ 				
+ 				$.ajax({
+ 		            url: "/admin/deletepracticeType", // 서버에서 처리할 URL
+ 		            type: "POST",
+ 		            data: {
+ 						practiceType: practiceType
+ 					},
+ 		            success: function(response) {
+ 		                alert("삭제되었습니다.");
+ 		                //location.reload(); // 페이지 새로고침
+ 		            },
+ 		            error: function(xhr) {
+ 		                alert("삭제 실패: " + xhr.responseText);
+ 		            }
+ 		        });
+ 				
+ 			 })
+			 
+			 // 연습 추가
+			 $("#add_practice_save").click(function(event){
+ 				event.preventDefault();
+ 				
+ 				var practiceTypeId = $("#add_practice").val();
+				var price = $("#add_price").val();
+				var health = $("#add_health").val();
+				var fatigue = $("#add_fatigue").val();
+ 				
+ 				console.log(practiceTypeId + ", " + price + ", " + health + ", " + fatigue);
+				
+				$.ajax({
+ 		            url: "/admin/addPractice", // 서버에서 처리할 URL
+ 		            type: "POST",
+ 		            data: {
+ 						practiceTypeId: practiceTypeId,
+						price: price,
+						health: health,
+						fatigue: fatigue
+ 					},
+ 		            success: function(response) {
+ 		                alert("추가되었습니다.");
+ 		                //location.reload(); // 페이지 새로고침
+ 		            },
+ 		            error: function(xhr) {
+ 		                alert("삭제 실패: " + xhr.responseText);
+ 		            }
+ 		        });
+ 				
+ 				
+ 			 })
+			 
+			 // 연습 수정
+			 $("#update_practice").change(function () {
+			     let selectedText = $(this).find("option:selected").text();
+
+			     // 정규식을 이용하여 값 추출 (ID, 가격, 체력, 피로도)
+			     let regex = /^(\d+),\s([\d.]+),\s([\d.]+),\s([\d.]+)$/;
+			     let match = selectedText.match(regex);
+
+			     if (match) {
+			         $("#update_price").val(match[2].trim());   // 비용
+			         $("#update_health").val(match[3].trim());  // 체력
+			         $("#update_fatigue").val(match[4].trim()); // 피로도
+			     }
+			 });
+			 
+			 
+			$("#update_practice_save").click(function(event){
+	  				event.preventDefault();
+	  				
+	  				var update_practice = $("#update_practice").val();
+	 				var price = $("#update_price").val();
+	 				var health = $("#update_health").val();
+	 				var fatigue = $("#update_fatigue").val();
+	  				
+	  				console.log(update_practice + ", " + price + ", " + health + ", " + fatigue);
+	 				
+	 				$.ajax({
+	  		            url: "/admin/updatePractice", // 서버에서 처리할 URL
+	  		            type: "POST",
+	  		            data: {
+	  						updatePracticeId: update_practice,
+	 						price: price,
+	 						health: health,
+	 						fatigue: fatigue
+	  					},
+	  		            success: function(response) {
+	  		                alert("수정되었습니다.");
+	  		                //location.reload(); // 페이지 새로고침
+	  		            },
+	  		            error: function(xhr) {
+	  		                alert("삭제 실패: " + xhr.responseText);
+	  		            }
+	  		        });
+	  				
+	  				
+	  			 })
+			
+			// 삭제하기
+			$("#delete_practice_save").click(function(event){
+	  				event.preventDefault();
+	  				
+	  				var practiceId = $("#delete_practice").val();
+	  				
+	 				
+	 				$.ajax({
+	  		            url: "/admin/deletePractice", // 서버에서 처리할 URL
+	  		            type: "POST",
+	  		            data: {
+	  						practiceId: practiceId
+	  					},
+	  		            success: function(response) {
+	  		                alert("삭제되었습니다.");
+	  		                //location.reload(); // 페이지 새로고침
+	  		            },
+	  		            error: function(xhr) {
+	  		                alert("삭제 실패: " + xhr.responseText);
+	  		            }
+	  		        });
+	  				
+	  				
+	  			 })
+				 
+			// 춤 추가
+			$("#add_dance_save").click(function(event){
+	  				event.preventDefault();
+	  				
+	  				var practiceId = $("#add_dance").val();
+					var name = $("#add_dance_name").val();
+					var point = $("#add_dance_point").val();
+	  				
+	 				
+	 				$.ajax({
+	  		            url: "/admin/addDance", // 서버에서 처리할 URL
+	  		            type: "POST",
+	  		            data: {
+	  						practiceId: practiceId,
+							name: name,
+							point: point
+	  					},
+	  		            success: function(response) {
+	  		                alert("추가되었습니다.");
+	  		                //location.reload(); // 페이지 새로고침
+	  		            },
+	  		            error: function(xhr) {
+	  		                alert("삭제 실패: " + xhr.responseText);
+	  		            }
+	  		        });
+	  				
+	  				
+	  			 })
+				 
+			// 춤 삭제
+			$("#delete_dance_save").click(function(event){
+	  				event.preventDefault();
+	  				
+	  				var danceId = $("#delete_dance").val();
+	  				
+	 				
+	 				$.ajax({
+	  		            url: "/admin/deleteDance", // 서버에서 처리할 URL
+	  		            type: "POST",
+	  		            data: {
+	  						danceId: danceId
+	  					},
+	  		            success: function(response) {
+	  		                alert("삭제되었습니다.");
+	  		                //location.reload(); // 페이지 새로고침
+	  		            },
+	  		            error: function(xhr) {
+	  		                alert("삭제 실패: " + xhr.responseText);
+	  		            }
+	  		        });
+	  				
+	  				
+	  			 })
+				 
+				 // 보컬 추가
+	 			$("#add_vocal_save").click(function(event){
+	 	  				event.preventDefault();
+	 	  				
+	 	  				var practiceId = $("#add_vocal").val();
+	 					var name = $("#add_vocal_name").val();
+	 					var point = $("#add_vocal_point").val();
+	 	  				
+	 	 				
+	 	 				$.ajax({
+	 	  		            url: "/admin/addVocal", // 서버에서 처리할 URL
+	 	  		            type: "POST",
+	 	  		            data: {
+	 	  						practiceId: practiceId,
+	 							name: name,
+	 							point: point
+	 	  					},
+	 	  		            success: function(response) {
+	 	  		                alert("추가되었습니다.");
+	 	  		                //location.reload(); // 페이지 새로고침
+	 	  		            },
+	 	  		            error: function(xhr) {
+	 	  		                alert("삭제 실패: " + xhr.responseText);
+	 	  		            }
+	 	  		        });
+	 	  				
+	 	  				
+	 	  			 })
+					 
+				// 보컬 삭제
+				$("#delete_vocal_save").click(function(event){
+		  				event.preventDefault();
+		  				
+		  				var vocalId = $("#delete_vocal").val();
+		  				
+		 				
+		 				$.ajax({
+		  		            url: "/admin/deleteVocal", // 서버에서 처리할 URL
+		  		            type: "POST",
+		  		            data: {
+		  						vocalId: vocalId
+		  					},
+		  		            success: function(response) {
+		  		                alert("삭제되었습니다.");
+		  		                //location.reload(); // 페이지 새로고침
+		  		            },
+		  		            error: function(xhr) {
+		  		                alert("삭제 실패: " + xhr.responseText);
+		  		            }
+		  		        });
+		  				
+		  				
+		  			 })
+					 
+				 // 랩 추가
+	 			$("#add_rap_save").click(function(event){
+	 	  				event.preventDefault();
+	 	  				
+	 	  				var practiceId = $("#add_rap").val();
+	 					var name = $("#add_rap_name").val();
+	 					var point = $("#add_rap_point").val();
+	 	  				
+	 	 				
+	 	 				$.ajax({
+	 	  		            url: "/admin/addRap", // 서버에서 처리할 URL
+	 	  		            type: "POST",
+	 	  		            data: {
+	 	  						practiceId: practiceId,
+	 							name: name,
+	 							point: point
+	 	  					},
+	 	  		            success: function(response) {
+	 	  		                alert("추가되었습니다.");
+	 	  		                //location.reload(); // 페이지 새로고침
+	 	  		            },
+	 	  		            error: function(xhr) {
+	 	  		                alert("삭제 실패: " + xhr.responseText);
+	 	  		            }
+	 	  		        });
+	 	  				
+	 	  				
+	 	  			 })
+					 
+				// 랩 삭제
+				$("#delete_rap_save").click(function(event){
+		  				event.preventDefault();
+		  				
+		  				var rapId = $("#delete_rap").val();
+		  				
+		 				
+		 				$.ajax({
+		  		            url: "/admin/deleteRap", // 서버에서 처리할 URL
+		  		            type: "POST",
+		  		            data: {
+		  						rapId: rapId
+		  					},
+		  		            success: function(response) {
+		  		                alert("삭제되었습니다.");
+		  		                //location.reload(); // 페이지 새로고침
+		  		            },
+		  		            error: function(xhr) {
+		  		                alert("삭제 실패: " + xhr.responseText);
+		  		            }
+		  		        });
+		  				
+		  				
+		  			 })
+					 
+				 // 랩 추가
+	 			$("#add_enter_save").click(function(event){
+	 	  				event.preventDefault();
+	 	  				
+	 	  				var practiceId = $("#add_enter").val();
+	 					var name = $("#add_enter_name").val();
+	 					var point = $("#add_enter_point").val();
+	 	  				
+	 	 				
+	 	 				$.ajax({
+	 	  		            url: "/admin/addEnter", // 서버에서 처리할 URL
+	 	  		            type: "POST",
+	 	  		            data: {
+	 	  						practiceId: practiceId,
+	 							name: name,
+	 							point: point
+	 	  					},
+	 	  		            success: function(response) {
+	 	  		                alert("추가되었습니다.");
+	 	  		                //location.reload(); // 페이지 새로고침
+	 	  		            },
+	 	  		            error: function(xhr) {
+	 	  		                alert("삭제 실패: " + xhr.responseText);
+	 	  		            }
+	 	  		        });
+	 	  				
+	 	  				
+	 	  			 })
+					 
+				// 랩 삭제
+				$("#delete_enter_save").click(function(event){
+		  				event.preventDefault();
+		  				
+		  				var enterId = $("#delete_enter").val();
+		  				
+		 				
+		 				$.ajax({
+		  		            url: "/admin/deleteEtner", // 서버에서 처리할 URL
+		  		            type: "POST",
+		  		            data: {
+		  						enterId: enterId
+		  					},
+		  		            success: function(response) {
+		  		                alert("삭제되었습니다.");
+		  		                //location.reload(); // 페이지 새로고침
+		  		            },
+		  		            error: function(xhr) {
+		  		                alert("삭제 실패: " + xhr.responseText);
+		  		            }
+		  		        });
+		  				
+		  				
+		  			 })
 		
 		
 		

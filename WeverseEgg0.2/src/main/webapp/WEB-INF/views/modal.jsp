@@ -185,23 +185,22 @@
 							<div>
 								<div class="stat_hidden_stats">
 									<div class="stat_hidden_stTitle">${chDto.vocal}</div>
-									<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+									<div class="stat_hidden_stTitle mg_left fc">(+${vocalStyle})</div>
 								</div>
 								<div class="stat_hidden_stats">
 									<div class="stat_hidden_stTitle">${chDto.dance}</div>
-									<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+									<div class="stat_hidden_stTitle mg_left fc">(+${danceStyle})</div>
 								</div>
 								<div class="stat_hidden_stats">
 									<div class="stat_hidden_stTitle">${chDto.rap}</div>
-									<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+									<div class="stat_hidden_stTitle mg_left fc">(+${rapStyle})</div>
 								</div>
 								<div class="stat_hidden_stats">
 									<div class="stat_hidden_stTitle">${chDto.entertainment}</div>
-									<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+									<div class="stat_hidden_stTitle mg_left fc">(+${enterStyle})</div>
 								</div>
 								<div class="stat_hidden_stats">
 									<div class="stat_hidden_stTitle">${chDto.charm}</div>
-									<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
 								</div>
 								<div class="stat_hidden_stTitle">${chDto.popularity}</div>
 							</div>
@@ -271,8 +270,14 @@
 
 	<!-- 알림 확인 모달 (링크 이동 X) -->
 	<div id="alert-modal" class="modalmessage">
-		<p id="alert-message"></p>
-		<button id="alert-button" onclick="closeAlertModal()">확인</button>
+	    <p id="alert-message"></p>
+	    <button id="alert-button" onclick="closeAlertModal()">확인</button>
+	</div>
+	
+	<!-- 데뷔 확인 모달 (링크 이동 X) -->
+	<div id="alert-debut-modal" class="debutmodalmessage">
+	    <p id="alert-debut-message"></p>
+	    <button id="alert-debut-button" onclick="closeAlertModal()">확인</button>
 	</div>
 
 	<!-- Confirm 모달 (확인 + 취소) -->
@@ -603,10 +608,10 @@
 						<img class="background-image" src="/images/music_actvity.png">
 						<div class="training_img_text">
 							<p>
-								보컬<span class="positive">50 필요</span>
+								보컬<span class="positive">75 필요</span>
 							</p>
 							<p>
-								랩&nbsp&nbsp <span class="positive">50 필요</span>
+								랩&nbsp&nbsp <span class="positive">75 필요</span>
 							</p>
 							<p>
 								체력<span class="negative">- 40</span>
@@ -932,13 +937,13 @@
 					<div class="show-character">
 						<img src="/images/test_character.png">
 						<c:if test="${outfit != null }">
-							<img class="shop_outfit" src="/images/items/outfit/${outfit}">
+							<img class="shop_outfit" src="/images/items/outfit/${outfit}"  style="width=100px">
 						</c:if>
 						<c:if test="${outfit == null }">
 							<img class="shop_outfit" src="">
 						</c:if>
 						<c:if test="${hat != null }">
-							<img class="shop_hat" src="/images/items/hat/${hat}">
+							<img class="shop_hat" src="/images/items/hat/${hat}"  style="width=186px">
 						</c:if>
 						<c:if test="${hat == null }">
 							<img class="shop_hat" src="">
@@ -946,24 +951,24 @@
 					</div>
 					<div class="show-item-info">
 						<p class="item_danse">
-							<span class="label">댄스</span> <span class="value">999<span
-								class="positive">(+50)</span></span>
+							<span class="label">댄스</span> <span class="value">${chDto.dance}<span
+								class="positive">(+0)</span></span>
 						</p>
 						<p class="item_enter">
-							<span class="label">예능</span> <span class="value">999<span
-								class="positive">(+50)</span></span>
+							<span class="label">예능</span> <span class="value">${chDto.entertainment}<span
+								class="positive">(+0)</span></span>
 						</p>
 						<p class="item_rap">
-							<span class="label">랩</span> <span class="value">999<span
-								class="positive">(+50)</span></span>
+							<span class="label">랩</span> <span class="value">${chDto.rap}<span
+								class="positive">(+0)</span></span>
 						</p>
 						<p class="item_vocal">
-							<span class="label">보컬</span> <span class="value">999<span
-								class="positive">(+50)</span></span>
+							<span class="label">보컬</span> <span class="value">${chDto.vocal}<span
+								class="positive">(+0)</span></span>
 						</p>
 						<p class="item_char">
-							<span class="label">매력도</span> <span class="value">999<span
-								class="positive">(+50)</span></span>
+							<span class="label">매력도</span> <span class="value">${chDto.charm}<span
+								class="positive">(+0)</span></span>
 						</p>
 					</div>
 					<div>
@@ -1218,15 +1223,13 @@
 					<div class="shop-items">
 						<c:forEach items="${invenList}" var="dto">
 							<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 4}">
-								<div
-									id="inven-item-show-consumable_${dto.invenId}_${dto.itemId.itemId}"
-									class="shop-item-show">
+								<div id="inven-item-show-consumable_${dto.invenId}_${dto.itemId.itemId}" class="shop-item-show">
 									<div class="item-info">
 										<img src="/images/items/consumable/${dto.itemId.image}">
 										<p class="item-name">${dto.itemId.name }</p>
 									</div>
 									<div class="item-price">
-										<button class="ues-item">사용</button>
+										<button class="use-item">사용</button>
 									</div>
 								</div>
 							</c:if>
@@ -1238,13 +1241,13 @@
 						<img class="" src="/images/test_character.png">
 						<c:if test="${outfit != null }">
 							<img id="" class="my_bag_outfit"
-								src="/images/items/outfit/${outfit}">
+								src="/images/items/outfit/${outfit}"  style="width=100px">
 						</c:if>
 						<c:if test="${outfit == null }">
 							<img id="" class="my_bag_outfit" src="">
 						</c:if>
 						<c:if test="${hat != null }">
-							<img id="" class="my_bag_hat" src="/images/items/hat/${hat}">
+							<img id="" class="my_bag_hat" src="/images/items/hat/${hat}" style="width=186px">
 						</c:if>
 						<c:if test="${hat == null }">
 							<img id="" class="my_bag_hat" src="">
@@ -1685,15 +1688,14 @@
 					document.getElementById('eventImage').src = imageUrl;
 				});
 			});
-		});
-		
-	    $(".event-title li").click(function () {
-	        // 모든 탭에서 활성 클래스 제거
-	        $(".event-title li").removeClass("active");
-	        // 현재 클릭된 탭에 활성 클래스 추가
-	        $(this).addClass("active");
-	    });
-	</script>
+			
+			
+			var debutChek = ${debutCheck}
+			if(${debutCheck}){
+				openDebutModal("${chDto.artist.artistName.artistName}");
+			}
+			 
+		</script>
 
 	<script src="/js/modal.js" defer></script>
 	<script src="/js/shop.js" defer></script>

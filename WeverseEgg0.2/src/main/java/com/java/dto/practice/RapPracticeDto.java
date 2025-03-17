@@ -32,4 +32,14 @@ public class RapPracticeDto {
         return dto;
     }
 
+
+	public static RapPracticeDto From(RapPracticeEntity entity) {
+		RapPracticeDto dto = new RapPracticeDto();
+        dto.setRapId(entity.getRapId());
+        dto.setPracticeId(PracticeDto.pt_info(entity.getPractice()));
+        dto.setRapName(entity.getRapName());
+        dto.setRapScore(entity.getRapScore());
+        return dto;
+	}
+
 }
