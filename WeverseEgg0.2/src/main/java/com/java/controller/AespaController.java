@@ -37,8 +37,19 @@ public class AespaController {
 	@GetMapping("/aespa") // 위버스 에스파 페이지 캐릭터 랭킹 
 	public String weverseAespa(Model model,
 			@SessionAttribute(name = "session_id", required = false) MemberDto memberDto) {
+		
+		// 작성된 피드 가져오기
 		List<FeedDto> feedlist = aespaService.feedlist();
 		model.addAttribute("feed",feedlist);
+		
+		// 랭크 가져오기
+		String GroupKor = "에스파";
+		// 순위매기기
+		aespaService.getRankedCharacterList(GroupKor);
+		// 순위대로 정렬된 리스트 가져오기
+		List<CharacterDto> rankList = aespaService.findAll(GroupKor);
+		model.addAttribute("ranklist",rankList);
+		
 		return "weverse_aespa";
 	}
 	
