@@ -243,12 +243,13 @@ $(document).on('click', '.save-button', function() {
 	});
 })
 
-$(document).on('click', '.ues-item', function() {
+$(document).on('click', '.use-item', function() {
+	var itemDiv = $(this).closest('.shop-item-show');
 	openConfirmModal("아이템을 사용 하시겠습니까?", function(confirm) {
 		if (confirm) {
 
-			const useId = $(this).closest('.shop-item-show');
-			var test = useId.attr('id');
+			var test = itemDiv.attr('id');
+			console.log(test);
 			var testList = test.split('_');
 			var invenItem = testList[1];
 			var itemId = testList[2];
