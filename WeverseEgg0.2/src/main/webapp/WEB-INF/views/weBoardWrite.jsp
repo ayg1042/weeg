@@ -17,43 +17,8 @@
 
 <body>
   <!-- 메인 -->
-  <div id="egg_mainpage">
-
-    <!-- 탑 gnb -->
-    <div class="hover_blocker1"></div> <!-- 투명한 네모 박스 (호버방지용)-->
-    <div class="hover_blocker2"></div> <!-- 투명한 네모 박스 (호버방지용)-->
-    <div id="main_top_gnb">
-      <a href="/eggmain" class="logo-link"><img src="../images/mainpage/main_egg.png" alt="에그로고"></a>
-      <nav>
-        <ul>
-          <li id="option_title">뉴스</li>
-          <li><a href="/wenotice">공지사항</a></li>
-          <li><a href="#">업데이트</a></li>
-          <li><a href="/weEvent">이벤트</a></li>
-        </ul>
-        <ul>
-          <li id="option_title">가이드</li>
-          <li><a href="#">게임정보</a></li>
-          <li><a href="#">직업소개</a></li>
-          <li><a href="#">확률형아이템</a></li>
-        </ul>
-        <ul>
-          <li id="option_title">커뮤니티</li>
-          <li><a href="/weBoard">자유게시판</a></li>
-          <li><a href="#">EGG 코디</a></li>
-        </ul>
-        <ul>
-          <li id="option_title">랭킹</li>
-          <li><a href="/rank">나의랭킹</a></li>
-        </ul>
-        <ul>
-          <li id="option_title">고객지원</li>
-          <li><a href="#">도움말/1:1문의</a></li>
-          <li><a href="#">버그악용/신고</a></li>
-        </ul>
-      </nav>
-
-    </div>
+  <div id="egg_writepage">
+    <%@ include file="egg_gnb.jsp"%>
   </div>
 
   <!-- 공지사항 -->
@@ -82,7 +47,7 @@
         <tr>
 	       	<th class="info_txt">내용</th>
 	       	<td>
-			    	<textarea rows="10" cols="50" name="bcontent"></textarea>
+			    	<textarea id="txtarea" rows="10" cols="50" placeholder="내용을 입력하세요." name="bcontent"></textarea>
 			    </td>
    			</tr>
    			<tr>
@@ -105,7 +70,7 @@
     	<button onclick="SaveBtn()" >저장</button>
     </div> <!-- info_area -->
   </div> <!-- notice_container -->
-
+  </div>
   <script>
 		//스크롤시 헤더 색상변경
 	  window.addEventListener("scroll", function () {

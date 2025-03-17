@@ -19,6 +19,7 @@
 <body>
   <!-- 메인 -->
   <div id="egg_mainpage">
+<<<<<<< HEAD
 
     <!-- 탑 gnb -->
     <div class="hover_blocker1"></div> <!-- 투명한 네모 박스 (호버방지용)-->
@@ -54,6 +55,9 @@
       </nav>
 
     </div>
+=======
+     <%@ include file="egg_gnb.jsp"%>
+>>>>>>> refs/remotes/origin/master
   </div>
 
   <!-- 자유게시판 -->
@@ -80,9 +84,9 @@
         <col class="w-[160px]">
       </colgroup>
       <tbody>
-      <c:forEach items="${list}" var="fdto">
+      <c:forEach items="${list}" var="fdto" varStatus="no">
         <tr>
-        	<td>${fdto.bno}</td>
+        	<td>${no.index +1}</td>
           <td class="td_title">
             <a href="/weBoardView?bno=${fdto.bno}"><span class="info_title">${fdto.btitle }</span></a>
           </td>

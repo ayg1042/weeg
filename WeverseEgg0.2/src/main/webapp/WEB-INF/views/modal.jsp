@@ -276,7 +276,7 @@
 	    <p id="alert-debut-message"></p>
 	    <button id="alert-debut-button" onclick="closeAlertModal()">확인</button>
 	</div>
-	
+	 
 	<!-- Confirm 모달 (확인 + 취소) -->
 	<div id="confirm-modal" class="modalmessage">
 	    <p id="confirm-message"></p>
@@ -602,7 +602,7 @@
 			<div class="modal-content">
 				<div class="modal-item" id="music_actvity">
 					<div class="training_img">
-						<img class="background-image" src="/images/vocal_training.png">
+						<img class="background-image" src="/images/music_actvity.png">
 						<div class="training_img_text">
 							<p>
 								보컬<span class="positive">75 필요</span>
@@ -636,7 +636,7 @@
 				</div>
 				<div class="modal-item" id="ent_actvity">
 					<div class="training_img">
-						<img class="background-image" src="/images/enter_activity.png">
+						<img class="background-image" src="/images/ent_actvity.png">
 						<div class="training_img_text">
 							<p>
 								예능<span class="positive">100 필요</span>
@@ -667,7 +667,7 @@
 				</div>
 				<div class="modal-item" id="con_actvity">
 					<div class="training_img">
-						<img class="background-image" src="/images/concert_activity.png">
+						<img class="background-image" src="/images/con_actvity.png">
 						<div class="training_img_text">
 							<p>
 								보컬<span class="positive">75 필요</span>
@@ -701,7 +701,7 @@
 				</div>
 				<div class="modal-item" id="sign_actvity">
 					<div class="training_img">
-						<img class="background-image" src="/images/enter_training.png">
+						<img class="background-image" src="/images/sign_actvity.png">
 						<div class="training_img_text">
 							<p>
 								인기<span class="positive">500 필요</span>
@@ -1646,42 +1646,40 @@
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
 			<div class="modal-event-title">
-			        <div>이벤트</div>
-		    	</div>
-		        <div class="modal-event">
-		        	<div id="event_layout">
-		        		<ul class="event-title">
-		        			<c:forEach items="${events }" var="event" varStatus="vs">
-						      <c:if test="${not empty event.bfile_modal}">
-		        				<li class="event_item" data-image="../images/event/${event.bfile_modal}"><a onclick="">${event.btitle }</a></li>
-						      </c:if>
-						    </c:forEach>
-		        		</ul>	
-						<div class="event_content">
-							<img id="eventImage" src="" alt="Event Image">
-						</div>
-		        	</div>
-				</div>
-				</div>
-				</div>
-				</div>
-		<script>
-			// 페이지 로드시 첫 번째 이벤트 항목의 이미지가 보여지도록 처리
-		    var firstImage = document.querySelector('.event-title li');
-		    if (firstImage) {
-		        // 첫 번째 이벤트의 이미지를 기본으로 설정
-		        var firstImageUrl = firstImage.getAttribute('data-image');
-		        document.getElementById('eventImage').src = firstImageUrl;
-		       
-		        // 첫 번째 항목에 active 클래스 추가
-		        firstImage.classList.add('active');
-		    }
-			document.querySelectorAll('.event-title li').forEach(function (li) {
-				li.addEventListener('click', function () {
-					// 클릭된 li의 data-image 속성값을 가져와 이미지 변경
-					var imageUrl = li.getAttribute('data-image');
-					document.getElementById('eventImage').src = imageUrl;
-				});
+			    <div>이벤트</div>
+	    	</div>
+	        <div class="modal-event">
+	        	<div id="event_layout">
+	        		<ul class="event-title">
+	        			<c:forEach items="${events }" var="event" varStatus="vs">
+					      <c:if test="${not empty event.bfile_modal}">
+	        				<li class="event_item" data-image="../images/event/${event.bfile_modal}"><a onclick="">${event.btitle }</a></li>
+					      </c:if>
+					    </c:forEach>
+	        		</ul>	
+					<div class="event_content">
+						<img id="eventImage" src="" alt="Event Image">
+					</div>
+	        	</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		// 페이지 로드시 첫 번째 이벤트 항목의 이미지가 보여지도록 처리
+	    var firstImage = document.querySelector('.event-title li');
+	    if (firstImage) {
+	        // 첫 번째 이벤트의 이미지를 기본으로 설정
+	        var firstImageUrl = firstImage.getAttribute('data-image');
+	        document.getElementById('eventImage').src = firstImageUrl;
+	       
+	        // 첫 번째 항목에 active 클래스 추가
+	        firstImage.classList.add('active');
+	    }
+		document.querySelectorAll('.event-title li').forEach(function (li) {
+			li.addEventListener('click', function () {
+				// 클릭된 li의 data-image 속성값을 가져와 이미지 변경
+				var imageUrl = li.getAttribute('data-image');
+				document.getElementById('eventImage').src = imageUrl;
 			});
 			
 			
@@ -1689,7 +1687,7 @@
 			if(${debutCheck}){
 				openDebutModal("${chDto.artist.artistName.artistName}");
 			}
-			
+			 
 		</script>
 
 	<script src="/js/modal.js" defer></script>

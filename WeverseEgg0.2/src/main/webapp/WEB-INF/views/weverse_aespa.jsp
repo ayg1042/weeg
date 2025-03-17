@@ -42,20 +42,6 @@
 		      <div class="new_feed_content">
 		      ${fdto.bcontent}
 		      </div>
-<!-- 	      <div id="new_feed_area"> -->
-<!-- 		      <div class="new_feed_info"> -->
-<!-- 		      	<div class="new_feed_profileimg"> -->
-<!-- 		      		<img src="../images/aespa/profileimg.png"> -->
-<!-- 		      	</div> -->
-<!-- 		      	<div class="new_feed_profile"> -->
-<!-- 		      		<strong>길동스</strong> -->
-<!-- 		      		<p>시간</p> -->
-<!-- 		      	</div> -->
-<!-- 		      </div> -->
-<!-- 		      <div class="new_feed_content"> -->
-<!-- 		      내가 쓴 글 -->
-<!-- 		      </div> -->
-<!-- 	      </div> -->
 	      <div class="new_feedbtn">
 	      	<button type="button" class="feedEmotionBtn1" aria-pressed="false">
 	      		<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -158,56 +144,36 @@
           </div>
           <table>
             <tbody>
+            <c:forEach items="${ranklist }" var="chardto" varStatus="no">
               <tr onclick="rankerBtn()">
+              <c:if test="${no.index == 0 }">
                 <td class="rank"><img src="../images/aespa/rank/gold.png">1등</td>
-                <td class="rank_nick"> 나만의나만의천사(윈터)</td>
-                <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">999,999,999</td>
+              </c:if>
+              <c:if test="${no.index == 1 }">
+                <td class="rank"><img src="../images/aespa/rank/silver.png">1등</td>
+              </c:if>
+              <c:if test="${no.index == 2 }">
+                <td class="rank"><img src="../images/aespa/rank/bronze.png">1등</td>
+              </c:if>
+                <td class="rank_nick"> ${chardto.nickName }(${chardto.artist.artistName.artistName })</td>
+                <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">${chardto.charm + chardto.popularity }</td>
               </tr> 
-              <tr>
-                <td class="rank"><img src="../images/aespa/rank/silver.png">2등</td>
-                <td class="rank_nick"> 나만의나만의여왕님(지젤)</td>
-                <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">999,999,999</td>
-              </tr>
-              <tr>
-                <td class="rank"><img src="../images/aespa/rank/bronze.png">3등</td>
-                <td class="rank_nick"> 나만의나만의요정(카리나)</td>
-                <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">999,999,999</td>
-              </tr>
-              <tr>
-                <td class="Rank">4등</td>
-                <td class="rank_nick"> 나만의나만의공주(닝닝)</td>
-                <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">999,999,999</td>
-              </tr>
-              <tr>
-                <td class="Rank">5등</td>
-                <td class="rank_nick"> 배돈까</td>
-                <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">999,999,999</td>
-              </tr>
-              <tr>
-                <td class="Rank">6등</td>
-                <td class="rank_nick"> 나만의나만의..</td>
-                <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">999,999,999</td>
-              </tr>
-              <tr>
-                <td class="Rank">7등</td>
-                <td class="rank_nick"> 나만의나만의..</td>
-                <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">999,999,999</td>
-              </tr>
-              <tr>
-                <td class="Rank">8등</td>
-                <td class="rank_nick"> 나만의나만의..</td>
-                <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">999,999,999</td>
-              </tr>
-              <tr>
-                <td class="Rank">9등</td>
-                <td class="rank_nick"> 나만의나만의..</td>
-                <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">999,999,999</td>
-              </tr>
-              <tr>
-                <td class="Rank">10등</td>
-                <td class="rank_nick"> 나만의나만의..</td>
-                <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">999,999,999</td>
-              </tr>
+            </c:forEach>
+<!--               <tr> -->
+<!--                 <td class="rank"><img src="../images/aespa/rank/silver.png">2등</td> -->
+<!--                 <td class="rank_nick"> 나만의나만의여왕님(지젤)</td> -->
+<!--                 <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">999,999,999</td> -->
+<!--               </tr> -->
+<!--               <tr> -->
+<!--                 <td class="rank"><img src="../images/aespa/rank/bronze.png">3등</td> -->
+<!--                 <td class="rank_nick"> 나만의나만의요정(카리나)</td> -->
+<!--                 <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">999,999,999</td> -->
+<!--               </tr> -->
+<!--               <tr> -->
+<!--                 <td class="Rank">4등</td> -->
+<!--                 <td class="rank_nick"> 나만의나만의공주(닝닝)</td> -->
+<!--                 <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">999,999,999</td> -->
+<!--               </tr> -->
             </tbody>
           </table>
         </div>
