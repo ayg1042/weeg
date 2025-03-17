@@ -2,6 +2,8 @@ package com.java.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.dto.character.CharacterDto;
+import com.java.dto.character.DebutCheckDto;
 import com.java.dto.practice.DancePracticeDto;
 import com.java.dto.practice.EntertainmentPracticeDto;
 import com.java.dto.practice.RapPracticeDto;
@@ -25,6 +28,7 @@ import com.java.entity.practice.VocalPracticeEntity;
 import com.java.repository.ArtistNameRepository;
 import com.java.repository.ArtistRepository;
 import com.java.repository.CharacterRepository;
+import com.java.repository.DebutCheckRepository;
 import com.java.repository.GroupRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -37,7 +41,9 @@ public class CharacterServiceImpl implements CharacterService {
 	@Autowired CharacterRepository characterRepository;
 	@Autowired PracticeService practiceService;
 	@Autowired ArtistRepository artistRepository;
+	@Autowired ArtistNameRepository artistNameRepository;
 	@Autowired GroupRepository groupRepository;
+	@Autowired DebutCheckRepository debutCheckRepository;
 
 	// 캐릭터 선택 페이지 열기
 	@Override
@@ -129,6 +135,7 @@ public class CharacterServiceImpl implements CharacterService {
 	@Override
 	@Transactional
 	public void vocalTrainSave(int character_id, int vocalScore, int health, int fatigue, int price) {
+		DebutCheckDto Check = debutCheckRepository.findByCharacter_CharacterId(character_id);
 		CharacterEntity character = characterRepository.findByCharacterId(character_id);
 		System.out.println(character.getCharacterId());
 		System.out.println(character_id);
@@ -142,6 +149,24 @@ public class CharacterServiceImpl implements CharacterService {
 		character.setFatigue(character.getFatigue() + fatigue);
 		character.setCoin(character.getCoin() - price);
 		System.out.println(character.getHealth());
+		if(Check == null) {
+			if(character.getVocal() >= 75 && character.getRap() >= 75) {
+				List<ArtistNameEntity> list = artistNameRepository.findAll();
+				System.out.println("아티스트 리스트 : " + list.size());
+				Random random = new Random();
+				int randomIndex = 2 + random.nextInt(list.size() - 2);
+				
+				ArtistNameEntity entity = artistNameRepository.findById(randomIndex).orElseThrow(()-> new RuntimeException("해당 ID의 아티스트를 찾을 수 없습니다."));
+				if(entity != null) {
+					ArtistEntity artist = character.getArtist();
+					artist.setArtistName(entity);
+					DebutCheckDto update = new DebutCheckDto();
+					update.setArtist(artist);
+					update.setCharacter(character);
+				}
+				
+			}
+		}
 		CharacterDto characterDto = CharacterDto.unit(character);
 		session.setAttribute("character", characterDto);
 	}
@@ -149,7 +174,7 @@ public class CharacterServiceImpl implements CharacterService {
 	// 댄스 트레이닝 결과 유저 캐릭터에 저장
 	@Override
 	@Transactional
-	public void danceTrainSave(int character_id, int danceScore, int health, int fatigue, int price) {
+	public void danceTrainSave(int character_id, int danceScore, int health, int fatigue, int price) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 		CharacterEntity character = characterRepository.findByCharacterId(character_id);
 		character.setDance(character.getDance() + danceScore);
 		character.setHealth(character.getHealth() - health);
@@ -163,11 +188,30 @@ public class CharacterServiceImpl implements CharacterService {
 	@Override
 	@Transactional
 	public void rapTrainSave(int character_id, int rapScore, int health, int fatigue, int price) {
+		DebutCheckDto Check = debutCheckRepository.findByCharacter_CharacterId(character_id);
 		CharacterEntity character = characterRepository.findByCharacterId(character_id);
 		character.setRap(character.getRap() + rapScore);
 		character.setHealth(character.getHealth() - health);
 		character.setFatigue(character.getFatigue() + fatigue);
 		character.setCoin(character.getCoin() - price);
+		if(Check == null) {
+			if(character.getVocal() >= 75 && character.getRap() >= 75) {
+				List<ArtistNameEntity> list = artistNameRepository.findAll();
+				System.out.println("아티스트 리스트 : " + list.size());
+				Random random = new Random();
+				int randomIndex = 2 + random.nextInt(list.size() - 2);
+				
+				ArtistNameEntity entity = artistNameRepository.findById(randomIndex).orElseThrow(()-> new RuntimeException("해당 ID의 아티스트를 찾을 수 없습니다."));
+				if(entity != null) {
+					ArtistEntity artist = character.getArtist();
+					artist.setArtistName(entity);
+					DebutCheckDto update = new DebutCheckDto();
+					update.setArtist(artist);
+					update.setCharacter(character);
+				}
+				
+			}
+		}
 		CharacterDto characterDto = CharacterDto.unit(character);
 		session.setAttribute("character", characterDto);
 	}
