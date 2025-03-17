@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +35,7 @@ public class QuestServiceImpl implements QuestService {
     @Override // 퀘스트 전체 리스트 가져오기
     public List<QuestDto> findAll() {
         // 엔티티 리스트를 가져오기
-        List<QuestEntity> list = questRepository.findAll();
+    	List<QuestEntity> list = questRepository.findAll(Sort.by(Sort.Direction.ASC, "questId"));
         // DTO 리스트 생성
         List<QuestDto> dtoList = new ArrayList<>();
         
