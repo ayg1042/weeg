@@ -8,8 +8,6 @@
 <link rel="stylesheet" type="text/css" href="../css/admin/admin_login.css" />
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>admin 관리자 페이지</title>
-<link rel="stylesheet" type="text/css" href="../css/admin.css"/>
-<title>Insert title here</title>
 <style>
 	#admin_login_area{
 		margin: 200px auto;
@@ -56,6 +54,7 @@
 		height: 30px;
 		border: none;
 		border-radius: 10px;
+		cursor: pointer;
 	}
 	
 </style>
