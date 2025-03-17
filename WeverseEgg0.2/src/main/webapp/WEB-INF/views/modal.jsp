@@ -11,15 +11,12 @@
 <link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/modal.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5.0.0/dist/stomp.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5.0.0/dist/stomp.min.js"></script>
 <script src="/js/modalert.js"></script>
 </head>
 
 <body>
-
 	<!-- ===== MainRoom ===== -->
 	<!-- 헤더 -->
 	<header>
@@ -280,12 +277,10 @@
 
 	<!-- Confirm 모달 (확인 + 취소) -->
 	<div id="confirm-modal" class="modalmessage">
-		<p id="confirm-message"></p>
-		<button id="confirm-button" onclick="confirmAction()">가보자고~</button>
-		<button id="cancel-button" onclick="closeConfirmModal()">앗
-			다음에..</button>
+	    <p id="confirm-message"></p>
+	    <button id="confirm-button" onclick="confirmAction()">가보자고~</button>
+	   <button id="cancel-button" onclick="closeConfirmModal()">앗 다음에..</button>
 	</div>
-
 
 	<!-- 트레이닝 모달 -->
 	<div id="modal1" class="modal">
@@ -605,7 +600,7 @@
 			<div class="modal-content">
 				<div class="modal-item" id="music_actvity">
 					<div class="training_img">
-						<img class="background-image" src="/images/vocal_training.png">
+						<img class="background-image" src="/images/music_actvity.png">
 						<div class="training_img_text">
 							<p>
 								보컬<span class="positive">50 필요</span>
@@ -639,7 +634,7 @@
 				</div>
 				<div class="modal-item" id="ent_actvity">
 					<div class="training_img">
-						<img class="background-image" src="/images/enter_activity.png">
+						<img class="background-image" src="/images/ent_actvity.png">
 						<div class="training_img_text">
 							<p>
 								예능<span class="positive">100 필요</span>
@@ -670,7 +665,7 @@
 				</div>
 				<div class="modal-item" id="con_actvity">
 					<div class="training_img">
-						<img class="background-image" src="/images/concert_activity.png">
+						<img class="background-image" src="/images/con_actvity.png">
 						<div class="training_img_text">
 							<p>
 								보컬<span class="positive">75 필요</span>
@@ -704,7 +699,7 @@
 				</div>
 				<div class="modal-item" id="sign_actvity">
 					<div class="training_img">
-						<img class="background-image" src="/images/enter_training.png">
+						<img class="background-image" src="/images/sign_actvity.png">
 						<div class="training_img_text">
 							<p>
 								인기<span class="positive">500 필요</span>
@@ -1690,7 +1685,15 @@
 					document.getElementById('eventImage').src = imageUrl;
 				});
 			});
-		</script>
+		});
+		
+	    $(".event-title li").click(function () {
+	        // 모든 탭에서 활성 클래스 제거
+	        $(".event-title li").removeClass("active");
+	        // 현재 클릭된 탭에 활성 클래스 추가
+	        $(this).addClass("active");
+	    });
+	</script>
 
 	<script src="/js/modal.js" defer></script>
 	<script src="/js/shop.js" defer></script>

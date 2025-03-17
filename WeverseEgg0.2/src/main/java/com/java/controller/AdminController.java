@@ -535,5 +535,13 @@ public class AdminController {
  	    }
 	}
 	
+//	@GetMapping("board")
+//	public String board(Model model) {
+//		String category = "community";
+//		List<FeedDto> notilist = adminService.notilist(category);
+//		model.addAttribute("notilist",notilist);
+//		return "/admin/admin_board";
+//	}
+	
 	
 }

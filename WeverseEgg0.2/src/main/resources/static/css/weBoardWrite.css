@@ -89,8 +89,8 @@ td{
   padding: 5px;
   cursor: text;
   outline: none;
-  position: relative;
-  display :inline-block;
+  /* position: relative;
+  display :inline-block; */
 } 
 
 #titleBtn:hover{
@@ -104,19 +104,24 @@ td{
 	line-height: 1.75rem;
 }
 
-textarea{
-	resize: none;
-  width: 800px;
-  height: 400px;
-  font-size: 14px;
-  line-height: 1.75rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: white;
-  padding: 5px;
-  cursor: text;
-  outline: none;
-  position: relative;
+#txtarea{
+	 /* resize: none; */
+    width: 800px;
+    height: 400px;
+    font-size: 14px;
+    line-height: 1.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+    cursor: text;
+    outline: none;
+    /* position: relative; 혹시 position 관련 문제 있을 경우
+    pointer-events: auto; 마우스 입력 활성화 */
+}
+#txtarea::placeholder{
+	font-family: 'Pretendard-Regular';
+	font-size: 16px;
 }
 
 #file{

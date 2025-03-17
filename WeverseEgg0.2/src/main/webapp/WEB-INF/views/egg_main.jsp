@@ -1,15 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="../css/mainpage.css"/>
-  <link rel="stylesheet" type="text/css" href="../css/header.css"/>
-  <title>WEVERSEGG</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/mainpage.css" />
+<link rel="stylesheet" type="text/css" href="../css/header.css" />
+<title>WEVERSEGG</title>
 </head>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -70,70 +71,75 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 </script>
 <body>
-  <!-- 메인 -->
-  <div id="egg_mainpage">
-    <!-- 탑 gnb -->
-    <div id="main_top_gnb">
-      <a href="/eggmain" class="logo-link"><img src="images/mainpage/main_egg.png" alt="에그로고"></a>
-      <nav>
-        <ul>
-          <li id="option_title">뉴스</li>
-          <li><a href="/wenotice">공지사항</a></li>
-          <li><a href="#">업데이트</a></li>
-          <li><a href="/weEvent">이벤트</a></li>
-  
-        </ul>
-        <ul>
-          <li id="option_title">가이드</li>
-          <li><a href="#">게임정보</a></li>
-          <li><a href="#">직업소개</a></li>
-          <li><a href="#">확률형아이템</a></li>
-        </ul>
-        <ul>
-          <li id="option_title">커뮤니티</li>
-          <li><a href="/weBoard">자유게시판</a></li>
-          <li><a href="#">EGG 코디</a></li>
-        </ul>
-        <ul>
-          <li id="option_title">랭킹</li>
-          <li><a href="/rank">나의랭킹</a></li>
-        </ul>
-        <ul>
-          <li id="option_title">고객지원</li>
-          <li><a href="#">도움말/1:1문의</a></li>
-          <li><a href="#">버그악용/신고</a></li>
-        </ul>
-      </nav>
-    </div>
-    <!-- 메인 이미지 화면 -->
-    <div id="main_banner">
-    <c:forEach items="${banners }" var="banner">
-      <c:if test="${not empty banner.bfile_banner}">
-      <img src="../images/event/${banner.bfile_banner}" alt="메인 배너 이미지">
-    </c:if>
-    </c:forEach>
-    </div>
-	<div class="egg_main_bottom">
-	    <!-- 하단 이벤트 gnb -->
-	    <div id="main_bottom_gnb">
-	    <c:forEach items="${banners }" var="banner" varStatus="vs">
-	     <c:if test="${vs.index < 4}">
-	      <div class="box${vs.index +1 }">
-	        <div class="event-title">${banner.btitle}</div>
-	        <div class="event-date">~2025.03.26</div>
-	      </div>
-	     </c:if>
-	    </c:forEach>
+	<!-- 메인 -->
+	<div id="egg_mainpage">
+		<!-- 탑 gnb -->
+		<div id="main_top_gnb">
+			<a href="/eggmain" class="logo-link"><img
+				src="images/mainpage/main_egg.png" alt="에그로고"></a>
+			<nav>
+				<ul>
+					<li id="option_title">뉴스</li>
+					<li><a href="/wenotice">공지사항</a></li>
+					<li><a href="#">업데이트</a></li>
+					<li><a href="/weEvent">이벤트</a></li>
+
+				</ul>
+				<ul>
+					<li id="option_title">가이드</li>
+					<li><a href="#">게임정보</a></li>
+					<li><a href="#">직업소개</a></li>
+					<li><a href="#">확률형아이템</a></li>
+				</ul>
+				<ul>
+					<li id="option_title">커뮤니티</li>
+					<li><a href="/weBoard">자유게시판</a></li>
+					<li><a href="#">EGG 코디</a></li>
+				</ul>
+				<ul>
+					<li id="option_title">랭킹</li>
+					<li><a href="/rank">나의랭킹</a></li>
+				</ul>
+				<ul>
+					<li id="option_title">고객지원</li>
+					<li><a href="#">도움말/1:1문의</a></li>
+					<li><a href="#">버그악용/신고</a></li>
+				</ul>
+			</nav>
 		</div>
-	
-	    <!-- 게임 스타트 버튼 -->
-	    <div id="game_start_btn">
-	      <button type="button" onclick="stBtn()" class="game_start">
-	        <img src="images/mainpage/start1.png" alt="게임 시작 버튼 호버 전" class="default">
-	        <img src="images/mainpage/start2.png" alt="게임 시작 버튼 호버 후" class="hover">
-	      </button>
-	    </div>
-  </div>
-  <!-- 메인 끝 -->
+		<%@ include file="egg_gnb.jsp"%>
+
+		<!-- 메인 이미지 화면 -->
+		<div id="main_banner">
+			<c:forEach items="${banners }" var="banner">
+				<c:if test="${not empty banner.bfile_banner}">
+					<img src="../images/event/${banner.bfile_banner}" alt="메인 배너 이미지">
+				</c:if>
+			</c:forEach>
+		</div>
+		<div class="egg_main_bottom">
+			<!-- 하단 이벤트 gnb -->
+			<div id="main_bottom_gnb">
+				<c:forEach items="${banners }" var="banner" varStatus="vs">
+					<c:if test="${vs.index < 4}">
+						<div class="box${vs.index +1 }">
+							<div class="event-title">${banner.btitle}</div>
+							<div class="event-date">~2025.03.26</div>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
+
+			<!-- 게임 스타트 버튼 -->
+			<div id="game_start_btn">
+				<button type="button" onclick="stBtn()" class="game_start">
+					<img src="images/mainpage/start1.png" alt="게임 시작 버튼 호버 전"
+						class="default"> <img src="images/mainpage/start2.png"
+						alt="게임 시작 버튼 호버 후" class="hover">
+				</button>
+			</div>
+		</div>
+	</div>
+	<!-- 메인 끝 -->
 </body>
 </html>
