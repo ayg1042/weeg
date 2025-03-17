@@ -87,6 +87,10 @@
 	</header>
 	
 	<div class="main_bg">
+		<!-- 로딩창 -->
+		<div id="loadingScreen">
+			<div class="loader"></div>
+		</div>
 		<div class="game_main">
 
 			<div class='info_area'>
@@ -1068,7 +1072,7 @@
 						<li data-tab="bag-hare">모자</li>
 						<li data-tab="bag-accessories">펫</li>
 						<li data-tab="bag-interior">인테리어</li>
-						<li data-tab="bag-snacks">간식</li>
+						<li data-tab="bag-snacks">간식/기타</li>
 					</ul>
 				</div>
 				<section id="bag-outfit" class="tab-content">
@@ -1218,7 +1222,7 @@
 				<section id="bag-snacks" class="tab-content">
 					<div class="shop-items">
 						<c:forEach items="${invenList}" var="dto">
-							<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 4}">
+							<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 4 || dto.itemId.itemInfo.itemType.itemTypeId == 5}">
 								<div id="inven-item-show-consumable_${dto.invenId}_${dto.itemId.itemId}" class="shop-item-show">
 									<div class="item-info">
 										<img src="/images/items/consumable/${dto.itemId.image}">
@@ -1688,8 +1692,13 @@
 	    });
 	    
 	    var debutChek = ${debutCheck}
-		if(${debutCheck}){
+		if(${debutCheck} != 0){
 			openDebutModal("${chDto.artist.artistName.artistName}");
+		}
+		
+	    var eventItemG = ${eventItemG}
+		if(${eventItemG} != 0){
+			openMessageModal("팬사인회 응모권이 지급되었습니다!");
 		}
 	    
 	</script>

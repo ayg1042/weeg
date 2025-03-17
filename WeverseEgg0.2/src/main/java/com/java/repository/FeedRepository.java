@@ -15,5 +15,7 @@ public interface FeedRepository extends JpaRepository<FeedDto, Integer>{
 
 	@Transactional
 	void deleteByMember_UserId(int userId);
+
+	List<FeedDto> findAllByMember_UserId(int user_id);
 	
 }

@@ -22,6 +22,7 @@ import com.java.dto.character.CharacterDto;
 import com.java.dto.character.InvenDto;
 import com.java.dto.character.SaveStyleDto;
 import com.java.dto.character.StyleDto;
+import com.java.dto.feed.FeedCheckDto;
 import com.java.dto.feed.FeedDto;
 import com.java.dto.item.ItemDto;
 import com.java.dto.practice.DancePracticeDto;
@@ -29,11 +30,15 @@ import com.java.dto.practice.EntertainmentPracticeDto;
 import com.java.dto.practice.RapPracticeDto;
 import com.java.dto.practice.VocalPracticeDto;
 import com.java.dto.quest.QuestDto;
+import com.java.entity.character.CharacterEntity;
 import com.java.entity.member.MemberEntity;
 import com.java.entity.quest.QuestEntity;
 import com.java.entity.quest.QuestHistoryEntity;
 import com.java.entity.quest.QuestProgressEntity;
 import com.java.repository.CharacterRepository;
+import com.java.repository.FeedCheckRepository;
+import com.java.repository.FeedRepository;
+import com.java.repository.ItemRepository;
 import com.java.repository.MemberRepository;
 import com.java.repository.QuestHistoryRepository;
 import com.java.repository.QuestProgressRepository;
@@ -59,6 +64,9 @@ public class EggMRController {
 	@Autowired QuestProgressRepository questProgressRepository;
 	@Autowired QuestRepository questRepository;
 	@Autowired MemberRepository memberRepository ;
+	@Autowired FeedCheckRepository feedCheckRepository;
+	@Autowired FeedRepository feedRepository;
+	@Autowired ItemRepository itemRepository;
 	
 	@GetMapping("/modal")
 	public String modal(Model model) throws JsonProcessingException {
@@ -67,7 +75,6 @@ public class EggMRController {
 		CharacterDto character = (CharacterDto) session.getAttribute("character");
         model.addAttribute("chDto", character);
 //        System.out.println(character);
-
   
         //== 레벨 경험치 체크 ==
         int vocal = character.getVocal();
@@ -234,6 +241,8 @@ public class EggMRController {
 			int debutCheck = (int)session.getAttribute("debut");
 			model.addAttribute("debutCheck", debutCheck);
 			session.removeAttribute("debut");
+		}else {
+			model.addAttribute("debutCheck", 0);
 		}
 		
 		// 케릭터 인벤토리
@@ -244,6 +253,30 @@ public class EggMRController {
 		
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         System.out.println(character.getArtist().getLevel());
+        
+        List<FeedDto> feedList = feedRepository.findAllByMember_UserId(character.getMember().getUser_id());
+        List<FeedCheckDto> feedCheck =  feedCheckRepository.findAllByMember_UserId(character.getMember().getUser_id());
+        System.out.println("보상 받았는지 체크 = " + feedCheck);
+        System.out.println("게시글 개수 체크 = " + feedList.size());
+        if(feedList.size() >= 20) {
+        	int sub = feedList.size() / 20;
+        	if(feedCheck.size() < sub) {
+        		FeedCheckDto fcd = new FeedCheckDto();
+        		ItemDto fItem = ItemDto.From(itemRepository.getById(11));
+        		fcd.setCharacter(CharacterEntity.From(character));
+        		fcd.setMember(MemberEntity.From(character.getMember()));
+        		InvenDto Inven1 = new InvenDto();
+        		Inven1.setCharacterId(character);
+        		Inven1.setItemId(fItem);
+        		modalServiceImpl.eventItem(Inven1);
+        		feedCheckRepository.save(fcd);
+        		model.addAttribute("eventItemG",1);
+        	}else {        		
+        		model.addAttribute("eventItemG",0);
+        	}
+        }else {
+        	model.addAttribute("eventItemG",0);
+        }
 		
 		
 		return "modal";

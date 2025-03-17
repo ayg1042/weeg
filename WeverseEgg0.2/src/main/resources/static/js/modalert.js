@@ -1,3 +1,18 @@
+// 로딩 화면을 보여주는 함수 (Promise 사용)
+function showLoadingScreen() {
+    return new Promise((resolve) => {
+        $("#loadingScreen").show(); // 로딩 화면 표시
+        setTimeout(function () {
+            resolve(); // 로딩 화면을 숨기고 다음 작업 진행
+        }, 1500); // 2000ms 후에 resolve 호출 (로딩 화면 2초 동안 표시)
+    });
+}
+
+// 로딩 화면을 숨기는 함수
+function hideLoadingScreen() {
+    $("#loadingScreen").hide(); // 로딩 화면 숨기기
+}
+
 // 결과 확인 모달 열기 (링크 이동 있음)
 function openMessageModal(message) {
     document.getElementById("modal-message").innerText = message;

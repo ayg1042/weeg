@@ -448,4 +448,11 @@ public class ModalServiceImpl implements ModalService {
 		enterPracticeRepository.delete(entity);
 	}
 
+	@Override
+	public void eventItem(InvenDto inven1) {
+		InvenEntity entity = InvenEntity.From(inven1);
+		invenRepository.save(entity);
+		
+	}
+
 }
