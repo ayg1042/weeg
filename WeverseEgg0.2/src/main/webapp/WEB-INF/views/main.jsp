@@ -80,7 +80,7 @@
 			              <p class="my_idol_nick">${idto.nickName }</p>
 			            </div>
 			          </div>
-		       			</c:forEach>
+	       			</c:forEach>
 		          </div>
 		        </div>
 		      </div>
@@ -119,6 +119,7 @@
 		  <header>
 		      <div id="header_wrap">
 		        <div class="main_logo">
+		        <a href="/">
 		            <img src="../images/main/weverse_logo.png" alt="">
 		          </a>
 		        </div>
