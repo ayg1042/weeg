@@ -17,7 +17,7 @@
 
 <body>
   <!-- 메인 -->
-  <div id="egg_mainpage">
+  <div id="egg_writepage">
 
     <!-- 탑 gnb -->
     <div class="hover_blocker1"></div> <!-- 투명한 네모 박스 (호버방지용)-->
@@ -28,7 +28,6 @@
         <ul>
           <li id="option_title">뉴스</li>
           <li><a href="/wenotice">공지사항</a></li>
-          <li><a href="#">업데이트</a></li>
           <li><a href="/weEvent">이벤트</a></li>
         </ul>
         <ul>
