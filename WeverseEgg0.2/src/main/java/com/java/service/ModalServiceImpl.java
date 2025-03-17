@@ -56,26 +56,40 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class ModalServiceImpl implements ModalService {
 
-	@Autowired ItemRepository itemRepository;
-	@Autowired InvenRepository invenRepository;
-	@Autowired StyleRepository styleRepository;
-	@Autowired CharacterRepository characterRepository;
-	@Autowired ItemTypeRepository itemTypeRepository;
-	@Autowired ItemInfoRepository itemInfoRepository;
-	@Autowired GroupRepository groupRepository;
-	@Autowired ArtistNameRepository artistNameRepository;
-	@Autowired PracticeRepository practiceRepository;
-	@Autowired PracticeTypeRepository practiceTypeRepository;
-	@Autowired DancePracticeRepository dancePracticeRepository;
-	@Autowired VocalPracticeRepository vocalPracticeRepository;
-	@Autowired RapPracticeRepository rapPracticeRepository;
-	@Autowired EntertainmentPracticeRepository enterPracticeRepository;
-	
+	@Autowired
+	ItemRepository itemRepository;
+	@Autowired
+	InvenRepository invenRepository;
+	@Autowired
+	StyleRepository styleRepository;
+	@Autowired
+	CharacterRepository characterRepository;
+	@Autowired
+	ItemTypeRepository itemTypeRepository;
+	@Autowired
+	ItemInfoRepository itemInfoRepository;
+	@Autowired
+	GroupRepository groupRepository;
+	@Autowired
+	ArtistNameRepository artistNameRepository;
+	@Autowired
+	PracticeRepository practiceRepository;
+	@Autowired
+	PracticeTypeRepository practiceTypeRepository;
+	@Autowired
+	DancePracticeRepository dancePracticeRepository;
+	@Autowired
+	VocalPracticeRepository vocalPracticeRepository;
+	@Autowired
+	RapPracticeRepository rapPracticeRepository;
+	@Autowired
+	EntertainmentPracticeRepository enterPracticeRepository;
+
 	@Override
 	public List<ItemDto> getAllItems() {
 		List<ItemEntity> list = itemRepository.findAll();
 		List<ItemDto> Items = new ArrayList();
-		for(ItemEntity entity : list) {
+		for (ItemEntity entity : list) {
 			Items.add(ItemDto.From(entity));
 		}
 		return Items;
@@ -85,11 +99,11 @@ public class ModalServiceImpl implements ModalService {
 	public List<InvenDto> getCharacterInven(int character_id) {
 		List<InvenEntity> list = invenRepository.findAllByCharacter_CharacterId(character_id);
 		List<InvenDto> inven = new ArrayList();
-		
-		for(InvenEntity entity : list) {
+
+		for (InvenEntity entity : list) {
 			inven.add(InvenDto.From(entity));
 		}
-		
+
 		return inven;
 	}
 
@@ -103,31 +117,31 @@ public class ModalServiceImpl implements ModalService {
 	public List<StyleDto> getAllStyle(int character_id) {
 		List<StyleEntity> list = styleRepository.findAllByCharacter_CharacterId(character_id);
 		List<StyleDto> style = new ArrayList<>();
-		for(StyleEntity entity : list) {
+		for (StyleEntity entity : list) {
 			style.add(StyleDto.From(entity));
 		}
-		
+
 		return style;
 	}
 
 	@Override
 	public void deleteStyleByUserId(int character_id) {
 		styleRepository.deleteAllByCharacter_CharacterId(character_id);
-		
+
 	}
 
 	@Override
 	public void styleSave(StyleDto dto) {
 		StyleEntity entity = StyleEntity.From(dto);
 		styleRepository.save(entity);
-		
+
 	}
 
 	@Override
 	public Collection<? extends ItemDto> findByItemInfo_ItemType_ItemTypeIdIn(List<Integer> item_type) {
 		List<ItemEntity> list = itemRepository.findByItemInfo_ItemType_ItemTypeIdIn(item_type);
 		List<ItemDto> Items = new ArrayList();
-		for(ItemEntity entity : list) {
+		for (ItemEntity entity : list) {
 			Items.add(ItemDto.From(entity));
 		}
 		return Items;
@@ -143,13 +157,13 @@ public class ModalServiceImpl implements ModalService {
 	public void characterSave(CharacterDto character) {
 		CharacterEntity entity = CharacterEntity.From(character);
 		characterRepository.saveAndFlush(entity);
-		
+
 	}
 
 	@Override
 	public void deleteInvenItem(int invenId) {
 		invenRepository.deleteById(invenId);
-		
+
 	}
 
 	// 모든 아이템 타입 불러오기 (관리자페이지)
@@ -157,7 +171,7 @@ public class ModalServiceImpl implements ModalService {
 	public List<ItemTypeDto> getAllItemTypes() {
 		List<ItemTypeEntity> list = itemTypeRepository.findAll();
 		List<ItemTypeDto> dto = new ArrayList();
-		for(ItemTypeEntity entity : list) {
+		for (ItemTypeEntity entity : list) {
 			dto.add(ItemTypeDto.From(entity));
 		}
 		return dto;
@@ -167,10 +181,10 @@ public class ModalServiceImpl implements ModalService {
 	public List<ItemInfoDto> getAllItemInfo() {
 		List<ItemInfoEntity> list = itemInfoRepository.findAll();
 		List<ItemInfoDto> dto = new ArrayList();
-		for(ItemInfoEntity entity : list) {
+		for (ItemInfoEntity entity : list) {
 			dto.add(ItemInfoDto.From(entity));
 		}
-		
+
 		return dto;
 	}
 
@@ -184,20 +198,20 @@ public class ModalServiceImpl implements ModalService {
 	public void addItemInfo(ItemInfoDto info) {
 		ItemInfoEntity entity = ItemInfoEntity.From(info);
 		itemInfoRepository.save(entity);
-		
+
 	}
 
 	@Override
 	public void updateItemInfo(ItemInfoDto info) {
 		ItemInfoEntity entity = ItemInfoEntity.From(info);
 		itemInfoRepository.saveAndFlush(entity);
-		
+
 	}
 
 	@Override
 	public ItemInfoDto getItemInfo(int itemInfoId) {
 		ItemInfoEntity entity = itemInfoRepository.findById(itemInfoId)
-                .orElseThrow(() -> new EntityNotFoundException("아이템을 찾을 수 없습니다."));
+				.orElseThrow(() -> new EntityNotFoundException("아이템을 찾을 수 없습니다."));
 		return ItemInfoDto.From(entity);
 	}
 
@@ -208,14 +222,14 @@ public class ModalServiceImpl implements ModalService {
 		styleRepository.deleteAllByItem_ItemId(entity.getItemId());
 		invenRepository.deleteAllByItem_ItemId(entity.getItemId());
 		itemRepository.deleteById(entity.getItemId());
-		
+
 	}
 
 	@Override
 	public List<GroupDto> getAllGroup() {
 		List<GroupEntity> list = groupRepository.findAll();
 		List<GroupDto> dto = new ArrayList();
-		for(GroupEntity entity : list) {
+		for (GroupEntity entity : list) {
 			dto.add(GroupDto.From(entity));
 		}
 		return dto;
@@ -225,7 +239,7 @@ public class ModalServiceImpl implements ModalService {
 	public void addGroup(GroupDto dto) {
 		GroupEntity entity = GroupEntity.nullId(dto);
 		groupRepository.save(entity);
-		
+
 	}
 
 	@Override
@@ -250,14 +264,14 @@ public class ModalServiceImpl implements ModalService {
 	public void addArtistName(ArtistNameDto artist) {
 		ArtistNameEntity entity = ArtistNameEntity.nullId(artist);
 		artistNameRepository.save(entity);
-		
+
 	}
 
 	@Override
 	public List<ArtistNameDto> getAllArtistName() {
 		List<ArtistNameEntity> list = artistNameRepository.findAll();
 		List<ArtistNameDto> dto = new ArrayList<>();
-		for(ArtistNameEntity entity : list) {
+		for (ArtistNameEntity entity : list) {
 			dto.add(ArtistNameDto.From(entity));
 		}
 		return dto;
@@ -267,7 +281,7 @@ public class ModalServiceImpl implements ModalService {
 	public ArtistNameDto getArtistName(int artistNId) {
 		ArtistNameEntity entity = artistNameRepository.findById(artistNId)
 				.orElseThrow(() -> new EntityNotFoundException("아티스트를 찾을 수 없습니다."));
-		
+
 		return ArtistNameDto.From(entity);
 	}
 
@@ -275,62 +289,62 @@ public class ModalServiceImpl implements ModalService {
 	public void updateArtistName(ArtistNameDto artist) {
 		ArtistNameEntity entity = ArtistNameEntity.From(artist);
 		artistNameRepository.saveAndFlush(entity);
-		
+
 	}
 
 	@Override
 	public void deleteArtistName(ArtistNameDto dto) {
 		ArtistNameEntity entity = ArtistNameEntity.From(dto);
 		artistNameRepository.delete(entity);
-		
+
 	}
 
-<<<<<<< HEAD
 	@Override
 	public List<ItemDto> getItemsByItemInfoId(int infoId) {
-	    // 아이템 인포 아이디가 infoId인 아이템 엔티티 리스트를 가져옴
-	    List<ItemEntity> itemEntities = itemRepository.findByItemInfo_ItemInfoId(infoId);
-	    
-	    // 가져온 엔티티 리스트를 DTO로 변환
-	    List<ItemDto> itemDtos = itemEntities.stream().map(entity -> {
-	        ItemDto dto = new ItemDto();
-	        dto.setItemId(entity.getItemId());
-	        dto.setName(entity.getName());
-	        dto.setPrice(entity.getPrice());
-	        dto.setImage(entity.getImage());
-	        dto.setItemInfo(ItemInfoDto.From(entity.getItemInfo()));
-	        // 필요 시, itemInfo도 변환해서 설정
-	        // 예: dto.setItemInfo(ItemInfoDto.from(entity.getItemInfo()));
-	        return dto;
-	    }).collect(Collectors.toList());
-	    
-	    return itemDtos;
-=======
+		// 아이템 인포 아이디가 infoId인 아이템 엔티티 리스트를 가져옴
+		List<ItemEntity> itemEntities = itemRepository.findByItemInfo_ItemInfoId(infoId);
+
+		// 가져온 엔티티 리스트를 DTO로 변환
+		List<ItemDto> itemDtos = itemEntities.stream().map(entity -> {
+			ItemDto dto = new ItemDto();
+			dto.setItemId(entity.getItemId());
+			dto.setName(entity.getName());
+			dto.setPrice(entity.getPrice());
+			dto.setImage(entity.getImage());
+			dto.setItemInfo(ItemInfoDto.From(entity.getItemInfo()));
+			// 필요 시, itemInfo도 변환해서 설정
+			// 예: dto.setItemInfo(ItemInfoDto.from(entity.getItemInfo()));
+			return dto;
+		}).collect(Collectors.toList());
+
+		return itemDtos;
+	}
+
 	public List<PracticeDto> getAllPractice() {
 		List<PracticeEntity> list = practiceRepository.findAll();
 		List<PracticeDto> dto = new ArrayList<>();
-		for(PracticeEntity entity : list) {
+		for (PracticeEntity entity : list) {
 			dto.add(PracticeDto.From(entity));
 		}
-		
+
 		return dto;
 	}
 
 	public List<PracticeType> getAllPracticeType() {
 		List<PracticeTypeEntity> list = practiceTypeRepository.findAll();
 		List<PracticeType> dto = new ArrayList<>();
-		
-		for(PracticeTypeEntity entity : list) {
+
+		for (PracticeTypeEntity entity : list) {
 			dto.add(PracticeType.From(entity));
 		}
-		
+
 		return dto;
 	}
 
 	public void addPracticeType(PracticeType dto) {
 		PracticeTypeEntity entity = PracticeTypeEntity.nullId(dto);
 		practiceTypeRepository.save(entity);
-		
+
 	}
 
 	public void deletePracticeType(PracticeType dto) {
@@ -345,11 +359,11 @@ public class ModalServiceImpl implements ModalService {
 	public void addPractice(PracticeDto dto) {
 		PracticeEntity entity = PracticeEntity.nullId(dto);
 		practiceRepository.save(entity);
-		
+
 	}
 
 	public PracticeDto getPractice(int updatePracticeId) {
-		PracticeDto dto= PracticeDto.From(practiceRepository.getById(updatePracticeId));
+		PracticeDto dto = PracticeDto.From(practiceRepository.getById(updatePracticeId));
 		return dto;
 	}
 
@@ -366,17 +380,17 @@ public class ModalServiceImpl implements ModalService {
 	public void addDancePractice(DancePracticeDto dto) {
 		DancePracticeEntity entity = DancePracticeEntity.nullId(dto);
 		dancePracticeRepository.save(entity);
-		
+
 	}
 
 	public List<DancePracticeDto> getAllDancePractice() {
 		List<DancePracticeEntity> list = dancePracticeRepository.findAll();
 		List<DancePracticeDto> dto = new ArrayList<>();
-		
-		for(DancePracticeEntity entity : list) {
+
+		for (DancePracticeEntity entity : list) {
 			dto.add(DancePracticeDto.From(entity));
 		}
-		
+
 		return dto;
 	}
 
@@ -393,18 +407,18 @@ public class ModalServiceImpl implements ModalService {
 	public List<VocalPracticeDto> getAllVocalPractice() {
 		List<VocalPracticeEntity> list = vocalPracticeRepository.findAll();
 		List<VocalPracticeDto> dto = new ArrayList<>();
-		
-		for(VocalPracticeEntity entity : list) {
+
+		for (VocalPracticeEntity entity : list) {
 			dto.add(VocalPracticeDto.From(entity));
 		}
-		
+
 		return dto;
 	}
 
 	public void addVocalPractice(VocalPracticeDto dto) {
 		VocalPracticeEntity entity = VocalPracticeEntity.nullId(dto);
 		vocalPracticeRepository.save(entity);
-		
+
 	}
 
 	public VocalPracticeDto getVocalPractice(int vocalId) {
@@ -420,11 +434,11 @@ public class ModalServiceImpl implements ModalService {
 	public List<RapPracticeDto> getAllRapPractice() {
 		List<RapPracticeEntity> list = rapPracticeRepository.findAll();
 		List<RapPracticeDto> dto = new ArrayList<>();
-		
-		for(RapPracticeEntity entity : list) {
+
+		for (RapPracticeEntity entity : list) {
 			dto.add(RapPracticeDto.From(entity));
 		}
-		
+
 		return dto;
 	}
 
@@ -441,22 +455,22 @@ public class ModalServiceImpl implements ModalService {
 	public void deleteRapPractice(RapPracticeDto dto) {
 		RapPracticeEntity entity = RapPracticeEntity.From(dto);
 		rapPracticeRepository.delete(entity);
-		
+
 	}
 
 	public List<EntertainmentPracticeDto> getAllEnterPractice() {
 		List<EntertainmentPracticeEntity> list = enterPracticeRepository.findAll();
 		List<EntertainmentPracticeDto> dto = new ArrayList<>();
-		
-		for(EntertainmentPracticeEntity entity : list) {
+
+		for (EntertainmentPracticeEntity entity : list) {
 			dto.add(EntertainmentPracticeDto.From(entity));
 		}
-		
+
 		return dto;
 	}
 
 	public void addEntertainmentPractice(EntertainmentPracticeDto dto) {
-		EntertainmentPracticeEntity entity = EntertainmentPracticeEntity.nullId(dto); 
+		EntertainmentPracticeEntity entity = EntertainmentPracticeEntity.nullId(dto);
 		enterPracticeRepository.save(entity);
 	}
 
@@ -468,7 +482,6 @@ public class ModalServiceImpl implements ModalService {
 	public void deleteEntertainmentPractice(EntertainmentPracticeDto dto) {
 		EntertainmentPracticeEntity entity = EntertainmentPracticeEntity.From(dto);
 		enterPracticeRepository.delete(entity);
->>>>>>> refs/remotes/origin/master
 	}
 
 }
