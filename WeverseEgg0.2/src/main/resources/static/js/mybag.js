@@ -57,15 +57,19 @@ document.addEventListener("DOMContentLoaded", function() {
 let bag_currentPage = 1;
 let bag_itemsPerPage = 8;
 let bag_totalPages = 0;
+
 // test
 function bag_updateItem() {
 	const bag_startIndex = (bag_currentPage - 1) * bag_itemsPerPage;
 	const bag_endIndex = bag_startIndex + bag_itemsPerPage;
 	const bag_items = document.querySelectorAll('.tab-content.active .shop-item-show');
 	const bag_total_item = bag_items.length;
-	// console.log("currentPage = " + currentPage + " itemsPerPage = " + itemsPerPage + " totalPages = " + totalPages);
 
-	if (bag_total_item > 8) {
+	// 모든 아이템을 먼저 보이게 함
+	bag_items.forEach(item => item.style.display = 'block');
+
+	// 페이지네이션 적용
+	if (bag_total_item > bag_itemsPerPage) {
 		bag_items.forEach(item => item.style.display = 'none');
 		for (let i = bag_startIndex; i < bag_endIndex && i < bag_total_item; i++) {
 			bag_items[i].style.display = 'block';
@@ -73,6 +77,7 @@ function bag_updateItem() {
 		bag_totalPages = Math.ceil(bag_total_item / bag_itemsPerPage);
 	}
 
+	// "다음" 버튼 클릭 시 처리
 	document.querySelector('.my-next').addEventListener('click', () => {
 		if (bag_currentPage < bag_totalPages) {
 			bag_currentPage++;
