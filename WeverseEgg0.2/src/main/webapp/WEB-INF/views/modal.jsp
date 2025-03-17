@@ -1251,19 +1251,19 @@
 					</div>
 					<div class="show-item-info my_bag_statuse">
 						<p class="item_danse">
-							<span class="label">댄스</span> <span class="value">+50</span>
+							<span class="label">댄스</span> <span class="value">+0</span>
 						</p>
 						<p class="item_enter">
-							<span class="label">예능</span> <span class="value">+50</span>
+							<span class="label">예능</span> <span class="value">+0</span>
 						</p>
 						<p class="item_rap">
-							<span class="label">랩</span> <span class="value">+50</span>
+							<span class="label">랩</span> <span class="value">+0</span>
 						</p>
 						<p class="item_vocal">
-							<span class="label">보컬</span> <span class="value">+50</span>
+							<span class="label">보컬</span> <span class="value">+0</span>
 						</p>
 						<p class="item_char">
-							<span class="label">매력도</span> <span class="value">+50</span>
+							<span class="label">매력도</span> <span class="value">+0</span>
 						</p>
 					</div>
 					<div>
@@ -1572,8 +1572,6 @@
 
 					</script>
 
-
-
 		<!-- 이벤트 모달 -->
 	<div id="modale" class="modal">
 		<div class="modal-frame dark">
@@ -1670,7 +1668,7 @@
 	        // 첫 번째 이벤트의 이미지를 기본으로 설정
 	        var firstImageUrl = firstImage.getAttribute('data-image');
 	        document.getElementById('eventImage').src = firstImageUrl;
-	       
+	      
 	        // 첫 번째 항목에 active 클래스 추가
 	        firstImage.classList.add('active');
 	    }
@@ -1680,14 +1678,21 @@
 				var imageUrl = li.getAttribute('data-image');
 				document.getElementById('eventImage').src = imageUrl;
 			});
-			
-			
-			var debutChek = ${debutCheck}
-			if(${debutCheck}){
-				openDebutModal("${chDto.artist.artistName.artistName}");
-			}
-			 
-		</script>
+		});
+		
+	    $(".event-title li").click(function () {
+	        // 모든 탭에서 활성 클래스 제거
+	        $(".event-title li").removeClass("active");
+	        // 현재 클릭된 탭에 활성 클래스 추가
+	        $(this).addClass("active");
+	    });
+	    
+	    var debutChek = ${debutCheck}
+		if(${debutCheck}){
+			openDebutModal("${chDto.artist.artistName.artistName}");
+		}
+	    
+	</script>
 
 	<script src="/js/modal.js" defer></script>
 	<script src="/js/shop.js" defer></script>

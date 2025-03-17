@@ -155,7 +155,7 @@ $(document).ready(function() {
 		 		})
 			
 			// 아이템 삭제
-			$("#delete_item_info_save").click(function(event) {
+			$(".delete_item_info_save").click(function(event) {
 			        event.preventDefault(); // 기본 폼 제출 방지
 
 					var itemId = $(this).closest("tr").find("#item_id").text().trim();

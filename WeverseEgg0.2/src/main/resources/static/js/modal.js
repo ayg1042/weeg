@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 모달 닫기
   closeButton.addEventListener("click", () => {
       modal.style.display = "none";
+	  location.href="/modal";
   });
 
   // 외부 클릭시 모달 닫기
@@ -153,6 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 모달 닫기
   closeButton.addEventListener("click", () => {
       modal.style.display = "none";
+	  location.href="/modal";
   });
 
   // 외부 클릭시 모달 닫기

@@ -11,8 +11,6 @@ $(document).ready(function() {
 		}
 		form_data.append("file", fileInput);
 
-		alert("test");
-
 		var itemInfoList = $('#item-info').val().split('_');  // 선택된 아이템 정보 ID
 		var itemTypeId = itemInfoList[0];
 		var itemInfoId = itemInfoList[1];
@@ -151,7 +149,7 @@ $(document).ready(function() {
 	})
 
 	// 아이템 삭제
-	$("#delete_item_info_save").click(function(event) {
+	$(".delete_item_info_save").click(function(event) {
 		event.preventDefault(); // 기본 폼 제출 방지
 
 		let itemId = $("#delete_item-info").val(); // 선택된 아이템 ID

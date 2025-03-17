@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						<tr>
 							<th>순위</th>
 							<th>캐릭터 정보</th>
-							<th>레벨</th>
+							<th></th>
 							<th>매력도</th>
 							<th>인기도</th>
 						</tr>
@@ -96,14 +96,14 @@ document.addEventListener("DOMContentLoaded", function () {
 									<div class="like">
 										<div class="like_area">
 											<img id="heart" alt="하트" src="/images/rank/RedHeart.png">
-											<p class="like_num">999</p>
+											<p class="like_num">${ chardto.popularity + chardto.charm}</p>
 										</div>
 									</div>
 								</td>
 								<td class="rankUser">
 									<div class="char_img">
 										<img id="charImg" alt="랭킹유저"
-											src="/images/rank/exCharacter.png">
+											src="/images/main/al.png">
 									</div>
 									<div class="nickName">
 										<p>${chardto.nickName }</p>
@@ -112,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
 									</div>
 								</td>
 								<td>
-									<p class="level">LV. ${chardto.artist.level }</p>
 								</td>
 								<td>
 									<p class="attract">${ chardto.charm}</p>

@@ -233,7 +233,7 @@ public class EggMRController {
 		if(session.getAttribute("debut") != null) {			
 			int debutCheck = (int)session.getAttribute("debut");
 			model.addAttribute("debutCheck", debutCheck);
-			//session.removeAttribute("debut");
+			session.removeAttribute("debut");
 		}
 		
 		// 케릭터 인벤토리
