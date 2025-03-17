@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <!-- 메인 -->
   <div id="egg_mainpage">
      <%@ include file="egg_gnb.jsp"%>
+
     <!-- 메인 이미지 화면 -->
     <div id="main_banner">
     <c:forEach items="${banners }" var="banner">

@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		<%@ include file="egg_gnb.jsp"%>
 
-
 		<!-- 랭킹 메인 -->
 		<div id="topArea"></div>
 		<div class="rankArea">
