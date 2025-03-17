@@ -1,8 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <!-- 탑 gnb -->
-    <div class="hover_blocker1"></div> <!-- 투명한 네모 박스 (호버방지용)-->
-    <div class="hover_blocker2"></div> <!-- 투명한 네모 박스 (호버방지용)-->
     <div id="main_top_gnb">
       <a href="/eggmain" class="logo-link"><img src="../images/mainpage/main_egg.png" alt="에그로고"></a>
       <nav>

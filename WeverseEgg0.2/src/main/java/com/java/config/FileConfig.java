@@ -10,8 +10,8 @@ public class FileConfig implements WebMvcConfigurer {
 	@Override 
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		//web구축시 사용되는 images 위치를 지정
-//		registry.addResourceHandler("/images/**")
-//		.addResourceLocations("file:///c:/upload/");
+		registry.addResourceHandler("/images/**")
+		.addResourceLocations("file:///c:/upload/");
 		
 		//파일업로드에서 파일위치를 지정
 		registry.addResourceHandler("/images/items/**")
@@ -22,5 +22,17 @@ public class FileConfig implements WebMvcConfigurer {
 		
 		registry.addResourceHandler("/images/event/**")
 		.addResourceLocations("file:///C:/Users/KOSMO/git/weeg/WeverseEgg0.2/src/main/resources/static/images/event/");
+		
+		
+		//다영컴퓨터용
+//		registry.addResourceHandler("/images/items/**")
+//		.addResourceLocations("file:///C:/Users/KOSMO/Documents/GitHub/weEgg/weeg/WeverseEgg0.2/src/main/resources/static/images/items/");
+//		
+//		registry.addResourceHandler("/images/notice/**")
+//		.addResourceLocations("file:///C:/Users/KOSMO/Documents/GitHub/weEgg/weeg/WeverseEgg0.2/src/main/resources/static/images/notice/");
+//		
+//		registry.addResourceHandler("/images/event/**")
+//		.addResourceLocations("file:///C:/Users/KOSMO/Documents/GitHub/weEgg/weeg/WeverseEgg0.2/src/main/resources/static/images/event/");
+		
 	}
 }
