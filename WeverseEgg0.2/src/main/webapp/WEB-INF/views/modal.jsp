@@ -181,23 +181,22 @@
 							<div>
 								<div class="stat_hidden_stats">
 									<div class="stat_hidden_stTitle">${chDto.vocal}</div>
-									<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+									<div class="stat_hidden_stTitle mg_left fc">(+${vocalStyle})</div>
 								</div>
 								<div class="stat_hidden_stats">
 									<div class="stat_hidden_stTitle">${chDto.dance}</div>
-									<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+									<div class="stat_hidden_stTitle mg_left fc">(+${danceStyle})</div>
 								</div>
 								<div class="stat_hidden_stats">
 									<div class="stat_hidden_stTitle">${chDto.rap}</div>
-									<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+									<div class="stat_hidden_stTitle mg_left fc">(+${rapStyle})</div>
 								</div>
 								<div class="stat_hidden_stats">
 									<div class="stat_hidden_stTitle">${chDto.entertainment}</div>
-									<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
+									<div class="stat_hidden_stTitle mg_left fc">(+${enterStyle})</div>
 								</div>
 								<div class="stat_hidden_stats">
 									<div class="stat_hidden_stTitle">${chDto.charm}</div>
-									<div class="stat_hidden_stTitle mg_left fc">(+99)</div>
 								</div>
 								<div class="stat_hidden_stTitle">${chDto.popularity}</div>
 							</div>
@@ -934,13 +933,13 @@
 					<div class="show-character">
 						<img src="/images/test_character.png">
 						<c:if test="${outfit != null }">
-							<img class="shop_outfit" src="/images/items/outfit/${outfit}">
+							<img class="shop_outfit" src="/images/items/outfit/${outfit}"  style="width=100px">
 						</c:if>
 						<c:if test="${outfit == null }">
 							<img class="shop_outfit" src="">
 						</c:if>
 						<c:if test="${hat != null }">
-							<img class="shop_hat" src="/images/items/hat/${hat}">
+							<img class="shop_hat" src="/images/items/hat/${hat}"  style="width=186px">
 						</c:if>
 						<c:if test="${hat == null }">
 							<img class="shop_hat" src="">
@@ -948,24 +947,24 @@
 					</div>
 					<div class="show-item-info">
 						<p class="item_danse">
-							<span class="label">댄스</span> <span class="value">999<span
-								class="positive">(+50)</span></span>
+							<span class="label">댄스</span> <span class="value">${chDto.dance}<span
+								class="positive">(+0)</span></span>
 						</p>
 						<p class="item_enter">
-							<span class="label">예능</span> <span class="value">999<span
-								class="positive">(+50)</span></span>
+							<span class="label">예능</span> <span class="value">${chDto.entertainment}<span
+								class="positive">(+0)</span></span>
 						</p>
 						<p class="item_rap">
-							<span class="label">랩</span> <span class="value">999<span
-								class="positive">(+50)</span></span>
+							<span class="label">랩</span> <span class="value">${chDto.rap}<span
+								class="positive">(+0)</span></span>
 						</p>
 						<p class="item_vocal">
-							<span class="label">보컬</span> <span class="value">999<span
-								class="positive">(+50)</span></span>
+							<span class="label">보컬</span> <span class="value">${chDto.vocal}<span
+								class="positive">(+0)</span></span>
 						</p>
 						<p class="item_char">
-							<span class="label">매력도</span> <span class="value">999<span
-								class="positive">(+50)</span></span>
+							<span class="label">매력도</span> <span class="value">${chDto.charm}<span
+								class="positive">(+0)</span></span>
 						</p>
 					</div>
 					<div>
@@ -1238,13 +1237,13 @@
 						<img class="" src="/images/test_character.png">
 						<c:if test="${outfit != null }">
 							<img id="" class="my_bag_outfit"
-								src="/images/items/outfit/${outfit}">
+								src="/images/items/outfit/${outfit}"  style="width=100px">
 						</c:if>
 						<c:if test="${outfit == null }">
 							<img id="" class="my_bag_outfit" src="">
 						</c:if>
 						<c:if test="${hat != null }">
-							<img id="" class="my_bag_hat" src="/images/items/hat/${hat}">
+							<img id="" class="my_bag_hat" src="/images/items/hat/${hat}" style="width=186px">
 						</c:if>
 						<c:if test="${hat == null }">
 							<img id="" class="my_bag_hat" src="">
