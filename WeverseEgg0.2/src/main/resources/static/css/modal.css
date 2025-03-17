@@ -1063,4 +1063,29 @@ a {
     border: 1px solid rgb(255, 61, 61);
 }
 
+/* loading.css */
+#loadingScreen {
+    margin-left: 330px;
+    margin-top: 18px;
+    position: fixed;
+    width: 1260px;
+    height: 762px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 30000;
+}
+
+.loader {
+    width: 400px;  /* GIF 크기 조절 */
+    height: 400px; /* GIF 크기 조절 */
+    margin-left: 430px;
+    margin-top: 160px;
+    background-image: url("/images/modal/loading.gif");
+    background-size: contain; /* GIF 크기 맞춤 */
+    background-position: center; /* 정확히 가운데로 */
+    background-repeat: no-repeat; /* 반복되지 않도록 설정 */
+}
 

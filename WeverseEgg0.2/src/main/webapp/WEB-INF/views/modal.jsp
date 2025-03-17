@@ -11,12 +11,15 @@
 <link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/modal.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5.0.0/dist/stomp.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@5.0.0/dist/stomp.min.js"></script>
 <script src="/js/modalert.js"></script>
 </head>
 
 <body>
+
 	<!-- ===== MainRoom ===== -->
 	<!-- 헤더 -->
 	<header>
@@ -85,8 +88,12 @@
 			</div>
 		</div>
 	</header>
-	
+
 	<div class="main_bg">
+		<!-- 로딩창 -->
+		<div id="loadingScreen">
+			<div class="loader"></div>
+		</div>
 		<div class="game_main">
 
 			<div class='info_area'>
@@ -255,7 +262,7 @@
 		</div>
 	</div>
 	<!-- 끝 ===== MainRoom ===== -->
-	
+
 	<!-- 알림 모달 -->
 	<!-- 결과 확인 모달 -->
 	<div id="modal-background" class="modal-background"></div>
@@ -264,19 +271,21 @@
 		<p id="modal-message"></p>
 		<button id="modal-button" onclick="closeMessageModalAndRedirect()">확인</button>
 	</div>
-	
+
 	<!-- 알림 확인 모달 (링크 이동 X) -->
 	<div id="alert-modal" class="modalmessage">
-	    <p id="alert-message"></p>
-	    <button id="alert-button" onclick="closeAlertModal()">확인</button>
+		<p id="alert-message"></p>
+		<button id="alert-button" onclick="closeAlertModal()">확인</button>
 	</div>
-	
+
 	<!-- Confirm 모달 (확인 + 취소) -->
 	<div id="confirm-modal" class="modalmessage">
-	    <p id="confirm-message"></p>
-	    <button id="confirm-button" onclick="confirmAction()">가보자고~</button>
-	   <button id="cancel-button" onclick="closeConfirmModal()">앗 다음에..</button>
+		<p id="confirm-message"></p>
+		<button id="confirm-button" onclick="confirmAction()">가보자고~</button>
+		<button id="cancel-button" onclick="closeConfirmModal()">앗
+			다음에..</button>
 	</div>
+
 
 	<!-- 트레이닝 모달 -->
 	<div id="modal1" class="modal">
@@ -1476,11 +1485,11 @@
 						</c:forEach>
 					</ul>
 
-					</div>
 				</div>
 			</div>
 		</div>
-					<script>
+	</div>
+	<script>
 						
 							$(document).ready(function () {
 								$("#event li").hide();
@@ -1571,7 +1580,7 @@
 
 
 
-		<!-- 이벤트 모달 -->
+	<!-- 이벤트 모달 -->
 	<div id="modale" class="modal">
 		<div class="modal-frame dark">
 			<div class="modal-top">
@@ -1642,26 +1651,28 @@
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
 			<div class="modal-event-title">
-			        <div>이벤트</div>
-		    	</div>
-		        <div class="modal-event">
-		        	<div id="event_layout">
-		        		<ul class="event-title">
-		        			<c:forEach items="${events }" var="event" varStatus="vs">
-						      <c:if test="${not empty event.bfile_modal}">
-		        				<li class="event_item" data-image="../images/event/${event.bfile_modal}"><a onclick="">${event.btitle }</a></li>
-						      </c:if>
-						    </c:forEach>
-		        		</ul>	
-						<div class="event_content">
-							<img id="eventImage" src="" alt="Event Image">
-						</div>
-		        	</div>
+				<div>이벤트</div>
+			</div>
+			<div class="modal-event">
+				<div id="event_layout">
+					<ul class="event-title">
+						<c:forEach items="${events }" var="event" varStatus="vs">
+							<c:if test="${not empty event.bfile_modal}">
+								<li class="event_item"
+									data-image="../images/event/${event.bfile_modal}"><a
+									onclick="">${event.btitle }</a></li>
+							</c:if>
+						</c:forEach>
+					</ul>
+					<div class="event_content">
+						<img id="eventImage" src="" alt="Event Image">
+					</div>
 				</div>
-				</div>
-				</div>
-				</div>
-		<script>
+			</div>
+		</div>
+	</div>
+	</div>
+	<script>
 			// 페이지 로드시 첫 번째 이벤트 항목의 이미지가 보여지도록 처리
 		    var firstImage = document.querySelector('.event-title li');
 		    if (firstImage) {
