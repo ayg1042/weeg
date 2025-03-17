@@ -1126,7 +1126,7 @@ a {
     height: 400px; /* GIF 크기 조절 */
     margin-left: 430px;
     margin-top: 160px;
-    background-image: url("/images/modal/loading2.gif");
+    background-image: url("/images/modal/loading.gif");
     background-size: contain; /* GIF 크기 맞춤 */
     background-position: center; /* 정확히 가운데로 */
     background-repeat: no-repeat; /* 반복되지 않도록 설정 */
