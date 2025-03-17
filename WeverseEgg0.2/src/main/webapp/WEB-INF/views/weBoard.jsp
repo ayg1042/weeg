@@ -20,7 +20,6 @@
   <!-- 메인 -->
   <div id="egg_mainpage">
      <%@ include file="egg_gnb.jsp"%>
-  </div>
 
   <!-- 자유게시판 -->
   <div id="notice_banner">
@@ -60,7 +59,8 @@
     </table>
     <div class="btnArea">
   		<button id="WriteBtn" onclick="WriteBtn()" >글작성</button>
- 		</div>
+ 	</div>
+  </div>
 
 
     <!-- 페이지 넘버링 -->

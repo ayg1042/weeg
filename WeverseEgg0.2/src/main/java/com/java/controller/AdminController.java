@@ -148,7 +148,21 @@ public class AdminController {
 	@GetMapping("/deleteFeed")
 	public String deleteFeed(@RequestParam int bno) {
 		adminService.delFeed(bno);
-		return "/admin/admin_notice";
+		return "redirect:/admin/notice";
+	}
+	
+	// 이벤트 삭제
+	@GetMapping("/deleteFeedE")
+	public String deleteFeedE(@RequestParam int bno) {
+		adminService.delFeed(bno);
+		return "redirect:/admin/event";
+	}
+	
+	// 자게 삭제
+	@GetMapping("/deleteFeedC")
+	public String deleteFeedC(@RequestParam int bno) {
+		adminService.delFeed(bno);
+		return "redirect:/admin/board";
 	}
 
 	// 아이템 리스트
@@ -535,13 +549,20 @@ public class AdminController {
  	    }
 	}
 	
-//	@GetMapping("board")
-//	public String board(Model model) {
-//		String category = "community";
-//		List<FeedDto> notilist = adminService.notilist(category);
-//		model.addAttribute("notilist",notilist);
-//		return "/admin/admin_board";
-//	}
+	@GetMapping("/board")
+	public String community(Model model) {
+		String category = "community";
+		List<FeedDto> commlist = adminService.notilist(category);
+		model.addAttribute("notilist",commlist);
+		return "/admin/admin_board";
+	}
+	
+	@GetMapping("/boardView")
+	public String communityView(@RequestParam int bno, Model model) {
+		FeedDto comm = adminService.notiview(bno);
+		model.addAttribute("fdto",comm);
+		return "/admin/admin_boardView";
+	}
 	
 	
 }
