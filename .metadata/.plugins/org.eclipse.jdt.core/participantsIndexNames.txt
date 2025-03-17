@@ -1,0 +1,7 @@
+INDEX VERSION 1.134
+C:\Users\KOSMO\git\weeg\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2771227917.index
+\WeverseEgg0.2\src\main\java
+C:\Users\KOSMO\git\weeg\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2888941714.index
+\WeverseEgg0.2\src\main\java
+C:\Users\KOSMO\git\weeg\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2385970932.index
+\WeverseEgg0.2\src\main\java

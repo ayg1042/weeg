@@ -1679,6 +1679,13 @@
 					document.getElementById('eventImage').src = imageUrl;
 				});
 			});
+			
+		    $(".event-title li").click(function () {
+		        // 모든 탭에서 활성 클래스 제거
+		        $(".event-title li").removeClass("active");
+		        // 현재 클릭된 탭에 활성 클래스 추가
+		        $(this).addClass("active");
+		    });
 		</script>
 
 	<script src="/js/modal.js" defer></script>
