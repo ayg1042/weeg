@@ -68,4 +68,6 @@ public interface ModalService {
 
 	void deleteArtistName(ArtistNameDto dto);
 
+	List<ItemDto> getItemsByItemInfoId(int i);
+
 }

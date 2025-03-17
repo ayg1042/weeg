@@ -126,25 +126,6 @@ nav:not(:hover) ul li a {
   opacity: 0;
   pointer-events: none; /* 포인터가 벗어났을 때 클릭할 수 없도록 설정 */
 }
-.hover_blocker1{
-  position: absolute;
-  left: 0px;
-  width: 300px;
-  height: 110px;
-  z-index: 2;
-}
-.hover_blocker2{
-  position: absolute;
-  right: 0;
-  width: 280px;
-  height: 110px;
-  z-index: 2;
-}
-/* 투명한 네모 박스에 마우스를 올리면 애니메이션 실행 안 됨 */
-.hover_blocker1:hover ~ #main_top_gnb, .hover_blocker2:hover ~ #main_top_gnb {
-  height: 110px; /* 원래 높이 유지 */
-  background-color: rgba(255, 255, 255, 0.1);
-}
 
 /* 메인 배너 이미지 */
 #main_banner img {

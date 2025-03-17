@@ -321,6 +321,10 @@ public class EggMRController {
 		// 보컬연습결과 유저 캐릭터에 저장
 		characterService.danceTrainSave(character_id,danceScore,health,fatigue,price);
 		
+		// 퀘스트 진행도 업데이트 - 2번 퀘스트
+		int questId = 2;
+		updateQuestProgress(character, questId);
+		
 		return "연습을 열심히 했습니다!(뿌듯)";
 	}
 
@@ -334,6 +338,9 @@ public class EggMRController {
 		// 보컬연습결과 유저 캐릭터에 저장
 		characterService.rapTrainSave(character_id,rapScore,health,fatigue,price);
 		
+		// 퀘스트 진행도 업데이트 - 3번 퀘스트
+		int questId = 3;
+		updateQuestProgress(character, questId);		
 		return "연습을 열심히 했습니다!(뿌듯)";
 	}
 
@@ -347,6 +354,9 @@ public class EggMRController {
 		// 보컬연습결과 유저 캐릭터에 저장
 		characterService.entTrainSave(character_id,entScore,health,fatigue,price);
 		
+		// 퀘스트 진행도 업데이트 - 4번 퀘스트
+		int questId = 4;
+		updateQuestProgress(character, questId);		
 		return "연습을 열심히 했습니다!(뿌듯)";
 	}
 
@@ -380,6 +390,10 @@ public class EggMRController {
 		int character_id = character.getCharacter_id();
 		// 콘서트개최 결과 유저 캐릭터에 저장
 		characterService.con_actvity(character_id,health,fatigue,price);
+		
+		// 퀘스트 진행도 업데이트 - 5번 퀘스트
+		int questId = 5;
+		updateQuestProgress(character, questId);
 		return "콘서트를 개최해서 인기도가 올랐습니다!(뿌듯)";
 	}
 
@@ -391,6 +405,10 @@ public class EggMRController {
 		int character_id = character.getCharacter_id();
 		// 팬사인회 결과 유저 캐릭터에 저장
 		characterService.sign_actvity(character_id,health,fatigue,price);
+		
+		// 퀘스트 진행도 업데이트 - 6번 퀘스트
+		int questId = 6;
+		updateQuestProgress(character, questId);
 		return "팬사인회를 잘 마치고 인기도가 올랐습니다!(뿌듯)";
 	}
 
