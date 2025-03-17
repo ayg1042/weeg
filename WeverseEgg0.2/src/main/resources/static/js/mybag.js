@@ -57,15 +57,19 @@ document.addEventListener("DOMContentLoaded", function() {
 let bag_currentPage = 1;
 let bag_itemsPerPage = 8;
 let bag_totalPages = 0;
+
 // test
 function bag_updateItem() {
 	const bag_startIndex = (bag_currentPage - 1) * bag_itemsPerPage;
 	const bag_endIndex = bag_startIndex + bag_itemsPerPage;
 	const bag_items = document.querySelectorAll('.tab-content.active .shop-item-show');
 	const bag_total_item = bag_items.length;
-	// console.log("currentPage = " + currentPage + " itemsPerPage = " + itemsPerPage + " totalPages = " + totalPages);
 
-	if (bag_total_item > 8) {
+	// 모든 아이템을 먼저 보이게 함
+	bag_items.forEach(item => item.style.display = 'block');
+
+	// 페이지네이션 적용
+	if (bag_total_item > bag_itemsPerPage) {
 		bag_items.forEach(item => item.style.display = 'none');
 		for (let i = bag_startIndex; i < bag_endIndex && i < bag_total_item; i++) {
 			bag_items[i].style.display = 'block';
@@ -73,6 +77,7 @@ function bag_updateItem() {
 		bag_totalPages = Math.ceil(bag_total_item / bag_itemsPerPage);
 	}
 
+	// "다음" 버튼 클릭 시 처리
 	document.querySelector('.my-next').addEventListener('click', () => {
 		if (bag_currentPage < bag_totalPages) {
 			bag_currentPage++;
@@ -243,12 +248,13 @@ $(document).on('click', '.save-button', function() {
 	});
 })
 
-$(document).on('click', '.ues-item', function() {
+$(document).on('click', '.use-item', function() {
+	var itemDiv = $(this).closest('.shop-item-show');
 	openConfirmModal("아이템을 사용 하시겠습니까?", function(confirm) {
 		if (confirm) {
 
-			const useId = $(this).closest('.shop-item-show');
-			var test = useId.attr('id');
+			var test = itemDiv.attr('id');
+			console.log(test);
 			var testList = test.split('_');
 			var invenItem = testList[1];
 			var itemId = testList[2];
@@ -275,5 +281,27 @@ $(document).on('click', '.ues-item', function() {
 	});
 })
 
+$(document).on('click', '.shop-item-show', function() {
+	// 클릭한 div 안의 첫 번째 img 태그에서 src 값 가져오기
+	var imgSrc = $(this).find('.item-info img').attr('src');
+	var danse = $('.shop-item-show.active .option_danse').text();
+	var enter = $('.shop-item-show.active .option_enter').text();
+	var rap = $('.shop-item-show.active .option_rap').text();
+	var vocal = $('.shop-item-show.active .option_vocal').text();
+	var char = $('.shop-item-show.active .option_char').text();
 
+	// src에 "outfit"이나 "hat"이 포함되어 있으면 해당 항목에 맞게 처리
+	if (imgSrc.includes('outfit')) {
+		$('.shop_outfit').attr('src', imgSrc);  // Outfit 이미지 업데이트
+	} else if (imgSrc.includes('hat')) {
+		$('.shop_hat').attr('src', imgSrc);  // Hat 이미지 업데이트
+	}
+
+	$(".show-item-info .item_danse .value").text(`+${danse}`);
+	$(".show-item-info .item_enter .value").text(`+${enter}`);
+	$(".show-item-info .item_rap .value").text(`+${rap}`);
+	$(".show-item-info .item_vocal .value").text(`+${vocal}`);
+	$(".show-item-info .item_char .value").text(`+${char}`);
+
+});
 

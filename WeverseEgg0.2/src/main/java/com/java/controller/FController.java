@@ -63,7 +63,6 @@ public class FController {
 	@Autowired HttpSession session;
 	
 	
-	
 	@GetMapping("/") // 위버스 로그인 안 된 페이지
 	public String index1(Model model,
 			@SessionAttribute(name = "session_id", required = false) MemberDto memberDto) {

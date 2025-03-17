@@ -85,17 +85,24 @@ public class EggMRController {
         // 유저가 연습생일때의 "PRACTICE_ID = 1" 연습 가져오기(artist가 null이면 vocalId = 1)
         if (character.getArtist().getArtistName().getArtistName() != null && "연습생".equals(character.getArtist().getArtistName().getArtistName())) {
             Map<String, Object> practiceData = characterService.getPracticeIfArtistIsBasic(character);
-            // 보컬
             VocalPracticeDto vocalBasic = (VocalPracticeDto) practiceData.get("vocalDto");
             DancePracticeDto danceBasic = (DancePracticeDto) practiceData.get("danceDto");
             RapPracticeDto rapBasic = (RapPracticeDto) practiceData.get("rapDto");
             EntertainmentPracticeDto entertainmentBasic = (EntertainmentPracticeDto) practiceData.get("entertainmentDto");
-
             model.addAttribute("vocal", vocalBasic);
             model.addAttribute("dance", danceBasic);
             model.addAttribute("rap", rapBasic);
             model.addAttribute("ent", entertainmentBasic);
-
+        }else {// 연습생 데뷔 후
+        	Map<String, Object> practiceData = characterService.getPracticeIfArtistIsBasic(character);
+        	 VocalPracticeDto vocalDebut = (VocalPracticeDto) practiceData.get("vocalDto");
+             DancePracticeDto danceDebut = (DancePracticeDto) practiceData.get("danceDto");
+             RapPracticeDto rapDebut = (RapPracticeDto) practiceData.get("rapDto");
+             EntertainmentPracticeDto entertainmentDebut = (EntertainmentPracticeDto) practiceData.get("entertainmentDto");
+             model.addAttribute("vocal", vocalDebut);
+             model.addAttribute("dance", danceDebut);
+             model.addAttribute("rap", rapDebut);
+             model.addAttribute("ent", entertainmentDebut);
         }
         
         System.out.println("================= : "+character);
@@ -107,7 +114,10 @@ public class EggMRController {
 		model.addAttribute("shopList", items);
 
 		// 캐릭터 스타일
-
+		int danceStyle = 0;
+		int vocalStyle = 0;
+		int enterStyle = 0;
+		int rapStyle = 0;
 		List<StyleDto> style = modalServiceImpl.getAllStyle(character.getCharacter_id());
 		if (style == null) {
 			model.addAttribute("styleList", 0);
@@ -117,16 +127,28 @@ public class EggMRController {
 				if (Integer.parseInt(type) == 1) {
 					String img = style.get(i).getItem().getImage();
 					int itemId = style.get(i).getItem().getItemId();
+					danceStyle += style.get(i).getItem().getItemInfo().getDance();
+					vocalStyle += style.get(i).getItem().getItemInfo().getVocal();
+					enterStyle += style.get(i).getItem().getItemInfo().getEntertainment();
+					rapStyle += style.get(i).getItem().getItemInfo().getRap();
 					model.addAttribute("hat", img);
 					model.addAttribute("hat_id", itemId);
 				} else if (Integer.parseInt(type) == 2) {
 					String img = style.get(i).getItem().getImage();
 					int itemId = style.get(i).getItem().getItemId();
+					danceStyle += style.get(i).getItem().getItemInfo().getDance();
+					vocalStyle += style.get(i).getItem().getItemInfo().getVocal();
+					enterStyle += style.get(i).getItem().getItemInfo().getEntertainment();
+					rapStyle += style.get(i).getItem().getItemInfo().getRap();
 					model.addAttribute("outfit", img);
 					model.addAttribute("outfit_id", itemId);
 				} else if (Integer.parseInt(type) == 3) {
 					String img = style.get(i).getItem().getImage();
 					int itemId = style.get(i).getItem().getItemId();
+					danceStyle += style.get(i).getItem().getItemInfo().getDance();
+					vocalStyle += style.get(i).getItem().getItemInfo().getVocal();
+					enterStyle += style.get(i).getItem().getItemInfo().getEntertainment();
+					rapStyle += style.get(i).getItem().getItemInfo().getRap();
 					model.addAttribute("pet", img);
 					model.addAttribute("pet_id", itemId);
 				} else if (Integer.parseInt(type) == 6) {
@@ -157,6 +179,12 @@ public class EggMRController {
 				}
 			}
 
+			// 스타일 점수
+			model.addAttribute("danceStyle", danceStyle);
+			model.addAttribute("vocalStyle", vocalStyle);
+			model.addAttribute("enterStyle", enterStyle);
+			model.addAttribute("rapStyle", rapStyle);
+			
 			// 퀘스트 전체 리스트 가져오기
 			List<QuestDto> list = questService.findAll();
 			model.addAttribute("list", list);
@@ -200,6 +228,13 @@ public class EggMRController {
 		//이벤트 리스트
 		List<FeedDto> events = aespaService.bannerlist();
 		model.addAttribute("events",events);
+		
+		// 데뷔
+		if(session.getAttribute("debut") != null) {			
+			int debutCheck = (int)session.getAttribute("debut");
+			model.addAttribute("debutCheck", debutCheck);
+			//session.removeAttribute("debut");
+		}
 		
 		// 케릭터 인벤토리
 		List<InvenDto> Inven = modalServiceImpl.getCharacterInven(character.getCharacter_id());
@@ -253,7 +288,7 @@ public class EggMRController {
 	@PostMapping("/styleSave")
 	public String styleSave(@RequestBody ArrayList<SaveStyleDto> styleList) {
 		CharacterDto character = (CharacterDto) session.getAttribute("character");
-
+		int charm = 0;
 		modalServiceImpl.deleteStyleByUserId(character.getCharacter_id());
 		for (SaveStyleDto item : styleList) {
 			if (item.getItemId() != "") {
@@ -262,10 +297,14 @@ public class EggMRController {
 				iDto.setItemId(Integer.parseInt(item.getItemId()));
 				dto.setCharacter(character);
 				dto.setItem(iDto);
+				ItemDto styleItem = modalServiceImpl.getItem(iDto.getItemId());
+				charm += styleItem.getItemInfo().getCharm();
 				modalServiceImpl.styleSave(dto);
 			}
 
 		}
+		character.setCharm(charm);
+		modalServiceImpl.characterSave(character);
 		return "1";
 	}
 

@@ -22,4 +22,11 @@ public class PracticeType {
         dto.setPracticeType(entity.getPracticeType());
         return dto;
     }
+
+	public static PracticeType From(PracticeTypeEntity entity) {
+		PracticeType dto = new PracticeType();
+		dto.setPracticeTypeId(entity.getPracticeTypeId());
+		dto.setPracticeType(entity.getPracticeType());
+		return dto;
+	}
 }

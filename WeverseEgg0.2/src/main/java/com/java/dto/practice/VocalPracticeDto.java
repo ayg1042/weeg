@@ -33,6 +33,15 @@ public class VocalPracticeDto {
         return dto;
     }
 
+	public static VocalPracticeDto From(VocalPracticeEntity entity) {
+		VocalPracticeDto dto = new VocalPracticeDto();
+        dto.setVocalId(entity.getVocalId());
+        dto.setPracticeId(PracticeDto.pt_info(entity.getPractice()));
+        dto.setVocalName(entity.getVocalName());
+        dto.setVocalScore(entity.getVocalScore());
+        return dto;
+	}
+
     
 
 }

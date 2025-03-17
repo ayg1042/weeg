@@ -10,10 +10,10 @@ $(function() {
         } else if (userFatigue + 75 > 100) {
             openAlertModal("너무 피로해서 간식이 필요해요...ㅜㅜ");
             return;
-        } else if (userVocal < 50) {
+        } else if (userVocal < 75) {
             openAlertModal("음악방송 출연에 필요한 보컬 능력이 부족해요...ㅜㅜ");
             return;
-        } else if (userRap < 50) {
+        } else if (userRap < 75) {
             openAlertModal("음악방송 출연에 필요한 랩 능력이 부족해요...ㅜㅜ");
             return;
         }

@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	<!-- 메인 -->
 	<div id="egg_rankpage">
-
 		<%@ include file="egg_gnb.jsp"%>
 
 		<!-- 랭킹 메인 -->

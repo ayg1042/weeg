@@ -32,5 +32,15 @@ public class PracticeDto {
         return dto;
     }
 
+	public static PracticeDto From(PracticeEntity entity) {
+		PracticeDto dto = new PracticeDto();
+		dto.setPracticeId(entity.getPracticeId());
+		dto.setPracticeType(PracticeType.From(entity.getPracticeType()));
+		dto.setPrice(entity.getPrice());
+		dto.setHealth(entity.getHealth());
+		dto.setFatigue(entity.getFatigue());
+		return dto;
+	}
+
     
 }
