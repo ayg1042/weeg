@@ -1,8 +1,5 @@
 package com.java.dto.practice;
 
-import com.java.dto.character.CharacterDto;
-import com.java.dto.member.MemberDto;
-import com.java.entity.character.CharacterEntity;
 import com.java.entity.practice.VocalPracticeEntity;
 
 import lombok.AllArgsConstructor;
