@@ -85,17 +85,24 @@ public class EggMRController {
         // 유저가 연습생일때의 "PRACTICE_ID = 1" 연습 가져오기(artist가 null이면 vocalId = 1)
         if (character.getArtist().getArtistName().getArtistName() != null && "연습생".equals(character.getArtist().getArtistName().getArtistName())) {
             Map<String, Object> practiceData = characterService.getPracticeIfArtistIsBasic(character);
-            // 보컬
             VocalPracticeDto vocalBasic = (VocalPracticeDto) practiceData.get("vocalDto");
             DancePracticeDto danceBasic = (DancePracticeDto) practiceData.get("danceDto");
             RapPracticeDto rapBasic = (RapPracticeDto) practiceData.get("rapDto");
             EntertainmentPracticeDto entertainmentBasic = (EntertainmentPracticeDto) practiceData.get("entertainmentDto");
-
             model.addAttribute("vocal", vocalBasic);
             model.addAttribute("dance", danceBasic);
             model.addAttribute("rap", rapBasic);
             model.addAttribute("ent", entertainmentBasic);
-
+        }else {// 연습생 데뷔 후
+        	Map<String, Object> practiceData = characterService.getPracticeIfArtistIsBasic(character);
+        	 VocalPracticeDto vocalDebut = (VocalPracticeDto) practiceData.get("vocalDto");
+             DancePracticeDto danceDebut = (DancePracticeDto) practiceData.get("danceDto");
+             RapPracticeDto rapDebut = (RapPracticeDto) practiceData.get("rapDto");
+             EntertainmentPracticeDto entertainmentDebut = (EntertainmentPracticeDto) practiceData.get("entertainmentDto");
+             model.addAttribute("vocal", vocalDebut);
+             model.addAttribute("dance", danceDebut);
+             model.addAttribute("rap", rapDebut);
+             model.addAttribute("ent", entertainmentDebut);
         }
         
         System.out.println("================= : "+character);
@@ -200,6 +207,13 @@ public class EggMRController {
 		//이벤트 리스트
 		List<FeedDto> events = aespaService.bannerlist();
 		model.addAttribute("events",events);
+		
+		// 데뷔
+		if(session.getAttribute("debut") != null) {			
+			int debutCheck = (int)session.getAttribute("debut");
+			model.addAttribute("debutCheck", debutCheck);
+			//session.removeAttribute("debut");
+		}
 		
 		// 케릭터 인벤토리
 		List<InvenDto> Inven = modalServiceImpl.getCharacterInven(character.getCharacter_id());

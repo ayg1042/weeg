@@ -271,6 +271,12 @@
 	    <button id="alert-button" onclick="closeAlertModal()">확인</button>
 	</div>
 	
+	<!-- 데뷔 확인 모달 (링크 이동 X) -->
+	<div id="alert-debut-modal" class="debutmodalmessage">
+	    <p id="alert-debut-message"></p>
+	    <button id="alert-debut-button" onclick="closeAlertModal()">확인</button>
+	</div>
+	
 	<!-- Confirm 모달 (확인 + 취소) -->
 	<div id="confirm-modal" class="modalmessage">
 	    <p id="confirm-message"></p>
@@ -1677,6 +1683,13 @@
 					document.getElementById('eventImage').src = imageUrl;
 				});
 			});
+			
+			
+			var debutChek = ${debutCheck}
+			if(${debutCheck}){
+				openDebutModal("${chDto.artist.artistName.artistName}");
+			}
+			
 		</script>
 
 	<script src="/js/modal.js" defer></script>
