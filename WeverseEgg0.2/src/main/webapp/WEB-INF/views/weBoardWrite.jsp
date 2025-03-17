@@ -17,9 +17,8 @@
 
 <body>
   <!-- 메인 -->
-  <div id="egg_writepage">
+  <div id="egg_mainpage">
     <%@ include file="egg_gnb.jsp"%>
-  </div>
 
   <!-- 공지사항 -->
   <div id="notice_banner">

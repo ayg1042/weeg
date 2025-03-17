@@ -19,7 +19,6 @@
 <body>
   <!-- 메인 -->
   <div id="egg_mainpage">
-<<<<<<< HEAD
 
     <!-- 탑 gnb -->
     <div class="hover_blocker1"></div> <!-- 투명한 네모 박스 (호버방지용)-->
@@ -55,10 +54,8 @@
       </nav>
 
     </div>
-=======
-     <%@ include file="egg_gnb.jsp"%>
->>>>>>> refs/remotes/origin/master
   </div>
+
 
   <!-- 자유게시판 -->
   <div id="notice_banner">
@@ -98,7 +95,8 @@
     </table>
     <div class="btnArea">
   		<button id="WriteBtn" onclick="WriteBtn()" >글작성</button>
- 		</div>
+ 	</div>
+  </div>
 
 
     <!-- 페이지 넘버링 -->
