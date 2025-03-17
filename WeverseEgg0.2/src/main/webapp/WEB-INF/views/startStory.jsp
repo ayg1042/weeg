@@ -16,25 +16,25 @@
   	let pageIndex = 0;
   
   	const pages = [
-		{bg:"/images/startStory/story_back_01.png",text:"(잠에서 깨어난 나) 부스럭..<br/>하암~ 잘 잤다..<br/>(다리 쪽에서 무언가가 느껴진다)"},
-		{bg:"/images/startStory/story_back_01.png",text:"(이불 아래에서 알을 하나 발견함)<br/>???!!!"},
-		{bg:"/images/startStory/story_back_01.png",text:"이게 뭐야..!! 내가 낳은 건가...???!!<br/>(알에는 위버스라고 적혀있음)<br/>위..버스...?"},
-		{bg:"/images/startStory/story_back_01.png",text:"어제 자기 전까지 보고 자긴 했는데...<br/>......<br/>아무래도 본사로 찾아가 봐야겠어!"},
-		{bg:"/images/startStory/story_back_02.png",text:"(위버스 본사에 찾아가는 나)<br/>여기가 위버스 본사군...<br/>저 중에 창문 하나는 내가 했다 진짜.."},
-		{bg:"/images/startStory/story_back_02.png",text:"(똑똑..)<br/>"},
-		{bg:"/images/startStory/story_back_03.png",text:"안녕하세요.<br/>무슨 일 이시죠?"},
-		{bg:"/images/startStory/story_back_04.png",text:"저 이 알을 제가 낳은 거 같아요..."},
-		{bg:"/images/startStory/story_back_03.png",text:"헙. 그 알은..!<br/>저쪽 신인개발팀으로 가시면 됩니다. 프로듀서."},
-		{bg:"/images/startStory/story_back_04.png",text:"엥 뭔 프로듀서?<br/>일단 가라니까 가보자.."},
-		{bg:"/images/startStory/story_back_06.png",text:"당신은 선택받은 프로듀서 입니다."},
-		{bg:"/images/startStory/story_back_05.png",text:"갑자기 뭔...<br/>아니 제가 프로듀서라니요."},
-		{bg:"/images/startStory/story_back_06.png",text:"크게 될 위인들은 모두 특별한<br/>탄생 스토리를 가지고 있죠..."},
-		{bg:"/images/startStory/story_back_06.png",text:"알에서 태어난 박혁거세...<br/>그리고 어머니의 겨드랑이에서 태어난 부처...<br/>이 아이도 마찬가지 입니다."},
-		{bg:"/images/startStory/story_back_06.png",text:"세계적인 아이돌이 될 친구가<br/>당신을 프로듀서로 선택했네요."},
-		{bg:"/images/startStory/story_back_05.png",text:"그러니까 이 알에서 태어나는 아이돌을<br/>제가 프로듀싱 해야한다는 거죠?"},
-		{bg:"/images/startStory/story_back_06.png",text:"네 맞습니다. 이것을 드릴테니 알을 깨서<br/>세계적인 아이돌로 성장시켜주세요.<br/>(망치)"},
-		{bg:"/images/startStory/story_back_05.png",text:"(슈니발렌처럼 망치로 알을 깸)<br/>"},
-		{bg:"/images/startStory/story_back_06.png",text:"아주 좋습니다(?)<br/>당신은 누구보다 훌륭한 프로듀서가 될 것 같군요.<br/>후후."},
+		{bg:"/images/startStory/story_back_01.png",text:"나 : (잠에서 깨어난 나) 부스럭..<br/>하암~ 잘 잤다..<br/>(다리 쪽에서 무언가가 느껴진다)"},
+		{bg:"/images/startStory/story_back_01.png",text:"나 : (이불 아래에서 알을 하나 발견함)<br/>???!!!"},
+		{bg:"/images/startStory/story_back_01.png",text:"나 : 이게 뭐야..!! 내가 낳은 건가...???!!<br/>(알에는 위버스라고 적혀있음)<br/>위..버스...?"},
+		{bg:"/images/startStory/story_back_01.png",text:"나 : 어제 자기 전까지 보고 자긴 했는데...<br/>......<br/>아무래도 본사로 찾아가 봐야겠어!"},
+		{bg:"/images/startStory/story_back_02.png",text:"나 : (위버스 본사에 찾아가는 나)<br/>여기가 위버스 본사군...<br/>저 중에 창문 하나는 내가 했다 진짜.."},
+		{bg:"/images/startStory/story_back_02.png",text:"나 : (똑똑..)<br/>"},
+		{bg:"/images/startStory/story_back_03.png",text:"직원 : 안녕하세요.<br/>무슨 일 이시죠?"},
+		{bg:"/images/startStory/story_back_04.png",text:"나 : 저 이 알을 제가 낳은 거 같아요..."},
+		{bg:"/images/startStory/story_back_03.png",text:"직원 : 헙. 그 알은..!<br/>저쪽 신인개발팀으로 가시면 됩니다. 프로듀서."},
+		{bg:"/images/startStory/story_back_04.png",text:"나 : 엥 뭔 프로듀서?<br/>일단 가라니까 가보자.."},
+		{bg:"/images/startStory/story_back_06.png",text:"팀장 : 당신은 선택받은 프로듀서 입니다."},
+		{bg:"/images/startStory/story_back_05.png",text:"나 : 갑자기 뭔...<br/>아니 제가 프로듀서라니요."},
+		{bg:"/images/startStory/story_back_06.png",text:"팀장 : 크게 될 위인들은 모두 특별한<br/>탄생 스토리를 가지고 있죠..."},
+		{bg:"/images/startStory/story_back_06.png",text:"팀장 : 알에서 태어난 박혁거세...<br/>그리고 어머니의 겨드랑이에서 태어난 부처...<br/>이 아이도 마찬가지 입니다."},
+		{bg:"/images/startStory/story_back_06.png",text:"팀장 : 세계적인 아이돌이 될 친구가<br/>당신을 프로듀서로 선택했네요."},
+		{bg:"/images/startStory/story_back_05.png",text:"나 : 그러니까 이 알에서 태어나는 아이돌을<br/>제가 프로듀싱 해야한다는 거죠?"},
+		{bg:"/images/startStory/story_back_06.png",text:"팀장 : 네 맞습니다. 이것을 드릴테니 알을 깨서<br/>세계적인 아이돌로 성장시켜주세요.<br/>(망치)"},
+		{bg:"/images/startStory/story_back_05.png",text:"나 : (슈니발렌처럼 망치로 알을 깸)<br/>"},
+		{bg:"/images/startStory/story_back_06.png",text:"팀장 : 아주 좋습니다(?)<br/>당신은 누구보다 훌륭한 프로듀서가 될 것 같군요.<br/>후후."},
 		{bg:"/images/startStory/story_back_06.png",text:""},
   	];
   	
@@ -156,7 +156,7 @@
     <div id="mainStory">
     
     	<div class="textArea">
-    		<p id="text">(잠에서 깨어난 나) 부스럭..<br/>하암 ~ 잘 잤다..<br/>(다리 쪽에서 무언가가 느껴진다)</p>
+    		<p id="text">나 : (잠에서 깨어난 나) 부스럭..<br/>하암 ~ 잘 잤다..<br/>(다리 쪽에서 무언가가 느껴진다)</p>
     	</div>
     	
     	<div class="bottomArea">

@@ -17,7 +17,7 @@
 
 <body>
   <!-- 메인 -->
-  <div id="egg_mainpage">
+  <div id="egg_writepage">
 
     <!-- 탑 gnb -->
     <div class="hover_blocker1"></div> <!-- 투명한 네모 박스 (호버방지용)-->
@@ -28,7 +28,6 @@
         <ul>
           <li id="option_title">뉴스</li>
           <li><a href="/wenotice">공지사항</a></li>
-          <li><a href="#">업데이트</a></li>
           <li><a href="/weEvent">이벤트</a></li>
         </ul>
         <ul>
@@ -54,7 +53,7 @@
       </nav>
 
     </div>
-  </div>
+
 
   <!-- 공지사항 -->
   <div id="notice_banner">
@@ -82,7 +81,7 @@
         <tr>
 	       	<th class="info_txt">내용</th>
 	       	<td>
-			    	<textarea rows="10" cols="50" name="bcontent"></textarea>
+			    	<textarea id="txtarea" rows="10" cols="50" placeholder="내용을 입력하세요." name="bcontent"></textarea>
 			    </td>
    			</tr>
    			<tr>
@@ -105,7 +104,7 @@
     	<button onclick="SaveBtn()" >저장</button>
     </div> <!-- info_area -->
   </div> <!-- notice_container -->
-
+  </div>
   <script>
 		//스크롤시 헤더 색상변경
 	  window.addEventListener("scroll", function () {

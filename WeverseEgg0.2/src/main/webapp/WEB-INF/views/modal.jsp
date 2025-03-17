@@ -596,7 +596,7 @@
 			<div class="modal-content">
 				<div class="modal-item" id="music_actvity">
 					<div class="training_img">
-						<img class="background-image" src="/images/vocal_training.png">
+						<img class="background-image" src="/images/music_actvity.png">
 						<div class="training_img_text">
 							<p>
 								보컬<span class="positive">50 필요</span>
@@ -630,7 +630,7 @@
 				</div>
 				<div class="modal-item" id="ent_actvity">
 					<div class="training_img">
-						<img class="background-image" src="/images/enter_activity.png">
+						<img class="background-image" src="/images/ent_actvity.png">
 						<div class="training_img_text">
 							<p>
 								예능<span class="positive">100 필요</span>
@@ -661,7 +661,7 @@
 				</div>
 				<div class="modal-item" id="con_actvity">
 					<div class="training_img">
-						<img class="background-image" src="/images/concert_activity.png">
+						<img class="background-image" src="/images/con_actvity.png">
 						<div class="training_img_text">
 							<p>
 								보컬<span class="positive">75 필요</span>
@@ -695,7 +695,7 @@
 				</div>
 				<div class="modal-item" id="sign_actvity">
 					<div class="training_img">
-						<img class="background-image" src="/images/enter_training.png">
+						<img class="background-image" src="/images/sign_actvity.png">
 						<div class="training_img_text">
 							<p>
 								인기<span class="positive">500 필요</span>
