@@ -54,7 +54,7 @@
       </nav>
 
     </div>
-  </div>
+
 
   <!-- 공지사항 -->
   <div id="notice_banner">
@@ -82,7 +82,7 @@
         <tr>
 	       	<th class="info_txt">내용</th>
 	       	<td>
-			    	<textarea rows="10" cols="50" name="bcontent"></textarea>
+			    	<textarea id="txtarea" rows="10" cols="50" placeholder="내용을 입력하세요." name="bcontent"></textarea>
 			    </td>
    			</tr>
    			<tr>
@@ -105,7 +105,7 @@
     	<button onclick="SaveBtn()" >저장</button>
     </div> <!-- info_area -->
   </div> <!-- notice_container -->
-
+  </div>
   <script>
 		//스크롤시 헤더 색상변경
 	  window.addEventListener("scroll", function () {

@@ -11,9 +11,10 @@ body {
 
 /* 메인 */
 #egg_mainpage {
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
-  height: calc(100vh - 110px); /* 헤더 높이만큼 뺀 높이 설정 */
+  height: 100%;
+  /* height: calc(100vh - 290px); 헤더 높이만큼 뺀 높이 설정 */
 }
 #main_banner{
   width: 100%;
