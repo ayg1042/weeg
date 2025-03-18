@@ -64,6 +64,7 @@ public class CharacterServiceImpl implements CharacterService {
 
 	// 캐릭터 생성, 닉네임 저장
 	@Override
+	@Transactional
 	public CharacterEntity save(CharacterEntity character) {
 		GroupEntity group = groupRepository.findById(1).orElseThrow();
 		ArtistNameEntity artistN = new ArtistNameEntity();
@@ -73,9 +74,15 @@ public class CharacterServiceImpl implements CharacterService {
 		ArtistEntity entity = new ArtistEntity();
 		entity.setArtistName(artistN);
 		entity.setBlueMark(0);
+		entity.setClevel(0);
 		entity.setDebutDate(new Timestamp(System.currentTimeMillis()));
 		artistRepository.save(entity);
 		List<ArtistEntity> artistList = artistRepository.findAll();
+		System.out.println(artistList.size());
+		System.out.println(artistList.get(0).getArtistId());
+		for(ArtistEntity ent : artistList) {
+			System.out.println("아티스트 리스트 순서 = " + ent.getArtistId());
+		}
 		character.setArtist(artistList.get(artistList.size()-1));
 		characterRepository.save(character);
 		return character;

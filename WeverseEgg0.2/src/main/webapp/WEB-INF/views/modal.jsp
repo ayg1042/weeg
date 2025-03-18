@@ -91,6 +91,15 @@
 		<div id="loadingScreen">
 			<div class="loader"></div>
 		</div>
+		<script>
+			$(document).ready(function() {
+				
+			    if ("${chDto.artist.artistName.artistName}" != "연습생") {
+			        $(".game_main").css("background-image", "url(/images/mainRoom/debut_bg.png)");
+			    }
+			    
+			});
+		</script>
 		<div class="game_main">
 
 			<div class='info_area'>

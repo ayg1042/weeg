@@ -2,10 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="header.jsp" %>
-
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,11 +13,9 @@
   <link rel="stylesheet" type="text/css" href="css/weBoard.css" />
   <title>WEVERSEGG_NOTICE</title>
 </head>
-
 <body>
   <!-- 메인 -->
   <div id="egg_mainpage">
-
     <!-- 탑 gnb -->
     <div class="hover_blocker1"></div> <!-- 투명한 네모 박스 (호버방지용)-->
     <div class="hover_blocker2"></div> <!-- 투명한 네모 박스 (호버방지용)-->
@@ -52,16 +48,12 @@
           <li><a href="#">버그악용/신고</a></li>
         </ul>
       </nav>
-
     </div>
   </div>
-
-
   <!-- 자유게시판 -->
   <div id="notice_banner">
     <img src="../images/weNotice/top_img2.png">
   </div>
-
   <div id="notice_container">
     <div class="notice_title">
       <div class="title_between" style="justify-content: space-between; display: flex;">
@@ -74,16 +66,15 @@
         </form>
       </div>
     </div>
-
     <table>
       <colgroup>
         <col class="w-[1056px]">
         <col class="w-[160px]">
       </colgroup>
       <tbody>
-      <c:forEach items="${list}" var="fdto" varStatus="no">
+      <c:forEach items="${list}" var="fdto" varStatus="i">
         <tr>
-        	<td>${no.index +1}</td>
+        	<td>${i.index+1}</td>
           <td class="td_title">
             <a href="/weBoardView?bno=${fdto.bno}"><span class="info_title">${fdto.btitle }</span></a>
           </td>
@@ -95,10 +86,7 @@
     </table>
     <div class="btnArea">
   		<button id="WriteBtn" onclick="WriteBtn()" >글작성</button>
- 	</div>
-  </div>
-
-
+ 		</div>
     <!-- 페이지 넘버링 -->
     <div class="pagination">
       <a href="#">&laquo;</a>
@@ -109,37 +97,29 @@
       <a href="#">5</a>
       <a href="#">&raquo;</a>
     </div>
-
   </div>
-
   <script>
   function WriteBtn(){
 	  if(confirm("게시글을 작성하시겠습니까?")) {
     	location.href="/weBoardWrite";
   	}
   }
-  
     document.addEventListener("DOMContentLoaded", function () {
       const paginationLinks = document.querySelectorAll(".pagination a");
-
       paginationLinks.forEach(link => {
         link.addEventListener("click", function (event) {
           event.preventDefault(); // 페이지 이동 막기
-
           // 좌우 화살표(«, ») 버튼이면 active 클래스 변경하지 않음
           if (this.innerHTML === "«" || this.innerHTML === "»") {
             return;
           }
-
           // 기존 active 클래스 제거
           paginationLinks.forEach(link => link.classList.remove("active"));
-
           // 클릭한 버튼에 active 클래스 추가
           this.classList.add("active");
         });
       });
     });
-    
  		// 스크롤시 헤더 색상변경
     window.addEventListener("scroll", function () {
 	    let gnb = document.getElementById("main_top_gnb");
@@ -149,10 +129,6 @@
 	        gnb.classList.remove("scrolled");
 	    }
 	});
-
-
   </script>
-
 </body>
-
 </html>
