@@ -4,7 +4,6 @@ let quests = [];
 document.addEventListener('DOMContentLoaded', loadQuests);
 
 function loadQuests() {
-	console.log('loadQuests 함수 시작');  // 로드가 잘 되는지 확인
 
 	// 백엔드에서 퀘스트 데이터를 가져옴
 	fetch('/admin/admin_quest/list')

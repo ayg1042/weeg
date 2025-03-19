@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 모달 닫기
   closeButton.addEventListener("click", () => {
       modal.style.display = "none";
+	  location.href="/modal";
   });
 
   // 외부 클릭시 모달 닫기
@@ -153,6 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 모달 닫기
   closeButton.addEventListener("click", () => {
       modal.style.display = "none";
+	  location.href="/modal";
   });
 
   // 외부 클릭시 모달 닫기
@@ -228,3 +230,36 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 	});
 });
+
+
+$(document).on('click', '.jelly_plus', function(){
+	window.location.href="/jellyshop";
+})
+
+$(document).on('click', '.coin_plus', function(){
+	var jelly = prompt("젤리 개수를 입력하세요 (1젤리:1000스타) : ");
+	
+	if (!isNaN(jelly) && jelly.trim() !== "") {
+	    jelly = Number(jelly);  // 문자열을 숫자로 변환
+	} else {
+	    alert("올바른 숫자를 입력하세요.");
+		return;
+	}
+	
+	$.ajax({
+		url: "/buyCoin",
+		type: "post",
+		data: { "jelly": jelly },
+		success: function(data) {
+			if (data == 1) {
+				openMessageModal("구매 완료되었습니다.");
+			} else if (data == 0) {
+				openAlertModal("젤리가 부족합니다!")
+			}
+		},
+		error: function() {
+			openAlertModal("실패");
+		}
+	})
+	
+})

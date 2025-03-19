@@ -132,7 +132,7 @@
 	    				
     				</td>
     				<td>
-    					<button id="delete_item_info_save" type="button">삭제</button>
+    					<button class="delete_item_info_save" type="button">삭제</button>
     				</td>
     			</tr>
     			</c:forEach>

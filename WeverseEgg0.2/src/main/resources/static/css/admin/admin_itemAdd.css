@@ -1,49 +1,150 @@
-@charset "UTF-8";
-
-.data_input_from{
-	margin: 0 300px;
+*{
+  padding: 0; 
+  margin: 0;
+  font-family: "Pretendard Variable", 
+								Pretendard, 
+								-apple-system, 
+								BlinkMacSystemFont, 
+								system-ui, 
+								Roboto, 
+								"Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 
+								sans-serif;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed; /* 테이블 너비 고정 */
-    margin: 20px 0;
+#admin_content a{
+  font-size: 15px;
+  text-decoration: underline;
+  color: inherit;
+  cursor: pointer;
 }
 
-td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    vertical-align: middle;
+table, tr, td{
+  border-collapse: collapse;
 }
 
-label {
-    font-weight: bold;
-    white-space: nowrap; /* 긴 텍스트가 줄 바뀌지 않도록 */
+@font-face {
+font-family: 'Pretendard-Regular';
+src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+font-weight: 400;
+font-style: normal;
+} 
+
+
+#admin_content{
+	padding: 30px;
+	width: 100%;
 }
 
-input, select {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+.memViewTableArea{
+	margin: 20px 0;
+  text-align: left;
 }
 
-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
+.memViewTableArea table{
+	text-align: left;
 }
 
-button:hover {
-    background-color: #45a049;
+.memViewTableArea form table th{
+	width:100px;
+	font-weight:400;
+	text-align: left;
 }
+.memViewTableArea form table td,th{
+	text-align: left;
+}
+h3{
+	margin-top:40px;
+	margin-bottom: 20px;
+}
+/* 
+.viewMem{
+	width: 100%;
+	text-align: left;
+	margin:20px 0;
+}
+.viewMem tr{
+	height: 40px;
+	border-bottom:1px solid #c8c8c8;
+	border-top:1px solid #c8c8c8;
+}
+.viewMem th,td{
+	text-align: left;
+	font-size:15px;
+	font-weight:400;
+}
+.viewMem th{
+	width: 160px;
+	font-weight:500;
+	padding-left:14px;
+}
+.viewMem td{
+	width: 400px;
+	
+}
+.viewMem input{
+	all:unset;
+	font-size:15px;
+	font-weight:400;
+}
+
+.charaViewArea{
+	margin:20px 0;
+	display: flex;
+}
+
+.viewCharacter{
+	width: 400px;
+	font-size:15px;
+	font-weight:400;
+	margin-bottom: 20px;
+}
+.chara_view{
+	margin-right: 80px;
+}
+.chara_view .viewCharacter tr{
+	height: 40px;
+	border-bottom:1px solid #c8c8c8;
+	border-top:1px solid #c8c8c8;
+}
+.chara_view .viewCharacter th{
+	text-align: left;
+	font-weight:500;
+	padding-left:14px;
+}
+.viewCharacter td{
+	padding-left:14px;
+}
+.viewCharacter input{
+	all:unset;
+	font-size:15px;
+	font-weight:400;
+} */
+
+button{
+	all:unset;
+	width: 726px;
+  height: 40px;
+	font-size: 15px;
+	color : #164ba1;
+	text-align: center;
+	border: 1px solid #164ba1;
+	border-radius: 10px;
+	margin : 20px 0;
+}
+
+select{
+	width: 500px;
+	height:30px;
+	font-size: 15px;
+}
+
+input{
+	font-size: 15px;
+	padding-left:4px;
+	width: 500px;
+	height:26px;
+}
+
+
+
+

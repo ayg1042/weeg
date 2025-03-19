@@ -128,4 +128,13 @@ public class MemberServiceImpl implements MemberService {
 		memberRepository.deleteById(userId);
 	}
 
+	public void buycoin(MemberDto dto, int number) {
+		// TODO Auto-generated method stub
+		MemberEntity entity = memberRepository.getById(dto.getUser_id());
+		entity.setJelly(entity.getJelly() - number);
+		
+		memberRepository.save(entity);
+		
+	}
+
 }

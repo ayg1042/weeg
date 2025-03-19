@@ -9,8 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <!-- <script src="/js/admin_itemAdd.js"></script> -->
-  <link rel="stylesheet" type="text/css" href="../css/admin/admin.css"/>
-  <link rel="stylesheet" type="text/css" href="../css/admin/admin_memView.css"/>
+  <link rel="stylesheet" type="text/css" href="../css/admin/admin_itemAdd.css"/>
   <script src="/js/admin0.2.js" defer></script>
   <title>admin</title>
   <script>
@@ -25,7 +24,7 @@
   	<div id="admin_content">
 			<h2>아이템 추가</h2>
    		<div class="memViewTableArea">
-				<h3>아이템 정보 추가</h3>
+				<h3>[아이템 정보 추가]</h3>
    			<div class="data_input_from">
 				<form action="" method="post">
 		    <table>
@@ -34,7 +33,7 @@
 		            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 		        </colgroup>
 		        <tr>
-		            <td><label for="item-type">아이템 타입</label></td>
+		            <th><label for="item-type">아이템 타입</label></<th>
 		            <td>
 		                <select name="item-type" id="item-type">
 		                    	<option>선택</option>
@@ -56,35 +55,36 @@
 		            </td>
 		        </tr>
 		        <tr>
-		            <td><label for="charm">매력도</label></td>
+		            <th><label for="charm">매력도</label></th>
 		            <td><input type="text" name="charm" id="charm"></td>
 		        </tr>
 		        <tr>
-		            <td><label for="dance">댄스</label></td>
+		            <th><label for="dance">댄스</label></th>
 		            <td><input type="text" name="dance" id="dance"></td>
 		        </tr>
 		        <tr>
-		            <td><label for="rap">랩</label></td>
+		            <th><label for="rap">랩</label></th>
 		            <td><input type="text" name="rap" id="rap"></td>
 		        </tr>
 		        <tr>
-		            <td><label for="vocal">보컬</label></td>
+		            <th><label for="vocal">보컬</label></th>
 		            <td><input type="text" name="vocal" id="vocal"></td>
 		        </tr>
 		        <tr>
-		            <td><label for="entertainment">예능</label></td>
+		            <th><label for="entertainment">예능</label></th>
 		            <td><input type="text" name="entertainment" id="entertainment"></td>
 		        </tr>
 		        <tr>
-		            <td><label for="fatigue_recovery">소모품<br>(피로 회복량)</label></td>
+		            <th><label for="fatigue_recovery">소모품<br>(피로 회복량)</label></th>
 		            <td><input type="text" name="fatigue_recovery" id="fatigue_recovery"></td>
 		        </tr>
 		    </table>
 		    <button id="item_info_save">저장하기</button>
 		</form>
     </div>
+
     <div class="data_input_from">
-		<h3>아이템 추가</h3>
+		<h3>[아이템 추가]</h3>
 		<form enctype="multipart/form-data">
 		    <table>
 		        <colgroup>
@@ -92,7 +92,7 @@
 		            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 		        </colgroup>
 		        <tr>
-		            <td><label for="item-info">아이템 정보</label></td>
+		            <th><label for="item-info">아이템 정보</label></th>
 		            <td>
 		                <select name="item-info" id="item-info">
 		                	<c:forEach items="${itemInfoList}" var="dto">
@@ -133,15 +133,15 @@
 		            </td>
 		        </tr>
 		        <tr>
-		            <td><label for="item_name">이름</label></td>
+		            <th><label for="item_name">이름</label></th>
 		            <td><input type="text" name="item_name" id="item_name"></td>
 		        </tr>
 		        <tr>
-		            <td><label for="price">가격</label></td>
+		            <th><label for="price">가격</label></th>
 		            <td><input type="text" name="price" id="price"></td>
 		        </tr>
 		        <tr>
-		            <td><label for="img">이미지</label></td>
+		            <th><label for="img">이미지</label></th>
 		            <td><input type="file" name="img" id="img"></td>
 		        </tr>
 		    </table>
@@ -149,9 +149,15 @@
 		</form>
     </div>
     <div class="data_input_from">
-		<h2>아이템 수정</h2>
+    </br>
+    </br>
 		<hr>
-		<h3>아이템 정보 수정</h3>
+    </br>
+    </br>
+    </div>
+		<h2>아이템 수정</h2>
+		<div class="memViewTableArea">
+		<h3>[아이템 정보 수정]</h3>
 		<form action="" method="post">
 		    <table>
 		        <colgroup>
@@ -159,7 +165,7 @@
 		            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 		        </colgroup>
 		        <tr>
-		            <td><label for="update_item-type">아이템 정보</label></td>
+		            <th><label for="update_item-type">아이템 정보</label></th>
 		            <td>
 		                <select name="update_item-info" id="update_item-info">
 		                	<option>선택</option>
@@ -201,27 +207,27 @@
 		            </td>
 		        </tr>
 		        <tr>
-		            <td><label for="update_charm">매력도</label></td>
+		            <th><label for="update_charm">매력도</label></th>
 		            <td><input type="text" name="update_charm" id="update_charm"></td>
 		        </tr>
 		        <tr>
-		            <td><label for="update_dance">댄스</label></td>
+		            <th><label for="update_dance">댄스</label></th>
 		            <td><input type="text" name="update_dance" id="update_dance"></td>
 		        </tr>
 		        <tr>
-		            <td><label for="update_rap">랩</label></td>
+		            <th><label for="update_rap">랩</label></th>
 		            <td><input type="text" name="update_rap" id="update_rap"></td>
 		        </tr>
 		        <tr>
-		            <td><label for="update_vocal">보컬</label></td>
+		            <th><label for="update_vocal">보컬</label></th>
 		            <td><input type="text" name="update_vocal" id="update_vocal"></td>
 		        </tr>
 		        <tr>
-		            <td><label for="update_entertainment">예능</label></td>
+		            <th><label for="update_entertainment">예능</label></th>
 		            <td><input type="text" name="update_entertainment" id="update_entertainment"></td>
 		        </tr>
 		        <tr>
-		            <td><label for="update_fatigue_recovery">소모품<br>(피로 회복량)</label></td>
+		            <th><label for="update_fatigue_recovery">소모품<br>(피로 회복량)</label></th>
 		            <td><input type="text" name="update_fatigue_recovery" id="update_fatigue_recovery"></td>
 		        </tr>
 		    </table>
@@ -229,6 +235,7 @@
 		</form>
     </div>
     </div>
+	</div>
 	</div>
 </body>
 

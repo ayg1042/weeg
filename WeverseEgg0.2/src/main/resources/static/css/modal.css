@@ -117,7 +117,7 @@ button {
 	height: 760px;
 	margin: 0 auto;
 	border: 20px solid #D0D3FE;
-	background-image: url("/images/egg_main_room/mainRoom.png");
+	background-image: url("/images/egg_main_room/mainRoom.gif");
 	border-radius: 40px;
 	z-index: 1;
 }
@@ -190,7 +190,8 @@ button {
 	position: relative;
 	width: 170px;
 	height: 340px;
-	background-image: url('/images/egg_test/character_test.png');
+	background-image: url('/images/egg_character/character_1_1.png');
+    background-size: cover;
 	margin : 222px 106px 10px 984px;
   z-index: 3;
 }
@@ -300,7 +301,12 @@ button {
 #jelly, #coin {
 	padding: 3px 0 3px 3px;
 }
-#plus {
+.jelly_plus {
+	padding: 4px 4px 4px 0;
+	cursor: pointer;
+}
+
+.coin_plus {
 	padding: 4px 4px 4px 0;
 	cursor: pointer;
 }
@@ -311,6 +317,7 @@ button {
 	height: 28px;
 	width: 151px;
 	border: 1px solid white;
+	background: #fefefe80;
 	border-radius: 30px; 
 	box-sizing: border-box;
 	margin-right: 20px;
@@ -322,6 +329,7 @@ button {
 	height: 28px;
 	width: 151px;
 	border: 1px solid white;
+	background: #fefefe80;
 	border-radius: 30px; 
 	box-sizing: border-box;
 	margin-right: 85px
@@ -1106,4 +1114,29 @@ a {
     border: 1px solid rgb(255, 61, 61);
 }
 
+/* loading.css */
+#loadingScreen {
+    margin-left: 330px;
+    margin-top: 18px;
+    position: fixed;
+    width: 1260px;
+    height: 762px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 30000;
+}
+
+.loader {
+    width: 400px;  /* GIF 크기 조절 */
+    height: 400px; /* GIF 크기 조절 */
+    margin-left: 430px;
+    margin-top: 160px;
+    background-image: url("/images/modal/loading.gif");
+    background-size: contain; /* GIF 크기 맞춤 */
+    background-position: center; /* 정확히 가운데로 */
+    background-repeat: no-repeat; /* 반복되지 않도록 설정 */
+}
 

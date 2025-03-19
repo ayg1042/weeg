@@ -69,6 +69,11 @@ font-style: normal;
 	border-bottom:1px solid #c8c8c8;
 }
 
+.viewBoard .viewContent img{
+	width: 1000px;
+	
+}
+
 .noticeButtonArea {
 	margin: 20px;
 	text-align: right;

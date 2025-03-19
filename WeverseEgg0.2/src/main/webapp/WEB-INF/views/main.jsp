@@ -85,7 +85,7 @@
 		        </div>
 		      </div>
 		      <div class="main_banner2">
-		        <a href="/"><img src="../images/main/main_banner2.png" alt=""></a>
+		        <a href="/eggmain"><img src="../images/main/main_banner2.png" alt=""></a>
 		      </div>
 		    </div>
 		    <div class="main_white">

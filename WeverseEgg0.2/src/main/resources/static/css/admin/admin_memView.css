@@ -60,7 +60,7 @@ font-style: normal;
 }
 .viewMem td{
 	width: 400px;
-	
+	text-align: left;
 }
 .viewMem input{
 	all:unset;

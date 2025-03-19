@@ -15,23 +15,27 @@ $(function() {
         // Confirm 모달을 호출하여 확인/취소 받기
         openConfirmModal("보컬 트레이닝을 진행할까요?", function(confirm) {
             if (confirm) {
-                // 확인 클릭 시 AJAX 요청 실행
-                $.ajax({
-                    url: "/trainSave/vocal",
-                    type: "POST",
-                    data: { 
-                        "vocalScore": vocalScore,
-                        "health": vocalHealth,
-                        "fatigue": vocalFatigue,
-                        "price": vocalPrice
-                    },
-                    success: function(data) {
-                        console.log("data 확인 : " + data);
-                        openMessageModal(data); // 메시지 모달 표시
-                    },
-                    error: function() {
-                        openAlertModal("서버 오류가 발생했습니다.");
-                    }
+                // 로딩 화면 표시
+                showLoadingScreen().then(function() {
+                    // AJAX 요청 실행
+                    $.ajax({
+                        url: "/trainSave/vocal",
+                        type: "POST",
+                        data: { 
+                            "vocalScore": vocalScore,
+                            "health": vocalHealth,
+                            "fatigue": vocalFatigue,
+                            "price": vocalPrice
+                        },
+                        success: function(data) {
+                            hideLoadingScreen(); // 로딩 화면 숨기기
+                            openMessageModal(data); // 메시지 모달 표시
+                        },
+                        error: function() {
+                            hideLoadingScreen(); // 로딩 화면 숨기기
+                            openAlertModal("서버 오류가 발생했습니다.");
+                        }
+                    });
                 });
             } // Confirmed: 진행할 경우에만 AJAX 요청
         });
@@ -53,23 +57,27 @@ $(function() {
         // Confirm 모달을 호출하여 확인/취소 받기
         openConfirmModal("댄스 트레이닝을 진행할까요?", function(confirm) {
             if (confirm) {
-                // 확인 클릭 시 AJAX 요청 실행
-                $.ajax({
-                    url: "/trainSave/dance",
-                    type: "POST",
-                    data: { 
-                        "danceScore": danceScore,
-                        "health": danceHealth,
-                        "fatigue": danceFatigue,
-                        "price": dancePrice
-                    },
-                    success: function(data) {
-                        console.log("data 확인 : " + data);
-                        openMessageModal(data); // 메시지 모달 표시
-                    },
-                    error: function() {
-                        openAlertModal("서버 오류가 발생했습니다.");
-                    }
+                // 로딩 화면 표시
+                showLoadingScreen().then(function() {
+                    // AJAX 요청 실행
+                    $.ajax({
+                        url: "/trainSave/dance",
+                        type: "POST",
+                        data: { 
+                            "danceScore": danceScore,
+                            "health": danceHealth,
+                            "fatigue": danceFatigue,
+                            "price": dancePrice
+                        },
+                        success: function(data) {
+                            hideLoadingScreen(); // 로딩 화면 숨기기
+                            openMessageModal(data); // 메시지 모달 표시
+                        },
+                        error: function() {
+                            hideLoadingScreen(); // 로딩 화면 숨기기
+                            openAlertModal("서버 오류가 발생했습니다.");
+                        }
+                    });
                 });
             } // Confirmed: 진행할 경우에만 AJAX 요청
         });
@@ -91,23 +99,27 @@ $(function() {
         // Confirm 모달을 호출하여 확인/취소 받기
         openConfirmModal("랩 트레이닝을 진행할까요?", function(confirm) {
             if (confirm) {
-                // 확인 클릭 시 AJAX 요청 실행
-                $.ajax({
-                    url: "/trainSave/rap",
-                    type: "POST",
-                    data: { 
-                        "rapScore": rapScore,
-                        "health": rapHealth,
-                        "fatigue": rapFatigue,
-                        "price": rapPrice
-                    },
-                    success: function(data) {
-                        console.log("data 확인 : " + data);
-                        openMessageModal(data); // 메시지 모달 표시
-                    },
-                    error: function() {
-                        openAlertModal("서버 오류가 발생했습니다.");
-                    }
+                // 로딩 화면 표시
+                showLoadingScreen().then(function() {
+                    // AJAX 요청 실행
+                    $.ajax({
+                        url: "/trainSave/rap",
+                        type: "POST",
+                        data: { 
+                            "rapScore": rapScore,
+                            "health": rapHealth,
+                            "fatigue": rapFatigue,
+                            "price": rapPrice
+                        },
+                        success: function(data) {
+                            hideLoadingScreen(); // 로딩 화면 숨기기
+                            openMessageModal(data); // 메시지 모달 표시
+                        },
+                        error: function() {
+                            hideLoadingScreen(); // 로딩 화면 숨기기
+                            openAlertModal("서버 오류가 발생했습니다.");
+                        }
+                    });
                 });
             } // Confirmed: 진행할 경우에만 AJAX 요청
         });
@@ -129,23 +141,27 @@ $(function() {
         // Confirm 모달을 호출하여 확인/취소 받기
         openConfirmModal("예능 트레이닝을 진행할까요?", function(confirm) {
             if (confirm) {
-                // 확인 클릭 시 AJAX 요청 실행
-                $.ajax({
-                    url: "/trainSave/ent",
-                    type: "POST",
-                    data: { 
-                        "entScore": entScore,
-                        "health": entHealth,
-                        "fatigue": entFatigue,
-                        "price": entPrice
-                    },
-                    success: function(data) {
-                        console.log("data 확인 : " + data);
-                        openMessageModal(data); // 메시지 모달 표시
-                    },
-                    error: function() {
-                        openAlertModal("서버 오류가 발생했습니다.");
-                    }
+                // 로딩 화면 표시
+                showLoadingScreen().then(function() {
+                    // AJAX 요청 실행
+                    $.ajax({
+                        url: "/trainSave/ent",
+                        type: "POST",
+                        data: { 
+                            "entScore": entScore,
+                            "health": entHealth,
+                            "fatigue": entFatigue,
+                            "price": entPrice
+                        },
+                        success: function(data) {
+                            hideLoadingScreen(); // 로딩 화면 숨기기
+                            openMessageModal(data); // 메시지 모달 표시
+                        },
+                        error: function() {
+                            hideLoadingScreen(); // 로딩 화면 숨기기
+                            openAlertModal("서버 오류가 발생했습니다.");
+                        }
+                    });
                 });
             } // Confirmed: 진행할 경우에만 AJAX 요청
         });

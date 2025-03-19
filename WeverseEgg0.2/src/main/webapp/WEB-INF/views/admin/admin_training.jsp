@@ -6,9 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/admin/admin.css"/>
-<link rel="stylesheet" type="text/css" href="../css/admin/admin_items.css"/>
-<link rel="stylesheet" type="text/css" href="../css/admin/admin_memView.css"/>
+<link rel="stylesheet" type="text/css" href="../css/admin/admin_itemAdd.css"/>
 <script src="/js/admin0.2.js" defer></script>
 <title>Insert title here</title>
 
@@ -16,13 +14,11 @@
 <body>
 	<div id="admin_container">
 	    <%@ include file="gnb.jsp" %>
-	       
 	    <div id="admin_content">
-	   	<h2>트레이닝 관리</h2></br>
+	   	<h2>트레이닝_연습타입 관리</h2>
 	    <div class="data_input_from">
-			<h2>연습 타입</h2>
-			<hr>
-			<h3>연습 타입 추가</h3>
+			<div class="memViewTableArea">
+			<h3>[연습 타입 추가]</h3>
 			<form action="" method="post">
 			    <table>
 			        <colgroup>
@@ -30,7 +26,7 @@
 			            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 			        </colgroup>
 			        <tr>
-			            <td><label for="practiceType">연습 타입 추가</label></td>
+			            <th><label for="practiceType">연습 타입 추가</label></th>
 			            <td><input type="text" name="practiceType" id="practiceType"></td>
 			        </tr>
 			    </table>
@@ -38,8 +34,6 @@
 			</form>
 	    </div>
 		<div class="data_input_from">
-			<h2>연습 타입</h2>
-			<hr>
 			<h3>연습 타입 삭제</h3>
 			<form action="" method="post">
 			    <table>
@@ -48,7 +42,7 @@
 			            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 			        </colgroup>
 			        <tr>
-			            <td><label for="delete_practiceType">연습 타입</label></td>
+			            <th><label for="delete_practiceType">연습 타입</label></th>
 			            <td>
 			                <select name="delete_practiceType" id="delete_practiceType">
 			                    <option>선택</option>
@@ -62,10 +56,14 @@
 			    <button id="delete_practiceType_save">삭제하기</button>
 			</form>
 	    </div>
+	    </div>
+	    </br>
+	    <hr>
+	    </br>
 		<div class="data_input_from">
-			<h2>연습</h2>
-			<hr>
-			<h3>연습 추가</h3>
+			<h2>트레이닝_연습관리</h2>
+			<div class="memViewTableArea">
+			<h3>[연습 추가]</h3>
 			<form action="" method="post">
 			    <table>
 			        <colgroup>
@@ -73,7 +71,7 @@
 			            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 			        </colgroup>
 			        <tr>
-			            <td><label for="add_practice">연습 타입</label></td>
+			            <th><label for="add_practice">연습 타입</label></th>
 			            <td>
 			                <select name="add_practice" id="add_practice">
 			                    <option>선택</option>
@@ -84,25 +82,24 @@
 			            </td>
 			        </tr>
 			        <tr>
-			            <td><label for=add_price>비용</label></td>
+			            <th><label for=add_price>비용</label></th>
 			            <td><input type="text" name="add_price" id="add_price"></td>
 			        </tr>
 			        <tr>
-			            <td><label for="add_health">체력</label></td>
+			            <th><label for="add_health">체력</label></th>
 			            <td><input type="text" name="add_health" id="add_health"></td>
 			        </tr>
 			        <tr>
-			            <td><label for="add_fatigue">피로도</label></td>
+			            <th><label for="add_fatigue">피로도</label></th>
 			            <td><input type="text" name="add_fatigue" id="add_fatigue"></td>
 			        </tr>
 			    </table>
 			    <button id="add_practice_save">저장하기</button>
 			</form>
 	    </div>
+	    </div>
 		<div class="data_input_from">
-			<h2>연습</h2>
-			<hr>
-			<h3>연습 수정</h3>
+			<h3>[연습 수정]</h3>
 			<form action="" method="post">
 			    <table>
 			        <colgroup>
@@ -110,7 +107,7 @@
 			            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 			        </colgroup>
 			        <tr>
-			            <td><label for="update_practice">연습</label></td>
+			            <th><label for="update_practice">연습</label></th>
 			            <td>
 			                <select name="update_practice" id="update_practice">
 			                    <option>선택</option>
@@ -121,15 +118,15 @@
 			            </td>
 			        </tr>
 			        <tr>
-			            <td><label for=update_price>비용</label></td>
+			            <th><label for=update_price>비용</label></th>
 			            <td><input type="text" name="update_price" id="update_price"></td>
 			        </tr>
 			        <tr>
-			            <td><label for="update_health">체력</label></td>
+			            <th><label for="update_health">체력</label></th>
 			            <td><input type="text" name="update_health" id="update_health"></td>
 			        </tr>
 			        <tr>
-			            <td><label for="update_fatigue">피로도</label></td>
+			            <th><label for="update_fatigue">피로도</label></th>
 			            <td><input type="text" name="update_fatigue" id="update_fatigue"></td>
 			        </tr>
 			    </table>
@@ -137,9 +134,7 @@
 			</form>
 	    </div>
 		<div class="data_input_from">
-			<h2>연습</h2>
-			<hr>
-			<h3>연습 삭제</h3>
+		<h3>[연습 삭제]</h3>
 			<form action="" method="post">
 			    <table>
 			        <colgroup>
@@ -147,7 +142,7 @@
 			            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 			        </colgroup>
 			        <tr>
-			            <td><label for="delete_practice">연습</label></td>
+			            <th><label for="delete_practice">연습</label></th>
 			            <td>
 			                <select name="delete_practice" id="delete_practice">
 			                    <option>선택</option>
@@ -161,11 +156,13 @@
 			    <button id="delete_practice_save">삭제하기</button>
 			</form>
 	    </div>
-	    
+	     </br>
+	    <hr>
+	    </br>
 		<div class="data_input_from">
-			<h2>춤</h2>
-			<hr>
-			<h3>춤 추가</h3>
+			<h2>트레이닝_댄스 관리</h2>
+			<div class="memViewTableArea">
+			<h3>[댄스 추가]</h3>
 			<form action="" method="post">
 			    <table>
 			        <colgroup>
@@ -173,7 +170,7 @@
 			            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 			        </colgroup>
 			        <tr>
-			            <td><label for="add_dance">연습</label></td>
+			            <th><label for="add_dance">연습</label></th>
 			            <td>
 			                <select name="add_dance" id="add_dance">
 			                    <option>선택</option>
@@ -184,11 +181,11 @@
 			            </td>
 			        </tr>
 			        <tr>
-			            <td><label for=add_dance_name>연습 이름</label></td>
+			            <th><label for=add_dance_name>연습 이름</label></th>
 			            <td><input type="text" name="add_dance_name" id="add_dance_name"></td>
 			        </tr>
 			        <tr>
-			            <td><label for="add_dance_point">점수</label></td>
+			            <th><label for="add_dance_point">점수</label></th>
 			            <td><input type="text" name="add_dance_point" id="add_dance_point"></td>
 			        </tr>
 			    </table>
@@ -196,9 +193,7 @@
 			</form>
 	    </div>
 		<div class="data_input_from">
-			<h2>춤</h2>
-			<hr>
-			<h3>춤 삭제</h3>
+		<h3>[댄스 삭제]</h3>
 			<form action="" method="post">
 			    <table>
 			        <colgroup>
@@ -206,7 +201,7 @@
 			            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 			        </colgroup>
 			        <tr>
-			            <td><label for="delete_dance">연습</label></td>
+			            <th><label for="delete_dance">연습</label></th>
 			            <td>
 			                <select name="delete_dance" id="delete_dance">
 			                    <option>선택</option>
@@ -220,11 +215,14 @@
 			    <button id="delete_dance_save">삭제하기</button>
 			</form>
 	    </div>
-	    
-	    <div class="data_input_from">
-			<h2>보컬</h2>
-			<hr>
-			<h3>보컬 추가</h3>
+	    </div>
+	    </br>
+	    <hr>
+	    </br>
+		<div class="data_input_from">
+			<h2>트레이닝_보컬 관리</h2>
+			<div class="memViewTableArea">
+			<h3>[보컬 추가]</h3>
 			<form action="" method="post">
 			    <table>
 			        <colgroup>
@@ -232,7 +230,7 @@
 			            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 			        </colgroup>
 			        <tr>
-			            <td><label for="add_vocal">연습</label></td>
+			            <th><label for="add_vocal">연습</label></th>
 			            <td>
 			                <select name="add_vocal" id="add_vocal">
 			                    <option>선택</option>
@@ -243,11 +241,11 @@
 			            </td>
 			        </tr>
 			        <tr>
-			            <td><label for=add_vocal_name>연습 이름</label></td>
+			            <th><label for=add_vocal_name>연습 이름</label></th>
 			            <td><input type="text" name="add_vocal_name" id="add_vocal_name"></td>
 			        </tr>
 			        <tr>
-			            <td><label for="add_vocal_point">점수</label></td>
+			            <th><label for="add_vocal_point">점수</label></th>
 			            <td><input type="text" name="add_vocal_point" id="add_vocal_point"></td>
 			        </tr>
 			    </table>
@@ -255,8 +253,6 @@
 			</form>
 	    </div>
 	    <div class="data_input_from">
-			<h2>보컬</h2>
-			<hr>
 			<h3>보컬 삭제</h3>
 			<form action="" method="post">
 			    <table>
@@ -265,7 +261,7 @@
 			            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 			        </colgroup>
 			        <tr>
-			            <td><label for="delete_vocal">연습</label></td>
+			            <th><label for="delete_vocal">연습</label></th>
 			            <td>
 			                <select name="delete_vocal" id="delete_vocal">
 			                    <option>선택</option>
@@ -279,11 +275,14 @@
 			    <button id="delete_vocal_save">삭제하기</button>
 			</form>
 	    </div>
-	    
-	    <div class="data_input_from">
-			<h2>랩</h2>
-			<hr>
-			<h3>랩 추가</h3>
+	    </div>
+	    </br>
+	    <hr>
+	    </br>
+		<div class="data_input_from">
+			<h2>트레이닝_랩 관리</h2>
+			<div class="memViewTableArea">
+			<h3>[랩 추가]</h3>
 			<form action="" method="post">
 			    <table>
 			        <colgroup>
@@ -291,7 +290,7 @@
 			            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 			        </colgroup>
 			        <tr>
-			            <td><label for="add_rap">연습</label></td>
+			            <th><label for="add_rap">연습</label></th>
 			            <td>
 			                <select name="add_rap" id="add_rap">
 			                    <option>선택</option>
@@ -302,11 +301,11 @@
 			            </td>
 			        </tr>
 			        <tr>
-			            <td><label for=add_rap_name>연습 이름</label></td>
+			            <th><label for=add_rap_name>연습 이름</label></th>
 			            <td><input type="text" name="add_rap_name" id="add_rap_name"></td>
 			        </tr>
 			        <tr>
-			            <td><label for="add_rap_point">점수</label></td>
+			            <th><label for="add_rap_point">점수</label></th>
 			            <td><input type="text" name="add_rap_point" id="add_rap_point"></td>
 			        </tr>
 			    </table>
@@ -314,8 +313,6 @@
 			</form>
 	    </div>
 	    <div class="data_input_from">
-			<h2>랩</h2>
-			<hr>
 			<h3>랩 삭제</h3>
 			<form action="" method="post">
 			    <table>
@@ -324,7 +321,7 @@
 			            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 			        </colgroup>
 			        <tr>
-			            <td><label for="delete_rap">연습</label></td>
+			            <th><label for="delete_rap">연습</label></th>
 			            <td>
 			                <select name="delete_rap" id="delete_rap">
 			                    <option>선택</option>
@@ -338,11 +335,14 @@
 			    <button id="delete_rap_save">삭제하기</button>
 			</form>
 	    </div>
-	    
-	    <div class="data_input_from">
-			<h2>예능</h2>
-			<hr>
-			<h3>예능 추가</h3>
+	    </div>
+	    </br>
+	    <hr>
+	    </br>
+		<div class="data_input_from">
+			<h2>트레이닝_예능 관리</h2>
+			<div class="memViewTableArea">
+			<h3>[예능 추가]</h3>
 			<form action="" method="post">
 			    <table>
 			        <colgroup>
@@ -350,7 +350,7 @@
 			            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 			        </colgroup>
 			        <tr>
-			            <td><label for="add_enter">연습</label></td>
+			            <th><label for="add_enter">연습</label></th>
 			            <td>
 			                <select name="add_enter" id="add_enter">
 			                    <option>선택</option>
@@ -361,11 +361,11 @@
 			            </td>
 			        </tr>
 			        <tr>
-			            <td><label for=add_enter_name>연습 이름</label></td>
+			            <th><label for=add_enter_name>연습 이름</label></td>
 			            <td><input type="text" name="add_enter_name" id="add_enter_name"></td>
 			        </tr>
 			        <tr>
-			            <td><label for="add_enter_point">점수</label></td>
+			            <th><label for="add_enter_point">점수</label></th>
 			            <td><input type="text" name="add_enter_point" id="add_enter_point"></td>
 			        </tr>
 			    </table>
@@ -373,8 +373,6 @@
 			</form>
 	    </div>
 	    <div class="data_input_from">
-			<h2>예능</h2>
-			<hr>
 			<h3>예능 삭제</h3>
 			<form action="" method="post">
 			    <table>
@@ -383,7 +381,7 @@
 			            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 			        </colgroup>
 			        <tr>
-			            <td><label for="delete_enter">연습</label></td>
+			            <th><label for="delete_enter">연습</label></th>
 			            <td>
 			                <select name="delete_enter" id="delete_enter">
 			                    <option>선택</option>

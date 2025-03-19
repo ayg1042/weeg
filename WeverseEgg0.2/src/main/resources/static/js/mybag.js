@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 	// 탭 항목과 내용 요소들
 	const tabs = document.querySelectorAll('.shop-list li');
 	const contentSections = document.querySelectorAll('.tab-content');
@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	// bag-outfit 탭만 표시
 	const defaultContent = document.getElementById('bag-outfit');
-	console.log('test');
 	if (defaultContent) {
 		defaultContent.style.display = 'block';
 		defaultContent.classList.add('active');
@@ -22,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	// 탭 클릭 시 내용 변경
 	tabs.forEach(tab => {
-		tab.addEventListener('click', function() {
+		tab.addEventListener('click', function () {
 			// 모든 탭과 내용을 숨기기
 			contentSections.forEach(section => section.style.display = 'none');
 			tabs.forEach(t => t.classList.remove('active'));
@@ -34,65 +33,70 @@ document.addEventListener("DOMContentLoaded", function() {
 			if (targetContent) {
 				targetContent.style.display = 'block';
 				this.classList.add('active');
-				bag_updateItem();
+				bag_updateItem(); // 페이지네이션 다시 계산
 			}
 		});
 	});
-	bag_updateItem();
 
 	// "모두 해제" 클릭 시 모든 아이템 표시
 	const allCancel = document.querySelector('.all-cancel');
 	if (allCancel) {
-		allCancel.addEventListener('click', function() {
-			if (confirm('모두 해제 하시겠씁니까?')) {
+		allCancel.addEventListener('click', function () {
+			if (confirm('모두 해제 하시겠습니까?')) {
 				for (let item of selectedHats) {
 					item.itemId = '';
 				}
 			}
 		});
 	}
+
+	// "다음" 및 "이전" 버튼 이벤트 핸들러는 한 번만 등록
+	const nextButton = document.querySelector('.my-next');
+	const prevButton = document.querySelector('.my-previous');
+
+	if (nextButton) {
+		nextButton.addEventListener('click', function () {
+			if (bag_currentPage < bag_totalPages) {
+				bag_currentPage++;
+				bag_updateItem();
+			}
+		});
+	}
+
+	if (prevButton) {
+		prevButton.addEventListener('click', function () {
+			if (bag_currentPage > 1) {
+				bag_currentPage--;
+				bag_updateItem();
+			}
+		});
+	};
+
+	bag_updateItem();
 });
 
-// test
+// 페이지네이션 관련 변수
 let bag_currentPage = 1;
 let bag_itemsPerPage = 8;
 let bag_totalPages = 0;
 
-// test
+// 페이지 업데이트 함수
 function bag_updateItem() {
 	const bag_startIndex = (bag_currentPage - 1) * bag_itemsPerPage;
 	const bag_endIndex = bag_startIndex + bag_itemsPerPage;
 	const bag_items = document.querySelectorAll('.tab-content.active .shop-item-show');
+
+	if (!bag_items.length) return; // 아이템이 없으면 실행하지 않음
+
 	const bag_total_item = bag_items.length;
+	bag_totalPages = Math.ceil(bag_total_item / bag_itemsPerPage);
 
-	// 모든 아이템을 먼저 보이게 함
-	bag_items.forEach(item => item.style.display = 'block');
-
-	// 페이지네이션 적용
-	if (bag_total_item > bag_itemsPerPage) {
-		bag_items.forEach(item => item.style.display = 'none');
-		for (let i = bag_startIndex; i < bag_endIndex && i < bag_total_item; i++) {
-			bag_items[i].style.display = 'block';
-		}
-		bag_totalPages = Math.ceil(bag_total_item / bag_itemsPerPage);
-	}
-
-	// "다음" 버튼 클릭 시 처리
-	document.querySelector('.my-next').addEventListener('click', () => {
-		if (bag_currentPage < bag_totalPages) {
-			bag_currentPage++;
-			bag_updateItem();
-		}
-	});
-
-	// "이전" 버튼 클릭 시 처리
-	document.querySelector('.my-previous').addEventListener('click', () => {
-		if (bag_currentPage > 1) {
-			bag_currentPage--;
-			bag_updateItem();
-		}
+	// 모든 아이템 숨기고, 해당하는 아이템만 보이게 함
+	bag_items.forEach((item, index) => {
+		item.style.display = (index >= bag_startIndex && index < bag_endIndex) ? 'block' : 'none';
 	});
 }
+
 
 //let selectedHats = [];
 /*selectedHats.push({ typeName: 'hat', itemId: `${hat_id}` });
@@ -115,9 +119,6 @@ $(document).on('click', '.equipped', function() {
 	const list = test.split('-');
 	const type = list.pop();
 	const typeParts = type.split('_');  // ["outfit", "1"]
-	console.log('typeParts : ' + typeParts.length);
-	console.log(typeParts);
-	//const typeName = typeParts[0];  // "outfit"
 	let typeName = typeParts[typeParts.length - 2];  // "outfit"
 	const itemId = typeParts[typeParts.length - 1];  // "1"
 
@@ -141,7 +142,6 @@ $(document).on('click', '.equipped', function() {
 		selectedHats.push({ typeName: typeName, itemId: itemId });
 	}
 
-	console.log(selectedHats);
 	// 원하는 곳에 적용 (예: 특정 캐릭터 이미지 변경)
 	if (imgSrc.includes('outfit')) {
 		$('.my_bag_outfit').attr('src', imgSrc);  // Outfit 이미지 업데이트
@@ -199,8 +199,6 @@ $(document).on('click', '.item-clear', function() {
 		//selectedHats.splice(index, 1);  // 해당 항목을 배열에서 제거
 		selectedHats[index].itemId = '';  // itemId 값을 빈 문자열로 변경
 	}
-
-	console.log(selectedHats);
 
 	// 이미지 업데이트
 	if (imgSrc.includes('outfit')) {

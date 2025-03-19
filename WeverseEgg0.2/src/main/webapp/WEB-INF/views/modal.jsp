@@ -87,6 +87,23 @@
 	</header>
 	
 	<div class="main_bg">
+		<!-- 로딩창 -->
+		<div id="loadingScreen">
+			<div class="loader"></div>
+		</div>
+		<script>
+			$(document).ready(function() {
+			    $(".character_container").css("background-image", "url(/images/egg_character/character_${chDto.artist.artistName.group.groupId}_${chDto.artist.artistName.artistNId}.png)");
+				
+			    if ("${chDto.artist.artistName.artistName}" != "연습생") {
+			        $(".game_main").css("background-image", "url(/images/mainRoom/debut_bg.gif)");
+			    }
+			    
+			    
+			    
+			    
+			});
+		</script>
 		<div class="game_main">
 
 			<div class='info_area'>
@@ -136,7 +153,7 @@
 					<c:if test="${chDto.fatigue == 75}">
 						<img id="fatigueBar" src="/images/hp/fp_75.png">
 					</c:if>
-					<c:if test="${chDto.fatigue == 100}">
+					<c:if test="${chDto.fatigue >= 100}">
 						<img id="fatigueBar" src="/images/hp/fp_100.png">
 					</c:if>
 					<div id="jellyBar">
@@ -145,14 +162,14 @@
 							<fmt:formatNumber value="${character.member.jelly}"
 								pattern="###,###,##0" />
 						</p>
-						<img id="plus" src="/images/egg_info/plusIcon.png">
+						<img class="jelly_plus" src="/images/egg_info/plusIcon.png">
 					</div>
 					<div id="coinBar" class="gap">
 						<img id="coin" src="/images/egg_info/coinIcon.png">
-						<p id="My_Coin">
+						<p class="My_Coin">
 							<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 						</p>
-						<img id="plus" src="/images/egg_info/plusIcon.png">
+						<img class="coin_plus" src="/images/egg_info/plusIcon.png">
 					</div>
 				</div>
 				<div id="character_info">
@@ -273,7 +290,7 @@
 	<!-- 데뷔 확인 모달 (링크 이동 X) -->
 	<div id="alert-debut-modal" class="debutmodalmessage">
 	    <p id="alert-debut-message"></p>
-	    <button id="alert-debut-button" onclick="closeAlertModal()">확인</button>
+	    <button id="alert-debut-button" onclick="closeDebutAlertModal()">확인</button>
 	</div>
 	 
 	<!-- Confirm 모달 (확인 + 취소) -->
@@ -332,23 +349,23 @@
 				<c:if test="${chDto.fatigue == 75}">
 					<img id="fatigueBar" src="/images/hp/fp_75.png">
 				</c:if>
-				<c:if test="${chDto.fatigue == 100}">
+				<c:if test="${chDto.fatigue >= 100}">
 					<img id="fatigueBar" src="/images/hp/fp_100.png">
 				</c:if>
 				<div id="jellyBar">
-					<img id="jelly" src="/images/jellyIcon.png">
-					<p id="My_jelly">
+					<img class="jelly" src="/images/jellyIcon.png">
+					<p class="My_jelly">
 						<fmt:formatNumber value="${character.member.jelly}"
 							pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="jelly_plus" src="/images/plusIcon.png">
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="/images/coinIcon.png">
-					<p id="My_Coin">
+					<p class="My_Coin">
 						<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="coin_plus" src="/images/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
@@ -575,14 +592,14 @@
 						<fmt:formatNumber value="${character.member.jelly}"
 							pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="jelly_plus" src="/images/plusIcon.png">
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="/images/coinIcon.png">
-					<p id="My_Coin">
+					<p class="My_Coin">
 						<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="coin_plus" src="/images/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
@@ -597,7 +614,7 @@
 		    		var userPop = ${chDto.popularity};
 		    	</script>
 			<!-- 활동 자바스크립트 -->
-			<script src="/js/activity.js"></script>
+			
 			<div class="modal-content">
 				<div class="modal-item" id="music_actvity">
 					<div class="training_img">
@@ -782,7 +799,7 @@
 				<c:if test="${chDto.fatigue == 75}">
 					<img id="fatigueBar" src="/images/hp/fp_75.png">
 				</c:if>
-				<c:if test="${chDto.fatigue == 100}">
+				<c:if test="${chDto.fatigue >= 100}">
 					<img id="fatigueBar" src="/images/hp/fp_100.png">
 				</c:if>
 				<div id="jellyBar">
@@ -791,14 +808,14 @@
 						<fmt:formatNumber value="${character.member.jelly}"
 							pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="jelly_plus" src="/images/plusIcon.png">
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="/images/coinIcon.png">
-					<p id="My_Coin">
+					<p class="My_Coin">
 						<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="coin_plus" src="/images/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
@@ -931,7 +948,9 @@
 
 				<div class="show-character-info">
 					<div class="show-character">
-						<img src="/images/test_character.png">
+						
+						<img src="/images/egg_character/character_${chDto.artist.artistName.group.groupId}_${chDto.artist.artistName.artistNId}.png" style="width:143px; height:286px">
+						
 						<c:if test="${outfit != null }">
 							<img class="shop_outfit" src="/images/items/outfit/${outfit}"  style="width=100px">
 						</c:if>
@@ -1038,7 +1057,7 @@
 				<c:if test="${chDto.fatigue == 75}">
 					<img id="fatigueBar" src="/images/hp/fp_75.png">
 				</c:if>
-				<c:if test="${chDto.fatigue == 100}">
+				<c:if test="${chDto.fatigue >= 100}">
 					<img id="fatigueBar" src="/images/hp/fp_100.png">
 				</c:if>
 				<div id="jellyBar">
@@ -1047,14 +1066,14 @@
 						<fmt:formatNumber value="${character.member.jelly}"
 							pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="jelly_plus" src="/images/plusIcon.png">
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="/images/coinIcon.png">
-					<p id="My_Coin">
+					<p class="My_Coin">
 						<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="coin_plus" src="/images/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
@@ -1068,7 +1087,7 @@
 						<li data-tab="bag-hare">모자</li>
 						<li data-tab="bag-accessories">펫</li>
 						<li data-tab="bag-interior">인테리어</li>
-						<li data-tab="bag-snacks">간식</li>
+						<li data-tab="bag-snacks">간식/기타</li>
 					</ul>
 				</div>
 				<section id="bag-outfit" class="tab-content">
@@ -1218,7 +1237,7 @@
 				<section id="bag-snacks" class="tab-content">
 					<div class="shop-items">
 						<c:forEach items="${invenList}" var="dto">
-							<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 4}">
+							<c:if test="${dto.itemId.itemInfo.itemType.itemTypeId == 4 || dto.itemId.itemInfo.itemType.itemTypeId == 5}">
 								<div id="inven-item-show-consumable_${dto.invenId}_${dto.itemId.itemId}" class="shop-item-show">
 									<div class="item-info">
 										<img src="/images/items/consumable/${dto.itemId.image}">
@@ -1234,7 +1253,7 @@
 				</section>
 				<div class="show-character-info">
 					<div class="show-character">
-						<img class="" src="/images/test_character.png">
+						<img src="/images/egg_character/character_${chDto.artist.artistName.group.groupId}_${chDto.artist.artistName.artistNId}.png" style="width:143px; height:286px">
 						<c:if test="${outfit != null }">
 							<img id="" class="my_bag_outfit"
 								src="/images/items/outfit/${outfit}"  style="width=100px">
@@ -1251,19 +1270,19 @@
 					</div>
 					<div class="show-item-info my_bag_statuse">
 						<p class="item_danse">
-							<span class="label">댄스</span> <span class="value">+50</span>
+							<span class="label">댄스</span> <span class="value">+0</span>
 						</p>
 						<p class="item_enter">
-							<span class="label">예능</span> <span class="value">+50</span>
+							<span class="label">예능</span> <span class="value">+0</span>
 						</p>
 						<p class="item_rap">
-							<span class="label">랩</span> <span class="value">+50</span>
+							<span class="label">랩</span> <span class="value">+0</span>
 						</p>
 						<p class="item_vocal">
-							<span class="label">보컬</span> <span class="value">+50</span>
+							<span class="label">보컬</span> <span class="value">+0</span>
 						</p>
 						<p class="item_char">
-							<span class="label">매력도</span> <span class="value">+50</span>
+							<span class="label">매력도</span> <span class="value">+0</span>
 						</p>
 					</div>
 					<div>
@@ -1329,7 +1348,7 @@
 				<c:if test="${chDto.fatigue == 75}">
 					<img id="fatigueBar" src="/images/hp/fp_75.png">
 				</c:if>
-				<c:if test="${chDto.fatigue == 100}">
+				<c:if test="${chDto.fatigue >= 100}">
 					<img id="fatigueBar" src="/images/hp/fp_100.png">
 				</c:if>
 				<div id="jellyBar">
@@ -1338,17 +1357,17 @@
 						<fmt:formatNumber value="${character.member.jelly}"
 							pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="images/modal/plusIcon.png">
+					<img class="jelly_plus" src="images/modal/plusIcon.png">
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="images/modal/coinIcon.png">
-					<p id="My_Coin">
+					<p class="My_Coin">
 						<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 						<!-- 
 						<fmt:formatNumber value="${userCoin}" pattern="###,###,##0" />
 						 -->
 					</p>
-					<img id="plus" src="images/modal/plusIcon.png">
+					<img class="coin_plus" src="images/modal/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
@@ -1572,8 +1591,6 @@
 
 					</script>
 
-
-
 		<!-- 이벤트 모달 -->
 	<div id="modale" class="modal">
 		<div class="modal-frame dark">
@@ -1623,7 +1640,7 @@
 				<c:if test="${chDto.fatigue == 75}">
 					<img id="fatigueBar" src="/images/hp/fp_75.png">
 				</c:if>
-				<c:if test="${chDto.fatigue == 100}">
+				<c:if test="${chDto.fatigue >= 100}">
 					<img id="fatigueBar" src="/images/hp/fp_100.png">
 				</c:if>
 				<div id="jellyBar">
@@ -1632,15 +1649,15 @@
 						<fmt:formatNumber value="${character.member.jelly}"
 							pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="images/modal/plusIcon.png">
+					<img class="jelly_plus" src="images/modal/plusIcon.png">
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="images/modal/coinIcon.png">
-					<p id="My_Coin">
+					<p class="My_Coin">
 						<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 						<!--<fmt:formatNumber value="${userCoin}" pattern="#,###" />-->
 					</p>
-					<img id="plus" src="images/modal/plusIcon.png">
+					<img class="coin_plus" src="images/modal/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
@@ -1670,7 +1687,7 @@
 	        // 첫 번째 이벤트의 이미지를 기본으로 설정
 	        var firstImageUrl = firstImage.getAttribute('data-image');
 	        document.getElementById('eventImage').src = firstImageUrl;
-	       
+	      
 	        // 첫 번째 항목에 active 클래스 추가
 	        firstImage.classList.add('active');
 	    }
@@ -1680,19 +1697,32 @@
 				var imageUrl = li.getAttribute('data-image');
 				document.getElementById('eventImage').src = imageUrl;
 			});
-			
-			
-			var debutChek = ${debutCheck}
-			if(${debutCheck}){
-				openDebutModal("${chDto.artist.artistName.artistName}");
-			}
-			 
-		</script>
+		});
+		
+	    $(".event-title li").click(function () {
+	        // 모든 탭에서 활성 클래스 제거
+	        $(".event-title li").removeClass("active");
+	        // 현재 클릭된 탭에 활성 클래스 추가
+	        $(this).addClass("active");
+	    });
+	    
+	    var debutChek = ${debutCheck}
+		if(${debutCheck} != 0){
+			openDebutModal("${chDto.artist.artistName.artistName}");
+		}
+		
+	    var eventItemG = ${eventItemG}
+		if(${eventItemG} != 0){
+			openMessageModal("팬사인회 응모권이 지급되었습니다!");
+		}
+	    
+	</script>
 
 	<script src="/js/modal.js" defer></script>
 	<script src="/js/shop.js" defer></script>
 	<script src="/js/mybag.js" defer></script>
 	<script src="/js/characterStyle.js" defer></script>
+	<script src="/js/activity.js"></script>
 
 
 </body>

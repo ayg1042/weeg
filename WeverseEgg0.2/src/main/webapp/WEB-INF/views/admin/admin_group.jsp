@@ -9,8 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="/js/admin_itemAdd.js"></script>
-  <link rel="stylesheet" type="text/css" href="../css/admin/admin.css"/>
-  <link rel="stylesheet" type="text/css" href="../css/admin/admin_memView.css"/>
+<link rel="stylesheet" type="text/css" href="../css/admin/admin_itemAdd.css"/>
   <script src="/js/admin0.2.js" defer></script>
   <title>admin</title>
   <script>
@@ -23,11 +22,10 @@
 	<div id="admin_container">
   	<%@ include file="gnb.jsp" %>
 	  	<div id="admin_content">
-				<h2>그룹 관리</h2>
+				<h2>아티스트 관리_그룹 관리</h2>
 	   		<div class="data_input_from">
-				<h2>그룹</h2>
-				<hr>
-				<h3>그룹 추가</h3>
+				<div class="memViewTableArea">
+				<h3>[그룹 추가]</h3>
 				<form action="" method="post">
 				    <table>
 				        <colgroup>
@@ -35,15 +33,15 @@
 				            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 				        </colgroup>
 				        <tr>
-				            <td><label for="group_name">그룹 이름</label></td>
+				            <th><label for="group_name">그룹 이름</label></th>
 				            <td><input type="text" name="group_name" id="group_name"></td>
 				        </tr>
 				        <tr>
-				            <td><label for="group_member_count">맴버 수</label></td>
+				            <th><label for="group_member_count">맴버 수</label></th>
 				            <td><input type="number" name="group_member_count" id="group_member_count"></td>
 				        </tr>
 				        <tr>
-						    <td><label for="group_gender">성별</label></td>
+						    <th><label for="group_gender">성별</label></th>
 						    <td>
 						        <select name="group_gender" id="group_gender">
 						            <option value="남자">남자</option>
@@ -57,9 +55,7 @@
 				</form>
 	    	</div>
 			<div class="data_input_from">
-				<h2>그룹</h2>
-				<hr>
-				<h3>그룹 수정</h3>
+				<h3>[그룹 수정]</h3>
 				<form action="" method="post">
 				    <table>
 				        <colgroup>
@@ -67,7 +63,7 @@
 				            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 				        </colgroup>
 				        <tr>
-				            <td><label for="group_update">그룹</label></td>
+				            <th><label for="group_update">그룹</label></th>
 				            <td>
 				                <select name="group_update" id="group_update">
 				                    <option>선택</option>
@@ -78,15 +74,15 @@
 				            </td>
 				        </tr>
 				        <tr>
-				            <td><label for="update_group_name">그룹 이름</label></td>
+				            <th><label for="update_group_name">그룹 이름</label></th>
 				            <td><input type="text" name="update_group_name" id="update_group_name"></td>
 				        </tr>
 				        <tr>
-				            <td><label for="update_group_member_count">맴버 수</label></td>
+				            <th><label for="update_group_member_count">맴버 수</label></th>
 				            <td><input type="number" name="update_group_member_count" id="update_group_member_count"></td>
 				        </tr>
 				        <tr>
-						    <td><label for="update_group_gender">성별</label></td>
+						    <th><label for="update_group_gender">성별</label></th>
 						    <td>
 						        <select name="update_group_gender" id="update_group_gender">
 						            <option value="남자">남자</option>
@@ -100,9 +96,7 @@
 				</form>
 		    </div>
 			<div class="data_input_from">
-				<h2>그룹</h2>
-				<hr>
-				<h3>그룹 삭제</h3>
+				<h3>[그룹 삭제]</h3>
 				<form action="" method="post">
 				    <table>
 				        <colgroup>
@@ -110,7 +104,7 @@
 				            <col style="width: 70%;"> <!-- 두 번째 열 (입력 필드) -->
 				        </colgroup>
 				        <tr>
-				            <td><label for="group_delete">그룹</label></td>
+				            <th><label for="group_delete">그룹</label></th>
 				            <td>
 				                <select name="group_delete" id="group_delete">
 				                    <option>선택</option>
@@ -124,6 +118,7 @@
 				    <button id="delete_group">삭제하기</button>
 				</form>
 		    </div>
+	    </div>
 	    </div>
 	</div>
 </body>

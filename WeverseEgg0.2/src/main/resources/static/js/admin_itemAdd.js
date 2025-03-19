@@ -12,7 +12,6 @@ $(document).ready(function() {
 			    }
 			form_data.append("file",fileInput);
 			
-			alert("test");
 
             var itemInfoList = $('#item-info').val().split('_');  // 선택된 아이템 정보 ID
 			var itemTypeId = itemInfoList[0];
@@ -41,7 +40,6 @@ $(document).ready(function() {
 			form_data.append('category', category);
 			form_data.append('itemName', $("#item_name").val());
 			form_data.append('price', $("#price").val());
-			console.log(itemInfoList);
 
             // 카테고리 정보를 추가
             // formData.append('category', category);
@@ -74,7 +72,6 @@ $(document).ready(function() {
 			var vocal = $('#vocal').val();
 			var entertainment = $('#entertainment').val();
 			var fatigue_recovery = $('#fatigue_recovery').val();
-			console.log(itemType);
 			
 			$.ajax({
                 url: '/itemInfoAdd',  // 서버의 업로드 엔드포인트

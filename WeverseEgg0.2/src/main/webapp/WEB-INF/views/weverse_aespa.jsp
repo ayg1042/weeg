@@ -147,17 +147,20 @@
             <c:forEach items="${ranklist }" var="chardto" varStatus="no">
               <tr onclick="rankerBtn()">
               <c:if test="${no.index == 0 }">
-                <td class="rank"><img src="../images/aespa/rank/gold.png">1등</td>
+                <td class="rank"><img src="../images/aespa/rank/gold.png">${no.index + 1}등</td>
               </c:if>
               <c:if test="${no.index == 1 }">
-                <td class="rank"><img src="../images/aespa/rank/silver.png">1등</td>
+                <td class="rank"><img src="../images/aespa/rank/silver.png">${no.index + 1}등</td>
               </c:if>
               <c:if test="${no.index == 2 }">
-                <td class="rank"><img src="../images/aespa/rank/bronze.png">1등</td>
+                <td class="rank"><img src="../images/aespa/rank/bronze.png">${no.index + 1}등</td>
               </c:if>
-                <td class="rank_nick"> ${chardto.nickName }(${chardto.artist.artistName.artistName })</td>
+              <c:if test="${no.index >= 3}">
+              	<td class="Rank">${no.index + 1}등</td>
+              </c:if>
+                <td class="rank_nick"> ${chardto.nickName }(${chardto.artist.artistName.artistName})</td>
                 <td class="rank_score"><img src="../images/aespa/rank/rank_heart.png" alt="">${chardto.charm + chardto.popularity }</td>
-              </tr> 
+              </tr>
             </c:forEach>
 <!--               <tr> -->
 <!--                 <td class="rank"><img src="../images/aespa/rank/silver.png">2등</td> -->

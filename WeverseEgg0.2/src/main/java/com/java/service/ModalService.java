@@ -68,4 +68,6 @@ public interface ModalService {
 
 	void deleteArtistName(ArtistNameDto dto);
 
+	void eventItem(InvenDto inven1);
+
 }

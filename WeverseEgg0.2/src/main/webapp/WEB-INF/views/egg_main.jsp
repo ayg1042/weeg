@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <body>
   <!-- 메인 -->
-  <div id="egg_mainpage">
+  <div id="egg_writepage">
      <%@ include file="egg_gnb.jsp"%>
 
     <!-- 메인 이미지 화면 -->

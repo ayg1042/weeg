@@ -8,56 +8,7 @@
 <link rel="stylesheet" type="text/css" href="../css/admin/admin_login.css" />
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <title>admin 관리자 페이지</title>
-<style>
-	#admin_login_area{
-		margin: 200px auto;
-		width: 300px;
-		height: 150px;
-		text-align: center;
-	}
-	
-	.adminloginFrm{
-		border: 1px solid #e4e4e4;
-		margin-top: 20px;
-		padding: 40px 40px 20px;
-		box-sizing: border-box;
-/* 		display: flex; */
-		justify-content: center;
-	}
-	
-	.gichanta{
-		display: flex;
-		flex-direction: column;         
- 	 	justify-content: space-between;
- 	 	margin-bottom: 20px;
-	}
-	
-	 .adminloginFrm .form-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-	
-	.adminloginFrm input{
-		width: 120px;
-		border: 1px solid #e4e4e4;
-	}
-	
-	.adminloginFrm label{
-		width: 60px;
-		text-align: center;
-		margin-right: 15px;
-	}
-	
-	.adminloginFrm button{
-		width: 70px;
-		height: 30px;
-		border: none;
-		border-radius: 10px;
-		cursor: pointer;
-	}
-	
-</style>
+<title>Insert title here</title>
 </head>
 <body>
 	<div id="admin_login_area">
