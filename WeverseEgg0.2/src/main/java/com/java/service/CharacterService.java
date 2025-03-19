@@ -57,6 +57,8 @@ public interface CharacterService {
 	// 위버스 마이페이지 캐릭터 삭제
 	void deleteCharacterById(int characterId);
 
+	void buycoin(CharacterDto character);
+
 
 
 

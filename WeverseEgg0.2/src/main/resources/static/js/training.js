@@ -28,7 +28,6 @@ $(function() {
                             "price": vocalPrice
                         },
                         success: function(data) {
-                            console.log("data 확인 : " + data);
                             hideLoadingScreen(); // 로딩 화면 숨기기
                             openMessageModal(data); // 메시지 모달 표시
                         },
@@ -71,7 +70,6 @@ $(function() {
                             "price": dancePrice
                         },
                         success: function(data) {
-                            console.log("data 확인 : " + data);
                             hideLoadingScreen(); // 로딩 화면 숨기기
                             openMessageModal(data); // 메시지 모달 표시
                         },
@@ -114,7 +112,6 @@ $(function() {
                             "price": rapPrice
                         },
                         success: function(data) {
-                            console.log("data 확인 : " + data);
                             hideLoadingScreen(); // 로딩 화면 숨기기
                             openMessageModal(data); // 메시지 모달 표시
                         },
@@ -157,7 +154,6 @@ $(function() {
                             "price": entPrice
                         },
                         success: function(data) {
-                            console.log("data 확인 : " + data);
                             hideLoadingScreen(); // 로딩 화면 숨기기
                             openMessageModal(data); // 메시지 모달 표시
                         },

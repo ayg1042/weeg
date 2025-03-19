@@ -38,7 +38,6 @@ $(document).ready(function() {
 		form_data.append('category', category);
 		form_data.append('itemName', $("#item_name").val());
 		form_data.append('price', $("#price").val());
-		console.log(itemInfoList);
 
 		// 카테고리 정보를 추가
 		// formData.append('category', category);
@@ -71,7 +70,6 @@ $(document).ready(function() {
 		var vocal = $('#vocal').val();
 		var entertainment = $('#entertainment').val();
 		var fatigue_recovery = $('#fatigue_recovery').val();
-		console.log(itemType);
 
 		$.ajax({
 			url: '/itemInfoAdd',  // 서버의 업로드 엔드포인트
@@ -124,7 +122,6 @@ $(document).ready(function() {
 		var fatigue_recovery = $('#update_fatigue_recovery').val();
 		var list = $('#update_item-info').val().split('_');
 		var itemInfoId = list[1];
-		console.log(itemInfoId);
 
 		$.ajax({
 			url: '/itemInfoUpdate',  // 서버의 업로드 엔드포인트
@@ -185,10 +182,6 @@ $(document).ready(function() {
 		var group_member_count = $('#group_member_count').val();
 		var group_gender = $('#group_gender').val();
 
-		console.log(group_name);
-		console.log(group_member_count);
-		console.log(group_gender);
-
 		$.ajax({
 			url: "/addGroup", // 서버에서 처리할 URL
 			type: "POST",
@@ -231,11 +224,6 @@ $(document).ready(function() {
 		var group_member_count = $('#update_group_member_count').val();
 		var group_gender = $('#update_group_gender').val();
 
-		console.log(groupId);
-		console.log(group_name);
-		console.log(group_member_count);
-		console.log(group_gender);
-
 		$.ajax({
 			url: "/updateGroup", // 서버에서 처리할 URL
 			type: "POST",
@@ -261,8 +249,6 @@ $(document).ready(function() {
 		event.preventDefault();
 
 		var groupId = $('#group_delete').val();
-
-		console.log(groupId);
 
 		$.ajax({
 			url: "/deleteGroup", // 서버에서 처리할 URL
@@ -325,9 +311,6 @@ $(document).ready(function() {
 		var artistNId = $('#update_artist_group').val();
 		var artistName = $('#update_artist_name').val();
 
-		console.log(artistNId);
-		console.log(artistName);
-
 		$.ajax({
 			url: "/updateArtistName", // 서버에서 처리할 URL
 			type: "POST",
@@ -351,8 +334,6 @@ $(document).ready(function() {
 		event.preventDefault();
 
 		var artistNId = $('#delete_artist_group').val();
-
-		console.log(artistNId);
 
 		$.ajax({
 			url: "/deleteArtistName", // 서버에서 처리할 URL

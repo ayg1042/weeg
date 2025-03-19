@@ -117,7 +117,7 @@ button {
 	height: 760px;
 	margin: 0 auto;
 	border: 20px solid #D0D3FE;
-	background-image: url("/images/egg_main_room/mainRoom.png");
+	background-image: url("/images/egg_main_room/mainRoom.gif");
 	border-radius: 40px;
 	z-index: 1;
 }
@@ -190,7 +190,8 @@ button {
 	position: relative;
 	width: 170px;
 	height: 340px;
-	background-image: url('/images/egg_test/character_test.png');
+	background-image: url('/images/egg_character/character_1_1.png');
+    background-size: cover;
 	margin : 222px 106px 10px 984px;
   z-index: 3;
 }
@@ -300,7 +301,12 @@ button {
 #jelly, #coin {
 	padding: 3px 0 3px 3px;
 }
-#plus {
+.jelly_plus {
+	padding: 4px 4px 4px 0;
+	cursor: pointer;
+}
+
+.coin_plus {
 	padding: 4px 4px 4px 0;
 	cursor: pointer;
 }

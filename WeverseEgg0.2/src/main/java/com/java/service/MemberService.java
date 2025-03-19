@@ -34,4 +34,6 @@ public interface MemberService {
 	// 회원삭제
 	void deleteById(int userId);
 
+	void buycoin(MemberDto dto, int jelly);
+
 }

@@ -1,22 +1,5 @@
 $(function() {
 	// 음방활동
-	$("#music_actvity").click(function() {
-		if (userCoin < 50000) {
-			openAlertModal("보유 코인이 부족해요.");
-			return;
-		} else if (userHealth < 40) {
-			openAlertModal("체력이 부족해서 휴식이 필요해요...ㅜㅜ");
-			return;
-		} else if (userFatigue + 75 > 100) {
-			openAlertModal("너무 피로해서 간식이 필요해요...ㅜㅜ");
-			return;
-		} else if (userVocal < 50) {
-			openAlertModal("음악방송 출연에 필요한 보컬 능력이 부족해요...ㅜㅜ");
-			return;
-		} else if (userRap < 50) {
-			openAlertModal("음악방송 출연에 필요한 랩 능력이 부족해요...ㅜㅜ");
-			return;
-		}
 		// 음방활동
 		$("#music_actvity").click(function() {
 			if (userCoin < 50000) {
@@ -63,7 +46,9 @@ $(function() {
 					});
 				} // Confirmed: 진행할 경우에만 AJAX 요청
 			});
+			
 		});
+		
 
 		// 예능 출연
 		$("#ent_actvity").click(function() {
@@ -109,6 +94,7 @@ $(function() {
 				} // Confirmed: 진행할 경우에만 AJAX 요청
 			});
 		});
+		
 
 		// 콘서트
 		$("#con_actvity").click(function() {
@@ -144,7 +130,6 @@ $(function() {
 								"price": 200000
 							},
 							success: function(data) {
-								console.log("data 확인 : " + data);
 								hideLoadingScreen(); // 로딩 화면 숨기기
 								openMessageModal(data); // 메시지 모달 표시
 							},
@@ -157,6 +142,7 @@ $(function() {
 				} // Confirmed: 진행할 경우에만 AJAX 요청
 			});
 		});
+		
 
 		// 팬사인회
 		$("#sign_actvity").click(function() {
@@ -203,5 +189,4 @@ $(function() {
 			});
 		});
 
-	});
 });

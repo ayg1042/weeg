@@ -1,96 +1,104 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 	// 탭 항목과 내용 요소들
 	const tabs = document.querySelectorAll('.shop-list li');
 	const contentSections = document.querySelectorAll('.tab-content');
-	//const applyButton = document.querySelector('.apply-button');
 
 	// 기본적으로 shop-outfit 탭을 활성화
-	document.querySelector('.shop-list').children
 	const defaultTab_shop = document.querySelector('[data-tab="shop-outfit"]');
-	defaultTab_shop.classList.add('active');
+	if (defaultTab_shop) {
+		defaultTab_shop.classList.add('active');
+	}
 
 	// 모든 탭 콘텐츠를 숨기기
 	contentSections.forEach(section => section.style.display = 'none');
 
 	// shop-outfit 탭만 표시
-	document.getElementById('shop-outfit').style.display = 'block';
-	document.getElementById('shop-outfit').classList.add('active');
+	const defaultContent = document.getElementById('shop-outfit');
+	if (defaultContent) {
+		defaultContent.style.display = 'block';
+		defaultContent.classList.add('active');
+	}
 
 	// 탭 클릭 시 내용 변경
 	tabs.forEach(tab => {
-		tab.addEventListener('click', function() {
+		tab.addEventListener('click', function () {
 			// 모든 탭과 내용을 숨기기
 			contentSections.forEach(section => section.style.display = 'none');
 			tabs.forEach(t => t.classList.remove('active'));
 
 			// 클릭한 탭에 해당하는 내용을 표시
 			const targetTab = this.getAttribute('data-tab');
-			document.getElementById(targetTab).style.display = 'block';
-			this.classList.add('active');
-			shop_updateItem();
+			const targetContent = document.getElementById(targetTab);
+
+			if (targetContent) {
+				targetContent.style.display = 'block';
+				this.classList.add('active');
+				shop_updateItem(); // 탭 변경 시 페이지네이션 다시 계산
+			}
 		});
 	});
-	shop_updateItem();
 
-	// 구매 버튼 클릭 시 처리
-	//applyButton.addEventListener('click', function () {
-	//  alert(test + "구매버튼");
-	//});
-});
-
-// 아이템 클릭
-document.addEventListener("DOMContentLoaded", function() {
-	document.body.addEventListener("click", function(event) {
+	// 아이템 클릭 시 활성화
+	document.body.addEventListener("click", function (event) {
 		const clickedItem = event.target.closest('.shop-item-show');
 		if (clickedItem) {
-			// 이전에 강조된 아이템 초기화
+			// 이전 활성화 제거
 			document.querySelectorAll('.shop-item-show').forEach(item => {
 				item.classList.remove('active');
 			});
 
-			// 클릭된 아이템 강조 효과 추가
+			// 클릭한 아이템 활성화
 			clickedItem.classList.add('active');
-
-			// 테스트 코드
-			// alert(`클릭된 아이템: ${clickedItem.id}`);
 		}
 	});
+
+	// "다음" 및 "이전" 버튼 이벤트 한 번만 등록
+	const nextButton = document.querySelector('.next');
+	const prevButton = document.querySelector('.previous');
+
+	if (nextButton) {
+		nextButton.addEventListener('click', function () {
+			if (shop_currentPage < shop_totalPages) {
+				shop_currentPage++;
+				shop_updateItem();
+			}
+		});
+	}
+
+	if (prevButton) {
+		prevButton.addEventListener('click', function () {
+			if (shop_currentPage > 1) {
+				shop_currentPage--;
+				shop_updateItem();
+			}
+		});
+	}
+
+	shop_updateItem();
 });
 
-// test
+// 페이지네이션 관련 변수
 let shop_currentPage = 1;
 let shop_itemsPerPage = 8;
 let shop_totalPages = 0;
-// test
+
+// 페이지 업데이트 함수
 function shop_updateItem() {
 	const shop_startIndex = (shop_currentPage - 1) * shop_itemsPerPage;
 	const shop_endIndex = shop_startIndex + shop_itemsPerPage;
 	const shop_items = document.querySelectorAll('.tab-content.active .shop-item-show');
+
+	if (!shop_items.length) return; // 아이템이 없으면 실행하지 않음
+
 	const shop_total_item = shop_items.length;
-	// console.log("currentPage = " + currentPage + " itemsPerPage = " + itemsPerPage + " totalPages = " + totalPages);
+	shop_totalPages = Math.ceil(shop_total_item / shop_itemsPerPage);
 
-	if (shop_total_item > 8) {
-		shop_items.forEach(item => item.style.display = 'none');
-		for (let i = shop_startIndex; i < shop_endIndex && i < shop_total_item; i++) {
-			shop_items[i].style.display = 'block';
-		}
-		shop_totalPages = Math.ceil(shop_total_item / shop_itemsPerPage);
-	}
-	document.querySelector('.next').addEventListener('click', () => {
-		if (shop_currentPage < shop_totalPages) {
-			shop_currentPage++;
-			shop_updateItem();
-		}
-	});
-
-	// "이전" 버튼 클릭 시 처리
-	document.querySelector('.previous').addEventListener('click', () => {
-		if (shop_currentPage > 1) {
-			shop_currentPage--;
-			shop_updateItem();
-		}
+	// 모든 아이템 숨기고, 해당하는 아이템만 보이게 함
+	shop_items.forEach((item, index) => {
+		item.style.display = (index >= shop_startIndex && index < shop_endIndex) ? 'block' : 'none';
 	});
 }
+
 
 
 $(document).on('click', '.apply-button', function() {

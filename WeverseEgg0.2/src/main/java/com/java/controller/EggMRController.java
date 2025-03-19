@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -25,6 +26,7 @@ import com.java.dto.character.StyleDto;
 import com.java.dto.feed.FeedCheckDto;
 import com.java.dto.feed.FeedDto;
 import com.java.dto.item.ItemDto;
+import com.java.dto.member.MemberDto;
 import com.java.dto.practice.DancePracticeDto;
 import com.java.dto.practice.EntertainmentPracticeDto;
 import com.java.dto.practice.RapPracticeDto;
@@ -45,6 +47,8 @@ import com.java.repository.QuestProgressRepository;
 import com.java.repository.QuestRepository;
 import com.java.service.AespaService;
 import com.java.service.CharacterService;
+import com.java.service.MemberService;
+import com.java.service.MemberServiceImpl;
 import com.java.service.ModalService;
 import com.java.service.QuestService;
 import com.java.util.LvCalc;
@@ -67,6 +71,7 @@ public class EggMRController {
 	@Autowired FeedCheckRepository feedCheckRepository;
 	@Autowired FeedRepository feedRepository;
 	@Autowired ItemRepository itemRepository;
+	@Autowired MemberService memberService;
 	
 	@GetMapping("/modal")
 	public String modal(Model model) throws JsonProcessingException {
@@ -199,7 +204,7 @@ public class EggMRController {
 			// 현재 사용자(user_id = 1)의 진행 정보를 조회 (예시)
 			// 실제 구현 시 로그인한 사용자의 정보를 사용하도록 수정. (임시) 나중에 세션 사용해야함.
 			List<QuestProgressEntity> progressList = questProgressRepository.findAll().stream()
-					.filter(qp -> qp.getMember().getUserId() == 1).collect(Collectors.toList());
+					.filter(qp -> qp.getMember().getUserId() == character.getMember().getUser_id()).collect(Collectors.toList());
 
 			// 퀘스트 아이디를 key로 진행 정보를 매핑하여 Map 생성 (한 퀘스트에 한 진행 정보가 있다고 가정)
 			Map<Integer, QuestProgressEntity> progressMap = new HashMap<>();
@@ -394,6 +399,9 @@ public class EggMRController {
 		// 보컬연습결과 유저 캐릭터에 저장
 		characterService.danceTrainSave(character_id,danceScore,health,fatigue,price);
 		
+		int questId = 2;
+		updateQuestProgress(character, questId);
+		
 		return "연습을 열심히 했습니다!(뿌듯)";
 	}
 
@@ -406,6 +414,9 @@ public class EggMRController {
 		int character_id = character.getCharacter_id();
 		// 보컬연습결과 유저 캐릭터에 저장
 		characterService.rapTrainSave(character_id,rapScore,health,fatigue,price);
+		
+		int questId = 3;
+		updateQuestProgress(character, questId);
 		
 		return "연습을 열심히 했습니다!(뿌듯)";
 	}
@@ -420,6 +431,9 @@ public class EggMRController {
 		// 보컬연습결과 유저 캐릭터에 저장
 		characterService.entTrainSave(character_id,entScore,health,fatigue,price);
 		
+		int questId = 4;
+		updateQuestProgress(character, questId);
+		
 		return "연습을 열심히 했습니다!(뿌듯)";
 	}
 
@@ -430,6 +444,10 @@ public class EggMRController {
 		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		int character_id = character.getCharacter_id();
 		// 음악방송출연 결과 유저 캐릭터에 저장
+		
+		//int questId = 7;
+		//updateQuestProgress(character, questId);
+		
 		characterService.music_actvity_save(character_id,health,fatigue,price);
 		return "음악방송에 출연해서 인기도가 올랐습니다!(뿌듯)";
 	}
@@ -441,6 +459,10 @@ public class EggMRController {
 		CharacterDto character = (CharacterDto) session.getAttribute("character");
 		int character_id = character.getCharacter_id();
 		// 예능출연 결과 유저 캐릭터에 저장
+		
+		//int questId = 8;
+		//updateQuestProgress(character, questId);
+		
 		characterService.ent_actvity(character_id,health,fatigue,price);
 		return "예능에 출연해서 인기도가 올랐습니다!(뿌듯)";
 	}
@@ -453,6 +475,10 @@ public class EggMRController {
 		int character_id = character.getCharacter_id();
 		// 콘서트개최 결과 유저 캐릭터에 저장
 		characterService.con_actvity(character_id,health,fatigue,price);
+		
+		int questId = 5;
+		updateQuestProgress(character, questId);
+		
 		return "콘서트를 개최해서 인기도가 올랐습니다!(뿌듯)";
 	}
 
@@ -464,6 +490,10 @@ public class EggMRController {
 		int character_id = character.getCharacter_id();
 		// 팬사인회 결과 유저 캐릭터에 저장
 		characterService.sign_actvity(character_id,health,fatigue,price);
+		
+		//int questId = 6;
+		//updateQuestProgress(character, questId);
+		
 		return "팬사인회를 잘 마치고 인기도가 올랐습니다!(뿌듯)";
 	}
 
@@ -533,6 +563,30 @@ public class EggMRController {
 
 	    // 변경사항 저장
 	    questProgressRepository.save(progressEntity);
+	}
+	
+	@Transactional
+	@ResponseBody
+	@PostMapping("/buyCoin")
+	public String buyCoin(@RequestParam int jelly) {
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
+		MemberDto dto = character.getMember();
+		int sum = 0;
+		
+		if(dto.getJelly() < jelly) {
+			return "0"; // 젤리 부족
+		}
+		sum = jelly * 1000;
+		dto.setJelly(dto.getJelly() - jelly);
+		character.setCoin(sum + character.getCoin());
+		
+		characterService.buycoin(character);
+		memberService.buycoin(dto, jelly);
+		
+		character.setMember(dto);
+		session.setAttribute("character", character);
+		
+		return "1";
 	}
 
 	

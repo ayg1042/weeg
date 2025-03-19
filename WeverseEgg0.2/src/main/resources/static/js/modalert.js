@@ -52,7 +52,7 @@ function closeAlertModal() {
 }
 
 // 데뷔 모달 닫기 (링크 이동 X)
-function closeAlertModal() {
+function closeDebutAlertModal() {
     document.getElementById("alert-debut-modal").style.display = "none";
     document.getElementById("modal-background").style.display = "none";
 }

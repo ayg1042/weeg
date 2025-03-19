@@ -93,10 +93,14 @@
 		</div>
 		<script>
 			$(document).ready(function() {
+			    $(".character_container").css("background-image", "url(/images/egg_character/character_${chDto.artist.artistName.group.groupId}_${chDto.artist.artistName.artistNId}.png)");
 				
 			    if ("${chDto.artist.artistName.artistName}" != "연습생") {
-			        $(".game_main").css("background-image", "url(/images/mainRoom/debut_bg.png)");
+			        $(".game_main").css("background-image", "url(/images/mainRoom/debut_bg.gif)");
 			    }
+			    
+			    
+			    
 			    
 			});
 		</script>
@@ -149,7 +153,7 @@
 					<c:if test="${chDto.fatigue == 75}">
 						<img id="fatigueBar" src="/images/hp/fp_75.png">
 					</c:if>
-					<c:if test="${chDto.fatigue == 100}">
+					<c:if test="${chDto.fatigue >= 100}">
 						<img id="fatigueBar" src="/images/hp/fp_100.png">
 					</c:if>
 					<div id="jellyBar">
@@ -158,14 +162,14 @@
 							<fmt:formatNumber value="${character.member.jelly}"
 								pattern="###,###,##0" />
 						</p>
-						<img id="plus" src="/images/egg_info/plusIcon.png">
+						<img class="jelly_plus" src="/images/egg_info/plusIcon.png">
 					</div>
 					<div id="coinBar" class="gap">
 						<img id="coin" src="/images/egg_info/coinIcon.png">
-						<p id="My_Coin">
+						<p class="My_Coin">
 							<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 						</p>
-						<img id="plus" src="/images/egg_info/plusIcon.png">
+						<img class="coin_plus" src="/images/egg_info/plusIcon.png">
 					</div>
 				</div>
 				<div id="character_info">
@@ -286,7 +290,7 @@
 	<!-- 데뷔 확인 모달 (링크 이동 X) -->
 	<div id="alert-debut-modal" class="debutmodalmessage">
 	    <p id="alert-debut-message"></p>
-	    <button id="alert-debut-button" onclick="closeAlertModal()">확인</button>
+	    <button id="alert-debut-button" onclick="closeDebutAlertModal()">확인</button>
 	</div>
 	 
 	<!-- Confirm 모달 (확인 + 취소) -->
@@ -345,23 +349,23 @@
 				<c:if test="${chDto.fatigue == 75}">
 					<img id="fatigueBar" src="/images/hp/fp_75.png">
 				</c:if>
-				<c:if test="${chDto.fatigue == 100}">
+				<c:if test="${chDto.fatigue >= 100}">
 					<img id="fatigueBar" src="/images/hp/fp_100.png">
 				</c:if>
 				<div id="jellyBar">
-					<img id="jelly" src="/images/jellyIcon.png">
-					<p id="My_jelly">
+					<img class="jelly" src="/images/jellyIcon.png">
+					<p class="My_jelly">
 						<fmt:formatNumber value="${character.member.jelly}"
 							pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="jelly_plus" src="/images/plusIcon.png">
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="/images/coinIcon.png">
-					<p id="My_Coin">
+					<p class="My_Coin">
 						<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="coin_plus" src="/images/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
@@ -588,14 +592,14 @@
 						<fmt:formatNumber value="${character.member.jelly}"
 							pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="jelly_plus" src="/images/plusIcon.png">
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="/images/coinIcon.png">
-					<p id="My_Coin">
+					<p class="My_Coin">
 						<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="coin_plus" src="/images/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
@@ -610,7 +614,7 @@
 		    		var userPop = ${chDto.popularity};
 		    	</script>
 			<!-- 활동 자바스크립트 -->
-			<script src="/js/activity.js"></script>
+			
 			<div class="modal-content">
 				<div class="modal-item" id="music_actvity">
 					<div class="training_img">
@@ -795,7 +799,7 @@
 				<c:if test="${chDto.fatigue == 75}">
 					<img id="fatigueBar" src="/images/hp/fp_75.png">
 				</c:if>
-				<c:if test="${chDto.fatigue == 100}">
+				<c:if test="${chDto.fatigue >= 100}">
 					<img id="fatigueBar" src="/images/hp/fp_100.png">
 				</c:if>
 				<div id="jellyBar">
@@ -804,14 +808,14 @@
 						<fmt:formatNumber value="${character.member.jelly}"
 							pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="jelly_plus" src="/images/plusIcon.png">
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="/images/coinIcon.png">
-					<p id="My_Coin">
+					<p class="My_Coin">
 						<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="coin_plus" src="/images/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
@@ -944,7 +948,9 @@
 
 				<div class="show-character-info">
 					<div class="show-character">
-						<img src="/images/test_character.png">
+						
+						<img src="/images/egg_character/character_${chDto.artist.artistName.group.groupId}_${chDto.artist.artistName.artistNId}.png" style="width:143px; height:286px">
+						
 						<c:if test="${outfit != null }">
 							<img class="shop_outfit" src="/images/items/outfit/${outfit}"  style="width=100px">
 						</c:if>
@@ -1051,7 +1057,7 @@
 				<c:if test="${chDto.fatigue == 75}">
 					<img id="fatigueBar" src="/images/hp/fp_75.png">
 				</c:if>
-				<c:if test="${chDto.fatigue == 100}">
+				<c:if test="${chDto.fatigue >= 100}">
 					<img id="fatigueBar" src="/images/hp/fp_100.png">
 				</c:if>
 				<div id="jellyBar">
@@ -1060,14 +1066,14 @@
 						<fmt:formatNumber value="${character.member.jelly}"
 							pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="jelly_plus" src="/images/plusIcon.png">
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="/images/coinIcon.png">
-					<p id="My_Coin">
+					<p class="My_Coin">
 						<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="/images/plusIcon.png">
+					<img class="coin_plus" src="/images/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
@@ -1247,7 +1253,7 @@
 				</section>
 				<div class="show-character-info">
 					<div class="show-character">
-						<img class="" src="/images/test_character.png">
+						<img src="/images/egg_character/character_${chDto.artist.artistName.group.groupId}_${chDto.artist.artistName.artistNId}.png" style="width:143px; height:286px">
 						<c:if test="${outfit != null }">
 							<img id="" class="my_bag_outfit"
 								src="/images/items/outfit/${outfit}"  style="width=100px">
@@ -1342,7 +1348,7 @@
 				<c:if test="${chDto.fatigue == 75}">
 					<img id="fatigueBar" src="/images/hp/fp_75.png">
 				</c:if>
-				<c:if test="${chDto.fatigue == 100}">
+				<c:if test="${chDto.fatigue >= 100}">
 					<img id="fatigueBar" src="/images/hp/fp_100.png">
 				</c:if>
 				<div id="jellyBar">
@@ -1351,17 +1357,17 @@
 						<fmt:formatNumber value="${character.member.jelly}"
 							pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="images/modal/plusIcon.png">
+					<img class="jelly_plus" src="images/modal/plusIcon.png">
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="images/modal/coinIcon.png">
-					<p id="My_Coin">
+					<p class="My_Coin">
 						<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 						<!-- 
 						<fmt:formatNumber value="${userCoin}" pattern="###,###,##0" />
 						 -->
 					</p>
-					<img id="plus" src="images/modal/plusIcon.png">
+					<img class="coin_plus" src="images/modal/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
@@ -1634,7 +1640,7 @@
 				<c:if test="${chDto.fatigue == 75}">
 					<img id="fatigueBar" src="/images/hp/fp_75.png">
 				</c:if>
-				<c:if test="${chDto.fatigue == 100}">
+				<c:if test="${chDto.fatigue >= 100}">
 					<img id="fatigueBar" src="/images/hp/fp_100.png">
 				</c:if>
 				<div id="jellyBar">
@@ -1643,15 +1649,15 @@
 						<fmt:formatNumber value="${character.member.jelly}"
 							pattern="###,###,##0" />
 					</p>
-					<img id="plus" src="images/modal/plusIcon.png">
+					<img class="jelly_plus" src="images/modal/plusIcon.png">
 				</div>
 				<div id="coinBar">
 					<img id="coin" src="images/modal/coinIcon.png">
-					<p id="My_Coin">
+					<p class="My_Coin">
 						<fmt:formatNumber value="${chDto.coin}" pattern="###,###,##0" />
 						<!--<fmt:formatNumber value="${userCoin}" pattern="#,###" />-->
 					</p>
-					<img id="plus" src="images/modal/plusIcon.png">
+					<img class="coin_plus" src="images/modal/plusIcon.png">
 				</div>
 				<span class="close">나가기<strong class="close_icon">&gt;</strong></span>
 			</div>
@@ -1716,6 +1722,7 @@
 	<script src="/js/shop.js" defer></script>
 	<script src="/js/mybag.js" defer></script>
 	<script src="/js/characterStyle.js" defer></script>
+	<script src="/js/activity.js"></script>
 
 
 </body>

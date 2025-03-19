@@ -70,7 +70,7 @@
 
       <div class="avatar_zone">
 
-        <h3 class="myAvatarTitle">나의 아바타</h3>
+        <h3 class="myAvatarTitle">나의 아이돌</h3>
 
         <div class="avatar_list">
 
