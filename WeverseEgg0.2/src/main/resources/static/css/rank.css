@@ -137,7 +137,9 @@ thead {
 	height: 138px;
 	margin: 16px;
 	border-radius:100%;
-	background-color: #e7e7e7;
+	box-sizing: border-box;
+    padding: 20px;
+	/* background-color: #e7e7e7; */
 }
 
 #charImg{

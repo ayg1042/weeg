@@ -92,6 +92,8 @@ public class FController {
 			@SessionAttribute(name = "session_id", required = false) MemberDto memberDto) {
 		// 로그인한 사용자 정보 가져오기
 		int user_id = memberDto.getUser_id();
+		MemberDto dto = (MemberDto)session.getAttribute("session_id");
+		model.addAttribute("member", dto);
 		// 사용자의 캐릭터 목록 불러오기
         List<CharacterDto> list = characterService.getCharactersByUserId(user_id);
         if(list != null) {
@@ -134,80 +136,94 @@ public class FController {
 	@PostMapping("/modal/reward")
 	@ResponseBody
 	public ResponseEntity<Map<String, Object>> claimReward(@RequestParam int questId, HttpSession session) {
-	    Map<String, Object> response = new HashMap<>();
-	    
-	    // 세션에서 캐릭터 정보 가져오기
-	    CharacterDto character = (CharacterDto) session.getAttribute("character");
-
-	    if (character == null) {
-	        response.put("success", false);
-	        response.put("message", "로그인이 필요합니다.");
-	        return ResponseEntity.ok(response);
-	    }
-
-	    try {
-	    	int userId = character.getMember().getUser_id();
-	        int character_id = character.getCharacter_id();
-	        System.out.println("userId : " + character_id);
-	        System.out.println("questId : " + questId);
-
-	        // 퀘스트 보상 코인 가져오기
-	        Integer rewardCoin = questService.getRewardCoin(questId);
-	        if (rewardCoin == null) {
-	            response.put("success", false);
-	            response.put("message", "해당 퀘스트가 존재하지 않습니다.");
-	            return ResponseEntity.ok(response);
-	        }
-
-	        // 기존 코인 가져오기
-	        Integer currentCoin = characterService.getUserCoin(character_id);
-	        if (currentCoin == null) currentCoin = 0;
-
-	        // 기존 보상 기록 확인
-	        QuestHistoryEntity existingHistory = questHistoryRepository.findByQuest_QuestIdAndMember_UserId(questId, userId);
-	        if (existingHistory != null && existingHistory.getIsRewarded() == 1) {
-	            response.put("success", false);
-	            response.put("message", "이미 보상을 받았습니다.");
-	            return ResponseEntity.ok(response);
-	        }
-
-	        // ✅ 코인 업데이트 (기존 코인 + 보상 코인)
-	        characterService.updateCoin(character_id, rewardCoin);
-	        System.out.println("보상 코인: " + rewardCoin);
-
-	        // ✅ 보상 기록 저장
-	        MemberEntity member = memberRepository.findById(userId)
-	                .orElseThrow(() -> new Exception("사용자 정보를 찾을 수 없습니다."));
-	        QuestEntity quest = questRepository.findById(questId)
-	                .orElseThrow(() -> new Exception("퀘스트 정보를 찾을 수 없습니다."));
-
-	        QuestHistoryEntity history = new QuestHistoryEntity();
-	        history.setMember(member);
-	        history.setQuest(quest);
-	        history.setIsRewarded(1);
-	        history.setCompletionDate(new Timestamp(System.currentTimeMillis()));
-	        questHistoryRepository.save(history);
-
-	        // ✅ 진행 상태 업데이트 (퀘스트 완료 처리)
-	        QuestProgressEntity progress = questProgressRepository.findByQuest_QuestIdAndMember_UserId(questId, userId);
-	        if (progress != null) {
-	            progress.setIsCompleted(1);
-	            questProgressRepository.save(progress);
-	        }
-
-	        // 응답 데이터 구성
-	        response.put("success", true);
-	        response.put("rewardCoin", rewardCoin);
-	        response.put("message", "퀘스트 보상을 받았습니다!");
-	        response.put("isRewarded", 1);
-
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        response.put("success", false);
-	        response.put("message", "보상 받기를 실패했습니다.");
-	    }
-
-	    return ResponseEntity.ok(response);
+		Map<String, Object> response = new HashMap<>();
+		// 세션에서 캐릭터 정보 가져오기
+		CharacterDto character = (CharacterDto) session.getAttribute("character");
+		if (character == null) {
+			response.put("success", false);
+			response.put("message", "로그인이 필요합니다.");
+			return ResponseEntity.ok(response);
+		}
+		try {
+			int userId = character.getMember().getUser_id();
+			int character_id = character.getCharacter_id();
+			System.out.println("userId : " + character_id);
+			System.out.println("questId : " + questId);
+			// 퀘스트 보상 코인 가져오기
+			Integer rewardCoin = questService.getRewardCoin(questId);
+			if (rewardCoin == null) {
+				response.put("success", false);
+				response.put("message", "해당 퀘스트가 존재하지 않습니다.");
+				return ResponseEntity.ok(response);
+			}
+			// 기존 코인 가져오기
+			Integer currentCoin = characterService.getUserCoin(character_id);
+			if (currentCoin == null)
+				currentCoin = 0;
+			// 기존 보상 기록 확인
+			QuestHistoryEntity existingHistory = questHistoryRepository.findByQuest_QuestIdAndMember_UserId(questId,
+					userId);
+			if (existingHistory != null && existingHistory.getIsRewarded() == 1) {
+				response.put("success", false);
+				response.put("message", "이미 보상을 받았습니다.");
+				return ResponseEntity.ok(response);
+			}
+			// :흰색_확인_표시: 코인 업데이트 (기존 코인 + 보상 코인)
+			characterService.updateCoin(character_id, rewardCoin);
+			System.out.println("보상 코인: " + rewardCoin);
+			// :흰색_확인_표시: 보상 기록 저장
+			MemberEntity member = memberRepository.findById(userId)
+					.orElseThrow(() -> new Exception("사용자 정보를 찾을 수 없습니다."));
+			QuestEntity quest = questRepository.findById(questId)
+					.orElseThrow(() -> new Exception("퀘스트 정보를 찾을 수 없습니다."));
+			QuestHistoryEntity history = new QuestHistoryEntity();
+			history.setMember(member);
+			history.setQuest(quest);
+			history.setIsRewarded(1);
+			history.setCompletionDate(new Timestamp(System.currentTimeMillis()));
+			questHistoryRepository.save(history);
+			// :흰색_확인_표시: 진행 상태 업데이트 (퀘스트 완료 처리)
+			QuestProgressEntity progress = questProgressRepository.findByQuest_QuestIdAndMember_UserId(questId, userId);
+			if (progress != null) {
+				progress.setIsCompleted(1);
+				questProgressRepository.save(progress);
+			}
+			// 기본 퀘스트 보상 메시지
+			response.put("message", "퀘스트 보상을 받았습니다!");
+			// 퀘스트 아이디가 1,2,3,4가 아닌 경우 랜덤 아이템 보상 추가
+			if (questId != 1 && questId != 2 && questId != 3 && questId != 4) {
+				// 아이템 인포 아이디가 2인 아이템 리스트 가져오기
+				List<ItemDto> itemList = modalServiceImpl.getItemsByItemInfoId(2);
+				System.out.println("아이템 리스트 : " + itemList);
+				if (itemList != null && !itemList.isEmpty()) {
+					// 랜덤으로 하나 선택
+					java.util.Random random = new java.util.Random();
+					int randomIndex = random.nextInt(itemList.size());
+					ItemDto randomItem = itemList.get(randomIndex);
+					// 선택된 아이템을 인벤토리에 추가
+					InvenDto invenDto = new InvenDto();
+					invenDto.setCharacterId(character);
+					invenDto.setItemId(randomItem);
+					modalServiceImpl.buyItem(invenDto); // 아이템 추가 로직 호출
+					// 보상 메시지를 아이템 이름으로 변경
+					response.put("rewardItem", randomItem.getName());
+					response.put("message", randomItem.getName() + "을(를) 받았습니다!"); // 메시지 수정
+					System.out.println("랜덤 보상 아이템 추가됨: " + randomItem.getName());
+				}
+			}
+			// 코인 보상 메시지 추가
+			if (rewardCoin != null) {
+				response.put("rewardCoin", rewardCoin);
+			}
+			// 응답 데이터 구성
+			response.put("success", true);
+			response.put("isRewarded", 1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.put("success", false);
+			response.put("message", "보상 받기를 실패했습니다.");
+		}
+		return ResponseEntity.ok(response);
 	}
 
 	

@@ -1479,7 +1479,7 @@
 									class="${progressInfo != null && progressInfo.isCompleted == 1 ? 'completed' : ''}">
 									<div class="quest_content">
 										<div class="quest_content_ticket">
-											<img src="images/modal/eventicket.png" alt=""><span>X
+											<img src="images/modal/random.png" alt=""><span>X
 												1</span>
 										</div>
 										<div class="quest_content_title">

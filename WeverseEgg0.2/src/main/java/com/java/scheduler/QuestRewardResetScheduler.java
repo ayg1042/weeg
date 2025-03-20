@@ -18,7 +18,7 @@ public class QuestRewardResetScheduler {
     private final QuestProgressRepository questProgressRepository;
     private final CharacterRepository characterRepository;
 
-    @Scheduled(cron = "0 14 15 * * ?") // 매일 자정에 초기화
+    @Scheduled(cron = "0 14 20 * * ?") // 매일 자정에 초기화
     @Transactional
     public void resetDailyQuestRewards() {
         log.info("🔄 [퀘스트 보상 초기화] 시작...");

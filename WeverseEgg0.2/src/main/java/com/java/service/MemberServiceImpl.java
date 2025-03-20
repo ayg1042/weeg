@@ -137,4 +137,11 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	@Override
+	public void buyCharacter(MemberDto dto) {
+		MemberEntity entity = memberRepository.getById(dto.getUser_id());
+		entity.setJelly(entity.getJelly() - 30);
+		memberRepository.save(entity);
+	}
+
 }

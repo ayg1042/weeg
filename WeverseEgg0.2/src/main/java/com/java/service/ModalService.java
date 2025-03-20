@@ -70,4 +70,6 @@ public interface ModalService {
 
 	void eventItem(InvenDto inven1);
 
+	List<ItemDto> getItemsByItemInfoId(int i);
+
 }

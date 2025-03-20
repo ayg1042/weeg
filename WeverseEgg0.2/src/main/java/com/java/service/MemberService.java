@@ -36,4 +36,6 @@ public interface MemberService {
 
 	void buycoin(MemberDto dto, int jelly);
 
+	void buyCharacter(MemberDto dto);
+
 }

@@ -33,7 +33,8 @@
   <div id="myPage_navi">
     <div id="left_navi">
       <div class="MyJellyContent">
-        <a class="MyJellyPoint" href="/jellyshop">${sessionScope.session_id.getJelly()}</a>
+        <a class="MyJellyPoint" href="/jellyshop">${member.jelly}</a>
+        <%-- <a class="MyJellyPoint" href="/jellyshop">${sessionScope.session_id.getJelly()}</a> --%>
         <a class="MyJellyCharge" href="/jellyshop">충전</a>
       </div>
       <a class="MyShopView" href="#">샵 주문 내역</a>

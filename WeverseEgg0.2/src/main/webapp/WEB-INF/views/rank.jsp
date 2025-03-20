@@ -66,8 +66,12 @@ document.addEventListener("DOMContentLoaded", function () {
 				<div class="real_idol">
 					<img src="/images/rank/exGiselle.png">
 				</div>
-				<div class="real_idol"></div>
-				<div class="real_idol"></div>
+				<div class="real_idol">
+					<img src="/images/rank/nig.png">
+				</div>
+				<div class="real_idol">
+					<img src="/images/rank/karina.png">
+				</div>
 			</div>
 			<h2 id="rankText">랭킹</h2>
 			<div id="userRank">

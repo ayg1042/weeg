@@ -126,7 +126,7 @@ public class MemberController {
 	public String kakaoLogin(@RequestParam String code, HttpSession session) {
 		String grant_type = "authorization_code";
 		String client_id = "5c065bc8f939d1303dc54e5a7ed2878a";
-		String redirect_uri = "http://localhost:8181/login/kakao/oauth";
+		String redirect_uri = "http://192.168.0.193:8181/login/kakao/oauth";
 		String prompt = "login";
 		String content_type = "application/x-www-form-urlencoded;charset=utf-8";
 		

@@ -127,7 +127,7 @@
 						<span class="orText">혹은</span>
 						<hr>
 					</div>
-					<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=5c065bc8f939d1303dc54e5a7ed2878a&redirect_uri=http://localhost:8181/login/kakao/oauth&prompt=login"><img src="../images/login/kakao_login.png" alt="카카오로그인"></a>
+					<a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=5c065bc8f939d1303dc54e5a7ed2878a&redirect_uri=http://192.168.0.193:8181/login/kakao/oauth&prompt=login"><img src="../images/login/kakao_login.png" alt="카카오로그인"></a>
 				</div>
 				<div class="button_area_join">
 					아직 계정이 없다면?
