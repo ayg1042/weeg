@@ -74,6 +74,17 @@ public class CharacterController {
 		return "startStory";
 	}
 	
+	@GetMapping("/addCharacter")
+	public String addCharacter() {
+		MemberDto dto = (MemberDto)session.getAttribute("session_id");
+		dto.setJelly(dto.getJelly() - 30);
+		
+		memberService.buyCharacter(dto);
+		
+		return "startStory";
+	}
+	
+	
 	// 캐릭터 생성, 닉네임 입력 페이지
 	@GetMapping("/nickname_input") 
 	public String nickname_input() {

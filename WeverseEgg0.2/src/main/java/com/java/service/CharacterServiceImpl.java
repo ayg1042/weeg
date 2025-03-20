@@ -172,28 +172,29 @@ public class CharacterServiceImpl implements CharacterService {
 				List<ArtistNameEntity> list = artistNameRepository.findAll();
 				Random random = new Random();
 				int randomIndex = 2 + random.nextInt(list.size() - 1);
-				//int test1 = 2 + random.nextInt(list.size() - 1);
-				//int test2 = 2 + random.nextInt(list.size() - 1);
-				//int test3 = 2 + random.nextInt(list.size() - 1);
-				//int test4 = 2 + random.nextInt(list.size() - 1);
-				//int test5 = 2 + random.nextInt(list.size() - 1);
-				//int test6 = 2 + random.nextInt(list.size() - 1);
-				//int test7 = 2 + random.nextInt(list.size() - 1);
-				//int test8 = 2 + random.nextInt(list.size() - 1);
-				//int test9 = 2 + random.nextInt(list.size() - 1);
-				//int test10 = 2 + random.nextInt(list.size() - 1);
+				int test1 = 2 + random.nextInt(list.size() - 1);
+				int test2 = 2 + random.nextInt(list.size() - 1);
+				int test3 = 2 + random.nextInt(list.size() - 1);
+				int test4 = 2 + random.nextInt(list.size() - 1);
+				int test5 = 2 + random.nextInt(list.size() - 1);
+				int test6 = 2 + random.nextInt(list.size() - 1);
+				int test7 = 2 + random.nextInt(list.size() - 1);
+				int test8 = 2 + random.nextInt(list.size() - 1);
+				int test9 = 2 + random.nextInt(list.size() - 1);
+				int test10 = 2 + random.nextInt(list.size() - 1);
 				
-				//System.out.println("아티스트 리스트 크기 : "+list.size());
-				//System.out.println("랜덤 테스트 - " + test1);
-				//System.out.println("랜덤 테스트 - " + test2);
-				//System.out.println("랜덤 테스트 - " + test3);
-				//System.out.println("랜덤 테스트 - " + test4);
-				//System.out.println("랜덤 테스트 - " + test5);
-				//System.out.println("랜덤 테스트 - " + test6);
-				//System.out.println("랜덤 테스트 - " + test7);
-				//System.out.println("랜덤 테스트 - " + test8);
-				//System.out.println("랜덤 테스트 - " + test9);
-				//System.out.println("랜덤 테스트 - " + test10);
+				System.out.println("아티스트 리스트 크기 : "+list.size());
+				System.out.println("randomIndex - " + randomIndex);
+				System.out.println("랜덤 테스트 - " + test1);
+				System.out.println("랜덤 테스트 - " + test2);
+				System.out.println("랜덤 테스트 - " + test3);
+				System.out.println("랜덤 테스트 - " + test4);
+				System.out.println("랜덤 테스트 - " + test5);
+				System.out.println("랜덤 테스트 - " + test6);
+				System.out.println("랜덤 테스트 - " + test7);
+				System.out.println("랜덤 테스트 - " + test8);
+				System.out.println("랜덤 테스트 - " + test9);
+				System.out.println("랜덤 테스트 - " + test10);
 				
 				ArtistNameEntity entity = artistNameRepository.findById(randomIndex).orElseThrow(()-> new RuntimeException("해당 ID의 아티스트를 찾을 수 없습니다."));
 				if(entity != null) {
@@ -239,7 +240,7 @@ public class CharacterServiceImpl implements CharacterService {
 			if(character.getVocal() >= 75 && character.getRap() >= 75) {
 				List<ArtistNameEntity> list = artistNameRepository.findAll();
 				Random random = new Random();
-				int randomIndex = 2 + random.nextInt(list.size() - 2);
+				int randomIndex = 2 + random.nextInt(list.size() - 1);
 				
 				ArtistNameEntity entity = artistNameRepository.findById(randomIndex).orElseThrow(()-> new RuntimeException("해당 ID의 아티스트를 찾을 수 없습니다."));
 				if(entity != null) {

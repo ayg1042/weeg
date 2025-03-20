@@ -39,9 +39,9 @@ public class JellyServiceImpl implements JellyService {
 		params.put("quantity", String.valueOf(jelly));
 		params.put("total_amount", String.valueOf(price));
 		params.put("tax_free_amount", "0");
-		params.put("approval_url", "http://localhost:8181/jellyshop/buy/completed");
-		params.put("fail_url", "http://localhost:8181/jellyshop/buy/fail");
-		params.put("cancel_url", "http://localhost:8181/jellyshop/buy/cancel");
+		params.put("approval_url", "http://192.168.0.193:8181/jellyshop/buy/completed");
+		params.put("fail_url", "http://192.168.0.193:8181/jellyshop/buy/fail");
+		params.put("cancel_url", "http://192.168.0.193:8181/jellyshop/buy/cancel");
 		
 		 // HttpEntity : HTTP 요청 또는 응답에 해당하는 Http Header와 Http Body를 포함하는 클래스
         HttpEntity<Map<String, String>> requestEntity = new HttpEntity<>(params, this.getHeaders());

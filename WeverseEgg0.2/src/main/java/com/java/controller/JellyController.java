@@ -37,9 +37,17 @@ public class JellyController {
 	public String jellyShop(Model model,
 			@SessionAttribute(name = "session_id", required = false) MemberDto memberDto) {
 		// 회원 정보 없으면 로그인 
+		MemberDto dto = (MemberDto)session.getAttribute("session_id");
 		if (memberDto != null) {
 			int id = memberDto.getUser_id();
-			int jelly = memberService.getByJelly(id);
+			//int jelly = memberService.getByJelly(id);
+			int jelly = memberDto.getJelly();
+			MemberDto md = (MemberDto)session.getAttribute("Mjelly");
+			if(md != null) {				
+				System.out.println("출력확인 = " + md.getJelly());
+				model.addAttribute("jelly",md.getJelly());
+				return "jelly_shop";
+			}
 			model.addAttribute("jelly",jelly);
 		    }
 		return "jelly_shop";
@@ -91,6 +99,7 @@ public class JellyController {
         MemberDto memberDto = jellyService.updateJelly(Id, quantity);
         System.out.println("젤리컨트롤러 : "+memberDto.getJelly());
         redirectAttributes.addFlashAttribute("jelly", memberDto.getJelly());
+        session.setAttribute("Mjelly", memberDto);
         return "redirect:/jellyshop";
 	}
 	

@@ -3,6 +3,7 @@ package com.java.service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -453,6 +454,25 @@ public class ModalServiceImpl implements ModalService {
 		InvenEntity entity = InvenEntity.From(inven1);
 		invenRepository.save(entity);
 		
+	}
+
+	@Override
+	public List<ItemDto> getItemsByItemInfoId(int infoId) {
+		// 아이템 인포 아이디가 infoId인 아이템 엔티티 리스트를 가져옴
+		List<ItemEntity> itemEntities = itemRepository.findByItemInfo_ItemInfoId(infoId);
+		// 가져온 엔티티 리스트를 DTO로 변환
+		List<ItemDto> itemDtos = itemEntities.stream().map(entity -> {
+			ItemDto dto = new ItemDto();
+			dto.setItemId(entity.getItemId());
+			dto.setName(entity.getName());
+			dto.setPrice(entity.getPrice());
+			dto.setImage(entity.getImage());
+			dto.setItemInfo(ItemInfoDto.From(entity.getItemInfo()));
+			// 필요 시, itemInfo도 변환해서 설정
+			// 예: dto.setItemInfo(ItemInfoDto.from(entity.getItemInfo()));
+			return dto;
+		}).collect(Collectors.toList());
+		return itemDtos;
 	}
 
 }

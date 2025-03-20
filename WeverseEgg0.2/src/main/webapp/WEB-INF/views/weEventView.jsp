@@ -11,7 +11,7 @@
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/mainpage.css" />
   <link rel="stylesheet" type="text/css" href="css/header.css" />
-  <link rel="stylesheet" type="text/css" href="css/weNoticeView.css" />
+  <link rel="stylesheet" type="text/css" href="css/weEventView.css" />
   <title>WEVERSEGG_NOTICE</title>
 </head>
 

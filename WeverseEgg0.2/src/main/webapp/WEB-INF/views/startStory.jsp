@@ -144,9 +144,9 @@
           </svg>
         </button>
         <div class="header_content">
-          <button type="button" class="egg"></button>
-          <button type="button" class="jelly"></button>
-          <button type="button" class="shop"></button>
+          <button type="button" class="egg" onclick="location.href='/eggmain'"></button>
+          <button type="button" class="jelly" onclick="location.href='/jellyshop'"></button>
+          <button type="button" class="shop" onclick="location.href='/main'"></button>
         </div>
       </div>
     </div>

@@ -64,6 +64,7 @@ public class MemberDto {
 		MemberDto dto = new MemberDto();
     	dto.email = entity.getEmail();
     	dto.nickname = entity.getNickname();
+    	dto.jelly = entity.getJelly();
     	return dto;
 	}
 	

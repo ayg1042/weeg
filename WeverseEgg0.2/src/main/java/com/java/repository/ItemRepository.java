@@ -12,4 +12,6 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Integer> {
 
 	List<ItemEntity> findByItemInfo_ItemType_ItemTypeIdIn(List<Integer> item_type);
 
+	List<ItemEntity> findByItemInfo_ItemInfoId(int infoId);
+
 }
